@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Karma | Karma Is Geometry – The Hole Truth</title>
+    <meta name="description" content="Karma isn't cosmic punishment or a ledger. It's geometry. If there's only one experiencer, what you do to 'another' you do to yourself. The Golden Rule is physics.">
+    <meta name="keywords" content="karma geometry, karma physics, golden rule science, one experiencer, do unto others physics">
+    <meta name="author" content="The Hole Truth">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://theholetruth.space/metaphysics/karma/">
+    <meta property="og:title" content="Karma | Karma Is Geometry">
+    <meta property="og:description" content="What you do to others, you do to yourself. Not metaphorically. Geometrically.">
+    <meta property="og:image" content="https://theholetruth.space/images/og-karma.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theholetruth.space/metaphysics/karma/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            background: #0a0a12;
+            font-family: 'Nunito', sans-serif;
+            color: #e0e0e8;
+            line-height: 1.7;
+        }
+        
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 30%, rgba(90, 60, 120, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 70%, rgba(60, 80, 100, 0.1) 0%, transparent 50%),
+                #0a0a12;
+            z-index: -1;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,18,0.95) 0%, rgba(10,10,18,0.8) 70%, transparent 100%);
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .logo span { color: #c4b5fd; }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active { color: #c4b5fd; }
+        
+        /* Main */
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 120px 30px 80px;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 0.85rem;
+        }
+        
+        .breadcrumb a {
+            color: #8888aa;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover { color: #c4b5fd; }
+        
+        .breadcrumb span { color: #606080; }
+        
+        /* Hero */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-hero .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #d4c8ff 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-hero .subtitle {
+            font-size: 1.3rem;
+            color: #c4b5fd;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .page-hero .tagline {
+            font-size: 1.1rem;
+            color: #a0a0c0;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 45px;
+        }
+        
+        .content-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 18px;
+            letter-spacing: 0.03em;
+        }
+        
+        .content-section p {
+            font-size: 1.02rem;
+            color: #b8b8d0;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+        
+        .content-section p strong {
+            color: #fff;
+        }
+        
+        /* Scientific Support */
+        .scientific-support {
+            border-left: 3px solid rgba(167, 139, 250, 0.4);
+            margin: 20px 0;
+            background: rgba(20, 20, 35, 0.5);
+            border-radius: 0 12px 12px 0;
+            overflow: hidden;
+        }
+        
+        .scientific-support summary {
+            padding: 14px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #c4b5fd;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s ease;
+            list-style: none;
+        }
+        
+        .scientific-support summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .scientific-support summary::before {
+            content: '▸';
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .scientific-support[open] summary::before {
+            transform: rotate(90deg);
+        }
+        
+        .scientific-support summary:hover {
+            background: rgba(167, 139, 250, 0.08);
+        }
+        
+        .scientific-support .content {
+            padding: 0 20px 18px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            color: #d4c8ff;
+            line-height: 1.7;
+        }
+        
+        /* Key Insight Box */
+        .key-insight {
+            background: linear-gradient(135deg, rgba(90, 60, 120, 0.2) 0%, rgba(60, 80, 100, 0.2) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .key-insight .symbol {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .key-insight p {
+            font-size: 1.15rem;
+            color: #d4d4e8;
+            line-height: 1.7;
+        }
+        
+        .key-insight p strong {
+            color: #fcd34d;
+        }
+        
+        /* Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(167, 139, 250, 0.25), transparent);
+            margin: 45px 0;
+        }
+        
+        /* Golden Rule Box */
+        .golden-rule {
+            background: linear-gradient(135deg, rgba(252, 211, 77, 0.1) 0%, rgba(252, 180, 77, 0.05) 100%);
+            border: 1px solid rgba(252, 211, 77, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .golden-rule h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: #fcd34d;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+        }
+        
+        .golden-rule .rule {
+            font-size: 1.4rem;
+            color: #fff;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .golden-rule .explanation {
+            font-size: 1rem;
+            color: #b8b8d0;
+        }
+        
+        .golden-rule .explanation strong {
+            color: #fcd34d;
+        }
+        
+        /* Reframe Cards */
+        .reframe-section {
+            margin: 40px 0;
+        }
+        
+        .reframe-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #c4b5fd;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+        
+        .reframe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .reframe-card {
+            background: rgba(25, 25, 45, 0.5);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .reframe-card h4 {
+            font-size: 0.85rem;
+            color: #8888aa;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+        
+        .reframe-card .old {
+            font-size: 0.95rem;
+            color: #707090;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+        
+        .reframe-card .new {
+            font-size: 1rem;
+            color: #c4b5fd;
+        }
+        
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+        }
+        
+        .nav-links a {
+            color: #c4b5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #fff;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #8888aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover { color: #c4b5fd; }
+        
+        .source-note {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            
+            main { padding: 100px 20px 60px; }
+            
+            .page-hero h1 { font-size: 2rem; }
+            
+            .reframe-grid { grid-template-columns: 1fr; }
+            
+            .nav-links { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <header>
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/" class="active">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="breadcrumb">
+            <a href="/metaphysics/">Metaphysics</a> <span>→</span> Karma
+        </div>
+        
+        <section class="page-hero">
+            <div class="icon">⚖</div>
+            <h1>KARMA</h1>
+            <p class="subtitle">"Karma Is Geometry"</p>
+            <p class="tagline">Not punishment. Not reward. Not a cosmic ledger. Just the geometry of a single experiencer.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2>What Karma Actually Is</h2>
+            <p>Most people think of karma as cosmic accounting. Do good things, good things come back. Do bad things, suffer later. A universal reward-and-punishment system.</p>
+            <p><strong>That's not what karma is.</strong></p>
+            <p>Karma is much simpler—and much more profound. If there's only one experiencer living all lives, then what you do to "another" you do to yourself. Not eventually. Not in some future lifetime. <em>Geometrically.</em></p>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    Single experiencer theorem: if all ε-centers are identical, and consciousness resides at ε, then Actor and Recipient share the same experiencer. Action A → Recipient is simultaneously Action A → Self (same ε). No time delay required; the identity is structural, not sequential.
+                </div>
+            </details>
+        </section>
+        
+        <div class="key-insight">
+            <div class="symbol">🎯</div>
+            <p>When you hurt someone, <strong>you are hurting yourself from another angle.</strong><br><br>When you help someone, <strong>you are helping yourself from another angle.</strong><br><br>There are no others. There is only you, everywhere.</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="golden-rule">
+            <h3>THE GOLDEN RULE DECODED</h3>
+            <p class="rule">"Do unto others as you would have them do unto you."</p>
+            <p class="explanation">This isn't moral instruction. It's <strong>physics</strong>. "Do unto others as you would have them do unto you" <em>because there are no others</em>. What you do to "them," you ARE doing to you.</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>Why It Doesn't Feel That Way</h2>
+            <p>If hurting someone is hurting yourself, why doesn't it feel like it immediately?</p>
+            <p><strong>Because you're identified with a surface position.</strong></p>
+            <p>From your current angle on the torus, you appear separate from the person you're affecting. The pain registers at their position, not yours. The feedback is real, but it's distributed across the surface—across what appears to be "other lives" and "other times."</p>
+            <p>The experiencer at ε receives it all. You just don't remember being in both positions until you shift perspective.</p>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    Surface-level separation creates apparent isolation of feedback. But ε-consciousness integrates all surface experiences. "Past life" memory, spontaneous guilt/joy without apparent cause, deep empathic response—these may be ε-integration bleeding through surface boundaries. The "karma delay" is an artifact of surface-time; at ε, all experiences are simultaneous.
+                </div>
+            </details>
+        </section>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>Reframing Ethics</h2>
+            <p>This changes everything about how we think about morality:</p>
+        </section>
+        
+        <div class="reframe-section">
+            <div class="reframe-grid">
+                <div class="reframe-card">
+                    <h4>COMPASSION</h4>
+                    <p class="old">Being nice to others</p>
+                    <p class="new">Accurate perception of reality</p>
+                </div>
+                
+                <div class="reframe-card">
+                    <h4>CRUELTY</h4>
+                    <p class="old">Evil or malice</p>
+                    <p class="new">Geometric confusion—acting against your own nature</p>
+                </div>
+                
+                <div class="reframe-card">
+                    <h4>FORGIVENESS</h4>
+                    <p class="old">Letting someone off the hook</p>
+                    <p class="new">Recognizing you were both actors in the scene</p>
+                </div>
+                
+                <div class="reframe-card">
+                    <h4>SERVICE</h4>
+                    <p class="old">Sacrifice for others</p>
+                    <p class="new">Self-care across positions</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>Liberation Through Understanding</h2>
+            <p>Traditional karma implies you're trapped—bound to a wheel of consequence that spans lifetimes. Pay off debts. Accumulate merit. Try to escape the cycle.</p>
+            <p><strong>But understanding the geometry changes everything.</strong></p>
+            <p>You're not trapped by karma. You're simply experiencing the natural result of being one experiencer across many positions. There's nothing to escape—only something to understand.</p>
+            <p>When you truly see that every being is you, cruelty becomes impossible. Not because you're following a rule, but because you can't unsee what you've seen. You don't hurt yourself on purpose.</p>
+            <p>That recognition IS the liberation.</p>
+        </section>
+        
+        <div class="key-insight">
+            <div class="symbol">🔓</div>
+            <p><strong>Karma isn't a trap. It's a teacher.</strong><br><br>It keeps showing you, through experience after experience, that separation is illusion—until you finally see it.</p>
+        </div>
+        
+        <div class="nav-links">
+            <a href="/metaphysics/consciousness/">← Consciousness</a>
+            <a href="/metaphysics/">Back to Metaphysics →</a>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="/framework/">Framework</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+            <a href="/about/">About</a>
+        </div>
+        <p class="source-note">Framework channeled through ET contact, independently verified through mathematics.</p>
+        <div class="copyright">© 2025 The Hole Truth</div>
+    </footer>
+</body>
+</html>
