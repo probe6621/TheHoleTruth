@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Physics | What the ε Framework Solves – The Hole Truth</title>
+    <meta name="description" content="Dark matter, dark energy, vacuum catastrophe, physical constants—all solved by the ε Framework through toroidal geometry and the axiom ∄0.">
+    <meta name="keywords" content="unified physics, dark matter solution, dark energy explained, vacuum catastrophe, physical constants derived, toroidal physics">
+    <meta name="author" content="The Hole Truth">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theholetruth.space/physics/">
+    <meta property="og:title" content="Physics | What the ε Framework Solves">
+    <meta property="og:description" content="Every major puzzle in physics involves something going to zero or infinity. If zero doesn't exist, all those puzzles have answers.">
+    <meta property="og:image" content="https://theholetruth.space/images/og-physics.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theholetruth.space/physics/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            background: #0a0a12;
+            font-family: 'Nunito', sans-serif;
+            color: #e0e0e8;
+            line-height: 1.7;
+        }
+        
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(60, 80, 120, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(80, 60, 100, 0.1) 0%, transparent 50%),
+                #0a0a12;
+            z-index: -1;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,18,0.95) 0%, rgba(10,10,18,0.8) 70%, transparent 100%);
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .logo span { color: #c4b5fd; }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active { color: #c4b5fd; }
+        
+        /* Main */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 30px 80px;
+        }
+        
+        /* Hero */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #93c5fd 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-hero .tagline {
+            font-size: 1.15rem;
+            color: #a0a0c0;
+            max-width: 650px;
+            margin: 0 auto 30px;
+        }
+        
+        .page-hero .insight {
+            font-size: 1rem;
+            color: #93c5fd;
+            font-style: italic;
+        }
+        
+        /* Intro */
+        .intro-section {
+            background: rgba(25, 25, 45, 0.5);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 50px;
+        }
+        
+        .intro-section p {
+            font-size: 1.05rem;
+            color: #b8b8d0;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .intro-section p:last-child { margin-bottom: 0; }
+        .intro-section strong { color: #fff; }
+        
+        /* Topic Grid */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .topic-card {
+            background: rgba(20, 20, 40, 0.6);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(147, 197, 253, 0.4);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .topic-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .topic-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: 0.03em;
+        }
+        
+        .topic-card .plain {
+            font-size: 0.95rem;
+            color: #a0a0c0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-card .science {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #93c5fd;
+            padding: 10px 12px;
+            background: rgba(0,0,0,0.3);
+            border-left: 2px solid rgba(147, 197, 253, 0.4);
+            border-radius: 0 6px 6px 0;
+        }
+        
+        /* Key Insight */
+        .key-insight {
+            background: linear-gradient(135deg, rgba(60, 80, 120, 0.2) 0%, rgba(80, 60, 100, 0.2) 100%);
+            border: 1px solid rgba(147, 197, 253, 0.25);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .key-insight p {
+            font-size: 1.15rem;
+            color: #d4d4e8;
+            line-height: 1.7;
+        }
+        
+        .key-insight p strong {
+            color: #93c5fd;
+        }
+        
+        /* CTA */
+        .bridge-cta {
+            text-align: center;
+            padding: 40px;
+            background: rgba(25, 25, 45, 0.4);
+            border-radius: 16px;
+        }
+        
+        .bridge-cta h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+        
+        .bridge-cta p {
+            color: #a0a0c0;
+            margin-bottom: 25px;
+        }
+        
+        .bridge-cta .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            color: #fff;
+            background: rgba(96, 165, 250, 0.2);
+            border: 1px solid rgba(147, 197, 253, 0.5);
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .bridge-cta .btn:hover {
+            background: rgba(96, 165, 250, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #8888aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover { color: #c4b5fd; }
+        
+        .source-note {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            
+            main { padding: 100px 20px 60px; }
+            
+            .page-hero h1 { font-size: 2rem; }
+            
+            .topic-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <header>
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/physics/" class="active">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="page-hero">
+            <h1>PHYSICS</h1>
+            <p class="tagline">Every major puzzle in physics involves something going to "zero" or "infinity." If zero doesn't exist, all those puzzles have answers.</p>
+            <p class="insight">Black holes, the Big Bang, dark matter, dark energy, the vacuum catastrophe—solved by one axiom.</p>
+        </section>
+        
+        <section class="intro-section">
+            <p>For over 50 years, physics has relied on absolute zero as a valid concept. It works mathematically—until you reach boundaries. Then everything breaks down. Singularities appear. Infinities explode. The equations stop making sense.</p>
+            <p><strong>These aren't failures of physics. They're warnings.</strong> The math is telling us that zero doesn't actually exist. The ε Framework takes that warning seriously—and everything resolves.</p>
+        </section>
+        
+        <div class="topic-grid">
+            <div class="topic-card">
+                <div class="icon">🌀</div>
+                <h3>Dark Matter</h3>
+                <p class="plain">Dark matter isn't missing matter—it's the geometric closure of toroidal space. The universe curves back on itself, and that curvature has mass-like effects.</p>
+                <div class="science">Dark matter factor = π⁴ ≈ 97.4 (geometric closure)</div>
+            </div>
+            
+            <div class="topic-card">
+                <div class="icon">⚡</div>
+                <h3>Dark Energy</h3>
+                <p class="plain">The universe's acceleration isn't from mysterious repulsive force—it's the ratio of surface flow to total structure in toroidal geometry.</p>
+                <div class="science">(π - 1) / π = 68.17% (matches observed 68.3%)</div>
+            </div>
+            
+            <div class="topic-card">
+                <div class="icon">π</div>
+                <h3>Physical Constants</h3>
+                <p class="plain">The 26 "magic numbers" of physics—constants we measure but couldn't explain—derive from pure geometry. They're not arbitrary; they're necessary.</p>
+                <div class="science">mₚ/mₑ = 6π⁵ = 1836.15 (99.998% accurate)</div>
+            </div>
+            
+            <div class="topic-card">
+                <div class="icon">∞</div>
+                <h3>Vacuum Catastrophe</h3>
+                <p class="plain">Quantum theory predicts 10¹²⁰ times more vacuum energy than observed—the worst prediction in physics. The ε Framework resolves this by eliminating zero-point divergence.</p>
+                <div class="science">ε-regularization removes divergence naturally</div>
+            </div>
+            
+            <div class="topic-card">
+                <div class="icon">⚫</div>
+                <h3>Black Holes</h3>
+                <p class="plain">Singularities don't exist because zero doesn't exist. Black holes have an ε-core, not an infinite density point. Information isn't destroyed—it's compressed to ε.</p>
+                <div class="science">Core density → 1/ε (finite, not infinite)</div>
+            </div>
+            
+            <div class="topic-card">
+                <div class="icon">💥</div>
+                <h3>The Big Bang</h3>
+                <p class="plain">The universe didn't emerge from nothing—because nothing doesn't exist. The Big Bang was an expansion from ε, not from zero. A breathing out, not a creation ex nihilo.</p>
+                <div class="science">Initial state = ε (minimum, not zero)</div>
+            </div>
+        </div>
+        
+        <div class="key-insight">
+            <p><strong>The pattern is consistent:</strong> every "unsolved" problem in physics involves an assumption that zero is real. Remove that assumption, and the solutions emerge from geometry itself.</p>
+        </div>
+        
+        <section class="bridge-cta">
+            <h3>PHYSICS AND METAPHYSICS CONVERGE</h3>
+            <p>The same geometry that solves physics also explains consciousness, karma, and ancient wisdom.</p>
+            <a href="/metaphysics/" class="btn">Explore Metaphysics →</a>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="/framework/">Framework</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+            <a href="/about/">About</a>
+        </div>
+        <p class="source-note">Framework channeled through ET contact, independently verified through mathematics.</p>
+        <div class="copyright">© 2025 The Hole Truth</div>
+    </footer>
+</body>
+</html>
