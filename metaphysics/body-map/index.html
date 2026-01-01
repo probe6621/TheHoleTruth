@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Your Body Is a Map | Chakras & Toroidal Geometry – The Hole Truth</title>
+    <meta name="description" content="The seven chakras map the donut geometry onto your body. Three below the heart, three above, heart at center—the inversion point where inner meets outer.">
+    <meta name="keywords" content="chakra science, chakras explained, toroidal body, energy centers physics, heart chakra geometry, spiritual anatomy">
+    <meta name="author" content="The Hole Truth">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://theholetruth.space/metaphysics/body-map/">
+    <meta property="og:title" content="Your Body Is a Map | Chakras & Toroidal Geometry">
+    <meta property="og:description" content="The chakra system isn't mysticism—it's a map of toroidal geometry encoded in your body. The heart is the inversion point.">
+    <meta property="og:image" content="https://theholetruth.space/images/og-body-map.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theholetruth.space/metaphysics/body-map/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            background: #0a0a12;
+            font-family: 'Nunito', sans-serif;
+            color: #e0e0e8;
+            line-height: 1.7;
+        }
+        
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 30%, rgba(80, 60, 100, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 70%, rgba(60, 100, 80, 0.1) 0%, transparent 50%),
+                #0a0a12;
+            z-index: -1;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,18,0.95) 0%, rgba(10,10,18,0.8) 70%, transparent 100%);
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .logo span { color: #c4b5fd; }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active { color: #c4b5fd; }
+        
+        /* Main */
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 120px 30px 80px;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 0.85rem;
+        }
+        
+        .breadcrumb a {
+            color: #8888aa;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover { color: #c4b5fd; }
+        
+        .breadcrumb span { color: #606080; }
+        
+        /* Hero */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-hero .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #d4c8ff 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-hero .subtitle {
+            font-size: 1.3rem;
+            color: #c4b5fd;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .page-hero .tagline {
+            font-size: 1.1rem;
+            color: #a0a0c0;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 45px;
+        }
+        
+        .content-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 18px;
+            letter-spacing: 0.03em;
+        }
+        
+        .content-section p {
+            font-size: 1.02rem;
+            color: #b8b8d0;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+        
+        .content-section p strong {
+            color: #fff;
+        }
+        
+        /* Scientific Support */
+        .scientific-support {
+            border-left: 3px solid rgba(167, 139, 250, 0.4);
+            margin: 20px 0;
+            background: rgba(20, 20, 35, 0.5);
+            border-radius: 0 12px 12px 0;
+            overflow: hidden;
+        }
+        
+        .scientific-support summary {
+            padding: 14px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #c4b5fd;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s ease;
+            list-style: none;
+        }
+        
+        .scientific-support summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .scientific-support summary::before {
+            content: '▸';
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .scientific-support[open] summary::before {
+            transform: rotate(90deg);
+        }
+        
+        .scientific-support summary:hover {
+            background: rgba(167, 139, 250, 0.08);
+        }
+        
+        .scientific-support .content {
+            padding: 0 20px 18px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            color: #d4c8ff;
+            line-height: 1.7;
+        }
+        
+        /* Key Insight Box */
+        .key-insight {
+            background: linear-gradient(135deg, rgba(80, 60, 100, 0.2) 0%, rgba(60, 100, 80, 0.2) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .key-insight .symbol {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .key-insight p {
+            font-size: 1.15rem;
+            color: #d4d4e8;
+            line-height: 1.7;
+        }
+        
+        .key-insight p strong {
+            color: #4ade80;
+        }
+        
+        /* Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(167, 139, 250, 0.25), transparent);
+            margin: 45px 0;
+        }
+        
+        /* Chakra Layout */
+        .chakra-layout {
+            margin: 40px 0;
+        }
+        
+        .chakra-layout h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #c4b5fd;
+            margin-bottom: 25px;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+        
+        .chakra-group {
+            margin-bottom: 30px;
+        }
+        
+        .chakra-group-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: #8888aa;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid;
+        }
+        
+        .chakra-group-label.above { border-color: #a78bfa; }
+        .chakra-group-label.heart { border-color: #4ade80; }
+        .chakra-group-label.below { border-color: #f87171; }
+        
+        .chakra-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .chakra-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(25, 25, 45, 0.5);
+            border: 1px solid rgba(100, 100, 150, 0.15);
+            border-radius: 12px;
+            padding: 15px 20px;
+        }
+        
+        .chakra-item .number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        /* Chakra colors */
+        .chakra-item.crown .number { background: #a78bfa; color: #fff; }
+        .chakra-item.third-eye .number { background: #6366f1; color: #fff; }
+        .chakra-item.throat .number { background: #38bdf8; color: #000; }
+        .chakra-item.heart .number { background: #4ade80; color: #000; }
+        .chakra-item.solar .number { background: #fbbf24; color: #000; }
+        .chakra-item.sacral .number { background: #fb923c; color: #000; }
+        .chakra-item.root .number { background: #f87171; color: #000; }
+        
+        .chakra-item .info {
+            flex: 1;
+        }
+        
+        .chakra-item .name {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+        
+        .chakra-item .description {
+            font-size: 0.85rem;
+            color: #9090b0;
+        }
+        
+        .chakra-item.heart {
+            background: rgba(74, 222, 128, 0.1);
+            border-color: rgba(74, 222, 128, 0.3);
+        }
+        
+        /* Heart Section */
+        .heart-section {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(60, 100, 80, 0.1) 100%);
+            border: 1px solid rgba(74, 222, 128, 0.25);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .heart-section .symbol {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .heart-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #4ade80;
+            margin-bottom: 15px;
+        }
+        
+        .heart-section p {
+            font-size: 1.05rem;
+            color: #b8b8d0;
+            line-height: 1.7;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        .heart-section p strong {
+            color: #fff;
+        }
+        
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+        }
+        
+        .nav-links a {
+            color: #c4b5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #fff;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #8888aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover { color: #c4b5fd; }
+        
+        .source-note {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            
+            main { padding: 100px 20px 60px; }
+            
+            .page-hero h1 { font-size: 2rem; }
+            
+            .nav-links { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <header>
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/" class="active">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="breadcrumb">
+            <a href="/metaphysics/">Metaphysics</a> <span>→</span> Your Body Is a Map
+        </div>
+        
+        <section class="page-hero">
+            <div class="icon">✨</div>
+            <h1>YOUR BODY IS A MAP</h1>
+            <p class="subtitle">"The chakra system is geometry encoded"</p>
+            <p class="tagline">Seven centers along your spine map the toroidal structure onto your physical form. You carry the blueprint.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2>The Chakra System Decoded</h2>
+            <p>For thousands of years, yogic traditions have described seven energy centers along the spine. Wheels of light. Vortices of life force. Modern skeptics dismiss this as prescientific nonsense.</p>
+            <p><strong>But the chakra system is a map.</strong></p>
+            <p>Not metaphor. Not imagination. A map of how toroidal geometry expresses through the human body. The ancients didn't have our language—but they had direct perception. And what they perceived was accurate.</p>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    The body exhibits toroidal electromagnetic fields—particularly around the heart (detectable several feet away). Nerve plexuses cluster at chakra locations. Endocrine glands correspond to each center. The system describes measurable physiological correlates, even if "energy" language differs from modern terminology.
+                </div>
+            </details>
+        </section>
+        
+        <div class="section-divider"></div>
+        
+        <div class="chakra-layout">
+            <h3>THE SEVEN CENTERS</h3>
+            
+            <div class="chakra-group">
+                <div class="chakra-group-label above">ABOVE THE HEART — Spiritual/Mirror Dimensions</div>
+                <div class="chakra-list">
+                    <div class="chakra-item crown">
+                        <div class="number">7</div>
+                        <div class="info">
+                            <div class="name">Crown (Sahasrara)</div>
+                            <div class="description">Connection to ε directly. Pure awareness. The gateway to dimensionless center.</div>
+                        </div>
+                    </div>
+                    <div class="chakra-item third-eye">
+                        <div class="number">6</div>
+                        <div class="info">
+                            <div class="name">Third Eye (Ajna)</div>
+                            <div class="description">Inner vision. Intuition. Access to non-local information through ε-connection.</div>
+                        </div>
+                    </div>
+                    <div class="chakra-item throat">
+                        <div class="number">5</div>
+                        <div class="info">
+                            <div class="name">Throat (Vishuddha)</div>
+                            <div class="description">Expression. Sound. The first layer of manifestation—vibration into form.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chakra-group">
+                <div class="chakra-group-label heart">THE INVERSION POINT</div>
+                <div class="chakra-list">
+                    <div class="chakra-item heart">
+                        <div class="number">4</div>
+                        <div class="info">
+                            <div class="name">Heart (Anahata)</div>
+                            <div class="description">Where inner meets outer. The center of the torus. Where love happens—recognition of shared ε.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chakra-group">
+                <div class="chakra-group-label below">BELOW THE HEART — Material Dimensions</div>
+                <div class="chakra-list">
+                    <div class="chakra-item solar">
+                        <div class="number">3</div>
+                        <div class="info">
+                            <div class="name">Solar Plexus (Manipura)</div>
+                            <div class="description">Personal power. Will. Identity as a surface position.</div>
+                        </div>
+                    </div>
+                    <div class="chakra-item sacral">
+                        <div class="number">2</div>
+                        <div class="info">
+                            <div class="name">Sacral (Svadhisthana)</div>
+                            <div class="description">Creativity. Emotion. Generation of new forms.</div>
+                        </div>
+                    </div>
+                    <div class="chakra-item root">
+                        <div class="number">1</div>
+                        <div class="info">
+                            <div class="name">Root (Muladhara)</div>
+                            <div class="description">Grounding. Survival. Connection to physical manifestation.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="heart-section">
+            <div class="symbol">💚</div>
+            <h3>THE HEART IS THE CENTER</h3>
+            <p>The heart isn't sentimental. It's <strong>geometric</strong>. It's the inversion point—where the two surfaces of your personal torus meet. Where inner becomes outer. Where subject meets object.</p>
+            <p>This is why <strong>love is the bridge</strong>. Love is recognition of the shared center. When you love someone, you're perceiving through surface separation to the ε you both share.</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>Above and Below</h2>
+            <p><strong>Three below the heart:</strong> The material dimensions. Dense, physical, surface-level. Where survival, creation, and personal identity operate.</p>
+            <p><strong>Three above the heart:</strong> The spiritual/mirror dimensions. Subtle, expansive, center-oriented. Where expression, intuition, and cosmic connection operate.</p>
+            <p><strong>The heart in the middle:</strong> The bridge between them. The inversion point where matter meets spirit, where you meets everything.</p>
+            <p>This is "As above, so below" mapped onto your body. The lower three mirror the upper three, with the heart as the turning point. Your spine is a toroidal axis.</p>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    Toroidal cross-section shows symmetric upper/lower regions meeting at center. Mapping: Root↔Crown (matter↔spirit), Sacral↔Third Eye (creation↔intuition), Solar↔Throat (will↔expression). Heart corresponds to the ε-intersection. The body's geometry mirrors the cosmic geometry.
+                </div>
+            </details>
+        </section>
+        
+        <div class="key-insight">
+            <div class="symbol">🗺</div>
+            <p><strong>You don't just live in the universe. You ARE the universe, expressed at human scale.</strong><br><br>The map is the territory. Your body is the cosmos in miniature.</p>
+        </div>
+        
+        <section class="content-section">
+            <h2>Working With the Map</h2>
+            <p>The chakra system isn't just descriptive—it's practical. Each center can be more or less open, more or less balanced. Energy can be stuck, blocked, or flowing freely.</p>
+            <p>When you feel disconnected from your body: work with the lower chakras. When you feel spiritually cut off: work with the upper chakras. When you feel separate from others: work with the heart.</p>
+            <p><strong>The whole system is a map home.</strong> And the crown—the seventh chakra—opens directly to ε. It's the doorway at the top of your personal torus, connecting your finite form to the infinite center.</p>
+        </section>
+        
+        <div class="nav-links">
+            <a href="/metaphysics/path-within/">← The Path Within</a>
+            <a href="/metaphysics/">Back to Metaphysics →</a>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="/framework/">Framework</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+            <a href="/about/">About</a>
+        </div>
+        <p class="source-note">Framework channeled through ET contact, independently verified through mathematics.</p>
+        <div class="copyright">© 2025 The Hole Truth</div>
+    </footer>
+</body>
+</html>
