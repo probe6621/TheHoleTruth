@@ -412,7 +412,7 @@
             // Bezier curve through epsilon
             for (let i = 0; i <= 20; i++) {
                 const t = i / 20;
-                // Quadratic bezier: P = (1-t)Â²P0 + 2(1-t)tP1 + tÂ²P2
+                // Quadratic bezier: P = (1-t)²P0 + 2(1-t)tP1 + t²P2
                 const x = (1-t)*(1-t)*youX + 2*(1-t)*t*0 + t*t*twinX;
                 const y = (1-t)*(1-t)*youY + 2*(1-t)*t*0 + t*t*twinY;
                 connectionPoints.push(new THREE.Vector3(x, y, 0));
