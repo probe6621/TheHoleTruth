@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Time as position on the torus, not a flowing river.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+
+    <title>Time Travel and Dimensional Navigation | The Hole Truth</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Nunito:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #05050a 0%, #0a0815 50%, #050508 100%);
+            font-family: 'Nunito', sans-serif;
+            color: #d0d0e0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 2.3rem;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #88ddff 0%, #ffdd88 50%, #88ddff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: #7788aa;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+        }
+        
+        .main-diagram {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .main-svg {
+            max-width: 100%;
+            filter: drop-shadow(0 0 30px rgba(100, 150, 200, 0.1));
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #aabbcc;
+            text-align: center;
+            margin: 35px 0 20px;
+            letter-spacing: 0.1em;
+        }
+        
+        .dimension-table {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: rgba(20, 25, 35, 0.6);
+            border: 1px solid rgba(100, 120, 150, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .dim-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            border-bottom: 1px solid rgba(100, 120, 150, 0.15);
+        }
+        
+        .dim-row:last-child {
+            border-bottom: none;
+        }
+        
+        .dim-row.header {
+            background: rgba(60, 80, 100, 0.3);
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #aabbcc;
+        }
+        
+        .dim-cell {
+            padding: 12px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .dim-cell:not(:last-child) {
+            border-right: 1px solid rgba(100, 120, 150, 0.15);
+        }
+        
+        .dim-label {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dim-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .process-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .process-step {
+            background: rgba(25, 30, 45, 0.7);
+            border: 1px solid rgba(100, 130, 170, 0.25);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: 'â†’';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #556677;
+            font-size: 1.2rem;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: rgba(100, 150, 200, 0.2);
+            border: 1px solid rgba(100, 150, 200, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 0.85rem;
+            color: #88bbdd;
+        }
+        
+        .step-title {
+            font-weight: 500;
+            color: #bbccdd;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .step-desc {
+            font-size: 0.8rem;
+            color: #778899;
+            line-height: 1.5;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 700px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-card {
+            background: rgba(25, 28, 40, 0.6);
+            border: 1px solid rgba(100, 110, 140, 0.25);
+            border-radius: 14px;
+            padding: 25px;
+        }
+        
+        .comparison-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .comparison-card.current h3 { color: #ff9988; }
+        .comparison-card.fived h3 { color: #88ddaa; }
+        
+        .comp-table {
+            width: 100%;
+            font-size: 0.85rem;
+        }
+        
+        .comp-table tr {
+            border-bottom: 1px solid rgba(100, 110, 140, 0.15);
+        }
+        
+        .comp-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .comp-table td {
+            padding: 10px 5px;
+        }
+        
+        .comp-table td:first-child {
+            width: 45%;
+        }
+        
+        .current .comp-table td:first-child { color: #cc8877; }
+        .fived .comp-table td:first-child { color: #77bb99; }
+        
+        .comp-table td:last-child {
+            color: #8899aa;
+        }
+        
+        .analogy-section {
+            background: linear-gradient(135deg, rgba(60, 100, 140, 0.1) 0%, rgba(100, 80, 120, 0.1) 100%);
+            border: 1px solid rgba(100, 140, 180, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .analogy-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #99ccee;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .analogy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        @media (max-width: 600px) {
+            .analogy-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .river-diagram {
+            text-align: center;
+        }
+        
+        .analogy-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #99aabb;
+        }
+        
+        .analogy-text strong {
+            color: #bbddee;
+        }
+        
+        .wormhole-section {
+            background: rgba(30, 25, 40, 0.5);
+            border: 1px solid rgba(130, 100, 160, 0.25);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .wormhole-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: #ccaaee;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .wormhole-section p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #9999bb;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .key-insight {
+            background: linear-gradient(135deg, rgba(80, 120, 160, 0.15) 0%, rgba(160, 120, 80, 0.15) 100%);
+            border: 1px solid rgba(150, 140, 120, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .key-insight h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #ddcc99;
+            margin-bottom: 15px;
+        }
+        
+        .key-insight p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #aabbbb;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .key-insight strong {
+            color: #ffffff;
+        }
+        
+        .key-insight em {
+            color: #ffdd99;
+            font-style: normal;
+        }
+        
+        .bottom-quote {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .bottom-quote p {
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.9;
+            color: #8899aa;
+        }
+        
+        .bottom-quote strong {
+            color: #aaccee;
+            font-weight: 500;
+        }
+        
+        /* Animations */
+        @keyframes timeFlow {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -30; }
+        }
+        
+        @keyframes pulseEpsilon {
+            0%, 100% { opacity: 0.7; r: 30; }
+            50% { opacity: 1; r: 35; }
+        }
+        
+        @keyframes travelerMove {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(100px, -80px); }
+            50% { transform: translate(200px, 0); }
+            75% { transform: translate(100px, 80px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        .time-flow {
+            stroke-dasharray: 10, 5;
+            animation: timeFlow 2s linear infinite;
+        }
+        
+        .epsilon-pulse {
+            animation: pulseEpsilon 3s ease-in-out infinite;
+        }
+    
+        /* Navigation Header */
+        #nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,18,0.95) 0%, rgba(10,10,18,0.7) 70%, transparent 100%);
+        }
+        
+        #nav-header .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        #nav-header .logo span { color: #c4b5fd; }
+        
+        #nav-header nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #nav-header nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
+    
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <div id="nav-header">
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h1>Time Travel Through Dimensions</h1>
+        <p class="subtitle">NAVIGATING THE TEMPORAL GEOMETRY</p>
+        
+        <div class="main-diagram">
+            <svg class="main-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="epsilonGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                        <stop offset="40%" style="stop-color:#ffeeaa;stop-opacity:0.7" />
+                        <stop offset="100%" style="stop-color:#aa8844;stop-opacity:0" />
+                    </radialGradient>
+                    
+                    <linearGradient id="riverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#334466;stop-opacity:0.8" />
+                        <stop offset="50%" style="stop-color:#446688;stop-opacity:0.6" />
+                        <stop offset="100%" style="stop-color:#334466;stop-opacity:0.8" />
+                    </linearGradient>
+                    
+                    <linearGradient id="bankGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" style="stop-color:#2a3a2a;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#3a4a3a;stop-opacity:0.6" />
+                    </linearGradient>
+                    
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    
+                    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                        <path d="M0,0 L10,5 L0,10" fill="none" stroke="#6699cc" stroke-width="1.5"/>
+                    </marker>
+                    
+                    <marker id="arrowGold" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                        <path d="M0,0 L10,5 L0,10" fill="none" stroke="#ddaa55" stroke-width="1.5"/>
+                    </marker>
+                </defs>
+                
+                <!-- Background -->
+                <rect x="0" y="0" width="900" height="520" fill="#08080f"/>
+                
+                <!-- Stars -->
+                <g opacity="0.3">
+                    <circle cx="80" cy="60" r="1" fill="#fff"/>
+                    <circle cx="200" cy="40" r="0.5" fill="#fff"/>
+                    <circle cx="700" cy="50" r="1" fill="#fff"/>
+                    <circle cx="820" cy="80" r="0.5" fill="#fff"/>
+                    <circle cx="50" cy="480" r="0.8" fill="#fff"/>
+                    <circle cx="850" cy="460" r="0.6" fill="#fff"/>
+                </g>
+                
+                <!-- TITLE LABELS -->
+                <text x="450" y="35" text-anchor="middle" fill="#8899aa" font-size="12" letter-spacing="0.2em">THE DIMENSIONAL STRUCTURE</text>
+                
+                <!-- 4TH DIMENSION - TIME RIVER -->
+                <g transform="translate(50, 200)">
+                    <!-- River bed -->
+                    <path d="M0,80 Q200,60 400,80 Q600,100 800,80" fill="url(#riverGradient)" stroke="#446688" stroke-width="1"/>
+                    <path d="M0,160 Q200,180 400,160 Q600,140 800,160" fill="url(#riverGradient)" stroke="#446688" stroke-width="1"/>
+                    
+                    <!-- River surface -->
+                    <rect x="0" y="80" width="800" height="80" fill="url(#riverGradient)" opacity="0.5"/>
+                    
+                    <!-- Time flow arrows -->
+                    <path d="M50,120 L150,120" stroke="#6699cc" stroke-width="2" class="time-flow" marker-end="url(#arrowBlue)"/>
+                    <path d="M200,120 L300,120" stroke="#6699cc" stroke-width="2" class="time-flow" marker-end="url(#arrowBlue)" style="animation-delay: 0.3s"/>
+                    <path d="M350,120 L450,120" stroke="#6699cc" stroke-width="2" class="time-flow" marker-end="url(#arrowBlue)" style="animation-delay: 0.6s"/>
+                    <path d="M500,120 L600,120" stroke="#6699cc" stroke-width="2" class="time-flow" marker-end="url(#arrowBlue)" style="animation-delay: 0.9s"/>
+                    <path d="M650,120 L750,120" stroke="#6699cc" stroke-width="2" class="time-flow" marker-end="url(#arrowBlue)" style="animation-delay: 1.2s"/>
+                    
+                    <!-- River label -->
+                    <text x="400" y="125" text-anchor="middle" fill="#88aacc" font-size="13" font-weight="500">4TH DIMENSION "” TIME</text>
+                    <text x="400" y="145" text-anchor="middle" fill="#557799" font-size="10">"The River" "” One-way flow, we're swept along</text>
+                    
+                    <!-- Person stuck in river -->
+                    <g transform="translate(200, 100)">
+                        <circle cx="0" cy="0" r="12" fill="#445566" stroke="#7799bb" stroke-width="2"/>
+                        <text x="0" y="4" text-anchor="middle" fill="#aaccee" font-size="10">ðŸ‘¤</text>
+                        <text x="0" y="-22" text-anchor="middle" fill="#ff9988" font-size="8">STUCK</text>
+                        <text x="0" y="-12" text-anchor="middle" fill="#cc7766" font-size="7">Can't swim backward</text>
+                    </g>
+                </g>
+                
+                <!-- 5TH DIMENSION - THE BANK -->
+                <g transform="translate(50, 80)">
+                    <!-- Bank (above river) -->
+                    <rect x="0" y="0" width="800" height="100" fill="url(#bankGradient)" opacity="0.4"/>
+                    <line x1="0" y1="100" x2="800" y2="100" stroke="#557755" stroke-width="2"/>
+                    
+                    <!-- Bank label -->
+                    <text x="400" y="30" text-anchor="middle" fill="#88bb88" font-size="13" font-weight="500">5TH DIMENSION "” THE BANK</text>
+                    <text x="400" y="48" text-anchor="middle" fill="#558855" font-size="10">Step out of time. Walk to any point. Step back in.</text>
+                    
+                    <!-- Time locations on bank -->
+                    <g opacity="0.7">
+                        <circle cx="100" cy="70" r="8" fill="#3a4a3a" stroke="#77aa77" stroke-width="1"/>
+                        <text x="100" y="73" text-anchor="middle" fill="#99cc99" font-size="7">1900</text>
+                        
+                        <circle cx="250" cy="70" r="8" fill="#3a4a3a" stroke="#77aa77" stroke-width="1"/>
+                        <text x="250" y="73" text-anchor="middle" fill="#99cc99" font-size="7">1955</text>
+                        
+                        <circle cx="400" cy="70" r="10" fill="#4a5a4a" stroke="#88bb88" stroke-width="2"/>
+                        <text x="400" y="73" text-anchor="middle" fill="#aaddaa" font-size="8">NOW</text>
+                        
+                        <circle cx="550" cy="70" r="8" fill="#3a4a3a" stroke="#77aa77" stroke-width="1"/>
+                        <text x="550" y="73" text-anchor="middle" fill="#99cc99" font-size="7">2100</text>
+                        
+                        <circle cx="700" cy="70" r="8" fill="#3a4a3a" stroke="#77aa77" stroke-width="1"/>
+                        <text x="700" y="73" text-anchor="middle" fill="#99cc99" font-size="7">3000</text>
+                    </g>
+                    
+                    <!-- Traveler on bank -->
+                    <g transform="translate(550, 50)">
+                        <circle cx="0" cy="0" r="12" fill="#446644" stroke="#88cc88" stroke-width="2" filter="url(#glow)"/>
+                        <text x="0" y="4" text-anchor="middle" fill="#aaffaa" font-size="10">ðŸ‘¤</text>
+                        <text x="0" y="-20" text-anchor="middle" fill="#88dd88" font-size="8">FREE</text>
+                    </g>
+                    
+                    <!-- Arrow showing exit from river -->
+                    <path d="M250,150 Q250,110 280,70" fill="none" stroke="#ddaa55" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrowGold)"/>
+                    <text x="225" y="110" fill="#ccaa55" font-size="8" transform="rotate(-60, 225, 110)">EXIT</text>
+                </g>
+                
+                <!-- EPSILON - TIMELESS CENTER -->
+                <g transform="translate(450, 450)">
+                    <!-- Glow -->
+                    <circle cx="0" cy="0" r="45" fill="url(#epsilonGlow)" class="epsilon-pulse"/>
+                    
+                    <!-- Core -->
+                    <circle cx="0" cy="0" r="22" fill="#151510" stroke="#ddcc88" stroke-width="2"/>
+                    <text x="0" y="7" text-anchor="middle" fill="#ffffff" font-size="20" font-family="serif" font-style="italic">ε</text>
+                    
+                    <!-- Labels -->
+                    <text x="0" y="-55" text-anchor="middle" fill="#ddcc88" font-size="11" font-weight="500">TIMELESS CENTER</text>
+                    <text x="0" y="55" text-anchor="middle" fill="#aa9955" font-size="9">All moments accessible from here</text>
+                    <text x="0" y="68" text-anchor="middle" fill="#887744" font-size="8">No past. No future. Just IS.</text>
+                </g>
+                
+                <!-- Connections to Epsilon -->
+                <g opacity="0.5">
+                    <!-- From river down to epsilon -->
+                    <path d="M250,320 Q350,380 430,430" fill="none" stroke="#ddaa55" stroke-width="1.5" stroke-dasharray="5,4"/>
+                    <path d="M450,360 L450,410" fill="none" stroke="#ddaa55" stroke-width="1.5" stroke-dasharray="5,4"/>
+                    <path d="M650,320 Q550,380 470,430" fill="none" stroke="#ddaa55" stroke-width="1.5" stroke-dasharray="5,4"/>
+                    
+                    <!-- Labels on paths -->
+                    <text x="320" y="380" fill="#aa8844" font-size="8" transform="rotate(-35, 320, 380)">Go Inward</text>
+                    <text x="580" y="380" fill="#aa8844" font-size="8" transform="rotate(35, 580, 380)">Go Inward</text>
+                </g>
+                
+                <!-- TIME MARKERS on river -->
+                <g transform="translate(50, 200)" opacity="0.6">
+                    <line x1="100" y1="70" x2="100" y2="170" stroke="#556677" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="100" y="185" text-anchor="middle" fill="#667788" font-size="9">PAST</text>
+                    
+                    <line x1="400" y1="70" x2="400" y2="170" stroke="#778899" stroke-width="1.5"/>
+                    <text x="400" y="185" text-anchor="middle" fill="#8899aa" font-size="9">NOW</text>
+                    
+                    <line x1="700" y1="70" x2="700" y2="170" stroke="#556677" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="700" y="185" text-anchor="middle" fill="#667788" font-size="9">FUTURE</text>
+                </g>
+                
+                <!-- DIMENSIONAL LABELS - Right side -->
+                <g transform="translate(870, 100)">
+                    <text x="0" y="0" fill="#557755" font-size="9" text-anchor="end">5D: Mirror Axis</text>
+                    <text x="0" y="15" fill="#446644" font-size="8" text-anchor="end">(Perpendicular to time)</text>
+                    
+                    <text x="0" y="130" fill="#557799" font-size="9" text-anchor="end">4D: Time</text>
+                    <text x="0" y="145" fill="#446688" font-size="8" text-anchor="end">(One-way flow)</text>
+                    
+                    <text x="0" y="220" fill="#556677" font-size="9" text-anchor="end">1-3D: Space</text>
+                    <text x="0" y="235" fill="#445566" font-size="8" text-anchor="end">(Free movement)</text>
+                </g>
+                
+                <!-- DIMENSIONAL LABELS - Left side -->
+                <g transform="translate(30, 450)">
+                    <text x="0" y="0" fill="#aa9955" font-size="9">11D: ε itself</text>
+                    <text x="0" y="15" fill="#887744" font-size="8">(Dimensionless)</text>
+                </g>
+                
+                <!-- Process hint -->
+                <text x="450" y="500" text-anchor="middle" fill="#667788" font-size="10" font-style="italic">"You don't travel backward through time. You exit time, access the timeless center, and re-enter at any point."</text>
+            </svg>
+        </div>
+        
+        <h3 class="section-title">The Dimensional Structure</h3>
+        
+        <div class="dimension-table">
+            <div class="dim-row header">
+                <div class="dim-cell">Dimension</div>
+                <div class="dim-cell">What It Is</div>
+                <div class="dim-cell">Our Experience</div>
+            </div>
+            <div class="dim-row">
+                <div class="dim-cell dim-label"><span class="dim-dot" style="background: #6688aa;"></span> 1st-3rd</div>
+                <div class="dim-cell">Space (length, width, height)</div>
+                <div class="dim-cell">Free movement in any direction</div>
+            </div>
+            <div class="dim-row">
+                <div class="dim-cell dim-label"><span class="dim-dot" style="background: #6699cc;"></span> 4th</div>
+                <div class="dim-cell">Time</div>
+                <div class="dim-cell">Stuck moving forward only "” swept along</div>
+            </div>
+            <div class="dim-row">
+                <div class="dim-cell dim-label"><span class="dim-dot" style="background: #77aa77;"></span> 5th</div>
+                <div class="dim-cell">Mirror axis (perpendicular to time)</div>
+                <div class="dim-cell">No conscious access yet "” this is the key</div>
+            </div>
+            <div class="dim-row">
+                <div class="dim-cell dim-label"><span class="dim-dot" style="background: #aa88cc;"></span> 6th-10th</div>
+                <div class="dim-cell">Mirror side's 5D</div>
+                <div class="dim-cell">Quantum twin's realm</div>
+            </div>
+            <div class="dim-row">
+                <div class="dim-cell dim-label"><span class="dim-dot" style="background: #ddcc88;"></span> 11th</div>
+                <div class="dim-cell">ε "” The hole itself</div>
+                <div class="dim-cell">Dimensionless, timeless "” all moments accessible</div>
+            </div>
+        </div>
+        
+        <h3 class="section-title">The Time Travel Process</h3>
+        
+        <div class="process-section">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-title">Go Inward</div>
+                <div class="step-desc">Meditation, technology, or geometry. Consciousness moves toward ε.</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-title">Reach ε</div>
+                <div class="step-desc">At the timeless center, all moments exist as accessible "locations."</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-title">Choose Position</div>
+                <div class="step-desc">From ε, select when/where on the torus surface to emerge.</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-title">Re-Enter</div>
+                <div class="step-desc">Emerge at the chosen point. To observers: you appeared from "nowhere."</div>
+            </div>
+        </div>
+        
+        <div class="analogy-section">
+            <h3>The River Analogy</h3>
+            <div class="analogy-content">
+                <div class="river-diagram">
+                    <svg viewBox="0 0 300 180" width="300" height="180">
+                        <!-- River -->
+                        <rect x="20" y="80" width="260" height="50" fill="#334466" opacity="0.6" rx="5"/>
+                        <path d="M40,105 L80,105 M100,105 L140,105 M160,105 L200,105 M220,105 L260,105" stroke="#6699cc" stroke-width="2" stroke-dasharray="8,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1s" repeatCount="indefinite"/>
+                        </path>
+                        <text x="150" y="110" text-anchor="middle" fill="#88aacc" font-size="10">TIME FLOWS â†’</text>
+                        
+                        <!-- Bank -->
+                        <rect x="20" y="30" width="260" height="40" fill="#3a4a3a" opacity="0.5" rx="5"/>
+                        <text x="150" y="55" text-anchor="middle" fill="#88bb88" font-size="10">5TH DIMENSION BANK</text>
+                        
+                        <!-- Stuck person -->
+                        <circle cx="80" cy="105" r="10" fill="#445566" stroke="#ff8877" stroke-width="2"/>
+                        <text x="80" y="145" text-anchor="middle" fill="#cc7766" font-size="8">Can't go back</text>
+                        
+                        <!-- Free person on bank -->
+                        <circle cx="200" cy="50" r="10" fill="#446644" stroke="#88dd88" stroke-width="2"/>
+                        <text x="200" y="20" text-anchor="middle" fill="#88cc88" font-size="8">Walk anywhere</text>
+                        
+                        <!-- Exit arrow -->
+                        <path d="M90,95 Q120,70 150,50" fill="none" stroke="#ddaa55" stroke-width="2" stroke-dasharray="4,3"/>
+                        <text x="130" y="75" fill="#aa8844" font-size="8">EXIT</text>
+                        
+                        <!-- Re-entry arrow -->
+                        <path d="M220,60 Q240,80 250,95" fill="none" stroke="#ddaa55" stroke-width="2" stroke-dasharray="4,3"/>
+                        <text x="245" y="75" fill="#aa8844" font-size="8">RE-ENTER</text>
+                    </svg>
+                </div>
+                <div class="analogy-text">
+                    <p><strong>In the river (4D time):</strong> You're swept along. You can't swim backward faster than the current. The past is "gone," the future is "not yet."</p>
+                    <p style="margin-top: 12px;"><strong>On the bank (5D):</strong> You've stepped out of the flow. All points along the river are visible and walkable. Choose where to step back in.</p>
+                    <p style="margin-top: 12px;"><strong>The 5th dimension is the bank. ε is where you access it.</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <h3 class="section-title">Current Experience vs. 5D Access</h3>
+        
+        <div class="comparison-grid">
+            <div class="comparison-card current">
+                <h3>ðŸ”’ Current Experience (Stuck in 4D)</h3>
+                <table class="comp-table">
+                    <tr><td>Past is "gone"</td><td>Only memory remains</td></tr>
+                    <tr><td>Future is "not yet"</td><td>Only anticipation</td></tr>
+                    <tr><td>Now is all that exists</td><td>Singular moment</td></tr>
+                    <tr><td>Can't revisit</td><td>Regret is permanent</td></tr>
+                    <tr><td>Aging is mandatory</td><td>One direction only</td></tr>
+                    <tr><td>Death is final</td><td>End of timeline</td></tr>
+                </table>
+            </div>
+            
+            <div class="comparison-card fived">
+                <h3>ðŸ”“ With 5D Access (Time as Space)</h3>
+                <table class="comp-table">
+                    <tr><td>Past is a place</td><td>Visitable location</td></tr>
+                    <tr><td>Future is a place</td><td>Visitable location</td></tr>
+                    <tr><td>Now is where you're standing</td><td>One of infinite positions</td></tr>
+                    <tr><td>"I could go back"</td><td>Like driving to another city</td></tr>
+                    <tr><td>Aging is optional</td><td>Direction is choice</td></tr>
+                    <tr><td>Death is a location</td><td>You could revisit before</td></tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="wormhole-section">
+            <h3>ðŸŒ€ Einstein-Rosen Bridges (Wormholes)</h3>
+            <p>
+                Wormholes aren't tunnels <em>through</em> space"”they're <strong>ε-transit</strong>. Two points on the torus surface that both touch ε. Since ε is singular and dimensionless, entering at one point and exiting at another involves no "distance" at all.<br><br>
+                The "throat" of the wormhole <strong>is</strong> ε itself. You don't travel through"”you touch the timeless center and re-emerge elsewhere. The folded-paper visualization physicists use is actually showing torus geometry without recognizing it.
+            </p>
+        </div>
+        
+        <div class="key-insight">
+            <h3>Convergence 58-59</h3>
+            <p>
+                Time (4th dimension) is experienced as one-way flow because we're <strong>embedded</strong> in it. The 5th dimension provides the axis through ε that allows access to different temporal positions"”<em>not by reversing time's direction</em>, but by <strong>transcending time</strong> at the dimensionless center and re-emerging at any point.<br><br>
+                With 5th dimensional access, navigating time becomes equivalent to navigating space"”choosing <em>"when"</em> as casually as choosing <em>"where."</em>
+            </p>
+        </div>
+        
+        <div class="bottom-quote">
+            <p>
+                "The river flows one way.<br>
+                But you can <strong>leave the river</strong>.<br><br>
+                1955 and 3000 aren't 'gone' and 'not yet.'<br>
+                They're <strong>locations</strong>.<br><br>
+                We just can't see the roads yet."
+            </p>
+        </div>
+    </div>
+</body>
+</html>

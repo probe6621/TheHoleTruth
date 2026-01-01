@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Where free will meets geometry—the ε points where choice happens.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+
+    <title>Inversion Points and Agency | The Hole Truth</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Nunito:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0a0a12 0%, #0f0f1a 50%, #0a0a12 100%);
+            font-family: 'Nunito', sans-serif;
+            color: #d8d8e8;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffd4a8 0%, #ffaa66 50%, #ffd4a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.12em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #888899;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+        }
+        
+        .comparison-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 800px) {
+            .comparison-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .entity-card {
+            background: rgba(25, 25, 40, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(100, 100, 130, 0.2);
+        }
+        
+        .entity-card h2 {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 5px;
+            letter-spacing: 0.1em;
+        }
+        
+        .entity-card .tagline {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #777788;
+            margin-bottom: 20px;
+        }
+        
+        .rock-card h2 { color: #9999aa; }
+        .human-card h2 { color: #66ddaa; }
+        
+        .svg-area {
+            width: 100%;
+            height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .entity-svg {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(100, 100, 130, 0.2);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .rock-card .stat-value { color: #888899; }
+        .human-card .stat-value { color: #66ddaa; }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #666677;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .key-insight {
+            background: linear-gradient(135deg, rgba(255, 170, 100, 0.1) 0%, rgba(100, 220, 170, 0.1) 100%);
+            border: 1px solid rgba(255, 200, 150, 0.2);
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .key-insight h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #ffcc99;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+        
+        .key-insight p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #aaaabc;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .key-insight strong {
+            color: #ffffff;
+        }
+        
+        .scale-spectrum {
+            margin-bottom: 50px;
+        }
+        
+        .scale-spectrum h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #ccccdd;
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 0.1em;
+        }
+        
+        .spectrum-bar {
+            display: flex;
+            align-items: stretch;
+            height: 120px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 100, 130, 0.3);
+        }
+        
+        .spectrum-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-right: 1px solid rgba(50, 50, 70, 0.5);
+            transition: transform 0.2s ease;
+        }
+        
+        .spectrum-item:last-child {
+            border-right: none;
+        }
+        
+        .spectrum-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .spectrum-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .spectrum-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .spectrum-inv {
+            font-size: 0.65rem;
+            color: #888899;
+        }
+        
+        .spectrum-item:nth-child(1) { background: rgba(80, 80, 90, 0.4); }
+        .spectrum-item:nth-child(2) { background: rgba(90, 100, 80, 0.4); }
+        .spectrum-item:nth-child(3) { background: rgba(100, 120, 90, 0.4); }
+        .spectrum-item:nth-child(4) { background: rgba(80, 140, 120, 0.4); }
+        .spectrum-item:nth-child(5) { background: rgba(70, 130, 150, 0.4); }
+        .spectrum-item:nth-child(6) { background: rgba(100, 120, 170, 0.4); }
+        .spectrum-item:nth-child(7) { background: rgba(130, 110, 180, 0.4); }
+        
+        .coherence-section {
+            background: rgba(30, 30, 45, 0.5);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(100, 100, 140, 0.2);
+        }
+        
+        .coherence-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #aaddff;
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 0.1em;
+        }
+        
+        .coherence-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 600px) {
+            .coherence-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .coherence-state {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .coherence-state.scattered {
+            background: rgba(150, 80, 80, 0.15);
+            border: 1px solid rgba(150, 80, 80, 0.3);
+        }
+        
+        .coherence-state.aligned {
+            background: rgba(80, 180, 140, 0.15);
+            border: 1px solid rgba(80, 180, 140, 0.3);
+        }
+        
+        .coherence-state h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .scattered h4 { color: #dd9999; }
+        .aligned h4 { color: #88ddbb; }
+        
+        .coherence-state p {
+            font-size: 0.9rem;
+            color: #9999aa;
+            line-height: 1.6;
+        }
+        
+        .bottom-quote {
+            text-align: center;
+            padding: 30px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        
+        .bottom-quote p {
+            font-size: 1.25rem;
+            font-style: italic;
+            line-height: 1.9;
+            color: #bbbbcc;
+        }
+        
+        .bottom-quote strong {
+            color: #ffcc99;
+            font-weight: 500;
+        }
+        
+        /* Animations */
+        @keyframes pulseInversion {
+            0%, 100% { 
+                r: 6;
+                opacity: 0.8;
+            }
+            50% { 
+                r: 8;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes flowArrow {
+            0% { stroke-dashoffset: 20; }
+            100% { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes gentlePulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .inversion-point {
+            animation: pulseInversion 2s ease-in-out infinite;
+        }
+        
+        .flow-path {
+            stroke-dasharray: 5, 5;
+            animation: flowArrow 1s linear infinite;
+        }
+        
+        .epsilon-glow {
+            animation: gentlePulse 3s ease-in-out infinite;
+        }
+    
+        /* Navigation Header */
+        #nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,18,0.95) 0%, rgba(10,10,18,0.7) 70%, transparent 100%);
+        }
+        
+        #nav-header .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        #nav-header .logo span { color: #c4b5fd; }
+        
+        #nav-header nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #nav-header nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
+    
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <div id="nav-header">
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h1>Inversion Points</h1>
+        <p class="subtitle">THE GEOMETRY OF AGENCY</p>
+        
+        <div class="comparison-section">
+            <!-- ROCK -->
+            <div class="entity-card rock-card">
+                <h2>Rock</h2>
+                <p class="tagline">Simple structure, few choice-points</p>
+                
+                <div class="svg-area">
+                    <svg class="entity-svg" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="rockEpsilon" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+                                <stop offset="50%" style="stop-color:#aaaacc;stop-opacity:0.4" />
+                                <stop offset="100%" style="stop-color:#666688;stop-opacity:0" />
+                            </radialGradient>
+                            <linearGradient id="rockTorus" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#888899;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#555566;stop-opacity:0.4" />
+                            </linearGradient>
+                            <filter id="glowSmall" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Rock shape -->
+                        <path d="M150,40 L220,80 L240,150 L200,220 L120,230 L70,180 L60,100 L100,50 Z" 
+                              fill="rgba(70,70,85,0.5)" stroke="#666677" stroke-width="2"/>
+                        
+                        <!-- A few atomic-level tori inside -->
+                        <g opacity="0.7">
+                            <!-- Atom 1 -->
+                            <ellipse cx="120" cy="120" rx="25" ry="15" fill="none" stroke="url(#rockTorus)" stroke-width="6"/>
+                            <ellipse cx="120" cy="120" rx="8" ry="12" fill="#0a0a12" stroke="#777788" stroke-width="1"/>
+                            <circle cx="120" cy="120" r="3" fill="#aaaacc" class="epsilon-glow"/>
+                            <!-- Single inversion point -->
+                            <circle cx="120" cy="120" r="5" fill="#ffaa66" class="inversion-point" filter="url(#glowSmall)"/>
+                            
+                            <!-- Atom 2 -->
+                            <ellipse cx="170" cy="160" rx="22" ry="13" fill="none" stroke="url(#rockTorus)" stroke-width="5"/>
+                            <ellipse cx="170" cy="160" rx="7" ry="10" fill="#0a0a12" stroke="#777788" stroke-width="1"/>
+                            <circle cx="170" cy="160" r="3" fill="#aaaacc" class="epsilon-glow"/>
+                            <circle cx="170" cy="160" r="5" fill="#ffaa66" class="inversion-point" filter="url(#glowSmall)" style="animation-delay: 0.3s"/>
+                            
+                            <!-- Atom 3 -->
+                            <ellipse cx="130" cy="180" rx="20" ry="12" fill="none" stroke="url(#rockTorus)" stroke-width="5"/>
+                            <ellipse cx="130" cy="180" rx="6" ry="9" fill="#0a0a12" stroke="#777788" stroke-width="1"/>
+                            <circle cx="130" cy="180" r="3" fill="#aaaacc" class="epsilon-glow"/>
+                            <circle cx="130" cy="180" r="5" fill="#ffaa66" class="inversion-point" filter="url(#glowSmall)" style="animation-delay: 0.6s"/>
+                        </g>
+                        
+                        <!-- Label -->
+                        <text x="150" y="265" text-anchor="middle" fill="#777788" font-size="11">Atomic tori only</text>
+                        
+                        <!-- Arrow indicators (mostly static) -->
+                        <g opacity="0.4">
+                            <path d="M120,108 L120,100" stroke="#888899" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+                            <path d="M170,148 L175,142" stroke="#888899" stroke-width="1.5"/>
+                            <path d="M130,168 L128,162" stroke="#888899" stroke-width="1.5"/>
+                        </g>
+                    </svg>
+                </div>
+                
+                <div class="stats-row">
+                    <div class="stat">
+                        <div class="stat-value">~Few</div>
+                        <div class="stat-label">Inversion Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">Minimal</div>
+                        <div class="stat-label">Agency</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">Same</div>
+                        <div class="stat-label">ε Connection</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HUMAN -->
+            <div class="entity-card human-card">
+                <h2>Human</h2>
+                <p class="tagline">Nested complexity, trillions of choice-points</p>
+                
+                <div class="svg-area">
+                    <svg class="entity-svg" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="humanEpsilon" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                <stop offset="40%" style="stop-color:#88ffcc;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#44aa88;stop-opacity:0" />
+                            </radialGradient>
+                            <linearGradient id="humanTorusOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#66ddaa;stop-opacity:0.7" />
+                                <stop offset="100%" style="stop-color:#44aa88;stop-opacity:0.5" />
+                            </linearGradient>
+                            <linearGradient id="humanTorusMid" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#88ccff;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#6699cc;stop-opacity:0.4" />
+                            </linearGradient>
+                            <linearGradient id="humanTorusInner" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffaa88;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#cc8866;stop-opacity:0.4" />
+                            </linearGradient>
+                            <filter id="glowMed" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Human silhouette outline -->
+                        <ellipse cx="150" cy="140" rx="85" ry="110" fill="none" stroke="rgba(100,200,160,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+                        
+                        <!-- ORGANISM-LEVEL TORUS (largest) -->
+                        <ellipse cx="150" cy="140" rx="80" ry="50" fill="none" stroke="url(#humanTorusOuter)" stroke-width="12" opacity="0.6"/>
+                        <ellipse cx="150" cy="140" rx="30" ry="45" fill="rgba(10,10,20,0.5)" stroke="#66ddaa" stroke-width="1" opacity="0.7"/>
+                        
+                        <!-- ORGAN-LEVEL TORI -->
+                        <!-- Heart -->
+                        <ellipse cx="150" cy="140" rx="40" ry="25" fill="none" stroke="url(#humanTorusMid)" stroke-width="8" opacity="0.7"/>
+                        <ellipse cx="150" cy="140" rx="15" ry="22" fill="rgba(10,10,20,0.6)" stroke="#88ccff" stroke-width="1" opacity="0.6"/>
+                        
+                        <!-- Brain region -->
+                        <ellipse cx="150" cy="70" rx="25" ry="15" fill="none" stroke="url(#humanTorusMid)" stroke-width="5" opacity="0.5"/>
+                        
+                        <!-- Gut region -->
+                        <ellipse cx="150" cy="200" rx="22" ry="13" fill="none" stroke="url(#humanTorusMid)" stroke-width="4" opacity="0.4"/>
+                        
+                        <!-- CELLULAR-LEVEL TORI (tiny, scattered) -->
+                        <g opacity="0.6">
+                            <ellipse cx="110" cy="120" rx="10" ry="6" fill="none" stroke="url(#humanTorusInner)" stroke-width="3"/>
+                            <ellipse cx="190" cy="130" rx="9" ry="5" fill="none" stroke="url(#humanTorusInner)" stroke-width="3"/>
+                            <ellipse cx="130" cy="170" rx="8" ry="5" fill="none" stroke="url(#humanTorusInner)" stroke-width="2"/>
+                            <ellipse cx="175" cy="165" rx="9" ry="5" fill="none" stroke="url(#humanTorusInner)" stroke-width="2"/>
+                            <ellipse cx="120" cy="95" rx="7" ry="4" fill="none" stroke="url(#humanTorusInner)" stroke-width="2"/>
+                            <ellipse cx="180" cy="100" rx="8" ry="5" fill="none" stroke="url(#humanTorusInner)" stroke-width="2"/>
+                            <ellipse cx="140" cy="210" rx="6" ry="4" fill="none" stroke="url(#humanTorusInner)" stroke-width="2"/>
+                            <ellipse cx="165" cy="205" rx="7" ry="4" fill="none" stroke="url(#humanTorusInner)" stroke-width="2"/>
+                        </g>
+                        
+                        <!-- INVERSION POINTS - many! -->
+                        <!-- Organism level (main) -->
+                        <circle cx="150" cy="140" r="8" fill="#ffcc66" class="inversion-point" filter="url(#glowMed)"/>
+                        
+                        <!-- Organ level -->
+                        <circle cx="150" cy="70" r="5" fill="#ffaa66" class="inversion-point" filter="url(#glowSmall)" style="animation-delay: 0.2s"/>
+                        <circle cx="150" cy="200" r="4" fill="#ffaa66" class="inversion-point" filter="url(#glowSmall)" style="animation-delay: 0.4s"/>
+                        
+                        <!-- Cellular level -->
+                        <circle cx="110" cy="120" r="3" fill="#ff9966" class="inversion-point" style="animation-delay: 0.1s"/>
+                        <circle cx="190" cy="130" r="3" fill="#ff9966" class="inversion-point" style="animation-delay: 0.3s"/>
+                        <circle cx="130" cy="170" r="2.5" fill="#ff9966" class="inversion-point" style="animation-delay: 0.5s"/>
+                        <circle cx="175" cy="165" r="2.5" fill="#ff9966" class="inversion-point" style="animation-delay: 0.7s"/>
+                        <circle cx="120" cy="95" r="2" fill="#ff9966" class="inversion-point" style="animation-delay: 0.15s"/>
+                        <circle cx="180" cy="100" r="2" fill="#ff9966" class="inversion-point" style="animation-delay: 0.35s"/>
+                        <circle cx="140" cy="210" r="2" fill="#ff9966" class="inversion-point" style="animation-delay: 0.55s"/>
+                        <circle cx="165" cy="205" r="2" fill="#ff9966" class="inversion-point" style="animation-delay: 0.75s"/>
+                        
+                        <!-- Shared ε at center -->
+                        <circle cx="150" cy="140" r="20" fill="url(#humanEpsilon)" class="epsilon-glow"/>
+                        <text x="150" y="145" text-anchor="middle" fill="#ffffff" font-size="14" font-family="serif" font-style="italic">ε</text>
+                        
+                        <!-- Flow arrows showing choice/direction -->
+                        <g opacity="0.5">
+                            <path d="M110,112 Q120,125 145,138" stroke="#88ffaa" stroke-width="1.5" fill="none" class="flow-path"/>
+                            <path d="M190,122 Q175,130 155,138" stroke="#88ffaa" stroke-width="1.5" fill="none" class="flow-path" style="animation-delay: 0.2s"/>
+                            <path d="M150,78 L150,125" stroke="#88ffaa" stroke-width="1.5" fill="none" class="flow-path" style="animation-delay: 0.4s"/>
+                            <path d="M150,192 L150,155" stroke="#88ffaa" stroke-width="1.5" fill="none" class="flow-path" style="animation-delay: 0.6s"/>
+                        </g>
+                        
+                        <!-- Labels -->
+                        <text x="150" y="265" text-anchor="middle" fill="#66ddaa" font-size="11">Nested tori at every scale</text>
+                        
+                        <!-- Scale labels -->
+                        <text x="240" y="140" fill="#66ddaa" font-size="8" opacity="0.7">ORGANISM</text>
+                        <text x="205" y="90" fill="#88ccff" font-size="7" opacity="0.6">ORGAN</text>
+                        <text x="210" y="165" fill="#ffaa88" font-size="6" opacity="0.5">CELL</text>
+                    </svg>
+                </div>
+                
+                <div class="stats-row">
+                    <div class="stat">
+                        <div class="stat-value">~37T+</div>
+                        <div class="stat-label">Inversion Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">Vast</div>
+                        <div class="stat-label">Agency</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">Same</div>
+                        <div class="stat-label">ε Connection</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-insight">
+            <h3>The Key Distinction</h3>
+            <p>
+                The rock and the human share <strong>the same ε</strong>"”identical connection to source.<br>
+                What differs is the number of <strong>inversion points</strong>: places on the surface where energy flow can be <strong>redirected</strong>.<br><br>
+                More inversion points = more steering wheels = more <strong>agency</strong>.<br>
+                Not "more soul""”more <strong>choice-points</strong> for the same ε to navigate through.
+            </p>
+        </div>
+        
+        <div class="scale-spectrum">
+            <h3>The Spectrum of Inversion Complexity</h3>
+            <div class="spectrum-bar">
+                <div class="spectrum-item">
+                    <div class="spectrum-icon">ite</div>
+                    <div class="spectrum-name">Mineral</div>
+                    <div class="spectrum-inv">~Atomic only</div>
+                </div>
+                <div class="spectrum-item">
+                    <div class="spectrum-icon">ðŸŒ±</div>
+                    <div class="spectrum-name">Plant</div>
+                    <div class="spectrum-inv">+Cellular</div>
+                </div>
+                <div class="spectrum-item">
+                    <div class="spectrum-icon">ðŸŸ</div>
+                    <div class="spectrum-name">Animal</div>
+                    <div class="spectrum-inv">+Organ systems</div>
+                </div>
+                <div class="spectrum-item">
+                    <div class="spectrum-icon">ðŸ§ </div>
+                    <div class="spectrum-name">Human</div>
+                    <div class="spectrum-inv">+Self-reflection</div>
+                </div>
+                <div class="spectrum-item">
+                    <div class="spectrum-icon">ðŸŒ</div>
+                    <div class="spectrum-name">Planet</div>
+                    <div class="spectrum-inv">+Ecosystem tori</div>
+                </div>
+                <div class="spectrum-item">
+                    <div class="spectrum-icon">â­</div>
+                    <div class="spectrum-name">Star</div>
+                    <div class="spectrum-inv">+Plasma dynamics</div>
+                </div>
+                <div class="spectrum-item">
+                    <div class="spectrum-icon">ðŸŒŒ</div>
+                    <div class="spectrum-name">Galaxy</div>
+                    <div class="spectrum-inv">+Billions of stars</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="coherence-section">
+            <h3>Why Coherence Matters</h3>
+            <div class="coherence-comparison">
+                <div class="coherence-state scattered">
+                    <h4>Scattered Inversion Points</h4>
+                    <svg viewBox="0 0 150 80" width="150" height="80" style="margin: 10px auto; display: block;">
+                        <circle cx="30" cy="40" r="6" fill="#dd8888"/>
+                        <circle cx="60" cy="25" r="5" fill="#dd8888"/>
+                        <circle cx="90" cy="55" r="5" fill="#dd8888"/>
+                        <circle cx="120" cy="35" r="6" fill="#dd8888"/>
+                        <path d="M36,38 L50,28" stroke="#aa6666" stroke-width="1.5"/>
+                        <path d="M65,28 L85,50" stroke="#aa6666" stroke-width="1.5"/>
+                        <path d="M95,52 L114,38" stroke="#aa6666" stroke-width="1.5"/>
+                        <!-- Arrows pointing different directions -->
+                        <path d="M30,32 L25,25" stroke="#ff6666" stroke-width="2"/>
+                        <path d="M60,18 L65,10" stroke="#ff6666" stroke-width="2"/>
+                        <path d="M90,62 L95,70" stroke="#ff6666" stroke-width="2"/>
+                        <path d="M120,28 L125,35" stroke="#ff6666" stroke-width="2"/>
+                    </svg>
+                    <p>Each inversion point directing flow differently. Energy disperses. Confusion, conflict, static. Reduced effective agency despite many choice-points.</p>
+                </div>
+                <div class="coherence-state aligned">
+                    <h4>Aligned Inversion Points</h4>
+                    <svg viewBox="0 0 150 80" width="150" height="80" style="margin: 10px auto; display: block;">
+                        <circle cx="75" cy="40" r="12" fill="rgba(100,220,170,0.3)"/>
+                        <circle cx="30" cy="40" r="6" fill="#88ddbb"/>
+                        <circle cx="60" cy="40" r="5" fill="#88ddbb"/>
+                        <circle cx="90" cy="40" r="5" fill="#88ddbb"/>
+                        <circle cx="120" cy="40" r="6" fill="#88ddbb"/>
+                        <path d="M36,40 L55,40" stroke="#66aa88" stroke-width="1.5"/>
+                        <path d="M65,40 L85,40" stroke="#66aa88" stroke-width="1.5"/>
+                        <path d="M95,40 L114,40" stroke="#66aa88" stroke-width="1.5"/>
+                        <!-- Arrows all pointing to center -->
+                        <path d="M30,34 L40,38" stroke="#44ffaa" stroke-width="2"/>
+                        <path d="M60,34 L68,38" stroke="#44ffaa" stroke-width="2"/>
+                        <path d="M90,34 L82,38" stroke="#44ffaa" stroke-width="2"/>
+                        <path d="M120,34 L110,38" stroke="#44ffaa" stroke-width="2"/>
+                        <text x="75" y="44" text-anchor="middle" fill="#ffffff" font-size="10" font-style="italic">ε</text>
+                    </svg>
+                    <p>All inversion points synchronized, directing flow toward ε together. Coherence. Clarity. Maximum effective agency. This is what meditation and heart-centering achieve.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-quote">
+            <p>
+                The rock experiences ε through <strong>one narrow aperture</strong> with almost no steering.<br><br>
+                You experience ε through <strong>trillions of steering wheels</strong>, all connected, all capable of alignment.<br><br>
+                <strong>Same source. Vastly different navigation capacity.</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
