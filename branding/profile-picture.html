@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Hole Truth - Profile Picture</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            padding: 40px;
+        }
+        
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .label {
+            color: #888;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin-bottom: -30px;
+        }
+        
+        /* Profile Picture - 400x400 (will be displayed at various sizes) */
+        .profile-pic {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, 
+                #1a1408 0%, 
+                #0d0a04 50%,
+                #050302 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 60px rgba(196, 168, 85, 0.3),
+                inset 0 0 100px rgba(196, 168, 85, 0.1);
+        }
+        
+        .profile-pic::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(196, 168, 85, 0.3);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .profile-pic::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border: 1px solid rgba(196, 168, 85, 0.15);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite 1s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        /* Torus representation */
+        .torus-ring {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 3px solid rgba(196, 168, 85, 0.4);
+            border-radius: 50%;
+            transform: rotateX(75deg);
+        }
+        
+        .torus-ring-2 {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 2px solid rgba(196, 168, 85, 0.25);
+            border-radius: 50%;
+            transform: rotateX(75deg) rotateZ(30deg);
+        }
+        
+        .epsilon {
+            font-family: 'Cinzel', serif;
+            font-size: 180px;
+            font-weight: 600;
+            color: #c4a855;
+            text-shadow: 
+                0 0 30px rgba(196, 168, 85, 0.8),
+                0 0 60px rgba(196, 168, 85, 0.4),
+                0 0 90px rgba(196, 168, 85, 0.2);
+            z-index: 10;
+            line-height: 1;
+        }
+        
+        .axiom {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 500;
+            color: rgba(196, 168, 85, 0.9);
+            letter-spacing: 0.15em;
+            z-index: 10;
+            margin-top: -20px;
+        }
+        
+        /* Alternative square version */
+        .profile-pic-square {
+            width: 400px;
+            height: 400px;
+            border-radius: 0;
+            background: linear-gradient(145deg, 
+                #1a1408 0%, 
+                #0d0a04 50%,
+                #050302 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(196, 168, 85, 0.3);
+        }
+        
+        .profile-pic-square::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(196, 168, 85, 0.2);
+            border-radius: 50%;
+        }
+        
+        .profile-pic-square .torus-ring {
+            border-color: rgba(196, 168, 85, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <span class="label">Profile Picture (Circular) - 400x400</span>
+        <div class="profile-pic">
+            <div class="torus-ring"></div>
+            <div class="torus-ring-2"></div>
+            <span class="epsilon">ε</span>
+            <span class="axiom">∄0</span>
+        </div>
+        
+        <span class="label">Profile Picture (Square) - 400x400</span>
+        <div class="profile-pic-square">
+            <div class="torus-ring"></div>
+            <div class="torus-ring-2"></div>
+            <span class="epsilon">ε</span>
+            <span class="axiom">∄0</span>
+        </div>
+    </div>
+</body>
+</html>

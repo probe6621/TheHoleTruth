@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Hole Truth - Facebook Cover</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            padding: 40px;
+            gap: 40px;
+        }
+        
+        .label {
+            color: #888;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        /* Facebook Cover - 820x312 */
+        .fb-cover {
+            width: 820px;
+            height: 312px;
+            background: linear-gradient(135deg, 
+                #0a0806 0%, 
+                #1a1408 30%,
+                #0d0a04 70%,
+                #050302 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Ambient lighting */
+        .fb-cover::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -20%;
+            width: 60%;
+            height: 300%;
+            background: radial-gradient(ellipse, rgba(196, 168, 85, 0.1) 0%, transparent 60%);
+        }
+        
+        .fb-cover::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            right: -20%;
+            width: 60%;
+            height: 300%;
+            background: radial-gradient(ellipse, rgba(196, 168, 85, 0.08) 0%, transparent 60%);
+        }
+        
+        /* Vignette */
+        .vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, 
+                transparent 20%, 
+                rgba(0,0,0,0.5) 100%);
+        }
+        
+        /* Torus geometry */
+        .torus-left {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.12;
+        }
+        
+        .torus-left .ring {
+            position: absolute;
+            border: 2px solid #c4a855;
+            border-radius: 50%;
+        }
+        
+        .torus-left .ring-1 {
+            width: 200px;
+            height: 200px;
+            transform: rotateX(75deg);
+        }
+        
+        .torus-left .ring-2 {
+            width: 150px;
+            height: 150px;
+            top: 25px;
+            left: 25px;
+            transform: rotateX(75deg) rotateZ(25deg);
+        }
+        
+        .torus-right {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.1;
+        }
+        
+        .torus-right .ring {
+            position: absolute;
+            border: 2px solid #c4a855;
+            border-radius: 50%;
+        }
+        
+        .torus-right .ring-1 {
+            width: 180px;
+            height: 180px;
+            transform: rotateX(70deg) rotateZ(-10deg);
+        }
+        
+        .torus-right .ring-2 {
+            width: 130px;
+            height: 130px;
+            top: 25px;
+            left: 25px;
+            transform: rotateX(70deg) rotateZ(15deg);
+        }
+        
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 52px;
+            font-weight: 600;
+            color: #c4a855;
+            letter-spacing: 0.2em;
+            text-shadow: 
+                0 0 30px rgba(196, 168, 85, 0.6),
+                0 0 60px rgba(196, 168, 85, 0.3);
+        }
+        
+        .title span {
+            color: #fff;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .divider-line {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(196, 168, 85, 0.6), transparent);
+        }
+        
+        .divider-symbol {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: #c4a855;
+        }
+        
+        .axiom {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 500;
+            color: #c4a855;
+            letter-spacing: 0.25em;
+            text-shadow: 0 0 25px rgba(196, 168, 85, 0.5);
+        }
+        
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: rgba(212, 196, 168, 0.8);
+            letter-spacing: 0.08em;
+        }
+        
+        .convergences {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            color: rgba(196, 168, 85, 0.6);
+            letter-spacing: 0.12em;
+            margin-top: 5px;
+        }
+        
+        /* Corners */
+        .corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-color: rgba(196, 168, 85, 0.25);
+            border-style: solid;
+        }
+        
+        .corner-tl { top: 15px; left: 15px; border-width: 2px 0 0 2px; }
+        .corner-tr { top: 15px; right: 15px; border-width: 2px 2px 0 0; }
+        .corner-bl { bottom: 15px; left: 15px; border-width: 0 0 2px 2px; }
+        .corner-br { bottom: 15px; right: 15px; border-width: 0 2px 2px 0; }
+        
+        /* Facebook safe zone indicator (profile pic area - left side) */
+        .safe-zone-note {
+            position: absolute;
+            bottom: 10px;
+            left: 180px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p class="label">Facebook Cover Photo - 820x312</p>
+        <div class="fb-cover">
+            <div class="vignette"></div>
+            
+            <div class="torus-left">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+            </div>
+            
+            <div class="torus-right">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+            </div>
+            
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            
+            <div class="content">
+                <h1 class="title">THE HOLE <span>TRUTH</span></h1>
+                <div class="divider">
+                    <div class="divider-line"></div>
+                    <span class="divider-symbol">ε</span>
+                    <div class="divider-line"></div>
+                </div>
+                <p class="axiom">∄0</p>
+                <p class="tagline">There does not exist zero</p>
+                <p class="convergences">100 CONVERGENCES • A UNIFIED THEORY OF EVERYTHING</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

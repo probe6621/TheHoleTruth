@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Hole Truth - Social Media Post Templates</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Georgia&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 40px;
+            gap: 60px;
+        }
+        
+        .label {
+            color: #888;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Quote Card - Square 1080x1080 for Instagram/Facebook */
+        .quote-card {
+            width: 1080px;
+            height: 1080px;
+            background: linear-gradient(145deg, 
+                #0a0806 0%, 
+                #1a1408 40%,
+                #0d0a04 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+        }
+        
+        .quote-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, 
+                rgba(196, 168, 85, 0.08) 0%, 
+                transparent 60%);
+        }
+        
+        .quote-card .vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, 
+                transparent 30%, 
+                rgba(0,0,0,0.5) 100%);
+        }
+        
+        .quote-card .corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-color: rgba(196, 168, 85, 0.3);
+            border-style: solid;
+        }
+        
+        .quote-card .corner-tl { top: 40px; left: 40px; border-width: 3px 0 0 3px; }
+        .quote-card .corner-tr { top: 40px; right: 40px; border-width: 3px 3px 0 0; }
+        .quote-card .corner-bl { bottom: 40px; left: 40px; border-width: 0 0 3px 3px; }
+        .quote-card .corner-br { bottom: 40px; right: 40px; border-width: 0 3px 3px 0; }
+        
+        .quote-card .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .quote-card .epsilon-top {
+            font-family: 'Cinzel', serif;
+            font-size: 80px;
+            color: rgba(196, 168, 85, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .quote-card .quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-style: italic;
+            color: #d4c4a8;
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+        
+        .quote-card .quote em {
+            color: #c4a855;
+            font-style: normal;
+        }
+        
+        .quote-card .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .quote-card .divider-line {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(196, 168, 85, 0.5), transparent);
+        }
+        
+        .quote-card .axiom {
+            font-family: 'Cinzel', serif;
+            font-size: 56px;
+            font-weight: 600;
+            color: #c4a855;
+            text-shadow: 0 0 40px rgba(196, 168, 85, 0.5);
+        }
+        
+        .quote-card .brand {
+            position: absolute;
+            bottom: 60px;
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: rgba(196, 168, 85, 0.6);
+            letter-spacing: 0.2em;
+        }
+        
+        .quote-card .brand span {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Equation Card - Square 1080x1080 */
+        .equation-card {
+            width: 1080px;
+            height: 1080px;
+            background: linear-gradient(145deg, 
+                #050408 0%, 
+                #0d0a14 40%,
+                #08060a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+        }
+        
+        .equation-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, 
+                rgba(147, 197, 253, 0.05) 0%, 
+                transparent 60%);
+        }
+        
+        .equation-card .vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, 
+                transparent 30%, 
+                rgba(0,0,0,0.5) 100%);
+        }
+        
+        .equation-card .corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-color: rgba(147, 197, 253, 0.3);
+            border-style: solid;
+        }
+        
+        .equation-card .corner-tl { top: 40px; left: 40px; border-width: 3px 0 0 3px; }
+        .equation-card .corner-tr { top: 40px; right: 40px; border-width: 3px 3px 0 0; }
+        .equation-card .corner-bl { bottom: 40px; left: 40px; border-width: 0 0 3px 3px; }
+        .equation-card .corner-br { bottom: 40px; right: 40px; border-width: 0 3px 3px 0; }
+        
+        .equation-card .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+        
+        .equation-card .label-text {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: rgba(147, 197, 253, 0.8);
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+        }
+        
+        .equation-card .equation {
+            font-family: 'Cambria Math', Georgia, serif;
+            font-size: 72px;
+            color: #93c5fd;
+            text-shadow: 0 0 40px rgba(147, 197, 253, 0.5);
+            margin-bottom: 30px;
+        }
+        
+        .equation-card .result {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            color: #c4a855;
+            margin-bottom: 20px;
+        }
+        
+        .equation-card .accuracy {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-style: italic;
+            color: rgba(196, 168, 85, 0.8);
+        }
+        
+        .equation-card .brand {
+            position: absolute;
+            bottom: 60px;
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: rgba(196, 168, 85, 0.6);
+            letter-spacing: 0.2em;
+        }
+        
+        /* Announcement Card */
+        .announcement-card {
+            width: 1080px;
+            height: 1080px;
+            background: linear-gradient(145deg, 
+                #0a0806 0%, 
+                #1a1408 40%,
+                #0d0a04 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+        }
+        
+        .announcement-card .vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, 
+                transparent 30%, 
+                rgba(0,0,0,0.5) 100%);
+        }
+        
+        .announcement-card .corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-color: rgba(196, 168, 85, 0.3);
+            border-style: solid;
+        }
+        
+        .announcement-card .corner-tl { top: 40px; left: 40px; border-width: 3px 0 0 3px; }
+        .announcement-card .corner-tr { top: 40px; right: 40px; border-width: 3px 3px 0 0; }
+        .announcement-card .corner-bl { bottom: 40px; left: 40px; border-width: 0 0 3px 3px; }
+        .announcement-card .corner-br { bottom: 40px; right: 40px; border-width: 0 3px 3px 0; }
+        
+        .announcement-card .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+        
+        .announcement-card .epsilon {
+            font-family: 'Cinzel', serif;
+            font-size: 120px;
+            color: #c4a855;
+            text-shadow: 0 0 60px rgba(196, 168, 85, 0.6);
+            margin-bottom: 30px;
+        }
+        
+        .announcement-card .headline {
+            font-family: 'Cinzel', serif;
+            font-size: 52px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.1em;
+            margin-bottom: 30px;
+        }
+        
+        .announcement-card .subhead {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-style: italic;
+            color: rgba(212, 196, 168, 0.9);
+            line-height: 1.5;
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
+        
+        .announcement-card .cta {
+            display: inline-block;
+            padding: 20px 50px;
+            border: 2px solid #c4a855;
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #c4a855;
+            letter-spacing: 0.15em;
+        }
+        
+        .announcement-card .brand {
+            position: absolute;
+            bottom: 60px;
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: rgba(196, 168, 85, 0.6);
+            letter-spacing: 0.2em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Quote Card -->
+    <div class="section">
+        <p class="label">Quote Card - 1080x1080 (Instagram/Facebook Posts)</p>
+        <div class="quote-card">
+            <div class="vignette"></div>
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            
+            <div class="content">
+                <div class="epsilon-top">ε</div>
+                <p class="quote">"The hole isn't nothing.<br>The hole is <em>everything</em>.<br>It's the organizing center that makes reality possible."</p>
+                <div class="divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-line"></div>
+                </div>
+                <p class="axiom">∄0</p>
+            </div>
+            
+            <p class="brand">THE HOLE <span>TRUTH</span></p>
+        </div>
+    </div>
+    
+    <!-- Equation Card -->
+    <div class="section">
+        <p class="label">Equation Card - 1080x1080 (Physics content)</p>
+        <div class="equation-card">
+            <div class="vignette"></div>
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            
+            <div class="content">
+                <p class="label-text">PROTON-TO-ELECTRON MASS RATIO</p>
+                <p class="equation">m_p / m_e = 6π⁵</p>
+                <p class="result">= 1836.15</p>
+                <p class="accuracy">Accuracy: 99.998%</p>
+            </div>
+            
+            <p class="brand">THE HOLE <span style="color: rgba(255,255,255,0.6)">TRUTH</span></p>
+        </div>
+    </div>
+    
+    <!-- Announcement Card -->
+    <div class="section">
+        <p class="label">Announcement Card - 1080x1080</p>
+        <div class="announcement-card">
+            <div class="vignette"></div>
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            
+            <div class="content">
+                <div class="epsilon">ε</div>
+                <h2 class="headline">NOW AVAILABLE</h2>
+                <p class="subhead">The complete framework is now free to download. 100 convergences. One unified truth.</p>
+                <div class="cta">THEHOLETRUTH.SPACE</div>
+            </div>
+            
+            <p class="brand">THE HOLE <span>TRUTH</span></p>
+        </div>
+    </div>
+</body>
+</html>
