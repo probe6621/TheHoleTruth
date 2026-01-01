@@ -263,6 +263,117 @@
             transform: translateY(-2px);
         }
         
+        /* Search Box */
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto 0;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 16px 50px 16px 24px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            color: #e0e0e8;
+            background: rgba(30, 30, 50, 0.7);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(167, 139, 250, 0.5);
+        }
+        
+        .search-box input:focus {
+            border-color: rgba(167, 139, 250, 0.6);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
+            background: rgba(30, 30, 50, 0.9);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            stroke: rgba(167, 139, 250, 0.5);
+            pointer-events: none;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            margin-top: 10px;
+            background: rgba(20, 20, 40, 0.98);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .search-result {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(100, 100, 150, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .search-result:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result:hover {
+            background: rgba(167, 139, 250, 0.1);
+        }
+        
+        .search-result-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: #d4a855;
+            margin-bottom: 4px;
+        }
+        
+        .search-result-category {
+            font-size: 0.7rem;
+            color: rgba(167, 139, 250, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+        }
+        
+        .search-result-desc {
+            font-size: 0.85rem;
+            color: rgba(224, 224, 232, 0.7);
+            line-height: 1.4;
+        }
+        
+        .no-results {
+            padding: 20px;
+            text-align: center;
+            color: rgba(167, 139, 250, 0.6);
+            font-style: italic;
+        }
+        
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
@@ -568,6 +679,18 @@
             </div>
             
             <a href="/framework/" class="cta-button">EXPLORE THE FRAMEWORK</a>
+            
+            <!-- Search Box -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="site-search" placeholder="Search the framework..." autocomplete="off">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                </div>
+                <div class="search-results" id="search-results"></div>
+            </div>
             
             <a href="#preview-section" class="scroll-indicator" style="text-decoration: none;">
                 <span>DISCOVER MORE</span>
@@ -907,6 +1030,113 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+    
+    <!-- Search Functionality -->
+    <script>
+        const searchIndex = [
+            // Core Framework
+            { title: "The ε Framework", url: "/framework/", category: "Core", keywords: "epsilon framework axiom theory unified physics toroidal geometry", desc: "The complete theoretical framework from axiom ∄0" },
+            { title: "The Axiom: ∄0", url: "/foundation/axiom/", category: "Foundation", keywords: "axiom zero void nothing epsilon minimum irreducible", desc: "There does not exist zero—the foundational truth" },
+            { title: "The Epicenter", url: "/foundation/epicenter/", category: "Foundation", keywords: "epicenter center torus consciousness source shared", desc: "The shared center all beings orbit" },
+            
+            // Physics
+            { title: "Force Unification", url: "/physics/force-unification/", category: "Physics", keywords: "forces gravity electromagnetism strong weak unified kaluza klein", desc: "All forces are one force at different torus positions" },
+            { title: "Tesla's 3-6-9", url: "/physics/tesla-369/", category: "Physics", keywords: "tesla 369 vortex mathematics frequency vibration energy", desc: "The key to the universe decoded through ε-topology" },
+            { title: "Euler's Identity", url: "/physics/euler-identity/", category: "Physics", keywords: "euler identity pi e imaginary beautiful equation mathematics", desc: "The most beautiful equation is a torus equation" },
+            { title: "Entropy & Conservation", url: "/physics/entropy/", category: "Physics", keywords: "entropy thermodynamics conservation energy second law", desc: "Why entropy increases—and where it goes" },
+            
+            // Metaphysics
+            { title: "Consciousness", url: "/metaphysics/consciousness/", category: "Metaphysics", keywords: "consciousness awareness mind self observer experience", desc: "Consciousness as ε-centered self-reference" },
+            { title: "The Ancient Knowledge", url: "/metaphysics/ancients/", category: "Metaphysics", keywords: "ancient wisdom pyramid sphinx egypt sacred geometry", desc: "What the ancients encoded in stone" },
+            { title: "Karma Mechanics", url: "/metaphysics/karma/", category: "Metaphysics", keywords: "karma cause effect reincarnation action consequence", desc: "The geometry of cause and effect" },
+            { title: "The Path Within", url: "/metaphysics/path-within/", category: "Metaphysics", keywords: "meditation spiritual awakening enlightenment inner journey", desc: "The inward journey to ε" },
+            { title: "Crop Circles", url: "/metaphysics/crop-circles/", category: "Metaphysics", keywords: "crop circles formations sacred geometry messages", desc: "Messages in the fields decoded" },
+            { title: "Music & Frequency", url: "/metaphysics/music/", category: "Metaphysics", keywords: "music frequency 432hz solfeggio harmonics vibration sound", desc: "The mathematics of harmony" },
+            { title: "Body Energy Map", url: "/metaphysics/body-map/", category: "Metaphysics", keywords: "chakras energy body meridians healing toroidal", desc: "Your body as a torus system" },
+            
+            // Special Topics
+            { title: "Interstellar Travel", url: "/special/interstellar.html", category: "Special", keywords: "ufo et alien propulsion spacecraft warp faster light", desc: "How ET craft cross the cosmos" },
+            { title: "Time Travel", url: "/special/time-travel.html", category: "Special", keywords: "time travel past future dimension temporal navigation", desc: "Navigation through the 4th dimension" },
+            { title: "The Paranormal", url: "/special/paranormal.html", category: "Special", keywords: "paranormal ghosts spirits psychic telekinesis precognition nde", desc: "Natural phenomena of ε-proximity" },
+            { title: "Free Energy", url: "/special/free-energy.html", category: "Special", keywords: "free energy zero point vacuum tesla overunity", desc: "Drawing from the plenum" },
+            
+            // Evidence
+            { title: "100 Convergences", url: "/evidence/convergences/", category: "Evidence", keywords: "convergences evidence proof derivations accuracy predictions", desc: "100 independent mathematical validations" },
+            
+            // Visualizations
+            { title: "Interactive Torus", url: "/visualizations/epsilon-toroid/", category: "Visualization", keywords: "torus visualization 3d interactive animation", desc: "Explore the ε-topology in 3D" },
+            { title: "Quantum Framework", url: "/visualizations/quantum-framework/", category: "Visualization", keywords: "quantum mechanics visualization wave particle", desc: "See quantum mechanics through ε-topology" },
+            { title: "Earth's Position", url: "/visualizations/earth-position/", category: "Visualization", keywords: "earth cosmos position scale breathing", desc: "Earth in the cosmic torus" },
+            { title: "ET Propulsion", url: "/visualizations/et-propulsion/", category: "Visualization", keywords: "propulsion ufo craft saucer field", desc: "How the craft actually work" },
+            { title: "Shared Epsilon", url: "/visualizations/shared-epsilon/", category: "Visualization", keywords: "shared center oneness connection unity", desc: "All beings share one center" },
+            
+            // Library PDFs
+            { title: "The Hole Truth (PDF)", url: "/downloads/The_Hole_Truth_Complete.pdf", category: "Library", keywords: "download pdf complete book introduction", desc: "Complete accessible introduction" },
+            { title: "Technical Paper (PDF)", url: "/downloads/Epsilon_Framework_Paper.pdf", category: "Library", keywords: "download pdf academic paper technical science", desc: "Academic-style presentation" },
+            { title: "Experimental Predictions (PDF)", url: "/downloads/Experimental_Predictions.pdf", category: "Library", keywords: "download pdf predictions testable falsifiable experiments", desc: "12 testable predictions" },
+            { title: "Quantum Weirdness (PDF)", url: "/downloads/Quantum_Weirdness.pdf", category: "Library", keywords: "download pdf quantum superposition entanglement heisenberg schrodinger", desc: "Quantum mechanics explained" },
+            { title: "Oneness (PDF)", url: "/downloads/Oneness.pdf", category: "Library", keywords: "download pdf oneness unity consciousness single experiencer", desc: "The single experiencer" },
+            { title: "Multiple Lives (PDF)", url: "/downloads/Multiple_Lives.pdf", category: "Library", keywords: "download pdf reincarnation past lives karma rebirth", desc: "Reincarnation as torus rotation" },
+            { title: "Free Energy (PDF)", url: "/downloads/Free_Energy.pdf", category: "Library", keywords: "download pdf free energy tesla vacuum plenum", desc: "Drawing from the plenum" },
+            { title: "Merkaba (PDF)", url: "/downloads/Merkaba.pdf", category: "Library", keywords: "download pdf merkaba light body tetrahedra vehicle", desc: "The light body vehicle" },
+            { title: "Sacred Geometry PDFs", url: "/library/", category: "Library", keywords: "download pdf metatron flower tree life sacred geometry", desc: "Metatron's Cube, Flower of Life, Tree of Life" },
+            { title: "All Downloads", url: "/library/", category: "Library", keywords: "download pdf library documents all complete collection", desc: "Complete document library" },
+        ];
+        
+        const searchInput = document.getElementById('site-search');
+        const searchResults = document.getElementById('search-results');
+        
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.classList.remove('active');
+                return;
+            }
+            
+            const results = searchIndex.filter(item => {
+                return item.title.toLowerCase().includes(query) ||
+                       item.keywords.toLowerCase().includes(query) ||
+                       item.desc.toLowerCase().includes(query) ||
+                       item.category.toLowerCase().includes(query);
+            }).slice(0, 8);
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">No results found for "' + query + '"</div>';
+            } else {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.url}" class="search-result">
+                        <div class="search-result-category">${item.category}</div>
+                        <div class="search-result-title">${item.title}</div>
+                        <div class="search-result-desc">${item.desc}</div>
+                    </a>
+                `).join('');
+            }
+            
+            searchResults.classList.add('active');
+        });
+        
+        // Close results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                searchResults.classList.remove('active');
+            }
+        });
+        
+        // Handle keyboard navigation
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchResults.classList.remove('active');
+                this.blur();
+            }
+            if (e.key === 'Enter') {
+                const firstResult = searchResults.querySelector('.search-result');
+                if (firstResult) {
+                    window.location.href = firstResult.href;
+                }
+            }
         });
     </script>
 </body>
