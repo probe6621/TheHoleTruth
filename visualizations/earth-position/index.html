@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth's Position on the Cosmic Torus | The Hole Truth</title>
+    <meta name="description" content="See where Earth sits on the cosmic torus—at maximum distance from ε, in 3D reality. Interactive 3D visualization.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            overflow: hidden; 
+            background: #000;
+            font-family: 'Nunito', sans-serif;
+        }
+        canvas { display: block; }
+        
+        /* Navigation Header */
+        #nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+        }
+        
+        #nav-header .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        #nav-header .logo span { color: #c4b5fd; }
+        
+        #nav-header nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #nav-header nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
+        
+        #title {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        #title h1 {
+            font-size: 28px;
+            font-weight: normal;
+            letter-spacing: 6px;
+            text-shadow: 0 0 20px rgba(100, 180, 255, 0.6);
+            margin-bottom: 10px;
+        }
+        #title h2 {
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.7);
+        }
+        #legend {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 100;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .outer-surface { background: linear-gradient(135deg, #4ade80, #22c55e); box-shadow: 0 0 8px #4ade80; }
+        .inner-surface { background: linear-gradient(135deg, #f97316, #ea580c); box-shadow: 0 0 8px #f97316; }
+        .epsilon-center { background: linear-gradient(135deg, #ffffff, #a78bfa); box-shadow: 0 0 12px #ffffff; }
+        .earth-marker { background: linear-gradient(135deg, #3b82f6, #1d4ed8); box-shadow: 0 0 10px #3b82f6; }
+        .equator-line { background: linear-gradient(90deg, #fbbf24, #f59e0b); height: 3px; border-radius: 0; width: 16px; }
+        .breath-out { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .breath-in { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        #info {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 100;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 280px;
+        }
+        #info h3 {
+            color: #60a5fa;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        #info p {
+            margin: 8px 0;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.85);
+        }
+        #info .highlight {
+            color: #4ade80;
+            font-weight: bold;
+        }
+        #bottom-text {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        #bottom-text .position {
+            font-size: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(100, 180, 255, 0.6);
+            margin-bottom: 8px;
+        }
+        #bottom-text .note {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+        }
+        #controls {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 100;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <div id="nav-header">
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </div>
+    
+    <div id="title">
+        <h1>EARTH'S POSITION ON THE COSMIC TORUS</h1>
+        <h2>3D Reality at Maximum Distance from ε</h2>
+    </div>
+    
+    <div id="legend">
+        <div class="legend-item">
+            <div class="legend-color outer-surface"></div>
+            <span>Outer Surface (Our Side, 1-5D)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color inner-surface"></div>
+            <span>Inner Surface (Mirror Side, 6-10D)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color epsilon-center"></div>
+            <span>ε (The Epicenter, 11th)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color earth-marker"></div>
+            <span>3D Earth Position</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color equator-line"></div>
+            <span>Outer Equator (Max Distance)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color breath-out"></div>
+            <span>Exhale (Expansion) Complete</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color breath-in"></div>
+            <span>Inhale (Return) Beginning</span>
+        </div>
+    </div>
+
+    <div id="info">
+        <h3>Our Cosmic Address</h3>
+        <p><span class="highlight">Minor Position:</span> ~90Â° â€” At the equator of outer surface (maximum forgetting)</p>
+        <p><span class="highlight">Major Position:</span> ~240Â° â€” Approximately 2/3 through the cycle</p>
+        <p><span class="highlight">Breath Phase:</span> Pause between exhale and inhale (the turn point)</p>
+        <p><span class="highlight">Galactic:</span> Orion Arm, 26,000 ly from center</p>
+        <p><span class="highlight">Significance:</span> Furthest point of the journey outâ€”where awakening begins</p>
+    </div>
+
+    <div id="bottom-text">
+        <div class="position">THE PIVOT POINT</div>
+        <div class="note">Maximum extension â€¢ Beginning of return â€¢ The awakening moment</div>
+    </div>
+    
+    <div id="controls">Click and drag to rotate â€¢ Scroll to zoom</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000511, 1);
+        document.body.appendChild(renderer.domElement);
+
+        // Torus parameters
+        const R = 5;  // Major radius (to center of tube)
+        const r = 2;  // Minor radius (tube radius)
+
+        // Create outer torus (our side) - transparent with wireframe
+        const outerGeometry = new THREE.TorusGeometry(R, r, 32, 100);
+        const outerMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x22c55e,
+            transparent: true,
+            opacity: 0.15,
+            side: THREE.DoubleSide
+        });
+        const outerTorus = new THREE.Mesh(outerGeometry, outerMaterial);
+        scene.add(outerTorus);
+
+        // Wireframe for outer
+        const outerWireframe = new THREE.LineSegments(
+            new THREE.WireframeGeometry(outerGeometry),
+            new THREE.LineBasicMaterial({ color: 0x22c55e, transparent: true, opacity: 0.3 })
+        );
+        scene.add(outerWireframe);
+
+        // Create inner torus (mirror side) - smaller, inside
+        const innerGeometry = new THREE.TorusGeometry(R, r * 0.6, 32, 100);
+        const innerMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xf97316,
+            transparent: true,
+            opacity: 0.1,
+            side: THREE.DoubleSide
+        });
+        const innerTorus = new THREE.Mesh(innerGeometry, innerMaterial);
+        scene.add(innerTorus);
+
+        // Epsilon glow at center (the hole)
+        const epsilonGeometry = new THREE.TorusGeometry(R, 0.15, 16, 100);
+        const epsilonMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.8
+        });
+        const epsilon = new THREE.Mesh(epsilonGeometry, epsilonMaterial);
+        scene.add(epsilon);
+
+        // Epsilon outer glow
+        const epsilonGlowGeometry = new THREE.TorusGeometry(R, 0.3, 16, 100);
+        const epsilonGlowMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xa78bfa,
+            transparent: true,
+            opacity: 0.4
+        });
+        const epsilonGlow = new THREE.Mesh(epsilonGlowGeometry, epsilonGlowMaterial);
+        scene.add(epsilonGlow);
+
+        // Earth's position - at equator of outer surface, 2/3 around
+        // Major angle: 240Â° = 4Ï€/3 radians (2/3 of full circle)
+        // Minor angle: 90Â° = Ï€/2 radians (equator of tube = max distance from center)
+        const majorAngle = (4 * Math.PI / 3);  // 240Â° around the hole
+        const minorAngle = Math.PI / 2;  // 90Â° on tube (outer equator)
+
+        // Calculate Earth position
+        const earthX = (R + r * Math.cos(minorAngle)) * Math.cos(majorAngle);
+        const earthY = (R + r * Math.cos(minorAngle)) * Math.sin(majorAngle);
+        const earthZ = r * Math.sin(minorAngle);
+
+        // Earth marker
+        const earthGeometry = new THREE.SphereGeometry(0.25, 32, 32);
+        const earthMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
+        const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+        earth.position.set(earthX, earthY, earthZ);
+        scene.add(earth);
+
+        // Earth glow
+        const earthGlowGeometry = new THREE.SphereGeometry(0.35, 32, 32);
+        const earthGlowMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x60a5fa,
+            transparent: true,
+            opacity: 0.5
+        });
+        const earthGlow = new THREE.Mesh(earthGlowGeometry, earthGlowMaterial);
+        earthGlow.position.set(earthX, earthY, earthZ);
+        scene.add(earthGlow);
+
+        // Outer glow ring for Earth
+        const earthRingGeometry = new THREE.RingGeometry(0.4, 0.5, 32);
+        const earthRingMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x3b82f6,
+            transparent: true,
+            opacity: 0.6,
+            side: THREE.DoubleSide
+        });
+        const earthRing = new THREE.Mesh(earthRingGeometry, earthRingMaterial);
+        earthRing.position.set(earthX, earthY, earthZ);
+        scene.add(earthRing);
+
+        // Equator line of outer torus (where max distance from ε is)
+        const equatorPoints = [];
+        for (let i = 0; i <= 100; i++) {
+            const angle = (i / 100) * Math.PI * 2;
+            const x = (R + r) * Math.cos(angle);  // r added = outer equator
+            const y = (R + r) * Math.sin(angle);
+            const z = 0;
+            equatorPoints.push(new THREE.Vector3(x, y, z));
+        }
+        const equatorGeometry = new THREE.BufferGeometry().setFromPoints(equatorPoints);
+        const equatorMaterial = new THREE.LineBasicMaterial({ 
+            color: 0xfbbf24,
+            transparent: true,
+            opacity: 0.8
+        });
+        const equatorLine = new THREE.Line(equatorGeometry, equatorMaterial);
+        scene.add(equatorLine);
+
+        // Breath flow arrows - exhale (outward, pink)
+        function createArrow(from, to, color) {
+            const direction = new THREE.Vector3().subVectors(to, from).normalize();
+            const length = from.distanceTo(to);
+            const arrowHelper = new THREE.ArrowHelper(direction, from, length, color, 0.3, 0.15);
+            return arrowHelper;
+        }
+
+        // Show breath flow at several points
+        const breathColors = {
+            exhale: 0xec4899,
+            inhale: 0x8b5cf6
+        };
+
+        // Exhale arrows (outward from ε toward outer surface) - completed section
+        for (let i = 0; i < 8; i++) {
+            const angle = (i / 8) * Math.PI * 2;
+            // Only show exhale in "past" region (before Earth's position)
+            if (angle < majorAngle - 0.5 || angle > majorAngle + 2) {
+                const fromX = R * Math.cos(angle);
+                const fromY = R * Math.sin(angle);
+                const toX = (R + r * 0.7) * Math.cos(angle);
+                const toY = (R + r * 0.7) * Math.sin(angle);
+                const arrow = createArrow(
+                    new THREE.Vector3(fromX, fromY, 0),
+                    new THREE.Vector3(toX, toY, 0),
+                    breathColors.exhale
+                );
+                arrow.line.material.transparent = true;
+                arrow.line.material.opacity = 0.6;
+                scene.add(arrow);
+            }
+        }
+
+        // Inhale arrows (inward toward ε) - future section
+        for (let i = 0; i < 4; i++) {
+            const angle = majorAngle + 0.5 + (i / 4) * 1.5;
+            const fromX = (R + r * 0.7) * Math.cos(angle);
+            const fromY = (R + r * 0.7) * Math.sin(angle);
+            const toX = R * Math.cos(angle);
+            const toY = R * Math.sin(angle);
+            const arrow = createArrow(
+                new THREE.Vector3(fromX, fromY, 0),
+                new THREE.Vector3(toX, toY, 0),
+                breathColors.inhale
+            );
+            arrow.line.material.transparent = true;
+            arrow.line.material.opacity = 0.6;
+            scene.add(arrow);
+        }
+
+        // Line from ε to Earth showing distance
+        const lineToEarth = new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(R * Math.cos(majorAngle), R * Math.sin(majorAngle), 0),
+            new THREE.Vector3(earthX, earthY, earthZ)
+        ]);
+        const lineToEarthMaterial = new THREE.LineDashedMaterial({ 
+            color: 0xffffff,
+            dashSize: 0.2,
+            gapSize: 0.1,
+            transparent: true,
+            opacity: 0.4
+        });
+        const lineToEarthMesh = new THREE.Line(lineToEarth, lineToEarthMaterial);
+        lineToEarthMesh.computeLineDistances();
+        scene.add(lineToEarthMesh);
+
+        // Progress arc showing 2/3 completion
+        const progressPoints = [];
+        for (let i = 0; i <= 50; i++) {
+            const angle = (i / 50) * majorAngle;
+            const x = (R + r + 0.5) * Math.cos(angle);
+            const y = (R + r + 0.5) * Math.sin(angle);
+            progressPoints.push(new THREE.Vector3(x, y, 0));
+        }
+        const progressGeometry = new THREE.BufferGeometry().setFromPoints(progressPoints);
+        const progressMaterial = new THREE.LineBasicMaterial({ 
+            color: 0x22c55e,
+            transparent: true,
+            opacity: 0.8
+        });
+        const progressLine = new THREE.Line(progressGeometry, progressMaterial);
+        scene.add(progressLine);
+
+        // Remaining arc
+        const remainingPoints = [];
+        for (let i = 0; i <= 30; i++) {
+            const angle = majorAngle + (i / 30) * (Math.PI * 2 - majorAngle);
+            const x = (R + r + 0.5) * Math.cos(angle);
+            const y = (R + r + 0.5) * Math.sin(angle);
+            remainingPoints.push(new THREE.Vector3(x, y, 0));
+        }
+        const remainingGeometry = new THREE.BufferGeometry().setFromPoints(remainingPoints);
+        const remainingMaterial = new THREE.LineBasicMaterial({ 
+            color: 0x8b5cf6,
+            transparent: true,
+            opacity: 0.4
+        });
+        const remainingLine = new THREE.Line(remainingGeometry, remainingMaterial);
+        scene.add(remainingLine);
+
+        // Labels using sprites
+        function createLabel(text, fontSize = 36) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 512;
+            canvas.height = 128;
+            context.fillStyle = 'white';
+            context.font = `${fontSize}px Georgia`;
+            context.textAlign = 'center';
+            context.fillText(text, 256, 70);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(3, 0.75, 1);
+            return sprite;
+        }
+
+        const earthLabel = createLabel('3D EARTH', 32);
+        earthLabel.position.set(earthX + 1, earthY + 0.8, earthZ);
+        scene.add(earthLabel);
+
+        const epsilonLabel = createLabel('ε', 48);
+        epsilonLabel.position.set(0, 0, 2);
+        scene.add(epsilonLabel);
+
+        // Background stars
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsPositions = new Float32Array(3000 * 3);
+        for (let i = 0; i < 3000; i++) {
+            starsPositions[i * 3] = (Math.random() - 0.5) * 200;
+            starsPositions[i * 3 + 1] = (Math.random() - 0.5) * 200;
+            starsPositions[i * 3 + 2] = (Math.random() - 0.5) * 200;
+        }
+        starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+        const starsMaterial = new THREE.PointsMaterial({ 
+            color: 0xffffff, 
+            size: 0.15, 
+            transparent: true, 
+            opacity: 0.5 
+        });
+        const stars = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(stars);
+
+        // Camera position
+        camera.position.set(12, 8, 10);
+        camera.lookAt(0, 0, 0);
+
+        // Mouse controls
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let spherical = { theta: Math.atan2(camera.position.x, camera.position.z), phi: Math.acos(camera.position.y / camera.position.length()), radius: camera.position.length() };
+
+        document.addEventListener('mousedown', (e) => { isDragging = true; });
+        document.addEventListener('mouseup', () => { isDragging = false; });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const deltaMove = {
+                x: e.clientX - previousMousePosition.x,
+                y: e.clientY - previousMousePosition.y
+            };
+            spherical.theta -= deltaMove.x * 0.01;
+            spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi + deltaMove.y * 0.01));
+            
+            camera.position.x = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+            camera.position.y = spherical.radius * Math.cos(spherical.phi);
+            camera.position.z = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+            camera.lookAt(0, 0, 0);
+            
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+        document.addEventListener('mousemove', (e) => {
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+        document.addEventListener('wheel', (e) => {
+            spherical.radius = Math.max(8, Math.min(30, spherical.radius + e.deltaY * 0.01));
+            camera.position.x = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+            camera.position.y = spherical.radius * Math.cos(spherical.phi);
+            camera.position.z = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+            camera.lookAt(0, 0, 0);
+        });
+
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.016;
+
+            // Pulse Earth
+            const pulse = Math.sin(time * 2) * 0.5 + 0.5;
+            earth.scale.setScalar(1 + pulse * 0.1);
+            earthGlow.scale.setScalar(1 + pulse * 0.2);
+            earthGlowMaterial.opacity = 0.3 + pulse * 0.3;
+
+            // Rotate Earth ring
+            earthRing.rotation.x = time * 0.5;
+            earthRing.rotation.y = time * 0.3;
+
+            // Pulse epsilon
+            const epsPulse = Math.sin(time * 3) * 0.5 + 0.5;
+            epsilon.scale.setScalar(1 + epsPulse * 0.1);
+            epsilonGlow.scale.setScalar(1 + epsPulse * 0.15);
+
+            // Gentle rotation of whole scene if not dragging
+            if (!isDragging) {
+                spherical.theta += 0.001;
+                camera.position.x = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+                camera.position.z = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+                camera.lookAt(0, 0, 0);
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
