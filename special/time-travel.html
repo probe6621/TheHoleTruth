@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Time Travel | Time as Torus Position – The Hole Truth</title>
+    <meta name="description" content="Time doesn't flow—you move through it. The ε Framework reveals time as position on the torus, making temporal navigation geometrically possible.">
+    <meta name="keywords" content="time travel physics, time geometry, temporal mechanics, torus time, chronology physics, time dimension">
+    <meta name="author" content="The Hole Truth">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://theholetruth.space/special/time-travel/">
+    <meta property="og:title" content="Time Travel | Time as Torus Position">
+    <meta property="og:description" content="Time is where you are on the torus, not a river carrying you along. The past and future are places, not phantoms.">
+    <meta property="og:image" content="https://theholetruth.space/images/og-time-travel.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theholetruth.space/special/time-travel/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            background: #0a0a12;
+            font-family: 'Nunito', sans-serif;
+            color: #e0e0e8;
+            line-height: 1.7;
+        }
+        
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 20%, rgba(60, 80, 120, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(80, 60, 100, 0.1) 0%, transparent 50%),
+                #0a0a12;
+            z-index: -1;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,18,0.95) 0%, rgba(10,10,18,0.8) 70%, transparent 100%);
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .logo span { color: #c4b5fd; }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover { color: #c4b5fd; }
+        
+        /* Main */
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 120px 30px 80px;
+        }
+        
+        /* Hero */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .topic-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #93c5fd 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-hero .tagline {
+            font-size: 1.15rem;
+            color: #a0a0c0;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 45px;
+        }
+        
+        .content-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 18px;
+            letter-spacing: 0.03em;
+        }
+        
+        .content-section p {
+            font-size: 1.02rem;
+            color: #b8b8d0;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+        
+        .content-section p strong {
+            color: #fff;
+        }
+        
+        /* Scientific Support */
+        .scientific-support {
+            border-left: 3px solid rgba(96, 165, 250, 0.4);
+            margin: 20px 0;
+            background: rgba(20, 20, 35, 0.5);
+            border-radius: 0 12px 12px 0;
+            overflow: hidden;
+        }
+        
+        .scientific-support summary {
+            padding: 14px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #93c5fd;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s ease;
+            list-style: none;
+        }
+        
+        .scientific-support summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .scientific-support summary::before {
+            content: '▸';
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .scientific-support[open] summary::before {
+            transform: rotate(90deg);
+        }
+        
+        .scientific-support summary:hover {
+            background: rgba(96, 165, 250, 0.08);
+        }
+        
+        .scientific-support .content {
+            padding: 0 20px 18px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            color: #93c5fd;
+            line-height: 1.7;
+        }
+        
+        /* Key Insight Box */
+        .key-insight {
+            background: linear-gradient(135deg, rgba(60, 80, 120, 0.2) 0%, rgba(80, 60, 100, 0.2) 100%);
+            border: 1px solid rgba(96, 165, 250, 0.25);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .key-insight .symbol {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .key-insight p {
+            font-size: 1.1rem;
+            color: #d4d4e8;
+            line-height: 1.7;
+        }
+        
+        .key-insight p strong {
+            color: #93c5fd;
+        }
+        
+        /* Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(96, 165, 250, 0.25), transparent);
+            margin: 45px 0;
+        }
+        
+        /* Concept Diagram */
+        .concept-diagram {
+            background: rgba(20, 20, 40, 0.6);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 35px 0;
+            text-align: center;
+        }
+        
+        .concept-diagram h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: #93c5fd;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+        
+        .diagram-content {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #a0a0c0;
+            line-height: 2;
+        }
+        
+        .diagram-content .highlight {
+            color: #60a5fa;
+        }
+        
+        .diagram-content .center {
+            color: #fcd34d;
+        }
+        
+        /* Methods Grid */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 35px 0;
+        }
+        
+        .method-card {
+            background: rgba(25, 25, 45, 0.6);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            border-radius: 14px;
+            padding: 25px;
+        }
+        
+        .method-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        
+        .method-card p {
+            font-size: 0.92rem;
+            color: #a0a0c0;
+            line-height: 1.6;
+        }
+        
+        .method-card .note {
+            font-family: 'Courier New', monospace;
+            font-size: 0.78rem;
+            color: rgba(147, 197, 253, 0.8);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+        }
+        
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+        }
+        
+        .nav-links a {
+            color: #c4b5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #fff;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #8888aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover { color: #c4b5fd; }
+        
+        .source-note {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            
+            main { padding: 100px 20px 60px; }
+            
+            .page-hero h1 { font-size: 2rem; }
+            
+            .methods-grid { grid-template-columns: 1fr; }
+            
+            .nav-links { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <header>
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="page-hero">
+            <span class="topic-tag">SPECIAL TOPIC</span>
+            <h1>TIME TRAVEL</h1>
+            <p class="tagline">Time doesn't flow—you move through it. What we call "when" is actually "where" on the torus.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2>The Illusion of Flowing Time</h2>
+            <p>We experience time as a river carrying us from past to future. Moments seem to arise, exist briefly, then vanish forever. The past is gone; the future doesn't exist yet.</p>
+            <p><strong>This is a surface-level perception, not reality.</strong></p>
+            <p>In the ε Framework, time is a dimension like space—it's a direction on the torus. What we experience as "time passing" is our consciousness moving through that dimension. The past and future don't disappear—they're positions we're not currently occupying.</p>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    Einstein's block universe (eternalism) already suggests all times exist simultaneously. The ε Framework specifies the topology: time maps to angular position on the torus (t = f(θ)). "Now" is your current θ-coordinate. Movement through θ = movement through time.
+                </div>
+            </details>
+        </section>
+        
+        <div class="key-insight">
+            <div class="symbol">⏰</div>
+            <p><strong>Time is where you are, not when you are.</strong><br>The past is a place. The future is a place. You're just not standing there right now.</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>The Geometry of Time</h2>
+            <p>On a torus, you have two circular dimensions: one around the major circumference (θ), one around the minor circumference (φ). In the ε Framework:</p>
+            <p><strong>θ (theta)</strong> corresponds to time—your position in the temporal cycle.<br>
+            <strong>φ (phi)</strong> corresponds to spatial position and dimensional expression.</p>
+            <p>At ε (the center), θ collapses. There is no angular position at a dimensionless point. <strong>At ε, all times are the same time. The eternal now.</strong></p>
+            
+            <div class="concept-diagram">
+                <h3>TIME AS TORUS COORDINATE</h3>
+                <div class="diagram-content">
+                    Surface: t = f(<span class="highlight">θ</span>) — time varies with angular position<br>
+                    Movement: Δt = Δ<span class="highlight">θ</span> — time travel = angular displacement<br>
+                    <span class="center">Center (ε): θ = undefined — all times converge</span>
+                </div>
+            </div>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    The torus has closed geodesics in both dimensions. Moving far enough in θ returns you to your starting point—time is cyclical at the cosmic scale. The "arrow of time" is direction of travel, not inherent property of time itself. Entropy increase corresponds to surface-ward movement; entropy decrease to center-ward.
+                </div>
+            </details>
+        </section>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>Why We Seem Stuck in "Now"</h2>
+            <p>If time is just a dimension, why can't we move through it freely like we move through space?</p>
+            <p><strong>We're anchored.</strong> Our physical bodies are surface structures, locked to a particular θ-coordinate by the mass and complexity of the biological system. Moving a body through time requires moving every particle's θ-position simultaneously—enormous energy.</p>
+            <p>But consciousness is less anchored. In dreams, meditation, altered states, and near-death experiences, the anchor loosens. Consciousness can drift toward ε, where time converges, and access other θ-positions.</p>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    Mass anchors to spacetime coordinates (general relativity). Consciousness correlates with quantum coherence, which is less strictly localized (quantum mechanics). The "binding problem" in neuroscience may relate to consciousness's partial non-locality. Temporal lobe activity correlates with time perception—stimulation alters subjective time flow.
+                </div>
+            </details>
+        </section>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>Methods of Temporal Navigation</h2>
+            <p>Given this framework, there are theoretical approaches to moving through time:</p>
+        </section>
+        
+        <div class="methods-grid">
+            <div class="method-card">
+                <h3>Consciousness Shift</h3>
+                <p>Move awareness toward ε (through meditation, trance, etc.), access the timeless center, then re-anchor at a different θ-position. No physical displacement—just perspective shift.</p>
+                <div class="note">This is how precognition and past-life memories work.</div>
+            </div>
+            
+            <div class="method-card">
+                <h3>ε-Transit</h3>
+                <p>Create a localized field that pushes matter toward ε, move through the center where θ is undefined, emerge at different θ. Requires toroidal field technology.</p>
+                <div class="note">Theoretical basis for physical time travel.</div>
+            </div>
+            
+            <div class="method-card">
+                <h3>Temporal Resonance</h3>
+                <p>Establish resonance with a specific θ-position through focused intention, artifacts from that time, or harmonic frequencies that match that temporal coordinate.</p>
+                <div class="note">May explain how psychometry works.</div>
+            </div>
+            
+            <div class="method-card">
+                <h3>Twin Access</h3>
+                <p>Your quantum twin exists at the complementary position (θ+π). Information exchange with your twin gives access to "opposite" temporal positions.</p>
+                <div class="note">Explains déjà vu and prophetic dreams.</div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <section class="content-section">
+            <h2>Paradoxes Resolved</h2>
+            <p><strong>The Grandfather Paradox:</strong> If you travel back and prevent your grandfather from meeting your grandmother, how can you exist to travel back?</p>
+            <p>Resolution: The torus has multiple paths. When you travel to a past θ-position and make changes, you're not overwriting—you're creating a divergent path on the torus surface. The original path still exists. Both versions are real. You've branched, not erased.</p>
+            <p><strong>The Bootstrap Paradox:</strong> Where does information come from if it's passed in a loop with no origin?</p>
+            <p>Resolution: At ε, causality as linear sequence doesn't apply. Information at the center doesn't have temporal origin—it simply <em>is</em>. What appears as a paradox from surface perspective is just ε-information manifesting at multiple θ-positions.</p>
+            
+            <details class="scientific-support">
+                <summary>Scientific support</summary>
+                <div class="content">
+                    Many-worlds interpretation already posits branching timelines. The ε Framework provides the topology: branches are divergent surface paths, all connected through the shared center. Closed timelike curves (CTCs) in general relativity permit loops; ε provides the stabilization mechanism that prevents paradox.
+                </div>
+            </details>
+        </section>
+        
+        <div class="key-insight">
+            <div class="symbol">🌀</div>
+            <p><strong>At ε, all times exist simultaneously.</strong><br>The "eternal now" isn't poetry—it's the geometry of the center where temporal coordinates converge.</p>
+        </div>
+        
+        <div class="nav-links">
+            <a href="/special/paranormal/">← Paranormal Explained</a>
+            <a href="/special/interstellar/">Interstellar Travel →</a>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/">Visualizations</a>
+            <a href="/about/">About</a>
+        </div>
+        <p class="source-note">Framework channeled through ET contact, independently verified through mathematics.</p>
+        <div class="copyright">© 2025 The Hole Truth</div>
+    </footer>
+</body>
+</html>

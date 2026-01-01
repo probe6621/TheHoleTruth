@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Interactive Visualizations | ε Framework – The Hole Truth</title>
+    <meta name="description" content="Explore the epsilon framework through stunning interactive 3D visualizations. See toroidal geometry, shared consciousness, time as dimension, and more come to life.">
+    <meta name="keywords" content="physics visualizations, toroidal geometry, 3D physics, interactive science, consciousness visualization, sacred geometry animation">
+    <meta name="author" content="The Hole Truth">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theholetruth.space/visualizations/">
+    <meta property="og:title" content="Interactive Visualizations | ε Framework">
+    <meta property="og:description" content="Experience unified physics through beautiful interactive 3D visualizations. The epsilon framework made visual.">
+    <meta property="og:image" content="https://theholetruth.space/images/og-visualizations.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theholetruth.space/visualizations/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            background: #000;
+            font-family: 'Nunito', sans-serif;
+            color: #e0e0e8;
+        }
+        
+        .cosmos-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(60, 40, 100, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(40, 60, 100, 0.15) 0%, transparent 50%),
+                #000;
+            z-index: -1;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 70%, transparent 100%);
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .logo span { color: #a78bfa; }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active { color: #a78bfa; }
+        
+        /* Main */
+        main {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 120px 30px 80px;
+        }
+        
+        /* Hero */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #c8c8ff 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-hero p {
+            font-size: 1.1rem;
+            color: #8888bb;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Category Sections */
+        .category {
+            margin-bottom: 60px;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(100, 100, 150, 0.2);
+        }
+        
+        .category-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #c8c8ff;
+            letter-spacing: 0.1em;
+        }
+        
+        .category-header .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(167, 139, 250, 0.3), transparent);
+        }
+        
+        /* Visualization Grid */
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .viz-card {
+            position: relative;
+            background: rgba(25, 25, 45, 0.7);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .viz-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(167, 139, 250, 0.1);
+        }
+        
+        .viz-preview {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(60, 40, 100, 0.4) 0%, rgba(30, 50, 80, 0.4) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .viz-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
+        }
+        
+        .viz-preview .icon {
+            font-size: 4rem;
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .viz-preview .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(167, 139, 250, 0.3);
+            border: 2px solid rgba(167, 139, 250, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .viz-card:hover .play-overlay {
+            opacity: 1;
+        }
+        
+        .play-overlay svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            margin-left: 3px;
+        }
+        
+        .viz-content {
+            padding: 25px;
+        }
+        
+        .viz-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+        
+        .viz-content .description {
+            font-size: 0.9rem;
+            color: #9999bb;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .viz-content .science-note {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: rgba(167, 139, 250, 0.7);
+            padding: 10px 12px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+            border-left: 2px solid rgba(167, 139, 250, 0.4);
+        }
+        
+        .viz-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: #fff;
+            background: rgba(167, 139, 250, 0.3);
+            border-radius: 20px;
+            z-index: 2;
+        }
+        
+        /* Featured Viz */
+        .featured-viz {
+            grid-column: span 2;
+        }
+        
+        .featured-viz .viz-preview {
+            height: 280px;
+        }
+        
+        @media (max-width: 800px) {
+            .featured-viz {
+                grid-column: span 1;
+            }
+            
+            .featured-viz .viz-preview {
+                height: 200px;
+            }
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+            margin-top: 40px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #8888bb;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover { color: #a78bfa; }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            
+            main { padding: 100px 20px 60px; }
+            
+            .page-hero h1 { font-size: 1.8rem; }
+            
+            .viz-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmos-bg"></div>
+    
+    <header>
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/discoveries/">Discoveries</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/about/">About</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="page-hero">
+            <h1>INTERACTIVE VISUALIZATIONS</h1>
+            <p>Experience the ε Framework through immersive 3D explorations. Each visualization brings a different aspect of toroidal geometry and unified physics to life.</p>
+        </section>
+        
+        <!-- Core Framework -->
+        <section class="category">
+            <div class="category-header">
+                <h2>CORE FRAMEWORK</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="viz-grid">
+                <a href="/visualizations/epsilon-toroid/" class="viz-card featured-viz">
+                    <span class="viz-tag">FEATURED</span>
+                    <div class="viz-preview">
+                        <span class="icon">🌀</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>The Epsilon Toroid</h3>
+                        <p class="description">The foundational visualization: a pulsing holographic torus with energy flowing through it, epsilon (ε) glowing at its center. Watch the 3-6-9 pulse and understand why this shape underlies all of reality.</p>
+                        <div class="science-note">Toroidal flow: R (major radius) = 3, r (minor radius) = 1.2 | 3-6-9 harmonic pulsing</div>
+                    </div>
+                </a>
+                
+                <a href="/visualizations/shared-epsilon/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">👁</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>The Shared Epsilon Center</h3>
+                        <p class="description">Multiple tori—you, another person, a cell, a galaxy—all sharing the same dimensionless center. See why separation is a surface illusion.</p>
+                        <div class="science-note">All ε-centers converge: one point, zero dimension, infinite perspectives</div>
+                    </div>
+                </a>
+                
+                <a href="/visualizations/dimensional-unfolding/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">📐</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Dimensional Unfolding</h3>
+                        <p class="description">How dimensions emerge from epsilon: 0D point → 1D line → 2D surface → 3D volume → and beyond. Watch reality unfold from the singularity.</p>
+                        <div class="science-note">Dimension cascade: ε → ε¹ → ε² → ε³ → ... → ε^n</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Cosmology -->
+        <section class="category">
+            <div class="category-header">
+                <h2>COSMOLOGY & POSITION</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="viz-grid">
+                <a href="/visualizations/earth-position/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">🌍</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Earth's Position on the Cosmic Torus</h3>
+                        <p class="description">We sit at 2/3 through the cosmic cycle—maximum distance from ε. This is the pivot point where awakening begins. See where we are in the grand journey.</p>
+                        <div class="science-note">φ ≈ 2π/3 radians | Maximum surface distance from center</div>
+                    </div>
+                </a>
+                
+                <a href="/visualizations/time-travel/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">⏰</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Time as Torus Position</h3>
+                        <p class="description">Time isn't a river—it's your position on the torus. Past and future are directions, not places. Travel through dimensions by moving through toroidal space.</p>
+                        <div class="science-note">t = f(θ, φ) | Temporal position as geometric coordinates</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Quantum & Advanced -->
+        <section class="category">
+            <div class="category-header">
+                <h2>QUANTUM & ADVANCED</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="viz-grid">
+                <a href="/visualizations/quantum-framework/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">⚛</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Quantum Epsilon Framework</h3>
+                        <p class="description">How quantum mechanics emerges from toroidal geometry. Wave functions, superposition, and entanglement all find geometric explanation.</p>
+                        <div class="science-note">ψ(x) = ε-regularized wave function | Collapse = surface localization</div>
+                    </div>
+                </a>
+                
+                <a href="/visualizations/quantum-twin/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">👥</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Quantum Twin Cross-Section</h3>
+                        <p class="description">See a cross-section through the toroidal structure: the quantum twin relationship, where every position has its complement on the opposite side.</p>
+                        <div class="science-note">Entanglement: shared ε = instant correlation at any distance</div>
+                    </div>
+                </a>
+                
+                <a href="/visualizations/complex-numbers/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">ℂ</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Complex Numbers & Epsilon</h3>
+                        <p class="description">The complex plane as toroidal surface. Understand why i² = -1 makes geometric sense when reality is cyclical, not linear.</p>
+                        <div class="science-note">i = rotation in toroidal space | e^(iπ) + 1 = 0 as toroidal closure</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Consciousness & Phenomena -->
+        <section class="category">
+            <div class="category-header">
+                <h2>CONSCIOUSNESS & PHENOMENA</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="viz-grid">
+                <a href="/visualizations/inversion-points/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">⚖</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Inversion Points & Agency</h3>
+                        <p class="description">Choice points where energy can flow inward (toward ε) or outward (toward surface). Understand how free will operates within geometric constraints.</p>
+                        <div class="science-note">Agency = direction selection at bifurcation points on torus surface</div>
+                    </div>
+                </a>
+                
+                <a href="/visualizations/paranormal/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">👻</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>Paranormal Phenomena Explained</h3>
+                        <p class="description">Telepathy, precognition, remote viewing—not magic, but ε-connectivity. When separation is illusion, information can flow through the center.</p>
+                        <div class="science-note">Non-local effects: surface → ε → surface (bypassing spatial distance)</div>
+                    </div>
+                </a>
+                
+                <a href="/visualizations/et-propulsion/" class="viz-card">
+                    <div class="viz-preview">
+                        <span class="icon">🛸</span>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="viz-content">
+                        <h3>ET Propulsion Concepts</h3>
+                        <p class="description">How toroidal field manipulation could enable apparent faster-than-light travel by moving through ε rather than across surface space.</p>
+                        <div class="science-note">Propulsion via ε-transit: move through center, emerge at different surface point</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="/framework/">Framework</a>
+            <a href="/discoveries/">Discoveries</a>
+            <a href="/visualizations/">Visualizations</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/about/">About</a>
+        </div>
+        <div class="copyright">© 2025 The Hole Truth. Pursuing truth through geometric unity.</div>
+    </footer>
+</body>
+</html>
