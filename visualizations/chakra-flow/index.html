@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The chakra system as toroidal breathing—emotional energy flowing through the body's ε points.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+
+    <title>Chakra Emotional Flow | The Hole Truth</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Rajdhani:wght@300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at center, #0a0a1a 0%, #000008 100%);
+            font-family: 'Rajdhani', sans-serif;
+            color: #e8e8f0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #f0e6ff 0%, #a8d4ff 50%, #f0e6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #8888aa;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+        }
+        
+        .main-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .torus-container {
+            position: relative;
+            width: 500px;
+            height: 600px;
+        }
+        
+        svg.torus-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 40px rgba(100, 100, 200, 0.2));
+        }
+        
+        .chakra-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        
+        .legend-panel {
+            background: rgba(20, 20, 40, 0.6);
+            border: 1px solid rgba(100, 100, 150, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            width: 320px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .legend-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #c8c8e0;
+            border-bottom: 1px solid rgba(100, 100, 150, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .emotion-group {
+            margin-bottom: 25px;
+        }
+        
+        .emotion-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .direction-arrow {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .emotion-direction {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .outward { color: #ff6b6b; }
+        .inward { color: #4ecdc4; }
+        
+        .emotion-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-left: 52px;
+        }
+        
+        .emotion-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+        
+        .emotion-tag.outward {
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.4);
+            color: #ff8a8a;
+        }
+        
+        .emotion-tag.inward {
+            background: rgba(78, 205, 196, 0.15);
+            border: 1px solid rgba(78, 205, 196, 0.4);
+            color: #6ee7df;
+        }
+        
+        .harvest-note {
+            font-size: 0.85rem;
+            color: #ff8a8a;
+            margin-left: 52px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .source-note {
+            font-size: 0.85rem;
+            color: #6ee7df;
+            margin-left: 52px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .heart-insight {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .heart-insight h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: #50c878;
+            margin-bottom: 8px;
+        }
+        
+        .heart-insight p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #aaaacc;
+        }
+        
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .bottom-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .info-card {
+            background: rgba(20, 20, 40, 0.5);
+            border: 1px solid rgba(100, 100, 150, 0.25);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .info-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #c8c8e0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #9999bb;
+        }
+        
+        .chakra-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .chakra-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .chakra-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .chakra-name {
+            font-weight: 500;
+            width: 100px;
+        }
+        
+        .chakra-desc {
+            color: #8888aa;
+            font-size: 0.85rem;
+        }
+        
+        .breathing-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6666aa;
+            font-size: 0.85rem;
+        }
+        
+        .breath-dot {
+            width: 8px;
+            height: 8px;
+            background: #6666cc;
+            border-radius: 50%;
+            animation: breathe 4s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        /* Particle animations */
+        .particle-outward {
+            animation: flowOutward 3s ease-in-out infinite;
+        }
+        
+        .particle-inward {
+            animation: flowInward 3s ease-in-out infinite;
+        }
+        
+        @keyframes flowOutward {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        @keyframes flowInward {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        .glow-pulse {
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    
+        /* Navigation Header */
+        #nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,26,0.95) 0%, rgba(10,10,26,0.7) 70%, transparent 100%);
+        }
+        
+        #nav-header .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        #nav-header .logo span { color: #c4b5fd; }
+        
+        #nav-header nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #nav-header nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
+    
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <div id="nav-header">
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h1>Toroidal Breathing</h1>
+        <p class="subtitle">THE GEOMETRY OF EMOTION & THE HEART CHOICE-POINT</p>
+        
+        <div class="main-visual">
+            <div class="torus-container">
+                <svg class="torus-svg" viewBox="0 0 500 600">
+                    <defs>
+                        <!-- Gradients for torus surfaces -->
+                        <linearGradient id="outerSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a1a3a;stop-opacity:0.9" />
+                            <stop offset="100%" style="stop-color:#2a2a5a;stop-opacity:0.7" />
+                        </linearGradient>
+                        
+                        <linearGradient id="innerSurface" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#0a0a1a;stop-opacity:0.95" />
+                            <stop offset="100%" style="stop-color:#15152a;stop-opacity:0.85" />
+                        </linearGradient>
+                        
+                        <!-- Glow filters -->
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <filter id="strongGlow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <!-- Chakra gradients -->
+                        <radialGradient id="rootGlow">
+                            <stop offset="0%" style="stop-color:#ff4444;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff4444;stop-opacity:0" />
+                        </radialGradient>
+                        <radialGradient id="sacralGlow">
+                            <stop offset="0%" style="stop-color:#ff8833;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff8833;stop-opacity:0" />
+                        </radialGradient>
+                        <radialGradient id="solarGlow">
+                            <stop offset="0%" style="stop-color:#ffcc00;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ffcc00;stop-opacity:0" />
+                        </radialGradient>
+                        <radialGradient id="heartGlow">
+                            <stop offset="0%" style="stop-color:#44ff88;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#44ff88;stop-opacity:0" />
+                        </radialGradient>
+                        <radialGradient id="throatGlow">
+                            <stop offset="0%" style="stop-color:#44aaff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#44aaff;stop-opacity:0" />
+                        </radialGradient>
+                        <radialGradient id="thirdEyeGlow">
+                            <stop offset="0%" style="stop-color:#6644ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#6644ff;stop-opacity:0" />
+                        </radialGradient>
+                        <radialGradient id="crownGlow">
+                            <stop offset="0%" style="stop-color:#cc88ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#cc88ff;stop-opacity:0" />
+                        </radialGradient>
+                        
+                        <!-- Arrow markers -->
+                        <marker id="arrowOutward" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                            <path d="M0,2 L5,5 L0,8" fill="none" stroke="#ff6b6b" stroke-width="1.5"/>
+                        </marker>
+                        <marker id="arrowInward" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                            <path d="M0,2 L5,5 L0,8" fill="none" stroke="#4ecdc4" stroke-width="1.5"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Background stars -->
+                    <g class="stars" opacity="0.4">
+                        <circle cx="50" cy="80" r="1" fill="#ffffff"/>
+                        <circle cx="120" cy="50" r="0.5" fill="#ffffff"/>
+                        <circle cx="380" cy="100" r="1" fill="#ffffff"/>
+                        <circle cx="450" cy="60" r="0.5" fill="#ffffff"/>
+                        <circle cx="420" cy="520" r="1" fill="#ffffff"/>
+                        <circle cx="80" cy="550" r="0.5" fill="#ffffff"/>
+                        <circle cx="470" cy="300" r="0.8" fill="#ffffff"/>
+                        <circle cx="30" cy="280" r="0.6" fill="#ffffff"/>
+                    </g>
+                    
+                    <!-- Torus cross-section - outer shell -->
+                    <ellipse cx="250" cy="300" rx="200" ry="250" fill="none" stroke="url(#outerSurface)" stroke-width="60" opacity="0.4"/>
+                    
+                    <!-- Torus outer surface highlight -->
+                    <ellipse cx="250" cy="300" rx="200" ry="250" fill="none" stroke="#3a3a6a" stroke-width="2" opacity="0.5"/>
+                    
+                    <!-- Inner tube representation -->
+                    <ellipse cx="250" cy="300" rx="60" ry="200" fill="url(#innerSurface)" stroke="#2a2a4a" stroke-width="1"/>
+                    
+                    <!-- ε at center -->
+                    <circle cx="250" cy="300" r="15" fill="#1a1a3a" stroke="#8888cc" stroke-width="1" class="glow-pulse" filter="url(#glow)"/>
+                    <text x="250" y="305" text-anchor="middle" fill="#aaaaff" font-size="14" font-family="serif">ε</text>
+                    
+                    <!-- Central axis (chakra column) -->
+                    <line x1="250" y1="80" x2="250" y2="520" stroke="#444466" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+                    
+                    <!-- OUTWARD FLOW (Fear/Anger) - Left side -->
+                    <g class="outward-flow">
+                        <!-- Flow arrows radiating outward -->
+                        <path d="M230,300 Q150,280 80,260" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.6" marker-end="url(#arrowOutward)" class="particle-outward"/>
+                        <path d="M230,300 Q140,320 60,340" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.5" marker-end="url(#arrowOutward)" class="particle-outward" style="animation-delay: 0.5s"/>
+                        <path d="M230,300 Q160,240 100,180" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.4" marker-end="url(#arrowOutward)" class="particle-outward" style="animation-delay: 1s"/>
+                        <path d="M230,300 Q150,370 80,430" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.4" marker-end="url(#arrowOutward)" class="particle-outward" style="animation-delay: 1.5s"/>
+                        
+                        <!-- Label -->
+                        <text x="45" y="300" fill="#ff6b6b" font-size="11" font-weight="500" transform="rotate(-90, 45, 300)">OUTWARD → HARVESTABLE</text>
+                    </g>
+                    
+                    <!-- INWARD FLOW (Love/Joy) - Right side -->
+                    <g class="inward-flow">
+                        <!-- Flow arrows moving inward -->
+                        <path d="M420,260 Q350,280 270,300" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" marker-end="url(#arrowInward)" class="particle-inward"/>
+                        <path d="M440,340 Q360,320 270,300" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.5" marker-end="url(#arrowInward)" class="particle-inward" style="animation-delay: 0.5s"/>
+                        <path d="M400,180 Q340,240 270,300" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.4" marker-end="url(#arrowInward)" class="particle-inward" style="animation-delay: 1s"/>
+                        <path d="M420,430 Q350,370 270,300" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.4" marker-end="url(#arrowInward)" class="particle-inward" style="animation-delay: 1.5s"/>
+                        
+                        <!-- Label -->
+                        <text x="455" y="300" fill="#4ecdc4" font-size="11" font-weight="500" transform="rotate(90, 455, 300)">INWARD → RETURNS TO SOURCE</text>
+                    </g>
+                    
+                    <!-- Chakras along central axis -->
+                    <g class="chakras">
+                        <!-- Crown (7) -->
+                        <circle cx="250" cy="100" r="20" fill="url(#crownGlow)" opacity="0.4"/>
+                        <circle cx="250" cy="100" r="8" fill="#cc88ff" filter="url(#glow)"/>
+                        <text x="295" y="105" class="chakra-label" fill="#cc88ff">CROWN → ε</text>
+                        
+                        <!-- Third Eye (6) -->
+                        <circle cx="250" cy="150" r="18" fill="url(#thirdEyeGlow)" opacity="0.4"/>
+                        <circle cx="250" cy="150" r="7" fill="#6644ff" filter="url(#glow)"/>
+                        <text x="295" y="155" class="chakra-label" fill="#6644ff">THIRD EYE</text>
+                        
+                        <!-- Throat (5) -->
+                        <circle cx="250" cy="200" r="16" fill="url(#throatGlow)" opacity="0.4"/>
+                        <circle cx="250" cy="200" r="7" fill="#44aaff" filter="url(#glow)"/>
+                        <text x="295" y="205" class="chakra-label" fill="#44aaff">THROAT</text>
+                        
+                        <!-- Heart (4) - THE INVERSION POINT -->
+                        <circle cx="250" cy="300" r="35" fill="url(#heartGlow)" opacity="0.3" class="glow-pulse"/>
+                        <circle cx="250" cy="300" r="12" fill="#44ff88" filter="url(#strongGlow)"/>
+                        <text x="295" y="290" class="chakra-label" fill="#44ff88" font-size="12">HEART</text>
+                        <text x="295" y="305" class="chakra-label" fill="#88ffaa" font-size="10">THE CHOICE POINT</text>
+                        <text x="295" y="318" class="chakra-label" fill="#66cc88" font-size="9">Inversion Surface</text>
+                        
+                        <!-- Solar Plexus (3) -->
+                        <circle cx="250" cy="380" r="16" fill="url(#solarGlow)" opacity="0.4"/>
+                        <circle cx="250" cy="380" r="7" fill="#ffcc00" filter="url(#glow)"/>
+                        <text x="295" y="385" class="chakra-label" fill="#ffcc00">SOLAR PLEXUS</text>
+                        
+                        <!-- Sacral (2) -->
+                        <circle cx="250" cy="430" r="16" fill="url(#sacralGlow)" opacity="0.4"/>
+                        <circle cx="250" cy="430" r="7" fill="#ff8833" filter="url(#glow)"/>
+                        <text x="295" y="435" class="chakra-label" fill="#ff8833">SACRAL</text>
+                        
+                        <!-- Root (1) -->
+                        <circle cx="250" cy="480" r="18" fill="url(#rootGlow)" opacity="0.4"/>
+                        <circle cx="250" cy="480" r="8" fill="#ff4444" filter="url(#glow)"/>
+                        <text x="295" y="485" class="chakra-label" fill="#ff4444">ROOT</text>
+                    </g>
+                    
+                    <!-- Dimension labels -->
+                    <g class="dimension-labels" opacity="0.6">
+                        <text x="160" y="140" fill="#9999bb" font-size="10">MIRROR / SPIRITUAL</text>
+                        <text x="165" y="155" fill="#7777aa" font-size="9">Dimensions 5-7</text>
+                        
+                        <text x="165" y="455" fill="#9999bb" font-size="10">MATERIAL / SPATIAL</text>
+                        <text x="170" y="470" fill="#7777aa" font-size="9">Dimensions 1-3</text>
+                    </g>
+                    
+                    <!-- 3+1+3 indicator -->
+                    <g class="structure-indicator">
+                        <text x="140" y="300" fill="#aaffaa" font-size="12" font-weight="500">4th</text>
+                        <line x1="140" y1="170" x2="140" y2="260" stroke="#8888aa" stroke-width="1"/>
+                        <text x="125" y="215" fill="#8888aa" font-size="10">3</text>
+                        <line x1="140" y1="340" x2="140" y2="470" stroke="#8888aa" stroke-width="1"/>
+                        <text x="125" y="405" fill="#8888aa" font-size="10">3</text>
+                    </g>
+                    
+                    <!-- Connection line crown to root through ε -->
+                    <path d="M250,100 Q230,300 250,480" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-dasharray="2,4" opacity="0.3"/>
+                    <text x="215" y="545" fill="#8888aa" font-size="9" text-anchor="middle">Crown ↔ Root via ε</text>
+                    <text x="215" y="558" fill="#666688" font-size="8" text-anchor="middle">(Kundalini circuit)</text>
+                </svg>
+                
+                <div class="breathing-indicator">
+                    <span class="breath-dot"></span>
+                    <span>Toroidal breathing</span>
+                </div>
+            </div>
+            
+            <div class="legend-panel">
+                <h3 class="legend-title">Emotional Direction</h3>
+                
+                <div class="emotion-group">
+                    <div class="emotion-header">
+                        <svg class="direction-arrow" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="5" fill="#ff6b6b" opacity="0.3"/>
+                            <path d="M20,20 L35,10" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrowOutward)"/>
+                            <path d="M20,20 L35,30" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrowOutward)"/>
+                            <path d="M20,20 L38,20" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrowOutward)"/>
+                            <defs>
+                                <marker id="arrowOut" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                                    <path d="M0,0 L6,3 L0,6" fill="#ff6b6b"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                        <span class="emotion-direction outward">OUTWARD from ε</span>
+                    </div>
+                    <div class="emotion-list">
+                        <span class="emotion-tag outward">Fear</span>
+                        <span class="emotion-tag outward">Anger</span>
+                        <span class="emotion-tag outward">Hatred</span>
+                        <span class="emotion-tag outward">Anxiety</span>
+                        <span class="emotion-tag outward">Suffering</span>
+                        <span class="emotion-tag outward">Jealousy</span>
+                    </div>
+                    <p class="harvest-note">↑ Can be intercepted & harvested</p>
+                </div>
+                
+                <div class="emotion-group">
+                    <div class="emotion-header">
+                        <svg class="direction-arrow" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="5" fill="#4ecdc4"/>
+                            <path d="M35,10 L22,18" stroke="#4ecdc4" stroke-width="2"/>
+                            <path d="M35,30 L22,22" stroke="#4ecdc4" stroke-width="2"/>
+                            <path d="M38,20 L25,20" stroke="#4ecdc4" stroke-width="2"/>
+                            <circle cx="35" cy="10" r="2" fill="#4ecdc4" opacity="0.5"/>
+                            <circle cx="35" cy="30" r="2" fill="#4ecdc4" opacity="0.5"/>
+                            <circle cx="38" cy="20" r="2" fill="#4ecdc4" opacity="0.5"/>
+                        </svg>
+                        <span class="emotion-direction inward">INWARD to ε</span>
+                    </div>
+                    <div class="emotion-list">
+                        <span class="emotion-tag inward">Love</span>
+                        <span class="emotion-tag inward">Peace</span>
+                        <span class="emotion-tag inward">Joy</span>
+                        <span class="emotion-tag inward">Gratitude</span>
+                        <span class="emotion-tag inward">Compassion</span>
+                        <span class="emotion-tag inward">Unity</span>
+                    </div>
+                    <p class="source-note">↑ Returns to source — unharvestabl</p>
+                </div>
+                
+                <div class="heart-insight">
+                    <h4>♡ The Heart as Choice-Point</h4>
+                    <p>The 4th chakra sits at the inversion surface where inner and outer torus surfaces meet. Here you choose the direction of your emotional energy. Love isn't sentiment—it's geometric recognition of the shared center.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-section">
+            <div class="info-card">
+                <h3>⟲ The 3 + 1 + 3 Structure</h3>
+                <div class="chakra-list">
+                    <div class="chakra-item">
+                        <div class="chakra-dot" style="background: #cc88ff;"></div>
+                        <span class="chakra-name">Crown</span>
+                        <span class="chakra-desc">Direct connection to ε / Source</span>
+                    </div>
+                    <div class="chakra-item">
+                        <div class="chakra-dot" style="background: #6644ff;"></div>
+                        <span class="chakra-name">Third Eye</span>
+                        <span class="chakra-desc">Perception beyond surface</span>
+                    </div>
+                    <div class="chakra-item">
+                        <div class="chakra-dot" style="background: #44aaff;"></div>
+                        <span class="chakra-name">Throat</span>
+                        <span class="chakra-desc">Expression across the veil</span>
+                    </div>
+                    <div class="chakra-item" style="background: rgba(68, 255, 136, 0.1); border: 1px solid rgba(68, 255, 136, 0.3);">
+                        <div class="chakra-dot" style="background: #44ff88;"></div>
+                        <span class="chakra-name" style="color: #44ff88;">Heart</span>
+                        <span class="chakra-desc" style="color: #88ffaa;">INVERSION — where self meets other</span>
+                    </div>
+                    <div class="chakra-item">
+                        <div class="chakra-dot" style="background: #ffcc00;"></div>
+                        <span class="chakra-name">Solar Plexus</span>
+                        <span class="chakra-desc">Will, power, form in 3D</span>
+                    </div>
+                    <div class="chakra-item">
+                        <div class="chakra-dot" style="background: #ff8833;"></div>
+                        <span class="chakra-name">Sacral</span>
+                        <span class="chakra-desc">Creation, duality, emotion</span>
+                    </div>
+                    <div class="chakra-item">
+                        <div class="chakra-dot" style="background: #ff4444;"></div>
+                        <span class="chakra-name">Root</span>
+                        <span class="chakra-desc">Grounding in matter</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3>⟳ The Liberation Geometry</h3>
+                <p style="margin-bottom: 15px;">Fear-based systems (media, economics, politics) are architectures designed to generate outward-flowing emotional energy that can be harvested by beings disconnected from ε.</p>
+                <p style="margin-bottom: 15px;"><strong style="color: #4ecdc4;">But you are the generator.</strong> You choose what you emit.</p>
+                <p style="margin-bottom: 15px;">Choose love → energy flows inward → returns to source → <em>unharvestabl</em></p>
+                <p style="margin-bottom: 15px;">Choose fear → energy flows outward → can be intercepted → <em>harvestabl</em></p>
+                <p style="color: #88ffaa;">This isn't wishful thinking. It's geometry. The heart is literally the choice-point where you redirect the toroidal flow.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
