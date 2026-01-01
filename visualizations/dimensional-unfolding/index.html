@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensional Unfolding from ε | The Hole Truth</title>
+    <meta name="description" content="Watch dimensions emerge from ε through the π-cascade. Interactive visualization of how 11 dimensions unfold from the dimensionless center.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            overflow: hidden; 
+            background: #000;
+            font-family: 'Nunito', sans-serif;
+        }
+        canvas { display: block; }
+        
+        /* Navigation Header */
+        #nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+        }
+        
+        #nav-header .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        #nav-header .logo span { color: #c4b5fd; }
+        
+        #nav-header nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #nav-header nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
+        
+        #title {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        #title h1 {
+            font-size: 28px;
+            font-weight: normal;
+            letter-spacing: 6px;
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+            margin-bottom: 10px;
+        }
+        #title h2 {
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.7);
+        }
+        #legend {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 100;
+            text-align: right;
+        }
+        .dimension-item {
+            margin: 12px 0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background: rgba(0,0,0,0.5);
+        }
+        .dim-label {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .dim-desc {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+        }
+        #bottom-text {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        #bottom-text .formula {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.8);
+            margin-bottom: 8px;
+        }
+        #bottom-text .explanation {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <div id="nav-header">
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </div>
+    
+    <div id="title">
+        <h1>DIMENSIONAL UNFOLDING</h1>
+        <h2>FROM EPICENTER OUTWARD</h2>
+    </div>
+    
+    <div id="legend">
+        <div class="dimension-item" style="border-left: 3px solid #ffffff;">
+            <div class="dim-label">ε â€” The Epicenter</div>
+            <div class="dim-desc">Dimensionless. Timeless. The source.</div>
+        </div>
+        <div class="dimension-item" style="border-left: 3px solid #a78bfa;">
+            <div class="dim-label">11th Dimension</div>
+            <div class="dim-desc">The hole itself. Unoccupiable.</div>
+        </div>
+        <div class="dimension-item" style="border-left: 3px solid #60a5fa;">
+            <div class="dim-label">Dimensions 6-10</div>
+            <div class="dim-desc">Mirror side (5D). Inner surface.</div>
+        </div>
+        <div class="dimension-item" style="border-left: 3px solid #4ade80;">
+            <div class="dim-label">Dimensions 1-5</div>
+            <div class="dim-desc">Our side (5D). Outer surface.</div>
+        </div>
+        <div class="dimension-item" style="border-left: 3px solid #fbbf24;">
+            <div class="dim-label">3D Spacetime</div>
+            <div class="dim-desc">Where we perceive. Ï€âµ matter.</div>
+        </div>
+    </div>
+
+    <div id="bottom-text">
+        <div class="formula">11 = (5 Ã— 2) + ε</div>
+        <div class="explanation">Five dimensions Ã— Two surfaces + The hole</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000511, 1);
+        document.body.appendChild(renderer.domElement);
+
+        // Central epsilon point - the source
+        const epsilonGeometry = new THREE.SphereGeometry(0.3, 32, 32);
+        const epsilonMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const epsilon = new THREE.Mesh(epsilonGeometry, epsilonMaterial);
+        scene.add(epsilon);
+
+        // Epsilon glow layers
+        for (let i = 1; i <= 3; i++) {
+            const glowGeometry = new THREE.SphereGeometry(0.3 + i * 0.15, 32, 32);
+            const glowMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0xa78bfa, 
+                transparent: true, 
+                opacity: 0.3 / i 
+            });
+            const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+            scene.add(glow);
+        }
+
+        // 11th dimension - the immediate surround of epsilon (the hole)
+        const dim11Geometry = new THREE.TorusGeometry(1.2, 0.15, 16, 100);
+        const dim11Material = new THREE.MeshBasicMaterial({ 
+            color: 0xa78bfa, 
+            transparent: true, 
+            opacity: 0.6 
+        });
+        const dim11 = new THREE.Mesh(dim11Geometry, dim11Material);
+        scene.add(dim11);
+
+        // Dimensions 6-10 (mirror side) - inner torus surface
+        const mirrorGeometry = new THREE.TorusGeometry(2.5, 0.8, 32, 100);
+        const mirrorMaterial = new THREE.ShaderMaterial({
+            uniforms: { time: { value: 0 } },
+            vertexShader: `
+                varying vec3 vNormal;
+                varying vec2 vUv;
+                void main() {
+                    vNormal = normalize(normalMatrix * normal);
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                varying vec3 vNormal;
+                varying vec2 vUv;
+                uniform float time;
+                void main() {
+                    float fresnel = pow(1.0 - abs(dot(vec3(0,0,1), vNormal)), 2.0);
+                    vec3 color = vec3(0.376, 0.647, 0.980); // Blue
+                    float flow = sin(vUv.x * 20.0 - time * 2.0) * 0.5 + 0.5;
+                    color += vec3(0.3, 0.2, 0.5) * flow * 0.3;
+                    float alpha = 0.3 + fresnel * 0.4;
+                    gl_FragColor = vec4(color, alpha);
+                }
+            `,
+            transparent: true,
+            side: THREE.DoubleSide
+        });
+        const mirrorTorus = new THREE.Mesh(mirrorGeometry, mirrorMaterial);
+        scene.add(mirrorTorus);
+
+        // Dimensions 1-5 (our side) - outer torus surface
+        const ourGeometry = new THREE.TorusGeometry(4, 1.2, 32, 100);
+        const ourMaterial = new THREE.ShaderMaterial({
+            uniforms: { time: { value: 0 } },
+            vertexShader: `
+                varying vec3 vNormal;
+                varying vec2 vUv;
+                void main() {
+                    vNormal = normalize(normalMatrix * normal);
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                varying vec3 vNormal;
+                varying vec2 vUv;
+                uniform float time;
+                void main() {
+                    float fresnel = pow(1.0 - abs(dot(vec3(0,0,1), vNormal)), 2.0);
+                    vec3 color = vec3(0.290, 0.855, 0.498); // Green
+                    float flow = sin(vUv.x * 20.0 + time * 2.0) * 0.5 + 0.5;
+                    color += vec3(0.2, 0.3, 0.1) * flow * 0.3;
+                    float alpha = 0.25 + fresnel * 0.35;
+                    gl_FragColor = vec4(color, alpha);
+                }
+            `,
+            transparent: true,
+            side: THREE.DoubleSide
+        });
+        const ourTorus = new THREE.Mesh(ourGeometry, ourMaterial);
+        scene.add(ourTorus);
+
+        // 3D spacetime shell - where we perceive
+        const spacetimeGeometry = new THREE.TorusGeometry(5.5, 0.4, 16, 100);
+        const spacetimeMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xfbbf24, 
+            transparent: true, 
+            opacity: 0.4,
+            wireframe: true
+        });
+        const spacetime = new THREE.Mesh(spacetimeGeometry, spacetimeMaterial);
+        scene.add(spacetime);
+
+        // Energy flow lines from epsilon outward
+        function createFlowLine(startRadius, endRadius, color, segments = 50) {
+            const points = [];
+            for (let i = 0; i <= segments; i++) {
+                const t = i / segments;
+                const r = startRadius + (endRadius - startRadius) * t;
+                const angle = t * Math.PI * 4; // Spiral outward
+                const x = r * Math.cos(angle);
+                const y = r * Math.sin(angle) * 0.5;
+                const z = t * 2 - 1;
+                points.push(new THREE.Vector3(x, y, z));
+            }
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            const material = new THREE.LineBasicMaterial({ 
+                color: color, 
+                transparent: true, 
+                opacity: 0.4 
+            });
+            return new THREE.Line(geometry, material);
+        }
+
+        // Multiple flow lines
+        for (let i = 0; i < 8; i++) {
+            const angle = (i / 8) * Math.PI * 2;
+            const line = createFlowLine(0.5, 5, 0xffffff);
+            line.rotation.z = angle;
+            scene.add(line);
+        }
+
+        // Particles emanating from epsilon
+        const particleCount = 500;
+        const particleGeometry = new THREE.BufferGeometry();
+        const particlePositions = new Float32Array(particleCount * 3);
+        const particleVelocities = [];
+
+        for (let i = 0; i < particleCount; i++) {
+            // Start near epsilon
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.random() * Math.PI;
+            const r = 0.5;
+            particlePositions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+            particlePositions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+            particlePositions[i * 3 + 2] = r * Math.cos(phi);
+            
+            particleVelocities.push({
+                vr: 0.01 + Math.random() * 0.02,
+                theta: theta,
+                phi: phi,
+                maxR: 2 + Math.random() * 4,
+                currentR: r,
+                reset: function() {
+                    this.currentR = 0.5;
+                    this.theta = Math.random() * Math.PI * 2;
+                    this.phi = Math.random() * Math.PI;
+                }
+            });
+        }
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.05,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+
+        // Dimensional rings with labels
+        function createDimensionalRing(radius, color, opacity) {
+            const geometry = new THREE.RingGeometry(radius - 0.05, radius + 0.05, 64);
+            const material = new THREE.MeshBasicMaterial({ 
+                color: color, 
+                transparent: true, 
+                opacity: opacity,
+                side: THREE.DoubleSide
+            });
+            const ring = new THREE.Mesh(geometry, material);
+            ring.rotation.x = Math.PI / 2;
+            return ring;
+        }
+
+        // Concentric rings showing dimensional layers
+        const ring1 = createDimensionalRing(1.2, 0xa78bfa, 0.5);
+        const ring2 = createDimensionalRing(2.5, 0x60a5fa, 0.4);
+        const ring3 = createDimensionalRing(4, 0x4ade80, 0.3);
+        const ring4 = createDimensionalRing(5.5, 0xfbbf24, 0.3);
+        scene.add(ring1, ring2, ring3, ring4);
+
+        // Background stars
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsPositions = new Float32Array(2000 * 3);
+        for (let i = 0; i < 2000; i++) {
+            starsPositions[i * 3] = (Math.random() - 0.5) * 150;
+            starsPositions[i * 3 + 1] = (Math.random() - 0.5) * 150;
+            starsPositions[i * 3 + 2] = (Math.random() - 0.5) * 150;
+        }
+        starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+        const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.15, transparent: true, opacity: 0.5 });
+        const stars = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(stars);
+
+        camera.position.z = 12;
+        camera.position.y = 5;
+        camera.lookAt(0, 0, 0);
+
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.016;
+
+            // Update shader times
+            mirrorMaterial.uniforms.time.value = time;
+            ourMaterial.uniforms.time.value = time;
+
+            // Rotate elements
+            dim11.rotation.x = time * 0.5;
+            dim11.rotation.y = time * 0.3;
+            
+            mirrorTorus.rotation.x = Math.sin(time * 0.2) * 0.2;
+            mirrorTorus.rotation.y = time * 0.2;
+            
+            ourTorus.rotation.x = Math.sin(time * 0.15) * 0.15;
+            ourTorus.rotation.y = time * 0.15;
+            
+            spacetime.rotation.x = Math.sin(time * 0.1) * 0.1;
+            spacetime.rotation.y = time * 0.1;
+
+            // Pulse epsilon
+            const pulse = Math.sin(time * 3) * 0.5 + 0.5;
+            epsilon.scale.setScalar(1 + pulse * 0.2);
+
+            // Update particles
+            const positions = particleGeometry.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                const v = particleVelocities[i];
+                v.currentR += v.vr;
+                
+                if (v.currentR > v.maxR) {
+                    v.reset();
+                }
+                
+                // Spiral outward
+                v.theta += 0.02;
+                
+                positions[i * 3] = v.currentR * Math.sin(v.phi) * Math.cos(v.theta);
+                positions[i * 3 + 1] = v.currentR * Math.sin(v.phi) * Math.sin(v.theta);
+                positions[i * 3 + 2] = v.currentR * Math.cos(v.phi);
+            }
+            particleGeometry.attributes.position.needsUpdate = true;
+
+            // Gentle camera orbit
+            camera.position.x = Math.sin(time * 0.1) * 3;
+            camera.position.z = 12 + Math.cos(time * 0.1) * 2;
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
