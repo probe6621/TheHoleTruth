@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlantis: The Geometric Center of Ancient Civilization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #050510 0%, #0a1020 50%, #051015 100%);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 1.7em;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, #00bfff, #00ff88, #00bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 15px;
+        }
+        
+        @media (max-width: 1100px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .viz-container {
+            background: rgba(10, 20, 40, 0.9);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+        }
+        
+        #mapCanvas {
+            width: 100%;
+            border-radius: 8px;
+            background: #0a1525;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            justify-content: center;
+        }
+        
+        .control-btn {
+            padding: 8px 14px;
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.3);
+            color: #00bfff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: rgba(0, 191, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+        }
+        
+        .control-btn.active {
+            background: rgba(0, 191, 255, 0.25);
+            border-color: #00bfff;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+        }
+        
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .panel {
+            background: rgba(20, 30, 50, 0.9);
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid rgba(0, 191, 255, 0.15);
+        }
+        
+        .panel h3 {
+            color: #00bfff;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0, 191, 255, 0.2);
+        }
+        
+        .atlantis-info {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        
+        .atlantis-coords {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        
+        .atlantis-label {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .distance-list {
+            font-size: 0.8em;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+        
+        .distance-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 8px;
+            margin-bottom: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+        
+        .distance-item .site {
+            color: #00bfff;
+        }
+        
+        .distance-item .dist {
+            color: #00ff88;
+        }
+        
+        .equidistant-pairs {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 200, 0, 0.1);
+            border-radius: 6px;
+            border-left: 3px solid #ffd700;
+        }
+        
+        .pair {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            font-size: 0.85em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pair:last-child {
+            border-bottom: none;
+        }
+        
+        .pair-sites {
+            color: #ffd700;
+        }
+        
+        .pair-dist {
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .insight-box {
+            background: rgba(0, 191, 255, 0.1);
+            border-left: 3px solid #00bfff;
+            padding: 10px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.8em;
+            line-height: 1.5;
+        }
+        
+        .insight-box strong {
+            color: #00ff88;
+        }
+        
+        .great-circle-info {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 100, 100, 0.1);
+            border-radius: 6px;
+            font-size: 0.8em;
+        }
+        
+        .great-circle-info h4 {
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+        
+        .tetrahedral-note {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 6px;
+            font-size: 0.8em;
+            text-align: center;
+        }
+        
+        .tetrahedral-note strong {
+            color: #00ff88;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌊 Atlantis: Geometric Center of the Ancient World</h1>
+        <p class="subtitle">Cabo Verde Position • Equidistant Sacred Sites • The Hub of Civilization</p>
+        
+        <div class="main-layout">
+            <div class="viz-container">
+                <canvas id="mapCanvas" width="850" height="550"></canvas>
+                
+                <div class="controls">
+                    <button class="control-btn active" onclick="setView('atlantic')">Atlantic View</button>
+                    <button class="control-btn" onclick="setView('global')">Global View</button>
+                    <button class="control-btn active" onclick="toggleLayer('distances')">Distance Lines</button>
+                    <button class="control-btn" onclick="toggleLayer('greatCircle')">Great Circle</button>
+                    <button class="control-btn active" onclick="toggleLayer('equidistant')">Equidistant Pairs</button>
+                    <button class="control-btn" onclick="toggleLayer('grid')">Platonic Grid</button>
+                </div>
+            </div>
+            
+            <div class="side-panel">
+                <div class="panel">
+                    <h3>📍 Atlantis Location</h3>
+                    <div class="atlantis-info">
+                        <div class="atlantis-coords">15°N, 24°W</div>
+                        <div class="atlantis-label">Cabo Verde Region</div>
+                        <div style="margin-top: 10px; font-size: 0.85em; color: #aaa;">
+                            "Beyond the Pillars of Hercules"<br>
+                            — Plato's Timaeus
+                        </div>
+                    </div>
+                    
+                    <div class="tetrahedral-note">
+                        <strong>15°N</strong> — Near the tetrahedral constant (19.47°)<br>
+                        Energy upwelling zone
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>⚖️ Equidistant Pairs from Atlantis</h3>
+                    <div class="equidistant-pairs">
+                        <div class="pair">
+                            <span class="pair-sites">Great Pyramid ↔ Machu Picchu</span>
+                            <span class="pair-dist">~5,500 km</span>
+                        </div>
+                        <div class="pair">
+                            <span class="pair-sites">Easter Island ↔ Indus Valley</span>
+                            <span class="pair-dist">~11,000 km</span>
+                        </div>
+                        <div class="pair">
+                            <span class="pair-sites">Stonehenge ↔ Nazca</span>
+                            <span class="pair-dist">~5,000 km</span>
+                        </div>
+                        <div class="pair">
+                            <span class="pair-sites">Angkor Wat ↔ Teotihuacan</span>
+                            <span class="pair-dist">~15,000 km</span>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-box" style="margin-top: 10px;">
+                        <strong>The Hub Theory:</strong> Atlantis positioned equidistant from paired sites suggests it served as a central coordination point for a global network.
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>🔴 The Great Circle</h3>
+                    <div class="great-circle-info">
+                        <h4>Sites aligned within 0.1°:</h4>
+                        Giza • Nazca • Easter Island • Machu Picchu • Petra • Persepolis • Mohenjo Daro • Angkor Wat • Ollantaytambo
+                    </div>
+                    
+                    <div class="insight-box" style="margin-top: 10px;">
+                        <strong>Axis Point:</strong> 59.76°N, 139.39°W<br>
+                        (Southeastern Alaska)<br><br>
+                        This great circle represents an <strong>"ancient equator"</strong> — possibly Earth's equator before a pole shift.
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>🌀 The ε-Framework Connection</h3>
+                    <div class="insight-box">
+                        If Atlantis was the <strong>hub</strong> of ancient civilization, it occupied the geometric center of the toroidal flow pattern.<br><br>
+                        The <strong>Throat Chakra</strong> (30°N) passes through both Giza AND the latitude band where Atlantis would have coordinated its network.<br><br>
+                        Atlantis may have been the <strong>"voice"</strong> that connected East and West — the central resonance point.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('mapCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let view = 'atlantic';
+        let time = 0;
+        const layers = {
+            distances: true,
+            greatCircle: false,
+            equidistant: true,
+            grid: false
+        };
+        
+        // Atlantis/Cabo Verde position
+        const atlantis = { lat: 15, lon: -24, name: 'ATLANTIS' };
+        
+        // Ancient sites
+        const sites = [
+            { lat: 29.98, lon: 31.13, name: 'Great Pyramid', color: '#ffd700' },
+            { lat: -13.16, lon: -72.55, name: 'Machu Picchu', color: '#00ff88' },
+            { lat: -27.11, lon: -109.35, name: 'Easter Island', color: '#ff6b6b' },
+            { lat: 27.18, lon: 68.84, name: 'Mohenjo Daro', color: '#ff9500' },
+            { lat: 51.18, lon: -1.83, name: 'Stonehenge', color: '#448aff' },
+            { lat: -14.69, lon: -75.13, name: 'Nazca', color: '#e040fb' },
+            { lat: 13.41, lon: 103.87, name: 'Angkor Wat', color: '#00bcd4' },
+            { lat: 19.69, lon: -98.84, name: 'Teotihuacan', color: '#ff4081' },
+            { lat: 30.33, lon: 35.44, name: 'Petra', color: '#ffab40' },
+            { lat: 29.93, lon: 52.89, name: 'Persepolis', color: '#7c4dff' },
+            { lat: -13.51, lon: -71.98, name: 'Ollantaytambo', color: '#69f0ae' },
+            { lat: 31.07, lon: 81.31, name: 'Mt Kailash', color: '#e040fb' }
+        ];
+        
+        // Great circle sites (the famous alignment)
+        const greatCircleSites = [
+            'Great Pyramid', 'Machu Picchu', 'Easter Island', 'Nazca', 
+            'Petra', 'Persepolis', 'Mohenjo Daro', 'Angkor Wat', 'Ollantaytambo'
+        ];
+        
+        // Equidistant pairs from Atlantis
+        const equidistantPairs = [
+            { site1: 'Great Pyramid', site2: 'Machu Picchu' },
+            { site1: 'Easter Island', site2: 'Mohenjo Daro' },
+            { site1: 'Stonehenge', site2: 'Nazca' }
+        ];
+        
+        function latLonToXY(lat, lon) {
+            let centerLon, scale;
+            
+            if (view === 'atlantic') {
+                centerLon = -30;
+                scale = 4;
+            } else {
+                centerLon = 0;
+                scale = 2.2;
+            }
+            
+            const x = canvas.width / 2 + (lon - centerLon) * scale;
+            const y = canvas.height / 2 - lat * scale;
+            
+            return { x, y };
+        }
+        
+        function drawMap() {
+            // Ocean background
+            ctx.fillStyle = '#0a1525';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Simple continent outlines
+            ctx.strokeStyle = 'rgba(100, 150, 100, 0.3)';
+            ctx.fillStyle = 'rgba(50, 80, 50, 0.2)';
+            ctx.lineWidth = 1;
+            
+            // Africa (simplified)
+            const africaPoints = [
+                { lat: 37, lon: -10 }, { lat: 35, lon: 10 }, { lat: 32, lon: 32 },
+                { lat: 22, lon: 36 }, { lat: 12, lon: 44 }, { lat: -12, lon: 44 },
+                { lat: -35, lon: 20 }, { lat: -35, lon: 18 }, { lat: -22, lon: 14 },
+                { lat: 5, lon: 10 }, { lat: 5, lon: -5 }, { lat: 15, lon: -17 },
+                { lat: 21, lon: -17 }, { lat: 28, lon: -13 }, { lat: 36, lon: -6 }
+            ];
+            drawContinent(africaPoints);
+            
+            // Europe (simplified)
+            const europePoints = [
+                { lat: 36, lon: -10 }, { lat: 43, lon: -9 }, { lat: 48, lon: -5 },
+                { lat: 51, lon: 2 }, { lat: 54, lon: 10 }, { lat: 55, lon: 12 },
+                { lat: 60, lon: 25 }, { lat: 70, lon: 30 }, { lat: 71, lon: 28 },
+                { lat: 65, lon: 15 }, { lat: 63, lon: 10 }, { lat: 58, lon: 5 },
+                { lat: 52, lon: 5 }, { lat: 44, lon: -1 }, { lat: 42, lon: 3 },
+                { lat: 40, lon: -4 }, { lat: 37, lon: -8 }
+            ];
+            drawContinent(europePoints);
+            
+            // South America (simplified)
+            const saPoints = [
+                { lat: 12, lon: -72 }, { lat: 10, lon: -62 }, { lat: 5, lon: -52 },
+                { lat: -5, lon: -35 }, { lat: -23, lon: -43 }, { lat: -34, lon: -58 },
+                { lat: -55, lon: -68 }, { lat: -53, lon: -72 }, { lat: -42, lon: -73 },
+                { lat: -18, lon: -70 }, { lat: -5, lon: -81 }, { lat: 2, lon: -79 },
+                { lat: 10, lon: -75 }
+            ];
+            drawContinent(saPoints);
+            
+            // North America (simplified)
+            const naPoints = [
+                { lat: 25, lon: -80 }, { lat: 30, lon: -85 }, { lat: 30, lon: -95 },
+                { lat: 25, lon: -98 }, { lat: 20, lon: -105 }, { lat: 25, lon: -115 },
+                { lat: 35, lon: -120 }, { lat: 48, lon: -125 }, { lat: 60, lon: -140 },
+                { lat: 70, lon: -160 }, { lat: 72, lon: -130 }, { lat: 70, lon: -90 },
+                { lat: 60, lon: -80 }, { lat: 50, lon: -65 }, { lat: 45, lon: -67 },
+                { lat: 40, lon: -74 }, { lat: 35, lon: -75 }, { lat: 30, lon: -80 }
+            ];
+            drawContinent(naPoints);
+            
+            // Asia (simplified - just show relevant part)
+            const asiaPoints = [
+                { lat: 42, lon: 30 }, { lat: 42, lon: 50 }, { lat: 35, lon: 60 },
+                { lat: 25, lon: 65 }, { lat: 20, lon: 73 }, { lat: 8, lon: 77 },
+                { lat: 15, lon: 80 }, { lat: 22, lon: 88 }, { lat: 22, lon: 97 },
+                { lat: 10, lon: 99 }, { lat: 5, lon: 103 }, { lat: 1, lon: 104 },
+                { lat: -8, lon: 115 }, { lat: -8, lon: 140 }, { lat: 10, lon: 120 },
+                { lat: 22, lon: 120 }, { lat: 35, lon: 130 }, { lat: 45, lon: 135 },
+                { lat: 55, lon: 140 }, { lat: 70, lon: 180 }, { lat: 75, lon: 100 },
+                { lat: 70, lon: 70 }, { lat: 50, lon: 50 }, { lat: 45, lon: 35 }
+            ];
+            drawContinent(asiaPoints);
+            
+            // Grid lines
+            ctx.strokeStyle = 'rgba(100, 150, 200, 0.1)';
+            ctx.lineWidth = 0.5;
+            for (let lat = -60; lat <= 60; lat += 30) {
+                ctx.beginPath();
+                const start = latLonToXY(lat, -180);
+                const end = latLonToXY(lat, 180);
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+            }
+            for (let lon = -180; lon <= 180; lon += 30) {
+                ctx.beginPath();
+                const start = latLonToXY(-90, lon);
+                const end = latLonToXY(90, lon);
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+            }
+            
+            // Equator highlight
+            ctx.strokeStyle = 'rgba(255, 255, 0, 0.2)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            const eqStart = latLonToXY(0, -180);
+            const eqEnd = latLonToXY(0, 180);
+            ctx.moveTo(eqStart.x, eqStart.y);
+            ctx.lineTo(eqEnd.x, eqEnd.y);
+            ctx.stroke();
+        }
+        
+        function drawContinent(points) {
+            if (points.length < 3) return;
+            
+            ctx.beginPath();
+            const first = latLonToXY(points[0].lat, points[0].lon);
+            ctx.moveTo(first.x, first.y);
+            
+            for (let i = 1; i < points.length; i++) {
+                const p = latLonToXY(points[i].lat, points[i].lon);
+                ctx.lineTo(p.x, p.y);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+        
+        function drawAtlantis() {
+            const pos = latLonToXY(atlantis.lat, atlantis.lon);
+            
+            // Pulsing glow
+            const pulse = 1 + 0.2 * Math.sin(time * 0.05);
+            const gradient = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, 50 * pulse);
+            gradient.addColorStop(0, 'rgba(0, 255, 136, 0.6)');
+            gradient.addColorStop(0.5, 'rgba(0, 191, 255, 0.3)');
+            gradient.addColorStop(1, 'transparent');
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, 50 * pulse, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Concentric rings (representing waves/influence)
+            for (let i = 1; i <= 4; i++) {
+                const ringPhase = (time * 0.02 + i * 0.25) % 1;
+                const radius = 30 + ringPhase * 100;
+                const alpha = (1 - ringPhase) * 0.3;
+                
+                ctx.strokeStyle = `rgba(0, 255, 136, ${alpha})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            // Center point
+            ctx.fillStyle = '#00ff88';
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, 12, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.strokeStyle = '#00ffff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Label
+            ctx.font = 'bold 14px Segoe UI';
+            ctx.fillStyle = '#00ff88';
+            ctx.textAlign = 'center';
+            ctx.fillText('ATLANTIS', pos.x, pos.y - 25);
+            ctx.font = '10px Segoe UI';
+            ctx.fillStyle = '#88ffbb';
+            ctx.fillText('(Cabo Verde)', pos.x, pos.y - 12);
+        }
+        
+        function drawSites() {
+            sites.forEach(site => {
+                const pos = latLonToXY(site.lat, site.lon);
+                
+                // Skip if off-screen
+                if (pos.x < 0 || pos.x > canvas.width || pos.y < 0 || pos.y > canvas.height) return;
+                
+                // Glow
+                const gradient = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, 15);
+                gradient.addColorStop(0, site.color + '88');
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 15, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Point
+                ctx.fillStyle = site.color;
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Label
+                ctx.font = '9px Segoe UI';
+                ctx.fillStyle = '#fff';
+                ctx.textAlign = 'center';
+                ctx.fillText(site.name, pos.x, pos.y + 18);
+            });
+        }
+        
+        function drawDistanceLines() {
+            if (!layers.distances) return;
+            
+            const atlantisPos = latLonToXY(atlantis.lat, atlantis.lon);
+            
+            sites.forEach(site => {
+                const sitePos = latLonToXY(site.lat, site.lon);
+                
+                if (sitePos.x < 0 || sitePos.x > canvas.width) return;
+                
+                ctx.strokeStyle = 'rgba(0, 191, 255, 0.2)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(atlantisPos.x, atlantisPos.y);
+                ctx.lineTo(sitePos.x, sitePos.y);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+        }
+        
+        function drawEquidistantPairs() {
+            if (!layers.equidistant) return;
+            
+            const atlantisPos = latLonToXY(atlantis.lat, atlantis.lon);
+            
+            equidistantPairs.forEach((pair, index) => {
+                const site1 = sites.find(s => s.name === pair.site1);
+                const site2 = sites.find(s => s.name === pair.site2);
+                
+                if (!site1 || !site2) return;
+                
+                const pos1 = latLonToXY(site1.lat, site1.lon);
+                const pos2 = latLonToXY(site2.lat, site2.lon);
+                
+                const colors = ['#ffd700', '#ff6b6b', '#69f0ae'];
+                const color = colors[index % colors.length];
+                
+                // Line from site1 to Atlantis
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(pos1.x, pos1.y);
+                ctx.lineTo(atlantisPos.x, atlantisPos.y);
+                ctx.stroke();
+                
+                // Line from Atlantis to site2
+                ctx.beginPath();
+                ctx.moveTo(atlantisPos.x, atlantisPos.y);
+                ctx.lineTo(pos2.x, pos2.y);
+                ctx.stroke();
+                
+                // "Equal" symbol at Atlantis
+                ctx.fillStyle = color;
+                ctx.font = 'bold 12px Segoe UI';
+                ctx.textAlign = 'center';
+                const offset = (index - 1) * 15;
+                ctx.fillText('≈', atlantisPos.x + offset + 30, atlantisPos.y + 40);
+            });
+        }
+        
+        function drawGreatCircle() {
+            if (!layers.greatCircle) return;
+            
+            // Draw the great circle path (simplified as arc)
+            ctx.strokeStyle = 'rgba(255, 100, 100, 0.5)';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([10, 5]);
+            
+            // Connect great circle sites
+            const gcSiteData = sites.filter(s => greatCircleSites.includes(s.name));
+            
+            if (gcSiteData.length > 1) {
+                ctx.beginPath();
+                gcSiteData.forEach((site, i) => {
+                    const pos = latLonToXY(site.lat, site.lon);
+                    if (i === 0) ctx.moveTo(pos.x, pos.y);
+                    else ctx.lineTo(pos.x, pos.y);
+                });
+                ctx.stroke();
+            }
+            
+            ctx.setLineDash([]);
+            
+            // Highlight great circle sites
+            gcSiteData.forEach(site => {
+                const pos = latLonToXY(site.lat, site.lon);
+                ctx.strokeStyle = '#ff6b6b';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 12, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+        }
+        
+        function drawPlatonicGrid() {
+            if (!layers.grid) return;
+            
+            // Tetrahedral latitude lines
+            ctx.strokeStyle = 'rgba(0, 255, 136, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([8, 4]);
+            
+            [19.47, -19.47].forEach(lat => {
+                ctx.beginPath();
+                const start = latLonToXY(lat, -180);
+                const end = latLonToXY(lat, 180);
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+            });
+            
+            ctx.setLineDash([]);
+            
+            // Label
+            const labelPos = latLonToXY(19.47, view === 'atlantic' ? -80 : -150);
+            ctx.font = '10px Segoe UI';
+            ctx.fillStyle = '#00ff88';
+            ctx.textAlign = 'left';
+            ctx.fillText('19.47° Tetrahedral', labelPos.x, labelPos.y - 5);
+        }
+        
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            drawMap();
+            drawDistanceLines();
+            drawGreatCircle();
+            drawPlatonicGrid();
+            drawEquidistantPairs();
+            drawSites();
+            drawAtlantis();
+            
+            // Title overlay
+            ctx.font = 'bold 12px Segoe UI';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.textAlign = 'left';
+            ctx.fillText('The Hub of Ancient Civilization', 20, 30);
+            
+            time++;
+            requestAnimationFrame(draw);
+        }
+        
+        function setView(newView) {
+            view = newView;
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(newView.substring(0, 4))) {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('View')) {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        function toggleLayer(layer) {
+            layers[layer] = !layers[layer];
+            event.currentTarget.classList.toggle('active', layers[layer]);
+        }
+        
+        draw();
+    </script>
+</body>
+</html>
