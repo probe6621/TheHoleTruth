@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Behavior | The ε Framework</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Nunito:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #06060c 0%, #0c0a14 50%, #06060c 100%);
+            font-family: 'Nunito', sans-serif;
+            color: #d0d0e0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #00ffcc 0%, #00ddff 50%, #00ffcc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: #00aaaa;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+        }
+        
+        .intro-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #88aaaa;
+            line-height: 1.8;
+        }
+        
+        .visualization-container {
+            background: rgba(0, 30, 30, 0.5);
+            border: 1px solid rgba(0, 180, 160, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            background: rgba(0, 80, 70, 0.5);
+            border: 1px solid rgba(0, 180, 160, 0.4);
+            color: #88ddcc;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(0, 120, 100, 0.6);
+            border-color: rgba(0, 220, 200, 0.6);
+        }
+        
+        .control-btn.active {
+            background: linear-gradient(135deg, #00aa88 0%, #008899 100%);
+            color: #ffffff;
+            border-color: transparent;
+        }
+        
+        .canvas-area {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        #marketCanvas {
+            border-radius: 12px;
+            background: rgba(5, 15, 15, 0.8);
+            max-width: 100%;
+        }
+        
+        .status-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .status-item {
+            background: rgba(0, 40, 40, 0.6);
+            border: 1px solid rgba(0, 150, 140, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .status-label {
+            font-size: 0.75rem;
+            color: #668888;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+        
+        .status-value {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.3rem;
+            color: #00ffdd;
+        }
+        
+        .status-value.phase3 { color: #ffff00; }
+        .status-value.phase6 { color: #00ff88; }
+        .status-value.phase9 { color: #ff4444; }
+        .status-value.neutral { color: #00dddd; }
+        
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 40, 40, 0.4);
+            border-radius: 12px;
+        }
+        
+        .slider-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .slider-label {
+            min-width: 120px;
+            color: #88aaaa;
+            font-size: 0.9rem;
+        }
+        
+        .slider {
+            flex: 1;
+            min-width: 150px;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(0, 80, 70, 0.5);
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ddcc 0%, #00aaaa 100%);
+            cursor: pointer;
+        }
+        
+        .slider-value {
+            min-width: 60px;
+            text-align: right;
+            font-family: 'Fira Code', monospace;
+            color: #00ddcc;
+        }
+        
+        .explanation-panel {
+            background: rgba(0, 50, 50, 0.4);
+            border: 1px solid rgba(0, 180, 160, 0.25);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .explanation-panel h3 {
+            font-family: 'Cinzel', serif;
+            color: #00ddcc;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .explanation-panel p {
+            color: #99bbbb;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .explanation-panel strong {
+            color: #00ffcc;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 100, 80, 0.3) 0%, rgba(0, 80, 100, 0.3) 100%);
+            border: 2px solid rgba(0, 200, 180, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .cta-section h3 {
+            font-family: 'Cinzel', serif;
+            color: #00ffcc;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            color: #88ccbb;
+            margin-bottom: 20px;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00aa88 0%, #008899 100%);
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 200, 180, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0, 150, 140, 0.2);
+        }
+        
+        .footer .epsilon {
+            font-size: 1.5rem;
+            color: #00ddcc;
+            margin-bottom: 8px;
+        }
+        
+        .footer p {
+            color: #557777;
+            font-size: 0.85rem;
+        }
+        
+        .footer a {
+            color: #00aaaa;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Market Behavior</h1>
+        <p class="subtitle">THE SOCIAL TORUS IN ACTION</p>
+        
+        <p class="intro-text">
+            Markets are collective human behavior operating under ∄0 constraints. 
+            Watch price extend from the ε-center, exhaust at boundaries, and return. 
+            This is toroidal geometry expressed through economics.
+        </p>
+        
+        <div class="visualization-container">
+            <div class="controls">
+                <button class="control-btn active" id="btn-cycle" onclick="setView('cycle')">Price Cycle</button>
+                <button class="control-btn" id="btn-torus" onclick="setView('torus')">3D Torus</button>
+                <button class="control-btn" id="btn-phases" onclick="setView('phases')">3-6-9 Phases</button>
+                <button class="control-btn" id="btn-mtf" onclick="setView('mtf')">Nested Tori</button>
+            </div>
+            
+            <div class="canvas-area">
+                <canvas id="marketCanvas" width="700" height="400"></canvas>
+            </div>
+            
+            <div class="slider-container">
+                <div class="slider-row">
+                    <span class="slider-label">Energy Level</span>
+                    <input type="range" class="slider" id="energySlider" min="0" max="100" value="50">
+                    <span class="slider-value" id="energyValue">50%</span>
+                </div>
+                <div class="slider-row">
+                    <span class="slider-label">Price Position</span>
+                    <input type="range" class="slider" id="positionSlider" min="-100" max="100" value="0">
+                    <span class="slider-value" id="positionValue">0%</span>
+                </div>
+            </div>
+            
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-label">Phase</div>
+                    <div class="status-value neutral" id="phaseDisplay">ε</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Energy</div>
+                    <div class="status-value" id="energyDisplay">50%</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Displacement</div>
+                    <div class="status-value" id="displacementDisplay">0%</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Return Pressure</div>
+                    <div class="status-value" id="pressureDisplay">LOW</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="explanation-panel" id="explanationPanel">
+            <h3>What You're Seeing</h3>
+            <p id="explanationText">
+                The <strong>price cycle view</strong> shows how price oscillates around the ε-center (cyan line). 
+                Adjust the sliders to see how energy depletion at extended positions creates 
+                <strong>Phase 9</strong> — the mandatory return condition. 
+                When energy is low AND price is far from center, ∄0 activates: the extreme cannot sustain.
+            </p>
+        </div>
+        
+        <div class="cta-section">
+            <h3>See It Live</h3>
+            <p>
+                Download the free TradingView indicator and watch this geometry operate in real markets.
+            </p>
+            <a href="/evidence/markets/" class="cta-btn">Get the Indicator →</a>
+        </div>
+        
+        <div class="footer">
+            <div class="epsilon">ε</div>
+            <p>∄0 — There Does Not Exist Zero<br>
+            <a href="/">Return to The Hole Truth</a></p>
+        </div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('marketCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let currentView = 'cycle';
+        let energy = 50;
+        let position = 0;
+        let animationFrame = 0;
+        
+        // Slider listeners
+        document.getElementById('energySlider').addEventListener('input', function(e) {
+            energy = parseInt(e.target.value);
+            document.getElementById('energyValue').textContent = energy + '%';
+            updateStatus();
+        });
+        
+        document.getElementById('positionSlider').addEventListener('input', function(e) {
+            position = parseInt(e.target.value);
+            document.getElementById('positionValue').textContent = position + '%';
+            updateStatus();
+        });
+        
+        function setView(view) {
+            currentView = view;
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + view).classList.add('active');
+            updateExplanation();
+        }
+        
+        function updateExplanation() {
+            const explanations = {
+                'cycle': 'The <strong>price cycle view</strong> shows how price oscillates around the ε-center (cyan line). Adjust the sliders to see how energy depletion at extended positions creates <strong>Phase 9</strong> — the mandatory return condition. When energy is low AND price is far from center, ∄0 activates: the extreme cannot sustain.',
+                'torus': 'The <strong>3D torus view</strong> shows the actual geometry. Price travels along the surface, extending outward (Phase 3→6) then returning through the center (Phase 9). The hole in the middle is ε — the point that organizes everything but can never be occupied.',
+                'phases': 'The <strong>3-6-9 phase view</strong> maps Tesla\'s pattern to market cycles. Phase 3 (yellow): energy building, new move starting. Phase 6 (green): peak momentum, don\'t fade. Phase 9 (red): energy depleted, mandatory return to ε-center.',
+                'mtf': 'The <strong>nested tori view</strong> shows fractal structure — each timeframe is its own torus. When multiple timeframes align (all pointing same direction), the geometric pressure compounds. This is "as above, so below" made visible.'
+            };
+            document.getElementById('explanationText').innerHTML = explanations[currentView];
+        }
+        
+        function updateStatus() {
+            const absPosition = Math.abs(position);
+            
+            let phase = 'ε';
+            let phaseClass = 'neutral';
+            let pressure = 'LOW';
+            
+            if (absPosition > 70 && energy <= 30) {
+                phase = '9';
+                phaseClass = 'phase9';
+                pressure = 'CRITICAL';
+            } else if (absPosition > 70 && energy > 70) {
+                phase = '6';
+                phaseClass = 'phase6';
+                pressure = 'LOW';
+            } else if (absPosition > 30 && energy > 30 && energy <= 70) {
+                phase = '3';
+                phaseClass = 'phase3';
+                pressure = 'BUILDING';
+            } else if (absPosition > 50) {
+                pressure = 'MODERATE';
+            }
+            
+            const phaseDisplay = document.getElementById('phaseDisplay');
+            phaseDisplay.textContent = phase;
+            phaseDisplay.className = 'status-value ' + phaseClass;
+            
+            document.getElementById('energyDisplay').textContent = energy + '%';
+            document.getElementById('energyDisplay').style.color = energy <= 30 ? '#ff4444' : energy >= 70 ? '#00ff88' : '#ffff00';
+            document.getElementById('displacementDisplay').textContent = absPosition + '%';
+            
+            const pressureDisplay = document.getElementById('pressureDisplay');
+            pressureDisplay.textContent = pressure;
+            pressureDisplay.style.color = pressure === 'CRITICAL' ? '#ff4444' : 
+                                          pressure === 'BUILDING' ? '#ffff00' : 
+                                          pressure === 'MODERATE' ? '#ffaa00' : '#00ddcc';
+        }
+        
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Background grid
+            ctx.strokeStyle = 'rgba(0, 150, 140, 0.1)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 50) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, canvas.height);
+                ctx.stroke();
+            }
+            for (let i = 0; i < canvas.height; i += 50) {
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(canvas.width, i);
+                ctx.stroke();
+            }
+            
+            switch(currentView) {
+                case 'cycle': drawCycle(); break;
+                case 'torus': drawTorus(); break;
+                case 'phases': drawPhases(); break;
+                case 'mtf': drawMTF(); break;
+            }
+            
+            animationFrame++;
+            requestAnimationFrame(draw);
+        }
+        
+        function drawCycle() {
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const amplitude = 140;
+            
+            // ε-center line
+            ctx.strokeStyle = '#00ffff';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(50, cy);
+            ctx.lineTo(canvas.width - 50, cy);
+            ctx.stroke();
+            
+            ctx.fillStyle = '#00ffff';
+            ctx.font = '14px Fira Code';
+            ctx.fillText('ε-center', 55, cy - 10);
+            
+            // Outer boundaries
+            ctx.strokeStyle = 'rgba(255, 100, 100, 0.4)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(50, cy - amplitude);
+            ctx.lineTo(canvas.width - 50, cy - amplitude);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(50, cy + amplitude);
+            ctx.lineTo(canvas.width - 50, cy + amplitude);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            ctx.fillStyle = '#775555';
+            ctx.font = '11px Nunito';
+            ctx.fillText('Outer boundary', 55, cy - amplitude - 8);
+            ctx.fillText('Outer boundary', 55, cy + amplitude + 16);
+            
+            // Price wave
+            ctx.strokeStyle = 'rgba(0, 255, 136, 0.6)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let x = 50; x < canvas.width - 50; x++) {
+                const t = (x - 50) / (canvas.width - 100) * Math.PI * 3 + animationFrame * 0.015;
+                const y = cy - Math.sin(t) * amplitude * 0.75;
+                if (x === 50) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            
+            // Current price marker
+            const priceY = cy - (position / 100) * amplitude;
+            const markerX = canvas.width / 2;
+            
+            let markerColor = '#00dddd';
+            const absPos = Math.abs(position);
+            if (absPos > 70 && energy <= 30) markerColor = '#ff4444';
+            else if (absPos > 70 && energy > 70) markerColor = '#00ff88';
+            else if (absPos > 30) markerColor = '#ffff00';
+            
+            // Glow
+            ctx.shadowColor = markerColor;
+            ctx.shadowBlur = 15;
+            ctx.fillStyle = markerColor;
+            ctx.beginPath();
+            ctx.arc(markerX, priceY, 14, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            
+            ctx.fillStyle = '#000';
+            ctx.font = 'bold 12px Fira Code';
+            ctx.textAlign = 'center';
+            ctx.fillText('$', markerX, priceY + 4);
+            ctx.textAlign = 'left';
+            
+            // Energy bar
+            ctx.fillStyle = 'rgba(0, 40, 40, 0.8)';
+            ctx.fillRect(canvas.width - 70, 50, 25, 120);
+            ctx.strokeStyle = 'rgba(0, 150, 140, 0.4)';
+            ctx.strokeRect(canvas.width - 70, 50, 25, 120);
+            
+            const energyHeight = (energy / 100) * 110;
+            const energyColor = energy <= 30 ? '#ff4444' : energy >= 70 ? '#00ff88' : '#ffff00';
+            ctx.fillStyle = energyColor;
+            ctx.fillRect(canvas.width - 67, 55 + (110 - energyHeight), 19, energyHeight);
+            
+            ctx.fillStyle = '#668888';
+            ctx.font = '9px Nunito';
+            ctx.fillText('ENERGY', canvas.width - 72, 185);
+        }
+        
+        function drawTorus() {
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const R = 110;
+            const r = 45;
+            
+            // Draw torus points
+            const points = [];
+            for (let u = 0; u < 360; u += 12) {
+                for (let v = 0; v < 360; v += 12) {
+                    const uRad = u * Math.PI / 180;
+                    const vRad = v * Math.PI / 180;
+                    const rotRad = animationFrame * 0.008;
+                    
+                    let x = (R + r * Math.cos(vRad)) * Math.cos(uRad);
+                    let y = (R + r * Math.cos(vRad)) * Math.sin(uRad);
+                    let z = r * Math.sin(vRad);
+                    
+                    const x2 = x * Math.cos(rotRad) - z * Math.sin(rotRad);
+                    const z2 = x * Math.sin(rotRad) + z * Math.cos(rotRad);
+                    
+                    const scale = 280 / (280 + z2);
+                    const px = cx + x2 * scale;
+                    const py = cy + y * scale * 0.55;
+                    
+                    points.push({ x: px, y: py, z: z2, v: v });
+                }
+            }
+            
+            points.sort((a, b) => a.z - b.z);
+            
+            points.forEach(p => {
+                const alpha = Math.max(0.15, (p.z + 80) / 160);
+                const isOuter = p.v < 90 || p.v > 270;
+                const hue = isOuter ? 0 : 160;
+                ctx.fillStyle = `hsla(${hue}, 60%, 50%, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            // ε center glow
+            const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, 25);
+            gradient.addColorStop(0, 'rgba(0, 255, 255, 0.8)');
+            gradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 25, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = '#00ffff';
+            ctx.font = 'bold 18px Fira Code';
+            ctx.textAlign = 'center';
+            ctx.fillText('ε', cx, cy + 6);
+            ctx.textAlign = 'left';
+            
+            // Labels
+            ctx.fillStyle = '#668888';
+            ctx.font = '11px Nunito';
+            ctx.fillText('Inner surface (mirror side)', cx + 100, cy - 80);
+            ctx.fillStyle = '#886666';
+            ctx.fillText('Outer surface (matter side)', cx - 180, cy + 100);
+        }
+        
+        function drawPhases() {
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            
+            // Spiral
+            ctx.strokeStyle = 'rgba(0, 200, 180, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let i = 0; i < 720; i += 3) {
+                const angle = (i * Math.PI) / 180 + animationFrame * 0.01;
+                const radius = 30 + i / 6;
+                const x = cx + radius * Math.cos(angle);
+                const y = cy + radius * Math.sin(angle);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            
+            // Phase markers
+            const phases = [
+                { num: 3, angle: 120, r: 80, color: '#ffff00', label: 'EMERGENCE' },
+                { num: 6, angle: 240, r: 130, color: '#00ff88', label: 'EXTENSION' },
+                { num: 9, angle: 0, r: 170, color: '#ff4444', label: 'RETURN' }
+            ];
+            
+            phases.forEach(p => {
+                const angleRad = (p.angle + animationFrame * 0.3) * Math.PI / 180;
+                const x = cx + p.r * Math.cos(angleRad);
+                const y = cy + p.r * Math.sin(angleRad);
+                
+                // Determine if active
+                const absPos = Math.abs(position);
+                let isActive = false;
+                if (p.num === 9 && absPos > 70 && energy <= 30) isActive = true;
+                if (p.num === 6 && absPos > 70 && energy > 70) isActive = true;
+                if (p.num === 3 && absPos > 30 && absPos <= 70 && energy > 30) isActive = true;
+                
+                // Glow if active
+                if (isActive) {
+                    ctx.shadowColor = p.color;
+                    ctx.shadowBlur = 20;
+                }
+                
+                ctx.fillStyle = isActive ? p.color : 'rgba(50, 50, 50, 0.8)';
+                ctx.strokeStyle = p.color;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(x, y, isActive ? 30 : 25, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                
+                ctx.fillStyle = isActive ? '#000' : p.color;
+                ctx.font = 'bold 20px Fira Code';
+                ctx.textAlign = 'center';
+                ctx.fillText(p.num, x, y + 7);
+                
+                // Label
+                const labelR = p.r + 45;
+                const lx = cx + labelR * Math.cos(angleRad);
+                const ly = cy + labelR * Math.sin(angleRad);
+                ctx.fillStyle = p.color;
+                ctx.font = '10px Nunito';
+                ctx.fillText(p.label, lx, ly);
+            });
+            
+            ctx.textAlign = 'left';
+            
+            // Center
+            const centerGradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, 20);
+            centerGradient.addColorStop(0, 'rgba(0, 255, 255, 0.9)');
+            centerGradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
+            ctx.fillStyle = centerGradient;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = '#000';
+            ctx.font = 'bold 14px Fira Code';
+            ctx.textAlign = 'center';
+            ctx.fillText('∄0', cx, cy + 5);
+            ctx.textAlign = 'left';
+        }
+        
+        function drawMTF() {
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            
+            const timeframes = [
+                { label: '1m', r: 50, color: '#888888', speed: 1.0 },
+                { label: '5m', r: 80, color: '#00dddd', speed: 0.8 },
+                { label: '15m', r: 110, color: '#4488ff', speed: 0.6 },
+                { label: '1h', r: 140, color: '#ffff00', speed: 0.4 },
+                { label: '4h', r: 170, color: '#ff8800', speed: 0.2 }
+            ];
+            
+            // Check alignment based on position
+            const direction = position > 20 ? 'up' : position < -20 ? 'down' : 'neutral';
+            const aligned = Math.abs(position) > 50;
+            
+            timeframes.forEach((tf, idx) => {
+                // Ring
+                ctx.strokeStyle = tf.color;
+                ctx.lineWidth = 2;
+                ctx.globalAlpha = 0.4;
+                ctx.beginPath();
+                ctx.arc(cx, cy, tf.r, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+                
+                // Phase marker on ring
+                const baseAngle = animationFrame * 0.02 * tf.speed;
+                const phaseOffset = aligned ? 0 : (idx * 0.5);
+                const angle = baseAngle + phaseOffset + (position / 100) * Math.PI;
+                const mx = cx + tf.r * Math.cos(angle);
+                const my = cy + tf.r * Math.sin(angle);
+                
+                // Color based on alignment
+                let markerColor = '#666666';
+                if (aligned) {
+                    markerColor = direction === 'up' ? '#00ff88' : '#ff4444';
+                }
+                
+                ctx.fillStyle = markerColor;
+                ctx.beginPath();
+                ctx.arc(mx, my, 8, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Label
+                ctx.fillStyle = tf.color;
+                ctx.font = '11px Fira Code';
+                ctx.fillText(tf.label, cx + tf.r + 12, cy + 4);
+            });
+            
+            // Center
+            ctx.fillStyle = '#00ffff';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 15, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = '#000';
+            ctx.font = 'bold 12px Fira Code';
+            ctx.textAlign = 'center';
+            ctx.fillText('ε', cx, cy + 4);
+            ctx.textAlign = 'left';
+            
+            // Alignment status
+            ctx.fillStyle = aligned ? (direction === 'up' ? '#00ff88' : '#ff4444') : '#668888';
+            ctx.font = '14px Nunito';
+            ctx.textAlign = 'center';
+            const statusText = aligned ? (direction === 'up' ? 'ALL TORI ALIGNED ▲' : 'ALL TORI ALIGNED ▼') : 'Tori divergent';
+            ctx.fillText(statusText, cx, cy + 200);
+            ctx.textAlign = 'left';
+        }
+        
+        // Initialize
+        updateStatus();
+        draw();
+    </script>
+</body>
+</html>

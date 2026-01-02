@@ -1,0 +1,576 @@
+// ═══════════════════════════════════════════════════════════════════════════════
+// ε MEAN REVERSION - Toroidal Market Geometry Demonstration
+// ═══════════════════════════════════════════════════════════════════════════════
+// 
+// THE HOLE TRUTH (theholetruth.space)
+// 
+// This indicator demonstrates the ε framework applied to markets:
+// 
+// CORE PRINCIPLE: ∄0 (There Does Not Exist Zero)
+// - Absolute extremes cannot sustain
+// - Price MUST return to equilibrium (ε-center)
+// - This is geometric necessity, not probability
+//
+// WHAT YOU'RE SEEING:
+// - Target lines = Where price "should" return (the ε-center for each timeframe)
+// - Displacement = How far price has extended from equilibrium
+// - Alignment = When multiple timeframes (nested tori) point the same direction
+//
+// Each timeframe operates as an independent torus. When they align,
+// the geometric pressure for reversion compounds.
+//
+// This tool is for OBSERVATION and VALIDATION of the framework.
+// Watch. Verify. Understand.
+//
+// Learn more: theholetruth.space
+// ═══════════════════════════════════════════════════════════════════════════════
+
+//@version=5
+indicator("ε Mean Reversion", shorttitle="ε-MR", overlay=true, max_lines_count=500, max_labels_count=500)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TIMEFRAME SETTINGS (Each timeframe = one torus in the fractal structure)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+show1m = input.bool(true, "1 Min", group="Timeframes (Nested Tori)", inline="tf1")
+show5m = input.bool(true, "5 Min", group="Timeframes (Nested Tori)", inline="tf1")
+show10m = input.bool(true, "10 Min", group="Timeframes (Nested Tori)", inline="tf1")
+show15m = input.bool(true, "15 Min", group="Timeframes (Nested Tori)", inline="tf2")
+show30m = input.bool(true, "30 Min", group="Timeframes (Nested Tori)", inline="tf2")
+show1h = input.bool(true, "1 Hour", group="Timeframes (Nested Tori)", inline="tf2")
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// LINE COLOR CUSTOMIZATION
+// ═══════════════════════════════════════════════════════════════════════════════
+
+color1m = input.color(color.new(color.gray, 20), "1m Color", group="Line Colors", inline="c1")
+color5m = input.color(color.new(color.aqua, 0), "5m Color", group="Line Colors", inline="c1")
+color10m = input.color(color.new(#66B2FF, 0), "10m Color", group="Line Colors", inline="c2")
+color15m = input.color(color.new(#1565C0, 0), "15m Color", group="Line Colors", inline="c2")
+color30m = input.color(color.new(#FFFF80, 0), "30m Color", group="Line Colors", inline="c3")
+color60m = input.color(color.new(color.yellow, 0), "1h Color", group="Line Colors", inline="c3")
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DISPLAY SETTINGS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+showLabels = input.bool(true, "Show Labels", group="Display")
+showTable = input.bool(true, "Show Table", group="Display")
+showBackground = input.bool(true, "Highlight Alignment", group="Display")
+tablePosition = input.string("Top Right", "Table Position", options=["Top Right", "Top Left", "Bottom Right", "Bottom Left"], group="Display", display=display.none)
+
+// Fixed display parameters
+labelDistance = 10
+lineWidth = 2
+lineExtend = 50
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CORE ENGINE: Measuring Displacement from ε-Center
+// ═══════════════════════════════════════════════════════════════════════════════
+// 
+// The mathematics here detect HOW FAR price has extended from equilibrium
+// and WHERE it geometrically must return.
+//
+// In ε framework terms:
+// - "Gap" = Displacement from ε-center (the hole of the torus)
+// - "Target" = The ε-center itself (where flow returns)
+// - Oscillators measure energy state (Phase 3/6/9)
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Engine parameters
+visibleBars = 50
+gapThreshold = 10.0
+rsiLen = 14
+stochLen = 14
+mfiLen = 14
+cmfLen = 35
+cciLen = 20
+aroonLen = 29
+aroonSmooth = 25
+aroonSignal = 10
+hpdroLen = 20
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// HELPER FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+zeroLagEma(src, length) =>
+    ema1 = ta.ema(src, length)
+    ema2 = ta.ema(ema1, length)
+    2 * ema1 - ema2
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ε-CENTER CALCULATION
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// This function calculates:
+// 1. Current displacement from equilibrium (how extended on the torus surface)
+// 2. The target ε-center (where price must return - ∄0 mandate)
+// 3. Direction of required return
+//
+// The target IS the mean. Not because of statistics, but because of geometry.
+// Zero cannot exist. Extremes cannot sustain. Return is mandatory.
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+
+calcEpsilonTarget() =>
+    // Oscillators measure energy state (normalized 0-100)
+    // These detect WHERE on the torus surface price currently sits
+    rsiVal = ta.rsi(close, rsiLen)
+    stochK = ta.stoch(close, high, low, stochLen)
+    mfiVal = ta.mfi(hlc3, mfiLen)
+    
+    // CMF: Money flow through the torus (-1 to +1) → normalized
+    mfm = ((close - low) - (high - close)) / (high - low)
+    mfv = mfm * volume
+    cmfRaw = ta.sma(mfv, cmfLen) / ta.sma(volume, cmfLen)
+    cmfVal = (cmfRaw + 1) * 50
+    
+    // CCI: Deviation from mean (-200 to +200) → normalized
+    cciRaw = ta.cci(close, cciLen)
+    cciVal = math.max(0, math.min(100, (cciRaw + 200) / 4))
+    
+    // Composite energy reading
+    ribbonAvg = (rsiVal + stochK + mfiVal + cmfVal + cciVal) / 5
+    confluenceMeter = ta.sma((rsiVal * 1.5 + stochK + mfiVal * 1.5 + cmfVal + cciVal) / 6, 5)
+    
+    // THE GAP: Displacement from ε-center
+    // Positive gap = extended above center (must return down)
+    // Negative gap = extended below center (must return up)
+    gap = ribbonAvg - confluenceMeter
+    
+    // Momentum detection (rate of rotation around torus)
+    aroonDown = 100 * (ta.lowestbars(low, aroonLen) + aroonLen) / aroonLen
+    aroonUp = 100 * (ta.highestbars(high, aroonLen) + aroonLen) / aroonLen
+    aroonOscRaw = aroonUp - aroonDown
+    aroonOsc = zeroLagEma(aroonOscRaw, aroonSmooth)
+    aroonSig = ta.sma(aroonOsc, aroonSignal)
+    aroonDiff = aroonOsc - aroonSig
+    
+    // Directional bias
+    atrVal = ta.atr(hpdroLen)
+    directionBias = ta.sma(close - close[1], hpdroLen)
+    hpdroProxy = (directionBias / atrVal) * 100
+    
+    // Visible range defines local torus scale
+    visibleHigh = ta.highest(high, visibleBars)
+    visibleLow = ta.lowest(low, visibleBars)
+    visibleRange = visibleHigh - visibleLow
+    
+    // Calculate target (the ε-center price must return to)
+    gapClamped = math.max(-75, math.min(75, gap))
+    gapPercent = gapClamped / 75
+    baseDisplacement = gapPercent * visibleRange
+    
+    // Overflow handling for extreme extension
+    overflow = 0.0
+    if math.abs(gap) > 75
+        overflowAmount = math.abs(gap) - 75
+        overflowPercent = overflowAmount / 75
+        hpdroContribution = math.abs(hpdroProxy) / 100 * visibleRange * 0.5
+        overflow := math.sign(gap) * (overflowPercent * visibleRange * 0.5 + hpdroContribution * 0.25)
+    
+    // Momentum adjustment
+    aroonAdjustment = (aroonDiff / 100) * visibleRange * 0.1
+    
+    // FINAL TARGET: The ε-center for this timeframe's torus
+    totalDisplacement = baseDisplacement + overflow
+    targetPrice = close - totalDisplacement - aroonAdjustment
+    
+    // Direction detection
+    isBull = gap < -gapThreshold  // Below center = must rise
+    isBear = gap > gapThreshold   // Above center = must fall
+    isActive = isBull or isBear
+    
+    [targetPrice, gap, isActive, isBull, isBear]
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CURRENT TIMEFRAME CALCULATION
+// ═══════════════════════════════════════════════════════════════════════════════
+
+[currentTarget, currentGap, currentActive, currentBull, currentBear] = calcEpsilonTarget()
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MULTI-TIMEFRAME: Each Timeframe is an Independent Torus
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// The ε framework predicts fractal self-similarity:
+// "As above, so below"
+//
+// Each timeframe operates as its own torus with its own ε-center.
+// They nest within each other like Russian dolls.
+// When multiple tori align (all pointing same direction), 
+// the geometric pressure compounds.
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+
+[target1m, gap1m, active1m, bull1m, bear1m] = request.security(syminfo.tickerid, "1", calcEpsilonTarget())
+[target5m, gap5m, active5m, bull5m, bear5m] = request.security(syminfo.tickerid, "5", calcEpsilonTarget())
+[target10m, gap10m, active10m, bull10m, bear10m] = request.security(syminfo.tickerid, "10", calcEpsilonTarget())
+[target15m, gap15m, active15m, bull15m, bear15m] = request.security(syminfo.tickerid, "15", calcEpsilonTarget())
+[target30m, gap30m, active30m, bull30m, bear30m] = request.security(syminfo.tickerid, "30", calcEpsilonTarget())
+[target60m, gap60m, active60m, bull60m, bear60m] = request.security(syminfo.tickerid, "60", calcEpsilonTarget())
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ALIGNMENT DETECTION: When Nested Tori Agree
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// Full alignment = all timeframes displaced in same direction
+// This is when ∄0 pressure is maximum
+// The geometry DEMANDS return to center
+//
+// ═══════════════════════════════════════════════════════════════════════════════
+
+currentPrice = close
+
+above1m = not show1m or (not na(target1m) and target1m > currentPrice)
+above5m = not show5m or (not na(target5m) and target5m > currentPrice)
+above10m = not show10m or (not na(target10m) and target10m > currentPrice)
+above15m = not show15m or (not na(target15m) and target15m > currentPrice)
+above30m = not show30m or (not na(target30m) and target30m > currentPrice)
+above1h = not show1h or (not na(target60m) and target60m > currentPrice)
+
+below1m = not show1m or (not na(target1m) and target1m < currentPrice)
+below5m = not show5m or (not na(target5m) and target5m < currentPrice)
+below10m = not show10m or (not na(target10m) and target10m < currentPrice)
+below15m = not show15m or (not na(target15m) and target15m < currentPrice)
+below30m = not show30m or (not na(target30m) and target30m < currentPrice)
+below1h = not show1h or (not na(target60m) and target60m < currentPrice)
+
+enabledCount = (show1m ? 1 : 0) + (show5m ? 1 : 0) + (show10m ? 1 : 0) + (show15m ? 1 : 0) + (show30m ? 1 : 0) + (show1h ? 1 : 0)
+
+allAbove = above1m and above5m and above10m and above15m and above30m and above1h and enabledCount > 0
+allBelow = below1m and below5m and below10m and below15m and below30m and below1h and enabledCount > 0
+
+newLongAlign = allAbove and not allAbove[1]
+newShortAlign = allBelow and not allBelow[1]
+
+// Count for table
+aboveCount = (show1m and not na(target1m) and target1m > currentPrice ? 1 : 0) + (show5m and not na(target5m) and target5m > currentPrice ? 1 : 0) + (show10m and not na(target10m) and target10m > currentPrice ? 1 : 0) + (show15m and not na(target15m) and target15m > currentPrice ? 1 : 0) + (show30m and not na(target30m) and target30m > currentPrice ? 1 : 0) + (show1h and not na(target60m) and target60m > currentPrice ? 1 : 0)
+
+belowCount = (show1m and not na(target1m) and target1m < currentPrice ? 1 : 0) + (show5m and not na(target5m) and target5m < currentPrice ? 1 : 0) + (show10m and not na(target10m) and target10m < currentPrice ? 1 : 0) + (show15m and not na(target15m) and target15m < currentPrice ? 1 : 0) + (show30m and not na(target30m) and target30m < currentPrice ? 1 : 0) + (show1h and not na(target60m) and target60m < currentPrice ? 1 : 0)
+
+// Average target across all tori
+calcAvgTarget() =>
+    sum = 0.0
+    count = 0
+    if show1m and not na(target1m)
+        sum += target1m
+        count += 1
+    if show5m and not na(target5m)
+        sum += target5m
+        count += 1
+    if show10m and not na(target10m)
+        sum += target10m
+        count += 1
+    if show15m and not na(target15m)
+        sum += target15m
+        count += 1
+    if show30m and not na(target30m)
+        sum += target30m
+        count += 1
+    if show1h and not na(target60m)
+        sum += target60m
+        count += 1
+    count > 0 ? sum / count : na
+
+avgTarget = calcAvgTarget()
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PERSISTENT LINES & LABELS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+var line line1m = na
+var line line5m = na
+var line line10m = na
+var line line15m = na
+var line line30m = na
+var line line60m = na
+
+var label label1m = na
+var label label5m = na
+var label label10m = na
+var label label15m = na
+var label label30m = na
+var label label60m = na
+
+if barstate.islast
+    
+    // 1 minute
+    if show1m
+        if na(line1m)
+            line1m := line.new(bar_index, target1m, bar_index + lineExtend, target1m, color=color1m, width=lineWidth, style=line.style_dashed)
+        else
+            line.set_xy1(line1m, bar_index, target1m)
+            line.set_xy2(line1m, bar_index + lineExtend, target1m)
+            line.set_color(line1m, color1m)
+        
+        if showLabels
+            if na(label1m)
+                label1m := label.new(bar_index + labelDistance, target1m, "1m ε: " + str.tostring(target1m, format.mintick), color=color.new(color1m, 70), textcolor=color.white, style=label.style_label_left, size=size.small)
+            else
+                label.set_xy(label1m, bar_index + labelDistance, target1m)
+                label.set_text(label1m, "1m ε: " + str.tostring(target1m, format.mintick))
+                label.set_color(label1m, color.new(color1m, 70))
+    else
+        if not na(line1m)
+            line.delete(line1m)
+            line1m := na
+        if not na(label1m)
+            label.delete(label1m)
+            label1m := na
+    
+    // 5 minute
+    if show5m
+        if na(line5m)
+            line5m := line.new(bar_index, target5m, bar_index + lineExtend, target5m, color=color5m, width=lineWidth, style=line.style_dashed)
+        else
+            line.set_xy1(line5m, bar_index, target5m)
+            line.set_xy2(line5m, bar_index + lineExtend, target5m)
+            line.set_color(line5m, color5m)
+        
+        if showLabels
+            if na(label5m)
+                label5m := label.new(bar_index + labelDistance, target5m, "5m ε: " + str.tostring(target5m, format.mintick), color=color.new(color5m, 70), textcolor=color.white, style=label.style_label_left, size=size.small)
+            else
+                label.set_xy(label5m, bar_index + labelDistance, target5m)
+                label.set_text(label5m, "5m ε: " + str.tostring(target5m, format.mintick))
+                label.set_color(label5m, color.new(color5m, 70))
+    else
+        if not na(line5m)
+            line.delete(line5m)
+            line5m := na
+        if not na(label5m)
+            label.delete(label5m)
+            label5m := na
+    
+    // 10 minute
+    if show10m
+        if na(line10m)
+            line10m := line.new(bar_index, target10m, bar_index + lineExtend, target10m, color=color10m, width=lineWidth, style=line.style_dashed)
+        else
+            line.set_xy1(line10m, bar_index, target10m)
+            line.set_xy2(line10m, bar_index + lineExtend, target10m)
+            line.set_color(line10m, color10m)
+        
+        if showLabels
+            if na(label10m)
+                label10m := label.new(bar_index + labelDistance, target10m, "10m ε: " + str.tostring(target10m, format.mintick), color=color.new(color10m, 70), textcolor=color.white, style=label.style_label_left, size=size.small)
+            else
+                label.set_xy(label10m, bar_index + labelDistance, target10m)
+                label.set_text(label10m, "10m ε: " + str.tostring(target10m, format.mintick))
+                label.set_color(label10m, color.new(color10m, 70))
+    else
+        if not na(line10m)
+            line.delete(line10m)
+            line10m := na
+        if not na(label10m)
+            label.delete(label10m)
+            label10m := na
+    
+    // 15 minute
+    if show15m
+        if na(line15m)
+            line15m := line.new(bar_index, target15m, bar_index + lineExtend, target15m, color=color15m, width=lineWidth, style=line.style_dashed)
+        else
+            line.set_xy1(line15m, bar_index, target15m)
+            line.set_xy2(line15m, bar_index + lineExtend, target15m)
+            line.set_color(line15m, color15m)
+        
+        if showLabels
+            if na(label15m)
+                label15m := label.new(bar_index + labelDistance, target15m, "15m ε: " + str.tostring(target15m, format.mintick), color=color.new(color15m, 70), textcolor=color.white, style=label.style_label_left, size=size.small)
+            else
+                label.set_xy(label15m, bar_index + labelDistance, target15m)
+                label.set_text(label15m, "15m ε: " + str.tostring(target15m, format.mintick))
+                label.set_color(label15m, color.new(color15m, 70))
+    else
+        if not na(line15m)
+            line.delete(line15m)
+            line15m := na
+        if not na(label15m)
+            label.delete(label15m)
+            label15m := na
+    
+    // 30 minute
+    if show30m
+        if na(line30m)
+            line30m := line.new(bar_index, target30m, bar_index + lineExtend, target30m, color=color30m, width=lineWidth, style=line.style_dashed)
+        else
+            line.set_xy1(line30m, bar_index, target30m)
+            line.set_xy2(line30m, bar_index + lineExtend, target30m)
+            line.set_color(line30m, color30m)
+        
+        if showLabels
+            if na(label30m)
+                label30m := label.new(bar_index + labelDistance, target30m, "30m ε: " + str.tostring(target30m, format.mintick), color=color.new(color30m, 70), textcolor=color.white, style=label.style_label_left, size=size.small)
+            else
+                label.set_xy(label30m, bar_index + labelDistance, target30m)
+                label.set_text(label30m, "30m ε: " + str.tostring(target30m, format.mintick))
+                label.set_color(label30m, color.new(color30m, 70))
+    else
+        if not na(line30m)
+            line.delete(line30m)
+            line30m := na
+        if not na(label30m)
+            label.delete(label30m)
+            label30m := na
+    
+    // 1 hour
+    if show1h
+        if na(line60m)
+            line60m := line.new(bar_index, target60m, bar_index + lineExtend, target60m, color=color60m, width=lineWidth, style=line.style_dashed)
+        else
+            line.set_xy1(line60m, bar_index, target60m)
+            line.set_xy2(line60m, bar_index + lineExtend, target60m)
+            line.set_color(line60m, color60m)
+        
+        if showLabels
+            if na(label60m)
+                label60m := label.new(bar_index + labelDistance, target60m, "1h ε: " + str.tostring(target60m, format.mintick), color=color.new(color60m, 70), textcolor=color.white, style=label.style_label_left, size=size.small)
+            else
+                label.set_xy(label60m, bar_index + labelDistance, target60m)
+                label.set_text(label60m, "1h ε: " + str.tostring(target60m, format.mintick))
+                label.set_color(label60m, color.new(color60m, 70))
+    else
+        if not na(line60m)
+            line.delete(line60m)
+            line60m := na
+        if not na(label60m)
+            label.delete(label60m)
+            label60m := na
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// STATUS TABLE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+tablePos = switch tablePosition
+    "Top Right" => position.top_right
+    "Top Left" => position.top_left
+    "Bottom Right" => position.bottom_right
+    "Bottom Left" => position.bottom_left
+    => position.top_right
+
+var table statusTbl = table.new(tablePos, 4, 11, bgcolor=color.new(#0a0a0a, 5), border_width=1, border_color=color.new(#00FFFF, 60))
+
+if showTable and barstate.islast
+    r = 0
+    
+    // Header with framework context
+    table.cell(statusTbl, 0, r, "ε MEAN REVERSION", text_color=color.new(#00FFFF, 0), text_size=size.normal)
+    table.cell(statusTbl, 1, r, "ε-Center", text_color=color.new(color.white, 20), text_size=size.tiny)
+    table.cell(statusTbl, 2, r, "Displace", text_color=color.new(color.white, 20), text_size=size.tiny)
+    table.cell(statusTbl, 3, r, "Return", text_color=color.new(color.white, 20), text_size=size.tiny)
+    r += 1
+    
+    // Current price
+    table.cell(statusTbl, 0, r, "Price: " + str.tostring(currentPrice, "#.##"), text_color=color.new(color.white, 0), text_size=size.small)
+    table.cell(statusTbl, 1, r, "", text_color=color.gray)
+    table.cell(statusTbl, 2, r, "", text_color=color.gray)
+    table.cell(statusTbl, 3, r, "", text_color=color.gray)
+    r += 1
+    
+    // Timeframe rows
+    if show1m
+        side1m = not na(target1m) ? (target1m > currentPrice ? "▲" : "▼") : "—"
+        sideCol1m = not na(target1m) ? (target1m > currentPrice ? color.new(color.green, 0) : color.new(color.red, 0)) : color.gray
+        table.cell(statusTbl, 0, r, "1m", text_color=color.new(color.white, 20))
+        table.cell(statusTbl, 1, r, not na(target1m) ? str.tostring(target1m, "#.##") : "N/A", text_color=color.new(color.white, 0), text_size=size.tiny)
+        table.cell(statusTbl, 2, r, not na(gap1m) ? str.tostring(gap1m, "#.#") : "—", text_color=gap1m < -gapThreshold ? color.new(color.green, 0) : gap1m > gapThreshold ? color.new(color.red, 0) : color.new(color.white, 20), text_size=size.tiny)
+        table.cell(statusTbl, 3, r, side1m, text_color=sideCol1m, text_size=size.normal)
+        r += 1
+    
+    if show5m
+        side5m = not na(target5m) ? (target5m > currentPrice ? "▲" : "▼") : "—"
+        sideCol5m = not na(target5m) ? (target5m > currentPrice ? color.new(color.green, 0) : color.new(color.red, 0)) : color.gray
+        table.cell(statusTbl, 0, r, "5m", text_color=color.new(color.aqua, 0))
+        table.cell(statusTbl, 1, r, not na(target5m) ? str.tostring(target5m, "#.##") : "N/A", text_color=color.new(color.white, 0), text_size=size.tiny)
+        table.cell(statusTbl, 2, r, not na(gap5m) ? str.tostring(gap5m, "#.#") : "—", text_color=gap5m < -gapThreshold ? color.new(color.green, 0) : gap5m > gapThreshold ? color.new(color.red, 0) : color.new(color.white, 20), text_size=size.tiny)
+        table.cell(statusTbl, 3, r, side5m, text_color=sideCol5m, text_size=size.normal)
+        r += 1
+    
+    if show10m
+        side10m = not na(target10m) ? (target10m > currentPrice ? "▲" : "▼") : "—"
+        sideCol10m = not na(target10m) ? (target10m > currentPrice ? color.new(color.green, 0) : color.new(color.red, 0)) : color.gray
+        table.cell(statusTbl, 0, r, "10m", text_color=color.new(#66B2FF, 0))
+        table.cell(statusTbl, 1, r, not na(target10m) ? str.tostring(target10m, "#.##") : "N/A", text_color=color.new(color.white, 0), text_size=size.tiny)
+        table.cell(statusTbl, 2, r, not na(gap10m) ? str.tostring(gap10m, "#.#") : "—", text_color=gap10m < -gapThreshold ? color.new(color.green, 0) : gap10m > gapThreshold ? color.new(color.red, 0) : color.new(color.white, 20), text_size=size.tiny)
+        table.cell(statusTbl, 3, r, side10m, text_color=sideCol10m, text_size=size.normal)
+        r += 1
+    
+    if show15m
+        side15m = not na(target15m) ? (target15m > currentPrice ? "▲" : "▼") : "—"
+        sideCol15m = not na(target15m) ? (target15m > currentPrice ? color.new(color.green, 0) : color.new(color.red, 0)) : color.gray
+        table.cell(statusTbl, 0, r, "15m", text_color=color.new(#1565C0, 0))
+        table.cell(statusTbl, 1, r, not na(target15m) ? str.tostring(target15m, "#.##") : "N/A", text_color=color.new(color.white, 0), text_size=size.tiny)
+        table.cell(statusTbl, 2, r, not na(gap15m) ? str.tostring(gap15m, "#.#") : "—", text_color=gap15m < -gapThreshold ? color.new(color.green, 0) : gap15m > gapThreshold ? color.new(color.red, 0) : color.new(color.white, 20), text_size=size.tiny)
+        table.cell(statusTbl, 3, r, side15m, text_color=sideCol15m, text_size=size.normal)
+        r += 1
+    
+    if show30m
+        side30m = not na(target30m) ? (target30m > currentPrice ? "▲" : "▼") : "—"
+        sideCol30m = not na(target30m) ? (target30m > currentPrice ? color.new(color.green, 0) : color.new(color.red, 0)) : color.gray
+        table.cell(statusTbl, 0, r, "30m", text_color=color.new(#FFFF80, 0))
+        table.cell(statusTbl, 1, r, not na(target30m) ? str.tostring(target30m, "#.##") : "N/A", text_color=color.new(color.white, 0), text_size=size.tiny)
+        table.cell(statusTbl, 2, r, not na(gap30m) ? str.tostring(gap30m, "#.#") : "—", text_color=gap30m < -gapThreshold ? color.new(color.green, 0) : gap30m > gapThreshold ? color.new(color.red, 0) : color.new(color.white, 20), text_size=size.tiny)
+        table.cell(statusTbl, 3, r, side30m, text_color=sideCol30m, text_size=size.normal)
+        r += 1
+    
+    if show1h
+        side1h = not na(target60m) ? (target60m > currentPrice ? "▲" : "▼") : "—"
+        sideCol1h = not na(target60m) ? (target60m > currentPrice ? color.new(color.green, 0) : color.new(color.red, 0)) : color.gray
+        table.cell(statusTbl, 0, r, "1hr", text_color=color.new(color.yellow, 0))
+        table.cell(statusTbl, 1, r, not na(target60m) ? str.tostring(target60m, "#.##") : "N/A", text_color=color.new(color.white, 0), text_size=size.tiny)
+        table.cell(statusTbl, 2, r, not na(gap60m) ? str.tostring(gap60m, "#.#") : "—", text_color=gap60m < -gapThreshold ? color.new(color.green, 0) : gap60m > gapThreshold ? color.new(color.red, 0) : color.new(color.white, 20), text_size=size.tiny)
+        table.cell(statusTbl, 3, r, side1h, text_color=sideCol1h, text_size=size.normal)
+        r += 1
+    
+    // Alignment status
+    alignStatus = allAbove ? "ALL ▲" : allBelow ? "ALL ▼" : str.tostring(aboveCount) + "▲ / " + str.tostring(belowCount) + "▼"
+    alignCol = allAbove ? color.new(color.green, 0) : allBelow ? color.new(color.red, 0) : color.new(color.white, 0)
+    table.cell(statusTbl, 0, r, "TORI ALIGN", text_color=color.new(#00FFFF, 0), text_size=size.small)
+    table.cell(statusTbl, 1, r, alignStatus, text_color=alignCol, text_size=size.normal)
+    table.cell(statusTbl, 2, r, "", text_color=color.gray)
+    table.cell(statusTbl, 3, r, "", text_color=color.gray)
+    r += 1
+    
+    // Average target when aligned
+    if (allAbove or allBelow) and not na(avgTarget)
+        table.cell(statusTbl, 0, r, "Avg ε-Center", text_color=color.new(color.white, 20))
+        table.cell(statusTbl, 1, r, str.tostring(avgTarget, "#.##"), text_color=color.new(color.white, 0), text_size=size.normal)
+        pctDist = ((avgTarget - currentPrice) / currentPrice) * 100
+        table.cell(statusTbl, 2, r, str.tostring(pctDist, "#.##") + "%", text_color=pctDist > 0 ? color.new(color.green, 0) : color.new(color.red, 0), text_size=size.tiny)
+        table.cell(statusTbl, 3, r, "", text_color=color.gray)
+        r += 1
+    
+    // Framework reminder
+    table.cell(statusTbl, 0, r, "∄0", text_color=color.new(#00FFFF, 30), text_size=size.small)
+    table.cell(statusTbl, 1, r, "Zero forbidden", text_color=color.new(color.white, 50), text_size=size.tiny)
+    table.cell(statusTbl, 2, r, "", text_color=color.gray)
+    table.cell(statusTbl, 3, r, "", text_color=color.gray)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// VISUAL PLOTS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+bgcolor(showBackground and allAbove ? color.new(color.green, 85) : showBackground and allBelow ? color.new(color.red, 85) : na, title="Alignment BG")
+
+plotshape(newLongAlign, "Tori Align ▲", shape.triangleup, location.belowbar, color.new(color.green, 0), size=size.large, text="∄0 ▲")
+plotshape(newShortAlign, "Tori Align ▼", shape.triangledown, location.abovebar, color.new(color.red, 0), size=size.large, text="∄0 ▼")
+
+plot((allAbove or allBelow) and not na(avgTarget) ? avgTarget : na, "Avg ε-Center", color=allAbove ? color.new(color.green, 0) : color.new(color.red, 0), style=plot.style_circles, linewidth=4)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ALERTS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+if newLongAlign
+    alert("ε▲ " + syminfo.ticker + " All tori aligned UP @ " + str.tostring(close, "#.##") + " | ε-Center: " + str.tostring(avgTarget, "#.##") + " | theholetruth.space", alert.freq_once_per_bar_close)
+
+if newShortAlign
+    alert("ε▼ " + syminfo.ticker + " All tori aligned DOWN @ " + str.tostring(close, "#.##") + " | ε-Center: " + str.tostring(avgTarget, "#.##") + " | theholetruth.space", alert.freq_once_per_bar_close)
+
+alertcondition(newLongAlign, "ε Tori Align UP", "ε▲ {{ticker}} - All timeframes predict return UP to ε-center")
+alertcondition(newShortAlign, "ε Tori Align DOWN", "ε▼ {{ticker}} - All timeframes predict return DOWN to ε-center")
+alertcondition(newLongAlign or newShortAlign, "ε Any Alignment", "ε {{ticker}} - Multi-timeframe tori alignment detected")
