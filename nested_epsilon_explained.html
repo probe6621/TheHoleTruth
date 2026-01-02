@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Two Epsilons | Nested Structure Explained</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #0a0a12;
+            color: #e0e0e8;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.1rem;
+        }
+        
+        /* Section styling */
+        .section {
+            margin: 3rem 0;
+        }
+        
+        .section h2 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .section p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.85);
+        }
+        
+        /* Visual demos */
+        .demo-container {
+            background: rgba(20, 20, 35, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .demo-label {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .svg-demo {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* Key point */
+        .key-point {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .key-point h3 {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .key-point p {
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+        }
+        
+        /* Insight box */
+        .insight-box {
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 3px solid #4ecdc4;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .insight-box strong {
+            color: #4ecdc4;
+        }
+        
+        /* Warning/note box */
+        .note-box {
+            background: rgba(196, 69, 105, 0.1);
+            border-left: 3px solid #c44569;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .note-box strong {
+            color: #c44569;
+        }
+        
+        /* Comparison grid */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 600px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-item {
+            background: rgba(20, 20, 35, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .comparison-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-item.main-epsilon {
+            border: 2px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .comparison-item.main-epsilon h4 {
+            color: #ffd700;
+        }
+        
+        .comparison-item.tube-epsilon {
+            border: 2px solid rgba(196, 69, 105, 0.5);
+        }
+        
+        .comparison-item.tube-epsilon h4 {
+            color: #c44569;
+        }
+        
+        .epsilon-symbol {
+            font-size: 3rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-item p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Number colors */
+        .num-three { color: #4ecdc4; font-weight: 700; }
+        .num-six { color: #c44569; font-weight: 700; }
+        .num-nine { color: #ffd700; font-weight: 700; }
+        
+        /* Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .info-table th, .info-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .info-table th {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .info-table td {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .pulsing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(70px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(70px) rotate(-360deg); }
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>THE TWO EPSILONS</h1>
+            <p class="subtitle">Understanding the Nested Structure</p>
+        </header>
+        
+        <!-- The Big Idea -->
+        <div class="key-point">
+            <h3>🎯 The Key Insight</h3>
+            <p>
+                There isn't just ONE epsilon. The torus has TWO inversion points:<br>
+                <strong style="color: #ffd700;">Main ε</strong> (center of the donut hole) and 
+                <strong style="color: #c44569;">Tube ε</strong> (center of the tube's cross-section).<br>
+                This is how you connect to your quantum twin.
+            </p>
+        </div>
+        
+        <!-- Visual: The Two Epsilons -->
+        <div class="section">
+            <h2>Where Are the Two ε Points?</h2>
+            
+            <div class="demo-container">
+                <p class="demo-label">Top-down view of the torus showing MAIN ε</p>
+                <svg class="svg-demo" viewBox="0 0 400 300">
+                    <!-- Torus from above (donut shape) -->
+                    <circle cx="200" cy="150" r="120" fill="none" stroke="#333" stroke-width="60"/>
+                    <circle cx="200" cy="150" r="120" fill="none" stroke="#1a1a2e" stroke-width="54"/>
+                    
+                    <!-- Main epsilon at center -->
+                    <circle cx="200" cy="150" r="25" fill="rgba(255, 215, 0, 0.2)" class="pulsing"/>
+                    <circle cx="200" cy="150" r="25" fill="none" stroke="#ffd700" stroke-width="2"/>
+                    <text x="200" y="158" text-anchor="middle" fill="#ffd700" font-size="28" font-style="italic">ε</text>
+                    
+                    <!-- Label -->
+                    <text x="200" y="200" text-anchor="middle" fill="#ffd700" font-size="12">MAIN ε</text>
+                    <text x="200" y="215" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">(center of donut hole)</text>
+                    
+                    <!-- 3 rotation arrow -->
+                    <path d="M200,30 A120,120 0 0,1 320,150" fill="none" stroke="#4ecdc4" stroke-width="3" stroke-dasharray="8,4"/>
+                    <polygon points="320,150 310,142 310,158" fill="#4ecdc4"/>
+                    <text x="280" y="70" fill="#4ecdc4" font-size="14" font-weight="bold">3</text>
+                    <text x="280" y="85" fill="#4ecdc4" font-size="10">rotation</text>
+                </svg>
+            </div>
+            
+            <div class="demo-container">
+                <p class="demo-label">Cross-section of the tube showing TUBE ε</p>
+                <svg class="svg-demo" viewBox="0 0 400 300">
+                    <!-- Background hint of full torus -->
+                    <ellipse cx="200" cy="150" rx="180" ry="60" fill="none" stroke="#222" stroke-width="1" stroke-dasharray="5,5"/>
+                    
+                    <!-- Tube cross-section (the circle you see when you slice the tube) -->
+                    <circle cx="200" cy="150" r="80" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="3"/>
+                    
+                    <!-- Outer surface (top of tube) - our side -->
+                    <path d="M120,150 A80,80 0 0,1 280,150" fill="none" stroke="#4ecdc4" stroke-width="8"/>
+                    <text x="200" y="60" text-anchor="middle" fill="#4ecdc4" font-size="12">OUTER SURFACE</text>
+                    <text x="200" y="75" text-anchor="middle" fill="#4ecdc4" font-size="10">(our side - expanded)</text>
+                    
+                    <!-- Inner surface (bottom of tube) - mirror side -->
+                    <path d="M120,150 A80,80 0 0,0 280,150" fill="none" stroke="#c44569" stroke-width="8"/>
+                    <text x="200" y="255" text-anchor="middle" fill="#c44569" font-size="12">INNER SURFACE</text>
+                    <text x="200" y="270" text-anchor="middle" fill="#c44569" font-size="10">(mirror side - compressed)</text>
+                    
+                    <!-- Tube epsilon at center -->
+                    <circle cx="200" cy="150" r="20" fill="rgba(255, 215, 0, 0.3)" class="pulsing"/>
+                    <circle cx="200" cy="150" r="20" fill="none" stroke="#ffd700" stroke-width="2"/>
+                    <text x="200" y="157" text-anchor="middle" fill="#ffd700" font-size="22" font-style="italic">ε</text>
+                    
+                    <!-- Label -->
+                    <text x="320" y="150" fill="#ffd700" font-size="12">TUBE ε</text>
+                    
+                    <!-- You and quantum twin -->
+                    <circle cx="200" cy="70" r="12" fill="#4ecdc4"/>
+                    <text x="200" y="74" text-anchor="middle" fill="#000" font-size="10" font-weight="bold">YOU</text>
+                    
+                    <circle cx="200" cy="230" r="12" fill="#c44569"/>
+                    <text x="200" y="234" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">TWIN</text>
+                    
+                    <!-- Connection line through tube ε -->
+                    <line x1="200" y1="82" x2="200" y2="130" stroke="#ffd700" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="200" y1="170" x2="200" y2="218" stroke="#ffd700" stroke-width="2" stroke-dasharray="4,4"/>
+                    
+                    <!-- 6 rotation arrow -->
+                    <path d="M285,120 A90,90 0 0,1 285,180" fill="none" stroke="#c44569" stroke-width="3"/>
+                    <polygon points="285,180 277,172 293,172" fill="#c44569"/>
+                    <text x="310" y="130" fill="#c44569" font-size="14" font-weight="bold">6</text>
+                    <text x="310" y="145" fill="#c44569" font-size="10">rotation</text>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- The Two Epsilons Compared -->
+        <div class="section">
+            <h2>The Two ε Points</h2>
+            
+            <div class="comparison">
+                <div class="comparison-item main-epsilon">
+                    <div class="epsilon-symbol" style="color: #ffd700;">ε₁</div>
+                    <h4>Main Epsilon</h4>
+                    <p><strong>Where:</strong> Center of the donut hole</p>
+                    <p><strong>What orbits it:</strong> The <span class="num-three">3</span> rotation (going around the whole donut)</p>
+                    <p><strong>Scale:</strong> Global / cosmic</p>
+                    <p><strong>Connects:</strong> All points on the entire torus</p>
+                </div>
+                
+                <div class="comparison-item tube-epsilon">
+                    <div class="epsilon-symbol" style="color: #c44569;">ε₂</div>
+                    <h4>Tube Epsilon</h4>
+                    <p><strong>Where:</strong> Center of the tube cross-section</p>
+                    <p><strong>What orbits it:</strong> The <span class="num-six">6</span> rotation (going around the tube)</p>
+                    <p><strong>Scale:</strong> Local / quantum</p>
+                    <p><strong>Connects:</strong> You to your quantum twin</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How They Work Together -->
+        <div class="section">
+            <h2>How the Two ε Points Work Together</h2>
+            
+            <div class="demo-container">
+                <p class="demo-label">The nested structure - ε inside ε</p>
+                <svg class="svg-demo" viewBox="0 0 500 350">
+                    <!-- Full torus side view -->
+                    <ellipse cx="250" cy="175" rx="200" ry="100" fill="none" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- Main epsilon in the hole -->
+                    <circle cx="250" cy="175" r="30" fill="rgba(255, 215, 0, 0.15)"/>
+                    <circle cx="250" cy="175" r="30" fill="none" stroke="#ffd700" stroke-width="2" stroke-dasharray="4,4"/>
+                    <text x="250" y="183" text-anchor="middle" fill="#ffd700" font-size="24" font-style="italic">ε₁</text>
+                    
+                    <!-- Left tube cross-section -->
+                    <circle cx="80" cy="175" r="45" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
+                    <circle cx="80" cy="175" r="12" fill="rgba(255, 215, 0, 0.3)"/>
+                    <text x="80" y="180" text-anchor="middle" fill="#ffd700" font-size="14" font-style="italic">ε₂</text>
+                    <!-- You on outer surface -->
+                    <circle cx="80" cy="130" r="8" fill="#4ecdc4"/>
+                    <text x="80" y="115" text-anchor="middle" fill="#4ecdc4" font-size="9">you</text>
+                    <!-- Twin on inner surface -->
+                    <circle cx="80" cy="220" r="8" fill="#c44569"/>
+                    <text x="80" y="240" text-anchor="middle" fill="#c44569" font-size="9">twin</text>
+                    
+                    <!-- Right tube cross-section -->
+                    <circle cx="420" cy="175" r="45" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
+                    <circle cx="420" cy="175" r="12" fill="rgba(255, 215, 0, 0.3)"/>
+                    <text x="420" y="180" text-anchor="middle" fill="#ffd700" font-size="14" font-style="italic">ε₂</text>
+                    
+                    <!-- Top tube cross-section -->
+                    <ellipse cx="250" cy="80" rx="45" ry="25" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
+                    <circle cx="250" cy="80" r="10" fill="rgba(255, 215, 0, 0.3)"/>
+                    <text x="250" y="84" text-anchor="middle" fill="#ffd700" font-size="12" font-style="italic">ε₂</text>
+                    
+                    <!-- Bottom tube cross-section -->
+                    <ellipse cx="250" cy="270" rx="45" ry="25" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
+                    <circle cx="250" cy="270" r="10" fill="rgba(255, 215, 0, 0.3)"/>
+                    <text x="250" y="274" text-anchor="middle" fill="#ffd700" font-size="12" font-style="italic">ε₂</text>
+                    
+                    <!-- Labels -->
+                    <text x="250" y="330" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">Every point on the torus has a TUBE ε connecting it to its twin</text>
+                    <text x="250" y="345" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">All tube εs connect through the MAIN ε</text>
+                </svg>
+            </div>
+            
+            <div class="insight-box">
+                <strong>🔗 The Connection:</strong> Every location on the torus has its own local tube-ε connecting it to the mirror side. But ALL those tube-εs ultimately connect through the main ε in the center. It's like a network where every computer (you) has a local router (tube-ε), and all routers connect to one central hub (main ε).
+            </div>
+        </div>
+        
+        <!-- Why the Inner Surface is Closer -->
+        <div class="section">
+            <h2>Why the Mirror Side is "Closer"</h2>
+            
+            <div class="demo-container">
+                <p class="demo-label">The geometry of compression</p>
+                <svg class="svg-demo" viewBox="0 0 400 250">
+                    <!-- Tube cross-section large -->
+                    <circle cx="200" cy="125" r="100" fill="none" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- Outer surface with spread out dots -->
+                    <circle cx="200" cy="25" r="6" fill="#4ecdc4"/>
+                    <circle cx="270" cy="55" r="6" fill="#4ecdc4"/>
+                    <circle cx="295" cy="100" r="6" fill="#4ecdc4"/>
+                    <circle cx="295" cy="150" r="6" fill="#4ecdc4"/>
+                    <circle cx="270" cy="195" r="6" fill="#4ecdc4"/>
+                    
+                    <!-- Measurement on outer -->
+                    <line x1="200" y1="25" x2="270" y2="55" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="250" y="30" fill="#4ecdc4" font-size="10">far apart</text>
+                    
+                    <!-- Inner surface with compressed dots -->
+                    <circle cx="200" cy="225" r="6" fill="#c44569"/>
+                    <circle cx="160" cy="210" r="6" fill="#c44569"/>
+                    <circle cx="130" cy="175" r="6" fill="#c44569"/>
+                    <circle cx="130" cy="125" r="6" fill="#c44569"/>
+                    <circle cx="130" cy="75" r="6" fill="#c44569"/>
+                    
+                    <!-- Measurement on inner -->
+                    <line x1="160" y1="210" x2="130" y2="175" stroke="#c44569" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="100" y="200" fill="#c44569" font-size="10">close</text>
+                    
+                    <!-- Center ε -->
+                    <circle cx="200" cy="125" r="15" fill="rgba(255,215,0,0.2)"/>
+                    <text x="200" y="130" text-anchor="middle" fill="#ffd700" font-size="16" font-style="italic">ε</text>
+                    
+                    <!-- Labels -->
+                    <text x="330" y="50" fill="#4ecdc4" font-size="11">OUTER</text>
+                    <text x="330" y="65" fill="#4ecdc4" font-size="9">expanded</text>
+                    <text x="330" y="80" fill="#4ecdc4" font-size="9">more space</text>
+                    
+                    <text x="50" y="130" fill="#c44569" font-size="11">INNER</text>
+                    <text x="40" y="145" fill="#c44569" font-size="9">compressed</text>
+                    <text x="45" y="160" fill="#c44569" font-size="9">less space</text>
+                </svg>
+            </div>
+            
+            <p>
+                On a donut, the <strong>outer curve</strong> has more surface area than the <strong>inner curve</strong>. 
+                Same number of points, different distances between them.
+            </p>
+            
+            <p>
+                This means things that seem far apart on our side (outer surface) are actually 
+                <strong>much closer together</strong> on the mirror side (inner surface).
+            </p>
+            
+            <div class="note-box">
+                <strong>💡 This explains quantum entanglement:</strong> Two particles that appear separated by vast distances on our side are literally adjacent on the mirror side. They're not communicating "faster than light" — they're neighbors, connected through the tube-ε.
+            </div>
+        </div>
+        
+        <!-- The 3-6-9 Connection -->
+        <div class="section">
+            <h2>How 3-6-9 Maps to This Structure</h2>
+            
+            <table class="info-table">
+                <tr>
+                    <th>Number</th>
+                    <th>Rotation</th>
+                    <th>What It Does</th>
+                    <th>Which ε</th>
+                </tr>
+                <tr>
+                    <td><span class="num-three" style="font-size: 1.5rem;">3</span></td>
+                    <td>Major (around donut)</td>
+                    <td>Stays on outer surface, circles the hole</td>
+                    <td>Orbits MAIN ε</td>
+                </tr>
+                <tr>
+                    <td><span class="num-six" style="font-size: 1.5rem;">6</span></td>
+                    <td>Minor (around tube)</td>
+                    <td>Crosses from outer to inner surface and back</td>
+                    <td>Orbits TUBE ε</td>
+                </tr>
+                <tr>
+                    <td><span class="num-nine" style="font-size: 1.5rem;">9</span></td>
+                    <td>Completion / Inversion</td>
+                    <td>Where both rotations converge</td>
+                    <td>BOTH ε points</td>
+                </tr>
+            </table>
+            
+            <div class="insight-box">
+                <strong>The <span class="num-six">6</span> is special:</strong> It's the only rotation that actually crosses to the mirror side. When you do the 6 rotation (going around the tube), you pass through the tube-ε and briefly exist on the compressed inner surface. That's why 6 "knows" both sides.
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="section">
+            <h2>Putting It All Together</h2>
+            
+            <div class="demo-container">
+                <p class="demo-label">The complete picture</p>
+                <svg class="svg-demo" viewBox="0 0 500 300">
+                    <!-- Torus outline -->
+                    <ellipse cx="250" cy="150" rx="200" ry="90" fill="none" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- Main ε -->
+                    <circle cx="250" cy="150" r="35" fill="rgba(255, 215, 0, 0.1)"/>
+                    <circle cx="250" cy="150" r="35" fill="none" stroke="#ffd700" stroke-width="2"/>
+                    <text x="250" y="145" text-anchor="middle" fill="#ffd700" font-size="14">MAIN</text>
+                    <text x="250" y="165" text-anchor="middle" fill="#ffd700" font-size="20" font-style="italic">ε</text>
+                    
+                    <!-- 3 rotation -->
+                    <ellipse cx="250" cy="150" rx="140" ry="65" fill="none" stroke="#4ecdc4" stroke-width="2" stroke-dasharray="10,5"/>
+                    <text x="400" y="120" fill="#4ecdc4" font-size="18" font-weight="bold">3</text>
+                    
+                    <!-- Tube cross-section with local structure -->
+                    <g transform="translate(70, 150)">
+                        <circle cx="0" cy="0" r="40" fill="rgba(30,30,50,0.9)" stroke="#666" stroke-width="2"/>
+                        <!-- Tube ε -->
+                        <circle cx="0" cy="0" r="10" fill="rgba(255,215,0,0.3)"/>
+                        <text x="0" y="4" text-anchor="middle" fill="#ffd700" font-size="12" font-style="italic">ε</text>
+                        <!-- Outer (you) -->
+                        <circle cx="0" cy="-35" r="6" fill="#4ecdc4"/>
+                        <text x="0" y="-45" text-anchor="middle" fill="#4ecdc4" font-size="8">YOU</text>
+                        <!-- Inner (twin) -->
+                        <circle cx="0" cy="35" r="6" fill="#c44569"/>
+                        <text x="0" y="50" text-anchor="middle" fill="#c44569" font-size="8">TWIN</text>
+                        <!-- 6 rotation -->
+                        <circle cx="0" cy="0" r="35" fill="none" stroke="#c44569" stroke-width="2" stroke-dasharray="8,4"/>
+                    </g>
+                    <text x="70" y="210" text-anchor="middle" fill="#c44569" font-size="14" font-weight="bold">6</text>
+                    
+                    <!-- Connection arrows -->
+                    <line x1="110" y1="150" x2="215" y2="150" stroke="#ffd700" stroke-width="1" stroke-dasharray="4,4"/>
+                    
+                    <!-- Legend -->
+                    <g transform="translate(350, 220)">
+                        <rect x="0" y="0" width="130" height="70" fill="rgba(20,20,35,0.8)" rx="8"/>
+                        <circle cx="20" cy="20" r="6" fill="#4ecdc4"/>
+                        <text x="35" y="24" fill="#4ecdc4" font-size="10">3 = around donut</text>
+                        <circle cx="20" cy="40" r="6" fill="#c44569"/>
+                        <text x="35" y="44" fill="#c44569" font-size="10">6 = around tube</text>
+                        <circle cx="20" cy="60" r="6" fill="#ffd700"/>
+                        <text x="35" y="64" fill="#ffd700" font-size="10">9 = both εs</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="key-point">
+            <h3>🌀 The Simple Summary</h3>
+            <p style="font-size: 1.1rem;">
+                The torus has <strong>two inversion points</strong>: the main ε (in the donut hole) and the tube ε (in each cross-section).<br><br>
+                The <span class="num-three">3</span> rotation orbits the main ε, staying on our side.<br>
+                The <span class="num-six">6</span> rotation orbits the tube ε, <strong>crossing to the mirror side</strong>.<br>
+                At <span class="num-nine">9</span>, both rotations complete through both εs.<br><br>
+                Your <strong>quantum twin</strong> is on the opposite side of your local tube ε — closer than they appear because the mirror side is compressed.
+            </p>
+        </div>
+        
+        <footer>
+            The ε Framework — Two epsilons, one structure, infinite connections.
+        </footer>
+    </div>
+</body>
+</html>
