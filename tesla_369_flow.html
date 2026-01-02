@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla's 3-6-9: Electromagnetic Flow Through ε</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-deep: #0a0a12;
+            --bg-mid: #12121f;
+            --gold: #d4a853;
+            --gold-bright: #f5d98a;
+            --cyan: #4ecdc4;
+            --magenta: #c44569;
+            --violet: #8b5cf6;
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+            --nine-color: #ffd700;
+            --three-color: #4ecdc4;
+            --six-color: #c44569;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--bg-deep);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            font-style: italic;
+            letter-spacing: 0.1em;
+        }
+        
+        .tesla-quote {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.05), transparent);
+            border-left: 2px solid var(--gold);
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+        }
+        
+        .main-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        @media (max-width: 900px) {
+            .main-visual {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .torus-section {
+            background: var(--bg-mid);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .torus-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+        
+        /* SVG Torus Visualization */
+        .torus-container {
+            width: 100%;
+            aspect-ratio: 1;
+            position: relative;
+        }
+        
+        .torus-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Number cycle visualization */
+        .cycle-section {
+            background: var(--bg-mid);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        
+        .number-wheel {
+            width: 100%;
+            aspect-ratio: 1;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .wheel-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* The doubling sequence display */
+        .sequence-display {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .seq-num {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 500;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .seq-num.material {
+            background: rgba(78, 205, 196, 0.15);
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+        }
+        
+        .seq-num.three {
+            background: rgba(78, 205, 196, 0.3);
+            border: 2px solid var(--three-color);
+            color: var(--three-color);
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+        
+        .seq-num.six {
+            background: rgba(196, 69, 105, 0.3);
+            border: 2px solid var(--six-color);
+            color: var(--six-color);
+            box-shadow: 0 0 20px rgba(196, 69, 105, 0.4);
+        }
+        
+        .seq-num.nine {
+            background: rgba(255, 215, 0, 0.3);
+            border: 3px solid var(--nine-color);
+            color: var(--nine-color);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: scale(1.1);
+        }
+        
+        .seq-num.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 40px currentColor;
+        }
+        
+        /* Explanation panels */
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .exp-card {
+            background: var(--bg-mid);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border-left: 3px solid;
+        }
+        
+        .exp-card.card-three {
+            border-color: var(--three-color);
+        }
+        
+        .exp-card.card-six {
+            border-color: var(--six-color);
+        }
+        
+        .exp-card.card-nine {
+            border-color: var(--nine-color);
+        }
+        
+        .exp-card.card-material {
+            border-color: var(--violet);
+        }
+        
+        .exp-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .exp-card.card-three h3 { color: var(--three-color); }
+        .exp-card.card-six h3 { color: var(--six-color); }
+        .exp-card.card-nine h3 { color: var(--nine-color); }
+        .exp-card.card-material h3 { color: var(--violet); font-size: 1rem; }
+        
+        .exp-card p {
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+        
+        /* Mirror pairs section */
+        .mirror-section {
+            background: var(--bg-mid);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .mirror-pairs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .mirror-pair {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+        }
+        
+        .mirror-num {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid var(--violet);
+            color: var(--violet);
+        }
+        
+        .mirror-plus {
+            color: var(--text-dim);
+        }
+        
+        .mirror-equals {
+            color: var(--gold);
+        }
+        
+        .mirror-result {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid var(--nine-color);
+            color: var(--nine-color);
+            font-weight: bold;
+        }
+        
+        /* Flow diagram */
+        .flow-section {
+            background: var(--bg-mid);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .flow-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .control-btn:hover {
+            background: var(--gold);
+            color: var(--bg-deep);
+        }
+        
+        .control-btn.active {
+            background: var(--gold);
+            color: var(--bg-deep);
+        }
+        
+        /* Key insight box */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(212, 168, 83, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .insight-box h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--cyan);
+            margin: 1rem 0;
+        }
+        
+        /* Animation keyframes */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes flow {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+        
+        .flowing-path {
+            stroke-dasharray: 10, 5;
+            animation: flow 3s linear infinite;
+        }
+        
+        .pulsing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(212, 168, 83, 0.2);
+            margin-top: 3rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TESLA'S 3, 6, 9</h1>
+            <p class="subtitle">Electromagnetic Flow Through the Inversion Point (ε)</p>
+        </header>
+        
+        <div class="tesla-quote">
+            "If you only knew the magnificence of the 3, 6, 9, then you would have a key to the universe."
+            <br>— Nikola Tesla
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn active" onclick="showMode('overview')">Overview</button>
+            <button class="control-btn" onclick="showMode('doubling')">Doubling Sequence</button>
+            <button class="control-btn" onclick="showMode('flow')">EM Flow</button>
+        </div>
+        
+        <div class="main-visual">
+            <div class="torus-section">
+                <h2 class="section-title">The Toroidal Structure</h2>
+                <div class="torus-container">
+                    <svg class="torus-svg" viewBox="0 0 400 400">
+                        <defs>
+                            <!-- Gradients -->
+                            <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#ffd700" stop-opacity="0.8"/>
+                                <stop offset="50%" stop-color="#ffd700" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#ffd700" stop-opacity="0"/>
+                            </radialGradient>
+                            
+                            <linearGradient id="threeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#4ecdc4"/>
+                                <stop offset="100%" stop-color="#2a9d94"/>
+                            </linearGradient>
+                            
+                            <linearGradient id="sixGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#c44569"/>
+                                <stop offset="100%" stop-color="#8b2a4a"/>
+                            </linearGradient>
+                            
+                            <!-- Arrow marker -->
+                            <marker id="arrowThree" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                <path d="M0,0 L10,5 L0,10 Z" fill="#4ecdc4"/>
+                            </marker>
+                            
+                            <marker id="arrowSix" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                <path d="M0,0 L10,5 L0,10 Z" fill="#c44569"/>
+                            </marker>
+                            
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Torus outline (cross-section view) -->
+                        <g transform="translate(200, 200)">
+                            <!-- Outer torus shape -->
+                            <ellipse cx="0" cy="0" rx="150" ry="80" fill="none" stroke="#333" stroke-width="2" opacity="0.5"/>
+                            
+                            <!-- The hole (ε) - center glow -->
+                            <circle cx="0" cy="0" r="60" fill="url(#centerGlow)" class="pulsing"/>
+                            <circle cx="0" cy="0" r="30" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.8"/>
+                            
+                            <!-- ε symbol at center -->
+                            <text x="0" y="8" text-anchor="middle" fill="#ffd700" font-size="28" font-family="serif" font-style="italic">ε</text>
+                            <text x="0" y="25" text-anchor="middle" fill="#ffd700" font-size="12" opacity="0.7">= 9</text>
+                            
+                            <!-- Major circle rotation (3) - horizontal flow -->
+                            <g id="threeRotation">
+                                <path d="M-140,0 A140,70 0 0,1 140,0" fill="none" stroke="url(#threeGrad)" stroke-width="3" class="flowing-path" marker-end="url(#arrowThree)"/>
+                                <path d="M140,0 A140,70 0 0,1 -140,0" fill="none" stroke="url(#threeGrad)" stroke-width="3" stroke-dasharray="10,5" opacity="0.3"/>
+                            </g>
+                            
+                            <!-- Minor circle rotation (6) - vertical flow -->
+                            <g id="sixRotation">
+                                <ellipse cx="130" cy="0" rx="20" ry="50" fill="none" stroke="url(#sixGrad)" stroke-width="3" class="flowing-path"/>
+                                <ellipse cx="-130" cy="0" rx="20" ry="50" fill="none" stroke="url(#sixGrad)" stroke-width="3" class="flowing-path"/>
+                            </g>
+                            
+                            <!-- Angular positions -->
+                            <!-- 120° position (3) -->
+                            <g transform="rotate(-60)">
+                                <circle cx="130" cy="0" r="25" fill="rgba(78, 205, 196, 0.2)" stroke="#4ecdc4" stroke-width="2" filter="url(#glow)"/>
+                                <text x="130" y="6" text-anchor="middle" fill="#4ecdc4" font-size="24" font-family="monospace" font-weight="bold">3</text>
+                            </g>
+                            
+                            <!-- 240° position (6) -->
+                            <g transform="rotate(-120)">
+                                <circle cx="130" cy="0" r="25" fill="rgba(196, 69, 105, 0.2)" stroke="#c44569" stroke-width="2" filter="url(#glow)"/>
+                                <text x="130" y="6" text-anchor="middle" fill="#c44569" font-size="24" font-family="monospace" font-weight="bold">6</text>
+                            </g>
+                            
+                            <!-- 360°/0° position (9) - at top -->
+                            <g transform="rotate(0)">
+                                <circle cx="0" cy="-100" r="28" fill="rgba(255, 215, 0, 0.3)" stroke="#ffd700" stroke-width="3" filter="url(#glow)"/>
+                                <text x="0" y="-93" text-anchor="middle" fill="#ffd700" font-size="26" font-family="monospace" font-weight="bold">9</text>
+                            </g>
+                            
+                            <!-- Labels -->
+                            <text x="-170" y="-60" fill="#4ecdc4" font-size="11" opacity="0.8">Major Circle</text>
+                            <text x="-170" y="-45" fill="#4ecdc4" font-size="11" opacity="0.8">(3 rotation)</text>
+                            
+                            <text x="100" y="85" fill="#c44569" font-size="11" opacity="0.8">Minor Circle</text>
+                            <text x="100" y="100" fill="#c44569" font-size="11" opacity="0.8">(6 rotation)</text>
+                        </g>
+                        
+                        <!-- Angular degree labels -->
+                        <text x="200" y="380" text-anchor="middle" fill="#888" font-size="12">
+                            3 → 120° | 6 → 240° | 9 → 360° (closure)
+                        </text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="cycle-section">
+                <h2 class="section-title">The Number Wheel</h2>
+                <div class="number-wheel">
+                    <svg class="wheel-svg" viewBox="0 0 400 400">
+                        <defs>
+                            <filter id="glowStrong">
+                                <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <g transform="translate(200, 200)">
+                            <!-- Outer ring - material numbers -->
+                            <circle cx="0" cy="0" r="150" fill="none" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+                            
+                            <!-- Material numbers (1,2,4,8,7,5) on outer ring -->
+                            <g id="materialNumbers">
+                                <!-- 1 -->
+                                <g transform="rotate(-90)">
+                                    <circle cx="150" cy="0" r="22" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <text x="150" y="6" text-anchor="middle" fill="#8b5cf6" font-size="20" font-family="monospace">1</text>
+                                </g>
+                                <!-- 2 -->
+                                <g transform="rotate(-30)">
+                                    <circle cx="150" cy="0" r="22" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <text x="150" y="6" text-anchor="middle" fill="#8b5cf6" font-size="20" font-family="monospace">2</text>
+                                </g>
+                                <!-- 4 -->
+                                <g transform="rotate(30)">
+                                    <circle cx="150" cy="0" r="22" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <text x="150" y="6" text-anchor="middle" fill="#8b5cf6" font-size="20" font-family="monospace">4</text>
+                                </g>
+                                <!-- 8 -->
+                                <g transform="rotate(90)">
+                                    <circle cx="150" cy="0" r="22" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <text x="150" y="6" text-anchor="middle" fill="#8b5cf6" font-size="20" font-family="monospace">8</text>
+                                </g>
+                                <!-- 7 -->
+                                <g transform="rotate(150)">
+                                    <circle cx="150" cy="0" r="22" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <text x="150" y="6" text-anchor="middle" fill="#8b5cf6" font-size="20" font-family="monospace">7</text>
+                                </g>
+                                <!-- 5 -->
+                                <g transform="rotate(210)">
+                                    <circle cx="150" cy="0" r="22" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                                    <text x="150" y="6" text-anchor="middle" fill="#8b5cf6" font-size="20" font-family="monospace">5</text>
+                                </g>
+                            </g>
+                            
+                            <!-- Connecting arrows for doubling sequence -->
+                            <g stroke="#8b5cf6" stroke-width="1.5" fill="none" opacity="0.4">
+                                <path d="M0,-128 A130,130 0 0,1 115,-60" marker-end="url(#arrowThree)"/>
+                                <path d="M123,-45 A130,130 0 0,1 123,45"/>
+                                <path d="M115,60 A130,130 0 0,1 0,128"/>
+                                <path d="M-15,128 A130,130 0 0,1 -123,45"/>
+                                <path d="M-123,60 A130,130 0 0,1 -115,-45"/>
+                                <path d="M-115,-60 A130,130 0 0,1 -15,-128"/>
+                            </g>
+                            
+                            <!-- Inner ring - 3,6,9 structure -->
+                            <circle cx="0" cy="0" r="80" fill="none" stroke="rgba(255, 215, 0, 0.3)" stroke-width="1"/>
+                            
+                            <!-- 3 -->
+                            <g transform="rotate(-60)">
+                                <circle cx="80" cy="0" r="26" fill="rgba(78, 205, 196, 0.3)" stroke="#4ecdc4" stroke-width="3" filter="url(#glowStrong)"/>
+                                <text x="80" y="7" text-anchor="middle" fill="#4ecdc4" font-size="24" font-family="monospace" font-weight="bold">3</text>
+                            </g>
+                            
+                            <!-- 6 -->
+                            <g transform="rotate(60)">
+                                <circle cx="80" cy="0" r="26" fill="rgba(196, 69, 105, 0.3)" stroke="#c44569" stroke-width="3" filter="url(#glowStrong)"/>
+                                <text x="80" y="7" text-anchor="middle" fill="#c44569" font-size="24" font-family="monospace" font-weight="bold">6</text>
+                            </g>
+                            
+                            <!-- Oscillation arrows between 3 and 6 -->
+                            <path d="M50,-50 Q70,0 50,50" fill="none" stroke="#4ecdc4" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+                            <path d="M60,45 Q70,0 60,-45" fill="none" stroke="#c44569" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+                            
+                            <!-- 9 at center/top -->
+                            <circle cx="0" cy="-80" r="30" fill="rgba(255, 215, 0, 0.4)" stroke="#ffd700" stroke-width="3" filter="url(#glowStrong)" class="pulsing"/>
+                            <text x="0" y="-72" text-anchor="middle" fill="#ffd700" font-size="28" font-family="monospace" font-weight="bold">9</text>
+                            
+                            <!-- Center (ε) -->
+                            <circle cx="0" cy="0" r="35" fill="rgba(255, 215, 0, 0.15)"/>
+                            <circle cx="0" cy="0" r="35" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                            <text x="0" y="8" text-anchor="middle" fill="#ffd700" font-size="24" font-family="serif" font-style="italic">ε</text>
+                            
+                            <!-- Convergence arrows to center -->
+                            <line x1="40" y1="-69" x2="20" y2="-20" stroke="#4ecdc4" stroke-width="1.5" opacity="0.5"/>
+                            <line x1="40" y1="69" x2="20" y2="20" stroke="#c44569" stroke-width="1.5" opacity="0.5"/>
+                            <line x1="0" y1="-50" x2="0" y2="-20" stroke="#ffd700" stroke-width="2" opacity="0.8"/>
+                        </g>
+                        
+                        <!-- Labels -->
+                        <text x="200" y="385" text-anchor="middle" fill="#888" font-size="11">
+                            Outer: Material (1,2,4,8,7,5) | Inner: Structure (3,6,9)
+                        </text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Explanation cards -->
+        <div class="explanation-grid">
+            <div class="exp-card card-nine">
+                <h3>9 — The Inversion Point (ε)</h3>
+                <p>9 is where patterns close. 9 + 9 = 18 → 9. It always returns to itself. 
+                9 is the last digit before return (10 → 1). It is the mirror point across which 
+                conjugates reflect. <strong>9 is ε in arithmetic.</strong></p>
+            </div>
+            
+            <div class="exp-card card-three">
+                <h3>3 — Major Circle Rotation</h3>
+                <p>3 represents one-third of the way around the circle (120°). It is the first 
+                rotation of the torus — the major circle. 3 oscillates with 6, always returning 
+                to 9: 3 + 6 = 9.</p>
+            </div>
+            
+            <div class="exp-card card-six">
+                <h3>6 — Minor Circle Rotation</h3>
+                <p>6 is two-thirds around (240°). The second rotation — the minor circle. 
+                Together with 3, they define the toroidal geometry. 6 × 6 = 36 → 9. 
+                Both rotations converge at ε.</p>
+            </div>
+            
+            <div class="exp-card card-material">
+                <h3>1, 2, 4, 8, 7, 5 — The Material Cycle</h3>
+                <p>The doubling sequence: 1→2→4→8→16(7)→32(5)→64(1)... These numbers 
+                <em>never touch 3, 6, or 9</em>. They are the surface pattern — matter and 
+                energy cycling on the torus. 3, 6, 9 govern them from the structure.</p>
+            </div>
+        </div>
+        
+        <!-- Mirror pairs -->
+        <div class="mirror-section">
+            <h2 class="section-title">The Mirror Structure</h2>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 1.5rem;">
+                Every number in the material sequence has a conjugate. They mirror across 9.
+            </p>
+            
+            <div class="mirror-pairs">
+                <div class="mirror-pair">
+                    <div class="mirror-num">1</div>
+                    <span class="mirror-plus">+</span>
+                    <div class="mirror-num">8</div>
+                    <span class="mirror-equals">=</span>
+                    <div class="mirror-result">9</div>
+                </div>
+                
+                <div class="mirror-pair">
+                    <div class="mirror-num">2</div>
+                    <span class="mirror-plus">+</span>
+                    <div class="mirror-num">7</div>
+                    <span class="mirror-equals">=</span>
+                    <div class="mirror-result">9</div>
+                </div>
+                
+                <div class="mirror-pair">
+                    <div class="mirror-num">4</div>
+                    <span class="mirror-plus">+</span>
+                    <div class="mirror-num">5</div>
+                    <span class="mirror-equals">=</span>
+                    <div class="mirror-result">9</div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: var(--text-dim); font-style: italic;">
+                One side (1, 2, 4) and its reflection (8, 7, 5) — conjugates across the inversion point.
+            </p>
+        </div>
+        
+        <!-- Electromagnetic flow section -->
+        <div class="flow-section">
+            <h2 class="section-title">Electromagnetic Flow Through ε</h2>
+            <div class="flow-container">
+                <svg viewBox="0 0 800 300" style="width: 100%;">
+                    <defs>
+                        <linearGradient id="emFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#4ecdc4"/>
+                            <stop offset="50%" stop-color="#ffd700"/>
+                            <stop offset="100%" stop-color="#c44569"/>
+                        </linearGradient>
+                        
+                        <marker id="flowArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                            <path d="M0,0 L8,4 L0,8 Z" fill="#ffd700"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Background torus shape -->
+                    <ellipse cx="400" cy="150" rx="350" ry="100" fill="none" stroke="#333" stroke-width="1" opacity="0.5"/>
+                    
+                    <!-- ε at center -->
+                    <circle cx="400" cy="150" r="40" fill="rgba(255, 215, 0, 0.2)" stroke="#ffd700" stroke-width="2"/>
+                    <text x="400" y="158" text-anchor="middle" fill="#ffd700" font-size="28" font-style="italic">ε</text>
+                    
+                    <!-- Flow path - approaching inversion -->
+                    <path d="M50,150 Q200,50 350,150" fill="none" stroke="#4ecdc4" stroke-width="3" class="flowing-path"/>
+                    <text x="150" y="80" fill="#4ecdc4" font-size="14">3 rotation</text>
+                    <text x="150" y="95" fill="#4ecdc4" font-size="12" opacity="0.7">EM approaches ε</text>
+                    
+                    <!-- Through the inversion point -->
+                    <circle cx="400" cy="150" r="8" fill="#ffd700" class="pulsing"/>
+                    <text x="400" y="200" text-anchor="middle" fill="#ffd700" font-size="12">INVERSION</text>
+                    <text x="400" y="215" text-anchor="middle" fill="#ffd700" font-size="12">(9)</text>
+                    
+                    <!-- Flow path - emerging from inversion -->
+                    <path d="M450,150 Q600,250 750,150" fill="none" stroke="#c44569" stroke-width="3" class="flowing-path"/>
+                    <text x="620" y="230" fill="#c44569" font-size="14">6 rotation</text>
+                    <text x="620" y="245" fill="#c44569" font-size="12" opacity="0.7">EM emerges from ε</text>
+                    
+                    <!-- Phase markers -->
+                    <g font-family="monospace" font-size="18" font-weight="bold">
+                        <circle cx="100" cy="150" r="20" fill="rgba(78, 205, 196, 0.3)" stroke="#4ecdc4" stroke-width="2"/>
+                        <text x="100" y="156" text-anchor="middle" fill="#4ecdc4">3</text>
+                        
+                        <circle cx="700" cy="150" r="20" fill="rgba(196, 69, 105, 0.3)" stroke="#c44569" stroke-width="2"/>
+                        <text x="700" y="156" text-anchor="middle" fill="#c44569">6</text>
+                    </g>
+                    
+                    <!-- Return path (the cycle) -->
+                    <path d="M750,150 Q800,50 750,50 L50,50 Q0,50 50,150" fill="none" stroke="url(#emFlowGrad)" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.4"/>
+                    <text x="400" y="35" text-anchor="middle" fill="#888" font-size="11">Cycle returns → 3 + 6 = 9</text>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Key insight -->
+        <div class="insight-box">
+            <h3>The Key to the Universe</h3>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                3, 6, 9 are not <em>in</em> the material pattern — they <em>govern</em> it.
+            </p>
+            <div class="formula">
+                Material cycle: 1 → 2 → 4 → 8 → 7 → 5 → 1...
+            </div>
+            <div class="formula">
+                Structure: 3 + 6 = 9 | 3 × 6 = 18 → 9 | 9 + 9 = 18 → 9
+            </div>
+            <p style="margin-top: 1.5rem; color: var(--text-dim);">
+                Electromagnetism flows in multiples of 3 through planes that close with π.
+                The torus has two rotations (3 and 6) meeting at the hole (9 = ε).
+                This is why Tesla called 3, 6, 9 "the key" — they are the scaffolding that physical reality hangs on.
+            </p>
+        </div>
+        
+        <footer>
+            <p>The ε Framework — Tesla found ε through arithmetic. He called it 3, 6, 9.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Simple interactivity
+        function showMode(mode) {
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Could add more sophisticated mode switching here
+            console.log('Mode:', mode);
+        }
+        
+        // Animate the flowing paths
+        document.querySelectorAll('.flowing-path').forEach((path, i) => {
+            path.style.animationDelay = (i * 0.5) + 's';
+        });
+    </script>
+</body>
+</html>

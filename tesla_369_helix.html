@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla's 3-6-9: The Helical Twist Through ε</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-deep: #0a0a12;
+            --bg-mid: #12121f;
+            --gold: #d4a853;
+            --gold-bright: #f5d98a;
+            --cyan: #4ecdc4;
+            --magenta: #c44569;
+            --violet: #8b5cf6;
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+            --nine-color: #ffd700;
+            --three-color: #4ecdc4;
+            --six-color: #c44569;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--bg-deep);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+        
+        .section {
+            background: var(--bg-mid);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+        
+        .key-point {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 3px solid var(--gold);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Main visualization */
+        .main-viz {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Step by step */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .step-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            background: var(--gold);
+            color: var(--bg-deep);
+            border-radius: 50%;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+        
+        .step-card h3 {
+            color: var(--cyan);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-card p {
+            color: var(--text-dim);
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        /* Animation controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.7rem 1.2rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .control-btn:hover, .control-btn.active {
+            background: var(--gold);
+            color: var(--bg-deep);
+        }
+        
+        /* Speed slider */
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        
+        .speed-control label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        .speed-control input[type="range"] {
+            width: 150px;
+            accent-color: var(--gold);
+        }
+        
+        /* Comparison grid */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-item {
+            text-align: center;
+        }
+        
+        .comparison-item h4 {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Formula display */
+        .formula-box {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        
+        .formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--cyan);
+            margin: 0.5rem 0;
+        }
+        
+        .formula-label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 0.5rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .legend-dot.three { background: var(--three-color); }
+        .legend-dot.six { background: var(--six-color); }
+        .legend-dot.nine { background: var(--nine-color); }
+        .legend-dot.helix { background: linear-gradient(45deg, var(--three-color), var(--six-color)); }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(212, 168, 83, 0.2);
+            margin-top: 2rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>THE HELICAL TWIST</h1>
+            <p class="subtitle">How 3 and 6 Combine Through ε</p>
+        </header>
+        
+        <div class="key-point">
+            <strong>The Key Insight:</strong> The two rotations (3 and 6) don't happen separately — 
+            they happen <em>simultaneously</em>, creating a helical/spiraling path. Energy <strong>twists</strong> 
+            as it flows through the torus, inverting at ε (9).
+        </div>
+        
+        <!-- Main animated visualization -->
+        <div class="section">
+            <h2 class="section-title">The Twisting Flow</h2>
+            
+            <div class="controls">
+                <button class="control-btn active" onclick="setView('side')">Side View</button>
+                <button class="control-btn" onclick="setView('top')">Top View (Looking Down)</button>
+                <button class="control-btn" onclick="setView('cutaway')">Cross-Section</button>
+            </div>
+            
+            <div class="speed-control">
+                <label>Animation Speed:</label>
+                <input type="range" id="speedSlider" min="0.5" max="3" step="0.1" value="1" onchange="setSpeed(this.value)">
+                <button class="control-btn" onclick="togglePause()" id="pauseBtn">Pause</button>
+            </div>
+            
+            <div class="main-viz">
+                <svg id="mainSvg" viewBox="0 0 800 500" style="width: 100%; display: block;">
+                    <defs>
+                        <linearGradient id="helixGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#4ecdc4"/>
+                            <stop offset="50%" stop-color="#ffd700"/>
+                            <stop offset="100%" stop-color="#c44569"/>
+                        </linearGradient>
+                        
+                        <radialGradient id="epsilonGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffd700" stop-opacity="0.8"/>
+                            <stop offset="50%" stop-color="#ffd700" stop-opacity="0.3"/>
+                            <stop offset="100%" stop-color="#ffd700" stop-opacity="0"/>
+                        </radialGradient>
+                        
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <marker id="particleMarker" markerWidth="8" markerHeight="8" refX="4" refY="4">
+                            <circle cx="4" cy="4" r="3" fill="#fff"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Background grid -->
+                    <g opacity="0.1">
+                        <line x1="400" y1="0" x2="400" y2="500" stroke="#fff" stroke-dasharray="5,10"/>
+                        <line x1="0" y1="250" x2="800" y2="250" stroke="#fff" stroke-dasharray="5,10"/>
+                    </g>
+                    
+                    <!-- The torus outline -->
+                    <g id="torusOutline">
+                        <!-- Outer boundary -->
+                        <ellipse cx="400" cy="250" rx="320" ry="150" fill="none" stroke="#333" stroke-width="2"/>
+                        <!-- Inner boundary (the hole) -->
+                        <ellipse cx="400" cy="250" rx="120" ry="60" fill="rgba(255,215,0,0.05)" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                    </g>
+                    
+                    <!-- ε at center -->
+                    <g id="epsilonCenter">
+                        <ellipse cx="400" cy="250" rx="50" ry="25" fill="url(#epsilonGlow)"/>
+                        <text x="400" y="258" text-anchor="middle" fill="#ffd700" font-size="32" font-style="italic" filter="url(#glow)">ε</text>
+                        <text x="400" y="280" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0.7">= 9</text>
+                    </g>
+                    
+                    <!-- The helical path -->
+                    <g id="helixPath">
+                        <!-- This will be drawn by JavaScript -->
+                    </g>
+                    
+                    <!-- Moving particles -->
+                    <g id="particles">
+                        <!-- Animated particles will be here -->
+                    </g>
+                    
+                    <!-- Labels -->
+                    <g id="labels" font-family="'Cormorant Garamond', serif">
+                        <text x="100" y="250" fill="#4ecdc4" font-size="18">3</text>
+                        <text x="100" y="270" fill="#4ecdc4" font-size="12" opacity="0.7">Major rotation</text>
+                        
+                        <text x="700" y="250" fill="#c44569" font-size="18">6</text>
+                        <text x="660" y="270" fill="#c44569" font-size="12" opacity="0.7">Minor rotation</text>
+                        
+                        <text x="400" y="450" text-anchor="middle" fill="#888" font-size="13">
+                            Energy spirals through the torus, inverting at ε
+                        </text>
+                    </g>
+                </svg>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot three"></div>
+                    <span>3 — Major circle (around torus)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot six"></div>
+                    <span>6 — Minor circle (around tube)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot helix"></div>
+                    <span>Combined = Helical twist</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot nine"></div>
+                    <span>9/ε — Inversion point</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step by step explanation -->
+        <div class="section">
+            <h2 class="section-title">The Process Step by Step</h2>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Two Simultaneous Rotations</h3>
+                    <p>The torus has two circles: the <strong style="color: var(--three-color);">major circle (3)</strong> 
+                    going around the whole donut, and the <strong style="color: var(--six-color);">minor circle (6)</strong> 
+                    going around the tube. Both happen at once.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>The Helical Path</h3>
+                    <p>When you combine both rotations, you don't get a simple circle — you get a 
+                    <strong>helix</strong> (spiral). Think of a spring wrapped around a donut. 
+                    The energy <em>twists</em> as it travels.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Approaching ε</h3>
+                    <p>As the helical flow approaches the center (the hole), it tightens. 
+                    The spiral compresses toward the inversion point. This is energy 
+                    <strong style="color: var(--three-color);">approaching 9</strong>.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>The Inversion at 9</h3>
+                    <p>At ε (9), the flow <strong style="color: var(--nine-color);">inverts</strong>. 
+                    What was going "in" now goes "out". What was clockwise becomes counterclockwise. 
+                    The twist reverses chirality.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3>Emerging Transformed</h3>
+                    <p>After inversion, the energy spirals outward with opposite handedness. 
+                    The <strong style="color: var(--six-color);">6 rotation</strong> now dominates 
+                    the expansion phase, carrying the inverted pattern.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3>The Cycle Completes</h3>
+                    <p>The flow returns to where it started, ready to spiral inward again. 
+                    <strong>3 + 6 = 9</strong>. The two rotations, combined through the inversion, 
+                    equal completion.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Visual comparison -->
+        <div class="section">
+            <h2 class="section-title">Why It Twists</h2>
+            
+            <div class="comparison">
+                <div class="comparison-item">
+                    <h4>❌ What People Think</h4>
+                    <svg viewBox="0 0 300 200" style="width: 100%; max-width: 300px;">
+                        <ellipse cx="150" cy="100" rx="120" ry="60" fill="none" stroke="#555" stroke-width="2"/>
+                        <!-- Simple circle path -->
+                        <circle cx="150" cy="100" r="80" fill="none" stroke="#4ecdc4" stroke-width="3" stroke-dasharray="10,5"/>
+                        <text x="150" y="180" text-anchor="middle" fill="#888" font-size="12">Single rotation (wrong)</text>
+                    </svg>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4>✓ What Actually Happens</h4>
+                    <svg viewBox="0 0 300 200" style="width: 100%; max-width: 300px;">
+                        <ellipse cx="150" cy="100" rx="120" ry="60" fill="none" stroke="#555" stroke-width="2"/>
+                        <!-- Helical path representation -->
+                        <path d="M30,100 
+                                 Q60,60 90,100 Q120,140 150,100 
+                                 Q180,60 210,100 Q240,140 270,100" 
+                              fill="none" stroke="url(#helixGrad)" stroke-width="3"/>
+                        <text x="150" y="180" text-anchor="middle" fill="#888" font-size="12">Helical twist (correct)</text>
+                        
+                        <defs>
+                            <linearGradient id="helixGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#4ecdc4"/>
+                                <stop offset="100%" stop-color="#c44569"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="formula-box">
+                <div class="formula-label">The combination of rotations:</div>
+                <div class="formula">3 (major) × 6 (minor) = 18 → 1+8 = 9</div>
+                <div class="formula">3 (major) + 6 (minor) = 9</div>
+                <div class="formula-label" style="margin-top: 1rem;">Whether multiplied or added, they always return to 9 — the inversion point</div>
+            </div>
+        </div>
+        
+        <!-- Physical analogies -->
+        <div class="section">
+            <h2 class="section-title">Physical Analogies</h2>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h3 style="color: var(--gold);">🌀 DNA Helix</h3>
+                    <p>DNA twists because it has two strands wrapping around each other. 
+                    The torus does the same thing — two rotations creating a twisted path.</p>
+                </div>
+                
+                <div class="step-card">
+                    <h3 style="color: var(--gold);">🌊 Water Down a Drain</h3>
+                    <p>Water spirals as it goes down because it's simultaneously rotating 
+                    (around the drain) and translating (toward the center). Same principle.</p>
+                </div>
+                
+                <div class="step-card">
+                    <h3 style="color: var(--gold);">🧲 Magnetic Field Lines</h3>
+                    <p>Magnetic fields around a wire don't just circle — they form helical patterns 
+                    when current flows. The 3-6 twist is electromagnetic geometry.</p>
+                </div>
+                
+                <div class="step-card">
+                    <h3 style="color: var(--gold);">🌌 Galaxy Spiral Arms</h3>
+                    <p>Galaxies don't just rotate — they have spiral structure because of 
+                    differential rotation. The same toroidal dynamics at cosmic scale.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-point">
+            <strong>Summary:</strong> The torus absolutely twists. The 3-rotation (major circle) 
+            and 6-rotation (minor circle) happen together, creating a helical flow that 
+            spirals toward ε, inverts, and spirals back out. This twist is why electromagnetic 
+            fields have chirality, why particles have spin, and why 3 + 6 always equals 9.
+        </div>
+        
+        <footer>
+            <p>The ε Framework — Energy doesn't just flow, it <em>twists</em> through the inversion.</p>
+        </footer>
+    </div>
+    
+    <script>
+        let animationSpeed = 1;
+        let isPaused = false;
+        let currentView = 'side';
+        let particles = [];
+        let animationFrame;
+        
+        // Initialize
+        function init() {
+            createHelixPath();
+            createParticles();
+            animate();
+        }
+        
+        // Create the helical path visualization
+        function createHelixPath() {
+            const helixGroup = document.getElementById('helixPath');
+            helixGroup.innerHTML = '';
+            
+            // Draw multiple helix coils
+            const numCoils = 4;
+            const pathPoints = [];
+            
+            for (let i = 0; i <= 360 * numCoils; i += 5) {
+                const t = i / (360 * numCoils); // 0 to 1
+                const angle = (i * Math.PI) / 180;
+                
+                // Major radius varies to show the torus shape
+                const majorRadius = 220;
+                const minorRadius = 80;
+                
+                // Position along major circle
+                const majorAngle = t * Math.PI * 2 * numCoils;
+                
+                // Helix: combines major and minor rotations
+                const x = 400 + (majorRadius - minorRadius * Math.cos(angle * 3)) * Math.cos(majorAngle / numCoils);
+                const y = 250 + minorRadius * Math.sin(angle * 3) * 0.5; // Compressed for side view
+                
+                pathPoints.push({x, y, t});
+            }
+            
+            // Create path
+            let pathD = `M ${pathPoints[0].x} ${pathPoints[0].y}`;
+            for (let i = 1; i < pathPoints.length; i++) {
+                pathD += ` L ${pathPoints[i].x} ${pathPoints[i].y}`;
+            }
+            
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', pathD);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'url(#helixGrad)');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('opacity', '0.6');
+            helixGroup.appendChild(path);
+        }
+        
+        // Create animated particles
+        function createParticles() {
+            const particlesGroup = document.getElementById('particles');
+            particlesGroup.innerHTML = '';
+            
+            particles = [];
+            const numParticles = 8;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                particle.setAttribute('r', '6');
+                particle.setAttribute('fill', '#fff');
+                particle.setAttribute('filter', 'url(#glow)');
+                particlesGroup.appendChild(particle);
+                
+                particles.push({
+                    element: particle,
+                    phase: (i / numParticles) * Math.PI * 2,
+                    speed: 0.02
+                });
+            }
+        }
+        
+        // Animation loop
+        function animate() {
+            if (!isPaused) {
+                const time = Date.now() * 0.001 * animationSpeed;
+                
+                particles.forEach((p, i) => {
+                    const t = ((time * p.speed + p.phase) % (Math.PI * 2)) / (Math.PI * 2);
+                    
+                    // Calculate helical position
+                    const majorAngle = t * Math.PI * 2;
+                    const minorAngle = t * Math.PI * 8; // More coils
+                    
+                    const majorRadius = 220;
+                    const minorRadius = 70;
+                    
+                    const x = 400 + (majorRadius - minorRadius * Math.cos(minorAngle)) * Math.cos(majorAngle);
+                    const y = 250 + minorRadius * Math.sin(minorAngle) * 0.4;
+                    
+                    p.element.setAttribute('cx', x);
+                    p.element.setAttribute('cy', y);
+                    
+                    // Color based on position (cyan near 3, gold at center, magenta near 6)
+                    const hue = t < 0.5 ? 
+                        170 + t * 2 * 30 : // cyan to gold
+                        50 - (t - 0.5) * 2 * 100; // gold to magenta
+                    
+                    // Pulse size near center (ε)
+                    const distFromCenter = Math.abs(x - 400);
+                    const scale = distFromCenter < 100 ? 1.5 : 1;
+                    p.element.setAttribute('r', 6 * scale);
+                    
+                    // Glow more at center
+                    const opacity = distFromCenter < 100 ? 1 : 0.7;
+                    p.element.setAttribute('opacity', opacity);
+                });
+            }
+            
+            animationFrame = requestAnimationFrame(animate);
+        }
+        
+        function setSpeed(value) {
+            animationSpeed = parseFloat(value);
+        }
+        
+        function togglePause() {
+            isPaused = !isPaused;
+            document.getElementById('pauseBtn').textContent = isPaused ? 'Play' : 'Pause';
+        }
+        
+        function setView(view) {
+            currentView = view;
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update visualization based on view
+            const svg = document.getElementById('mainSvg');
+            const torus = document.getElementById('torusOutline');
+            const labels = document.getElementById('labels');
+            
+            if (view === 'top') {
+                // Looking down at torus - see the hole
+                torus.innerHTML = `
+                    <circle cx="400" cy="250" r="280" fill="none" stroke="#333" stroke-width="2"/>
+                    <circle cx="400" cy="250" r="100" fill="rgba(255,215,0,0.1)" stroke="#ffd700" stroke-width="3"/>
+                `;
+            } else if (view === 'cutaway') {
+                // Cross section showing the twist inside
+                torus.innerHTML = `
+                    <ellipse cx="400" cy="250" rx="320" ry="150" fill="none" stroke="#333" stroke-width="2"/>
+                    <ellipse cx="400" cy="250" rx="120" ry="60" fill="rgba(255,215,0,0.05)" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                    <line x1="400" y1="100" x2="400" y2="400" stroke="#ffd700" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+                `;
+            } else {
+                // Side view (default)
+                torus.innerHTML = `
+                    <ellipse cx="400" cy="250" rx="320" ry="150" fill="none" stroke="#333" stroke-width="2"/>
+                    <ellipse cx="400" cy="250" rx="120" ry="60" fill="rgba(255,215,0,0.05)" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                `;
+            }
+        }
+        
+        // Start
+        init();
+    </script>
+</body>
+</html>
