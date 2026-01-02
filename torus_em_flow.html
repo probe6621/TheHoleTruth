@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EM Flow Through the Torus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            overflow: hidden;
+            font-family: system-ui, sans-serif;
+        }
+        
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 215, 0, 0.25);
+        }
+        
+        .title {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffd700;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            text-align: center;
+            z-index: 100;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            letter-spacing: 0.1em;
+        }
+        
+        .legend {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            z-index: 100;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .legend-dot.three { background: #4ecdc4; }
+        .legend-dot.six { background: #c44569; }
+        .legend-dot.nine { background: #ffd700; }
+    </style>
+</head>
+<body>
+    <div class="title">
+        EM FLOW THROUGH ε
+        <div class="subtitle">The Helical Twist</div>
+    </div>
+    
+    <div id="canvas-container"></div>
+    
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-dot three"></div>
+            <span>3 — Major rotation</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot six"></div>
+            <span>6 — Minor rotation</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot nine"></div>
+            <span>9 — Inversion (ε)</span>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button class="control-btn" onclick="toggleRotation()">Pause Rotation</button>
+        <button class="control-btn" onclick="toggleFlow()">Pause Flow</button>
+        <button class="control-btn" onclick="resetView()">Reset View</button>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Scene setup
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+        
+        // Camera position
+        camera.position.set(0, 3, 6);
+        camera.lookAt(0, 0, 0);
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+        scene.add(ambientLight);
+        
+        const pointLight1 = new THREE.PointLight(0xffd700, 1, 100);
+        pointLight1.position.set(5, 5, 5);
+        scene.add(pointLight1);
+        
+        const pointLight2 = new THREE.PointLight(0x4ecdc4, 0.5, 100);
+        pointLight2.position.set(-5, -5, 5);
+        scene.add(pointLight2);
+        
+        // Torus geometry
+        const torusGeometry = new THREE.TorusGeometry(2, 0.7, 32, 100);
+        const torusMaterial = new THREE.MeshPhongMaterial({
+            color: 0x1a1a2e,
+            transparent: true,
+            opacity: 0.6,
+            side: THREE.DoubleSide,
+            shininess: 30
+        });
+        const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+        scene.add(torus);
+        
+        // Wireframe overlay
+        const wireframeMaterial = new THREE.MeshBasicMaterial({
+            color: 0x4ecdc4,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const torusWireframe = new THREE.Mesh(torusGeometry, wireframeMaterial);
+        scene.add(torusWireframe);
+        
+        // Center glow (ε)
+        const centerGeometry = new THREE.SphereGeometry(0.15, 32, 32);
+        const centerMaterial = new THREE.MeshBasicMaterial({
+            color: 0xffd700,
+            transparent: true,
+            opacity: 0.9
+        });
+        const centerSphere = new THREE.Mesh(centerGeometry, centerMaterial);
+        scene.add(centerSphere);
+        
+        // Center glow halo
+        const haloGeometry = new THREE.RingGeometry(0.3, 0.8, 32);
+        const haloMaterial = new THREE.MeshBasicMaterial({
+            color: 0xffd700,
+            transparent: true,
+            opacity: 0.2,
+            side: THREE.DoubleSide
+        });
+        const halo = new THREE.Mesh(haloGeometry, haloMaterial);
+        scene.add(halo);
+        
+        // Flowing particles
+        const particles = [];
+        const numParticles = 120;
+        const particleGeometry = new THREE.SphereGeometry(0.06, 8, 8);
+        
+        for (let i = 0; i < numParticles; i++) {
+            const phase = (i / numParticles) * Math.PI * 2;
+            const stream = Math.floor(i / (numParticles / 4)); // 4 streams
+            
+            // Gradient color based on position in stream
+            const colorPhase = (i % (numParticles / 4)) / (numParticles / 4);
+            let color;
+            if (colorPhase < 0.33) {
+                color = new THREE.Color(0x4ecdc4); // Cyan (3)
+            } else if (colorPhase < 0.66) {
+                color = new THREE.Color(0xffd700); // Gold (9 - center)
+            } else {
+                color = new THREE.Color(0xc44569); // Magenta (6)
+            }
+            
+            const particleMaterial = new THREE.MeshBasicMaterial({
+                color: color,
+                transparent: true,
+                opacity: 0.9
+            });
+            
+            const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+            particle.userData = {
+                phase: phase,
+                stream: stream,
+                speed: 0.015 + Math.random() * 0.005,
+                colorPhase: colorPhase
+            };
+            
+            particles.push(particle);
+            scene.add(particle);
+        }
+        
+        // Trail lines (helical paths)
+        const trailMaterial = new THREE.LineBasicMaterial({
+            color: 0x4ecdc4,
+            transparent: true,
+            opacity: 0.2
+        });
+        
+        // Create helical path visualization
+        for (let stream = 0; stream < 4; stream++) {
+            const trailPoints = [];
+            const streamOffset = (stream / 4) * Math.PI * 2;
+            
+            for (let i = 0; i <= 200; i++) {
+                const t = (i / 200) * Math.PI * 2;
+                const majorAngle = t + streamOffset;
+                const minorAngle = t * 6; // 6 twists per revolution
+                
+                const R = 2; // Major radius
+                const r = 0.7; // Minor radius
+                
+                const x = (R + r * Math.cos(minorAngle)) * Math.cos(majorAngle);
+                const y = r * Math.sin(minorAngle);
+                const z = (R + r * Math.cos(minorAngle)) * Math.sin(majorAngle);
+                
+                trailPoints.push(new THREE.Vector3(x, y, z));
+            }
+            
+            const trailGeometry = new THREE.BufferGeometry().setFromPoints(trailPoints);
+            const trail = new THREE.Line(trailGeometry, trailMaterial);
+            scene.add(trail);
+        }
+        
+        // Animation state
+        let rotationEnabled = true;
+        let flowEnabled = true;
+        let time = 0;
+        
+        // Mouse interaction for camera
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        });
+        
+        // Touch support
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+                mouseY = (e.touches[0].clientY / window.innerHeight) * 2 - 1;
+            }
+        });
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            time += 0.016;
+            
+            // Rotate torus
+            if (rotationEnabled) {
+                torus.rotation.x += 0.002;
+                torus.rotation.y += 0.004;
+                torusWireframe.rotation.x = torus.rotation.x;
+                torusWireframe.rotation.y = torus.rotation.y;
+            }
+            
+            // Camera follows mouse slightly
+            targetRotationX = mouseY * 0.3;
+            targetRotationY = mouseX * 0.5;
+            camera.position.x += (Math.sin(targetRotationY) * 6 - camera.position.x) * 0.02;
+            camera.position.y += (3 + targetRotationX * 2 - camera.position.y) * 0.02;
+            camera.lookAt(0, 0, 0);
+            
+            // Animate particles along helical paths
+            if (flowEnabled) {
+                particles.forEach((particle, i) => {
+                    const data = particle.userData;
+                    const t = (time * data.speed + data.phase) % (Math.PI * 2);
+                    const streamOffset = (data.stream / 4) * Math.PI * 2;
+                    
+                    const majorAngle = t + streamOffset;
+                    const minorAngle = t * 6; // 6 twists = "6" rotation
+                    
+                    const R = 2;
+                    const r = 0.7;
+                    
+                    // Apply torus rotation to particle positions
+                    let x = (R + r * Math.cos(minorAngle)) * Math.cos(majorAngle);
+                    let y = r * Math.sin(minorAngle);
+                    let z = (R + r * Math.cos(minorAngle)) * Math.sin(majorAngle);
+                    
+                    // Rotate with torus
+                    const rotX = torus.rotation.x;
+                    const rotY = torus.rotation.y;
+                    
+                    // Apply Y rotation
+                    const x1 = x * Math.cos(rotY) - z * Math.sin(rotY);
+                    const z1 = x * Math.sin(rotY) + z * Math.cos(rotY);
+                    
+                    // Apply X rotation
+                    const y2 = y * Math.cos(rotX) - z1 * Math.sin(rotX);
+                    const z2 = y * Math.sin(rotX) + z1 * Math.cos(rotX);
+                    
+                    particle.position.set(x1, y2, z2);
+                    
+                    // Color gradient based on position (approaching/leaving center)
+                    const distFromInner = Math.abs(Math.cos(minorAngle));
+                    if (distFromInner < 0.3) {
+                        // Near the inner edge (passing through center) - gold
+                        particle.material.color.setHex(0xffd700);
+                        particle.scale.setScalar(1.5);
+                    } else if (Math.sin(majorAngle) > 0) {
+                        // "3" side - cyan
+                        particle.material.color.setHex(0x4ecdc4);
+                        particle.scale.setScalar(1);
+                    } else {
+                        // "6" side - magenta
+                        particle.material.color.setHex(0xc44569);
+                        particle.scale.setScalar(1);
+                    }
+                });
+            }
+            
+            // Pulse center
+            const pulse = 0.8 + Math.sin(time * 3) * 0.2;
+            centerSphere.scale.setScalar(pulse);
+            halo.rotation.z = time * 0.5;
+            halo.scale.setScalar(0.8 + Math.sin(time * 2) * 0.1);
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Control functions
+        function toggleRotation() {
+            rotationEnabled = !rotationEnabled;
+            event.target.textContent = rotationEnabled ? 'Pause Rotation' : 'Resume Rotation';
+        }
+        
+        function toggleFlow() {
+            flowEnabled = !flowEnabled;
+            event.target.textContent = flowEnabled ? 'Pause Flow' : 'Resume Flow';
+        }
+        
+        function resetView() {
+            torus.rotation.set(0, 0, 0);
+            torusWireframe.rotation.set(0, 0, 0);
+            camera.position.set(0, 3, 6);
+        }
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Start
+        animate();
+    </script>
+</body>
+</html>
