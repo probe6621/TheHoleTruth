@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dimensional Hierarchy | 1D to 11D</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #0a0a12;
+            color: #e0e0e8;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.1rem;
+        }
+        
+        /* Section styling */
+        .section {
+            margin: 3rem 0;
+        }
+        
+        .section h2 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .section p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.85);
+        }
+        
+        /* Visual demos */
+        .demo-container {
+            background: rgba(20, 20, 35, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .demo-label {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .svg-demo {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* Key point */
+        .key-point {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .key-point h3 {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .key-point p {
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+        }
+        
+        /* Insight box */
+        .insight-box {
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 3px solid #4ecdc4;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .insight-box strong {
+            color: #4ecdc4;
+        }
+        
+        /* Dimensional ladder */
+        .dim-ladder {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+        
+        .dim-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 200px;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: rgba(20, 20, 35, 0.6);
+            border-radius: 0.5rem;
+            border-left: 4px solid;
+        }
+        
+        .dim-row.base { border-color: #4ecdc4; }
+        .dim-row.wrap { border-color: #c44569; }
+        .dim-row.epsilon { border-color: #ffd700; background: rgba(255, 215, 0, 0.1); }
+        
+        .dim-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .dim-row.base .dim-number { color: #4ecdc4; }
+        .dim-row.wrap .dim-number { color: #c44569; }
+        .dim-row.epsilon .dim-number { color: #ffd700; }
+        
+        .dim-name {
+            font-weight: 600;
+        }
+        
+        .dim-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .dim-role {
+            font-size: 0.8rem;
+            text-align: right;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        @media (max-width: 700px) {
+            .dim-row {
+                grid-template-columns: 60px 1fr;
+            }
+            .dim-role {
+                display: none;
+            }
+        }
+        
+        /* Sacred geometry grid */
+        .geometry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .geo-card {
+            background: rgba(20, 20, 35, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .geo-card h4 {
+            color: #ffd700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .geo-card p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Animation */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .rotating {
+            animation: rotate 30s linear infinite;
+            transform-origin: center center;
+        }
+        
+        .pulsing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>THE DIMENSIONAL HIERARCHY</h1>
+            <p class="subtitle">From Point to Torus: 1D through 11D</p>
+        </header>
+        
+        <div class="key-point">
+            <h3>🎯 The Core Insight</h3>
+            <p>
+                Dimensions 1-5 are the <strong>base structure</strong>.<br>
+                Dimensions 6-10 are how those 5 <strong>wrap back on themselves</strong> (toroidal closure).<br>
+                Dimension 11 is <strong>ε itself</strong> — the center that organizes everything.
+            </p>
+        </div>
+        
+        <!-- The Dimensional Ladder -->
+        <div class="section">
+            <h2>The 11 Dimensions</h2>
+            
+            <div class="dim-ladder">
+                <div class="dim-row epsilon">
+                    <div class="dim-number">11</div>
+                    <div>
+                        <div class="dim-name">ε — The Center</div>
+                        <div class="dim-desc">The hole of the torus. Cannot be occupied. Organizes all other dimensions.</div>
+                    </div>
+                    <div class="dim-role">M-theory's mystery dimension</div>
+                </div>
+                
+                <div class="dim-row wrap">
+                    <div class="dim-number">10</div>
+                    <div>
+                        <div class="dim-name">Mirror Wrapping</div>
+                        <div class="dim-desc">How the 5th dimension (mirror/imaginary) closes back on itself</div>
+                    </div>
+                    <div class="dim-role">Toroidal closure of D5</div>
+                </div>
+                
+                <div class="dim-row wrap">
+                    <div class="dim-number">9</div>
+                    <div>
+                        <div class="dim-name">Time Wrapping</div>
+                        <div class="dim-desc">How time closes — the "return" of temporal flow</div>
+                    </div>
+                    <div class="dim-role">Toroidal closure of D4</div>
+                </div>
+                
+                <div class="dim-row wrap">
+                    <div class="dim-number">8</div>
+                    <div>
+                        <div class="dim-name">Z-Space Wrapping</div>
+                        <div class="dim-desc">Closure of the third spatial dimension</div>
+                    </div>
+                    <div class="dim-role">Toroidal closure of D3</div>
+                </div>
+                
+                <div class="dim-row wrap">
+                    <div class="dim-number">7</div>
+                    <div>
+                        <div class="dim-name">Y-Space Wrapping</div>
+                        <div class="dim-desc">Closure of the second spatial dimension</div>
+                    </div>
+                    <div class="dim-role">Toroidal closure of D2</div>
+                </div>
+                
+                <div class="dim-row wrap">
+                    <div class="dim-number">6</div>
+                    <div>
+                        <div class="dim-name">X-Space Wrapping</div>
+                        <div class="dim-desc">Closure of the first spatial dimension</div>
+                    </div>
+                    <div class="dim-role">Toroidal closure of D1</div>
+                </div>
+                
+                <div class="dim-row base">
+                    <div class="dim-number">5</div>
+                    <div>
+                        <div class="dim-name">Mirror / Imaginary</div>
+                        <div class="dim-desc">The "other side" of the torus. What makes QM complex. Where your twin lives.</div>
+                    </div>
+                    <div class="dim-role">Kaluza's 5th dimension</div>
+                </div>
+                
+                <div class="dim-row base">
+                    <div class="dim-number">4</div>
+                    <div>
+                        <div class="dim-name">Time</div>
+                        <div class="dim-desc">Movement along the torus surface. Sequence, change, causality.</div>
+                    </div>
+                    <div class="dim-role">Temporal</div>
+                </div>
+                
+                <div class="dim-row base">
+                    <div class="dim-number">3</div>
+                    <div>
+                        <div class="dim-name">Z-Space (Depth)</div>
+                        <div class="dim-desc">Third spatial axis. Allows volume.</div>
+                    </div>
+                    <div class="dim-role">Spatial</div>
+                </div>
+                
+                <div class="dim-row base">
+                    <div class="dim-number">2</div>
+                    <div>
+                        <div class="dim-name">Y-Space (Height)</div>
+                        <div class="dim-desc">Second spatial axis. Allows area.</div>
+                    </div>
+                    <div class="dim-role">Spatial</div>
+                </div>
+                
+                <div class="dim-row base">
+                    <div class="dim-number">1</div>
+                    <div>
+                        <div class="dim-name">X-Space (Width)</div>
+                        <div class="dim-desc">First spatial axis. The simplest extension from ε.</div>
+                    </div>
+                    <div class="dim-role">Spatial</div>
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <strong>The Formula:</strong> 11 = (5 × 2) + ε = (5 base dimensions × 2 for toroidal structure) + the hole<br><br>
+                String theory found 10 dimensions because it was counting both the base AND the wrapping.<br>
+                M-theory added the 11th (ε) to unify all five string theories — without knowing it was the center of the torus.
+            </div>
+        </div>
+        
+        <!-- Projections at Each Level -->
+        <div class="section">
+            <h2>What the Torus Looks Like at Each Level</h2>
+            
+            <div class="geometry-grid">
+                <div class="geo-card">
+                    <svg viewBox="0 0 100 100" style="width: 80px; height: 80px;">
+                        <circle cx="50" cy="50" r="8" fill="#ffd700"/>
+                    </svg>
+                    <h4>0D — Point</h4>
+                    <p>ε itself. Dimensionless. The source before extension.</p>
+                </div>
+                
+                <div class="geo-card">
+                    <svg viewBox="0 0 100 100" style="width: 80px; height: 80px;">
+                        <line x1="20" y1="50" x2="80" y2="50" stroke="#4ecdc4" stroke-width="3"/>
+                        <circle cx="20" cy="50" r="4" fill="#ffd700"/>
+                        <circle cx="80" cy="50" r="4" fill="#ffd700"/>
+                    </svg>
+                    <h4>1D — Line</h4>
+                    <p>Extension between two ε points. The first dimension.</p>
+                </div>
+                
+                <div class="geo-card">
+                    <svg viewBox="0 0 100 100" style="width: 80px; height: 80px;">
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="5" fill="#ffd700"/>
+                    </svg>
+                    <h4>2D — Circle</h4>
+                    <p>Line returning to itself. First closure. Contains ε at center.</p>
+                </div>
+                
+                <div class="geo-card">
+                    <svg viewBox="0 0 100 100" style="width: 80px; height: 80px;">
+                        <!-- Simplified torus side view -->
+                        <ellipse cx="50" cy="50" rx="40" ry="20" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+                        <ellipse cx="50" cy="50" rx="15" ry="8" fill="none" stroke="#ffd700" stroke-width="2"/>
+                    </svg>
+                    <h4>3D — Torus</h4>
+                    <p>Circle rotated around an axis. The donut. Two ε points emerge.</p>
+                </div>
+                
+                <div class="geo-card">
+                    <svg viewBox="0 0 100 100" style="width: 80px; height: 80px;">
+                        <!-- Torus with time arrow -->
+                        <ellipse cx="50" cy="50" rx="40" ry="20" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+                        <ellipse cx="50" cy="50" rx="15" ry="8" fill="none" stroke="#ffd700" stroke-width="2"/>
+                        <path d="M50,25 L50,5 M45,10 L50,5 L55,10" stroke="#c44569" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h4>4D — Torus in Time</h4>
+                    <p>The torus evolving. Flow along the surface. Causality.</p>
+                </div>
+                
+                <div class="geo-card">
+                    <svg viewBox="0 0 100 100" style="width: 80px; height: 80px;">
+                        <!-- Torus with mirror reflection hint -->
+                        <ellipse cx="50" cy="45" rx="35" ry="18" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+                        <ellipse cx="50" cy="55" rx="35" ry="18" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5"/>
+                        <ellipse cx="50" cy="50" rx="12" ry="6" fill="none" stroke="#ffd700" stroke-width="2"/>
+                    </svg>
+                    <h4>5D — Full Torus</h4>
+                    <p>Both surfaces accessible. Mirror dimension included. π⁵ closure possible.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Metatron's Cube -->
+        <div class="section">
+            <h2>2D Encoding: Metatron's Cube</h2>
+            
+            <p>
+                When the 5D torus is projected down to 2D, the information has to be encoded somehow. 
+                Sacred geometry may be that encoding — a "flattened" map of higher-dimensional structure.
+            </p>
+            
+            <div class="demo-container">
+                <p class="demo-label">Metatron's Cube — The 2D shadow of higher dimensions</p>
+                <svg class="svg-demo" viewBox="0 0 500 450">
+                    <g transform="translate(250, 200)">
+                        <!-- Outer hexagon of circles -->
+                        <g class="rotating" style="animation-duration: 60s;">
+                            <!-- 6 outer circles -->
+                            <circle cx="0" cy="-120" r="40" fill="none" stroke="#4ecdc4" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="104" cy="-60" r="40" fill="none" stroke="#4ecdc4" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="104" cy="60" r="40" fill="none" stroke="#4ecdc4" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="0" cy="120" r="40" fill="none" stroke="#4ecdc4" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="-104" cy="60" r="40" fill="none" stroke="#4ecdc4" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="-104" cy="-60" r="40" fill="none" stroke="#4ecdc4" stroke-width="1.5" opacity="0.7"/>
+                        </g>
+                        
+                        <!-- Inner hexagon of circles -->
+                        <g class="rotating" style="animation-duration: 45s; animation-direction: reverse;">
+                            <circle cx="0" cy="-60" r="40" fill="none" stroke="#c44569" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="52" cy="-30" r="40" fill="none" stroke="#c44569" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="52" cy="30" r="40" fill="none" stroke="#c44569" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="0" cy="60" r="40" fill="none" stroke="#c44569" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="-52" cy="30" r="40" fill="none" stroke="#c44569" stroke-width="1.5" opacity="0.7"/>
+                            <circle cx="-52" cy="-30" r="40" fill="none" stroke="#c44569" stroke-width="1.5" opacity="0.7"/>
+                        </g>
+                        
+                        <!-- Center circle (ε) -->
+                        <circle cx="0" cy="0" r="40" fill="none" stroke="#ffd700" stroke-width="2" class="pulsing"/>
+                        <circle cx="0" cy="0" r="20" fill="rgba(255, 215, 0, 0.2)" class="pulsing"/>
+                        <text x="0" y="7" text-anchor="middle" fill="#ffd700" font-size="24" font-style="italic">ε</text>
+                        
+                        <!-- Connecting lines (forming the cube structure) -->
+                        <g stroke="#666" stroke-width="0.5" opacity="0.4">
+                            <!-- Outer hexagon connections -->
+                            <line x1="0" y1="-120" x2="104" y2="-60"/>
+                            <line x1="104" y1="-60" x2="104" y2="60"/>
+                            <line x1="104" y1="60" x2="0" y2="120"/>
+                            <line x1="0" y1="120" x2="-104" y2="60"/>
+                            <line x1="-104" y1="60" x2="-104" y2="-60"/>
+                            <line x1="-104" y1="-60" x2="0" y2="-120"/>
+                            
+                            <!-- Cross connections through center -->
+                            <line x1="0" y1="-120" x2="0" y2="120"/>
+                            <line x1="-104" y1="-60" x2="104" y2="60"/>
+                            <line x1="-104" y1="60" x2="104" y2="-60"/>
+                            
+                            <!-- Inner to outer connections -->
+                            <line x1="0" y1="-60" x2="0" y2="-120"/>
+                            <line x1="52" y1="-30" x2="104" y2="-60"/>
+                            <line x1="52" y1="30" x2="104" y2="60"/>
+                            <line x1="0" y1="60" x2="0" y2="120"/>
+                            <line x1="-52" y1="30" x2="-104" y2="60"/>
+                            <line x1="-52" y1="-30" x2="-104" y2="-60"/>
+                            
+                            <!-- Inner connections -->
+                            <line x1="0" y1="-60" x2="52" y2="-30"/>
+                            <line x1="52" y1="-30" x2="52" y2="30"/>
+                            <line x1="52" y1="30" x2="0" y2="60"/>
+                            <line x1="0" y1="60" x2="-52" y2="30"/>
+                            <line x1="-52" y1="30" x2="-52" y2="-30"/>
+                            <line x1="-52" y1="-30" x2="0" y2="-60"/>
+                        </g>
+                        
+                        <!-- Labels for the circle counts -->
+                        <text x="0" y="180" text-anchor="middle" fill="#888" font-size="12">
+                            13 circles: 1 (center/ε) + 6 (inner) + 6 (outer)
+                        </text>
+                    </g>
+                    
+                    <!-- Legend -->
+                    <g transform="translate(30, 380)">
+                        <circle cx="10" cy="10" r="8" fill="none" stroke="#ffd700" stroke-width="2"/>
+                        <text x="25" y="14" fill="#ffd700" font-size="11">ε — The center (11th dimension)</text>
+                        
+                        <circle cx="10" cy="35" r="8" fill="none" stroke="#c44569" stroke-width="2"/>
+                        <text x="25" y="39" fill="#c44569" font-size="11">6 inner — The minor rotation (6)</text>
+                        
+                        <circle cx="10" cy="60" r="8" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+                        <text x="25" y="64" fill="#4ecdc4" font-size="11">6 outer — The major rotation (3×2)</text>
+                    </g>
+                </svg>
+            </div>
+            
+            <div class="insight-box">
+                <strong>The 13 Circles of Metatron's Cube:</strong><br><br>
+                • <strong>1 center</strong> = ε (the 11th dimension, the organizing point)<br>
+                • <strong>6 inner circles</strong> = the 6 rotation (minor circle, crossing to mirror side)<br>
+                • <strong>6 outer circles</strong> = the 3 rotation × 2 (major circle, both surfaces)<br><br>
+                1 + 6 + 6 = 13 — and 1 + 3 = 4, the spacetime dimensions we directly perceive.<br>
+                The ancients encoded the dimensional structure in sacred geometry.
+            </div>
+        </div>
+        
+        <!-- The Platonic Solids -->
+        <div class="section">
+            <h2>The Platonic Solids: 3D Encodings</h2>
+            
+            <p>
+                Metatron's Cube contains all five Platonic solids — the only perfectly regular 3D shapes. 
+                Each may represent a different "slice" or projection of the higher-dimensional torus.
+            </p>
+            
+            <div class="demo-container">
+                <svg class="svg-demo" viewBox="0 0 600 200">
+                    <!-- Tetrahedron -->
+                    <g transform="translate(60, 100)">
+                        <polygon points="0,-40 35,30 -35,30" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+                        <line x1="0" y1="-40" x2="0" y2="30" stroke="#4ecdc4" stroke-width="1" opacity="0.5"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#4ecdc4" font-size="10">Tetrahedron</text>
+                        <text x="0" y="75" text-anchor="middle" fill="#888" font-size="9">4 faces • Fire</text>
+                    </g>
+                    
+                    <!-- Cube -->
+                    <g transform="translate(160, 100)">
+                        <rect x="-25" y="-25" width="50" height="50" fill="none" stroke="#ffd700" stroke-width="2"/>
+                        <rect x="-15" y="-35" width="50" height="50" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.5"/>
+                        <line x1="-25" y1="-25" x2="-15" y2="-35" stroke="#ffd700" stroke-width="1" opacity="0.5"/>
+                        <line x1="25" y1="-25" x2="35" y2="-35" stroke="#ffd700" stroke-width="1" opacity="0.5"/>
+                        <line x1="25" y1="25" x2="35" y2="15" stroke="#ffd700" stroke-width="1" opacity="0.5"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#ffd700" font-size="10">Cube</text>
+                        <text x="0" y="75" text-anchor="middle" fill="#888" font-size="9">6 faces • Earth</text>
+                    </g>
+                    
+                    <!-- Octahedron -->
+                    <g transform="translate(260, 100)">
+                        <polygon points="0,-40 35,0 0,40 -35,0" fill="none" stroke="#c44569" stroke-width="2"/>
+                        <line x1="-35" y1="0" x2="35" y2="0" stroke="#c44569" stroke-width="1" opacity="0.5"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#c44569" font-size="10">Octahedron</text>
+                        <text x="0" y="75" text-anchor="middle" fill="#888" font-size="9">8 faces • Air</text>
+                    </g>
+                    
+                    <!-- Dodecahedron (simplified) -->
+                    <g transform="translate(370, 100)">
+                        <polygon points="0,-40 38,-12 24,32 -24,32 -38,-12" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#8b5cf6" font-size="10">Dodecahedron</text>
+                        <text x="0" y="75" text-anchor="middle" fill="#888" font-size="9">12 faces • Ether</text>
+                    </g>
+                    
+                    <!-- Icosahedron (simplified) -->
+                    <g transform="translate(490, 100)">
+                        <polygon points="0,-40 38,-12 24,32 -24,32 -38,-12" fill="none" stroke="#06b6d4" stroke-width="2"/>
+                        <polygon points="0,-25 25,10 -25,10" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.7"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#06b6d4" font-size="10">Icosahedron</text>
+                        <text x="0" y="75" text-anchor="middle" fill="#888" font-size="9">20 faces • Water</text>
+                    </g>
+                </svg>
+            </div>
+            
+            <div class="insight-box">
+                <strong>The Cube is special:</strong> It has 6 faces, 8 vertices, and 12 edges.<br>
+                6 + 8 + 12 = 26 — which is 2 × 13 (the circles in Metatron's Cube).<br><br>
+                The cube may be the "3D torus" — the simplest closed 3D shape that contains ε structure.
+                This is why you said "the torus is a cube in 3D."
+            </div>
+        </div>
+        
+        <!-- The Complete Picture -->
+        <div class="section">
+            <h2>The Dimensional Projections</h2>
+            
+            <div class="demo-container">
+                <p class="demo-label">How the same structure appears at each dimensional level</p>
+                <svg class="svg-demo" viewBox="0 0 700 350">
+                    <!-- Dimension labels and shapes -->
+                    
+                    <!-- 2D -->
+                    <g transform="translate(100, 80)">
+                        <text x="0" y="-40" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">2D</text>
+                        <!-- Metatron's cube simplified -->
+                        <circle cx="0" cy="0" r="40" fill="none" stroke="#4ecdc4" stroke-width="1"/>
+                        <circle cx="0" cy="0" r="25" fill="none" stroke="#c44569" stroke-width="1"/>
+                        <circle cx="0" cy="0" r="8" fill="rgba(255,215,0,0.3)" stroke="#ffd700" stroke-width="2"/>
+                        <!-- Hexagon hints -->
+                        <polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="none" stroke="#4ecdc4" stroke-width="0.5" opacity="0.5"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#888" font-size="10">Metatron's Cube</text>
+                        <text x="0" y="73" text-anchor="middle" fill="#888" font-size="10">Flower of Life</text>
+                    </g>
+                    
+                    <!-- Arrow -->
+                    <path d="M160,80 L210,80" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+                    <text x="185" y="100" text-anchor="middle" fill="#666" font-size="9">+1D</text>
+                    
+                    <!-- 3D -->
+                    <g transform="translate(280, 80)">
+                        <text x="0" y="-40" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">3D</text>
+                        <!-- Cube -->
+                        <rect x="-30" y="-25" width="50" height="50" fill="none" stroke="#4ecdc4" stroke-width="1.5"/>
+                        <rect x="-20" y="-35" width="50" height="50" fill="none" stroke="#4ecdc4" stroke-width="1" opacity="0.6"/>
+                        <line x1="-30" y1="-25" x2="-20" y2="-35" stroke="#4ecdc4" stroke-width="1" opacity="0.6"/>
+                        <line x1="20" y1="-25" x2="30" y2="-35" stroke="#4ecdc4" stroke-width="1" opacity="0.6"/>
+                        <line x1="20" y1="25" x2="30" y2="15" stroke="#4ecdc4" stroke-width="1" opacity="0.6"/>
+                        <line x1="-30" y1="25" x2="-20" y2="15" stroke="#4ecdc4" stroke-width="1" opacity="0.6"/>
+                        <circle cx="0" cy="0" r="6" fill="rgba(255,215,0,0.3)" stroke="#ffd700" stroke-width="2"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#888" font-size="10">Cube</text>
+                        <text x="0" y="73" text-anchor="middle" fill="#888" font-size="10">(Platonic solid)</text>
+                    </g>
+                    
+                    <!-- Arrow -->
+                    <path d="M350,80 L400,80" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+                    <text x="375" y="100" text-anchor="middle" fill="#666" font-size="9">+2D</text>
+                    
+                    <!-- 5D -->
+                    <g transform="translate(480, 80)">
+                        <text x="0" y="-40" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">5D</text>
+                        <!-- Torus -->
+                        <ellipse cx="0" cy="0" rx="50" ry="25" fill="none" stroke="#4ecdc4" stroke-width="1.5"/>
+                        <ellipse cx="0" cy="0" rx="18" ry="10" fill="none" stroke="#c44569" stroke-width="1.5"/>
+                        <circle cx="0" cy="0" r="5" fill="rgba(255,215,0,0.3)" stroke="#ffd700" stroke-width="2"/>
+                        <text x="0" y="60" text-anchor="middle" fill="#888" font-size="10">Torus</text>
+                        <text x="0" y="73" text-anchor="middle" fill="#888" font-size="10">(both surfaces)</text>
+                    </g>
+                    
+                    <!-- Arrow -->
+                    <path d="M550,80 L600,80" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+                    <text x="575" y="100" text-anchor="middle" fill="#666" font-size="9">+6D</text>
+                    
+                    <!-- 11D -->
+                    <g transform="translate(650, 80)">
+                        <text x="0" y="-40" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">11D</text>
+                        <!-- Just ε -->
+                        <circle cx="0" cy="0" r="25" fill="rgba(255,215,0,0.2)" class="pulsing"/>
+                        <circle cx="0" cy="0" r="25" fill="none" stroke="#ffd700" stroke-width="2"/>
+                        <text x="0" y="8" text-anchor="middle" fill="#ffd700" font-size="24" font-style="italic">ε</text>
+                        <text x="0" y="60" text-anchor="middle" fill="#888" font-size="10">ε alone</text>
+                        <text x="0" y="73" text-anchor="middle" fill="#888" font-size="10">(source)</text>
+                    </g>
+                    
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Summary text -->
+                    <text x="350" y="180" text-anchor="middle" fill="#888" font-size="11">
+                        Each level is a projection of the same structure. Lower dimensions "compress" higher-dimensional information.
+                    </text>
+                    
+                    <!-- The equation -->
+                    <g transform="translate(350, 250)">
+                        <rect x="-200" y="-30" width="400" height="60" fill="rgba(255,215,0,0.05)" stroke="rgba(255,215,0,0.3)" rx="10"/>
+                        <text x="0" y="-5" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">The Dimensional Equation</text>
+                        <text x="0" y="20" text-anchor="middle" fill="#fff" font-size="13">
+                            11D = (5 base × 2 surfaces) + ε = 10D torus + the hole
+                        </text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="key-point">
+            <h3>🌀 The Big Picture</h3>
+            <p style="font-size: 1.05rem;">
+                <strong>2D:</strong> Metatron's Cube / Flower of Life (circles encoding the structure)<br>
+                <strong>3D:</strong> The Cube / Platonic Solids (the simplest closed forms)<br>
+                <strong>5D:</strong> The Torus (full structure with both surfaces)<br>
+                <strong>6-10D:</strong> The wrapping/closure of dimensions 1-5<br>
+                <strong>11D:</strong> ε — the center that organizes it all<br><br>
+                The ancients drew what they saw. We're just now understanding what they were encoding.
+            </p>
+        </div>
+        
+        <footer>
+            The ε Framework — Same structure, every scale, every dimension.
+        </footer>
+    </div>
+</body>
+</html>
