@@ -401,6 +401,132 @@
             stroke: rgba(167, 139, 250, 0.6);
         }
         
+        /* Provocative Hooks Section */
+        .hooks-section {
+            padding: 80px 40px 100px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 20, 0.95) 30%);
+            text-align: center;
+        }
+        
+        .hooks-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.3em;
+            margin-bottom: 50px;
+        }
+        
+        .hooks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .hook-link {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.05em;
+        }
+        
+        .hook-link:hover {
+            color: #c4b5fd;
+            text-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
+            transform: scale(1.02);
+        }
+        
+        .hook-link::after {
+            content: '→';
+            position: absolute;
+            right: 20px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .hook-link:hover::after {
+            opacity: 0.6;
+            transform: translateX(0);
+        }
+        
+        /* Market Behavior Featured Section */
+        .market-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(0, 60, 50, 0.4) 0%, rgba(10, 30, 40, 0.6) 100%);
+            border-top: 1px solid rgba(0, 200, 180, 0.2);
+            border-bottom: 1px solid rgba(0, 200, 180, 0.2);
+        }
+        
+        .market-card {
+            max-width: 900px;
+            margin: 0 auto;
+            display: block;
+            text-decoration: none;
+            padding: 50px;
+            background: rgba(0, 40, 35, 0.4);
+            border: 2px solid rgba(0, 220, 180, 0.4);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .market-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 200, 0.6);
+            box-shadow: 0 20px 60px rgba(0, 150, 120, 0.3);
+        }
+        
+        .market-card .badge {
+            display: inline-block;
+            background: rgba(0, 200, 180, 0.2);
+            border: 1px solid rgba(0, 220, 180, 0.5);
+            color: #00ffcc;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 25px;
+        }
+        
+        .market-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+        
+        .market-card p {
+            font-size: 1.1rem;
+            color: #88ccbb;
+            max-width: 600px;
+            margin: 0 auto 25px;
+            line-height: 1.7;
+        }
+        
+        .market-card .cta {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(0, 200, 180, 0.15);
+            border: 1px solid rgba(0, 220, 180, 0.5);
+            border-radius: 30px;
+            color: #00ffcc;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .market-card:hover .cta {
+            background: rgba(0, 200, 180, 0.25);
+        }
+        
         /* Preview Cards Section */
         .preview-section {
             padding: 100px 40px;
@@ -667,12 +793,24 @@
                 <div class="search-results" id="search-results"></div>
             </div>
             
-            <a href="#preview-section" class="scroll-indicator" style="text-decoration: none;">
+            <a href="#hooks-section" class="scroll-indicator" style="text-decoration: none;">
                 <span>DISCOVER MORE</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M19 12l-7 7-7-7"/>
                 </svg>
             </a>
+        </section>
+        
+        <!-- Provocative Hooks Section -->
+        <section class="hooks-section" id="hooks-section">
+            <h2>WHAT ELSE DOES THIS EXPLAIN?</h2>
+            <div class="hooks-list">
+                <a href="/special/interstellar.html" class="hook-link">How UFOs move without propulsion</a>
+                <a href="/special/time-travel.html" class="hook-link">Whether time travel is actually possible</a>
+                <a href="/physics/nuclear-spacetime/" class="hook-link">Why nuclear detonations scar spacetime</a>
+                <a href="/metaphysics/death/" class="hook-link">What happens when you die</a>
+                <a href="/metaphysics/psi/" class="hook-link">Why you sometimes know things you shouldn't</a>
+            </div>
         </section>
         
         <!-- Preview Cards Section -->
@@ -730,15 +868,17 @@
                     <div class="science-text">Toroidal extraction: ε → surface → harvesting</div>
                     <span class="learn-more">Learn more →</span>
                 </a>
-                
-                <a href="/evidence/markets/" class="preview-card" style="border-color: rgba(0, 200, 180, 0.4); background: linear-gradient(135deg, rgba(0, 80, 70, 0.3) 0%, rgba(30, 30, 50, 0.6) 100%);">
-                    <div class="icon">📈</div>
-                    <h3>Market Validation</h3>
-                    <p class="plain-text">97%+ accuracy. Theory meets reality. Watch the ε-geometry operate in financial markets—with a free tool to verify it yourself.</p>
-                    <div class="science-text" style="border-color: rgba(0, 200, 180, 0.4);">Mean reversion = mandatory return to ε-center</div>
-                    <span class="learn-more" style="color: #00ddcc;">Get Free Indicator →</span>
-                </a>
             </div>
+        </section>
+        
+        <!-- Market Behavior Section -->
+        <section class="market-section">
+            <a href="/evidence/markets/" class="market-card">
+                <div class="badge">97%+ ACCURACY • FREE TOOL</div>
+                <h3>SEE IT WORK IN REAL MARKETS</h3>
+                <p>Theory is nice. Proof is better. Watch ε-geometry operate in financial markets—price extends from center, exhausts, returns. Every time. Download the free indicator and verify it yourself.</p>
+                <span class="cta">EXPLORE + GET FREE INDICATOR →</span>
+            </a>
         </section>
         
         <!-- Validation Section -->
