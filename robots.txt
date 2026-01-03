@@ -1,0 +1,7 @@
+# robots.txt for theholetruth.space
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://theholetruth.space/sitemap.xml
