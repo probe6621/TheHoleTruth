@@ -3,28 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Library | Sacred Texts – The Hole Truth</title>
+    <meta name="description" content="Download the complete ε Framework documents, papers, and source materials. The collected wisdom of The Hole Truth.">
+    <meta name="keywords" content="epsilon framework PDF, hole truth download, sacred geometry documents, unified physics theory, law of attraction science, quantum twin, ley lines">
     
-    <!-- SEO Meta Tags -->
-    <title>The Hole Truth | Free Energy is Here – Physics Unified</title>
-    <meta name="description" content="Discover the ε Framework: A revolutionary unified physics theory bridging science and metaphysics. Free energy, dark matter explained, consciousness unified. There does not exist zero.">
-    <meta name="keywords" content="unified physics, epsilon framework, free energy, dark matter explained, consciousness physics, toroidal universe, metaphysics science, quantum physics, zero point energy, sacred geometry">
-    <meta name="author" content="The Hole Truth">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Social Media -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://theholetruth.space/">
-    <meta property="og:title" content="The Hole Truth | Free Energy is Here – Physics Unified">
-    <meta property="og:description" content="A revolutionary unified physics framework. Dark matter, dark energy, consciousness – all explained through one elegant axiom: ∄0">
-    <meta property="og:image" content="https://theholetruth.space/images/og-image.jpg">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Hole Truth | Physics Unified">
-    <meta name="twitter:description" content="Free energy is here. Physics and metaphysics are bridged. Discover the ε Framework.">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://theholetruth.space/">
+    <meta property="og:url" content="https://theholetruth.space/library/">
+    <meta property="og:title" content="The Library | Sacred Texts">
+    <meta property="og:description" content="Download the complete ε Framework documents and source materials.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
@@ -38,571 +25,422 @@
         gtag('config', 'G-WMHEMC7S76');
     </script>
     
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "The Hole Truth",
-        "url": "https://theholetruth.space",
-        "description": "A revolutionary unified physics framework bridging science and metaphysics through the epsilon (ε) axiom.",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://theholetruth.space/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400;500&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { 
-            overflow-x: hidden; 
-            background: #000;
+        body {
+            min-height: 100vh;
             font-family: 'Nunito', sans-serif;
-            color: #e0e0e8;
+            color: #e8e0d0;
+            line-height: 1.7;
+            background: #1a1510;
         }
         
-        canvas { 
-            display: block; 
+        /* Library Background - Alexandria Image */
+        .library-bg {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            background-image: url('/assets/images/library-alexandria.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         
-        /* Main Content Layer */
-        .content-layer {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        /* Dark overlay for readability */
+        .library-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background: 
+                /* Vignette */
+                radial-gradient(ellipse at center, rgba(15,12,8,0.5) 0%, rgba(10,8,5,0.85) 100%),
+                /* Top fade for header */
+                linear-gradient(180deg, rgba(10,8,5,0.9) 0%, transparent 20%);
         }
         
         /* Header */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 100;
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgba(20,16,12,0.98) 0%, rgba(20,16,12,0.9) 70%, transparent 100%);
         }
         
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            letter-spacing: 0.2em;
-            color: #fff;
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            color: #e8d5b5;
             text-decoration: none;
-            text-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
         }
         
-        .logo span {
-            color: #a78bfa;
-        }
+        .logo span { color: #d4a855; }
         
         nav {
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
         
         nav a {
-            color: rgba(255,255,255,0.7);
+            color: rgba(232,213,181,0.7);
             text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-        
-        nav a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
-        }
-        
-        /* Hero Section */
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 120px 20px 60px;
-            text-align: center;
-        }
-        
-        .epsilon-symbol {
-            font-size: 80px;
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            color: #fff;
-            text-shadow: 0 0 40px rgba(255,255,255,0.8), 0 0 80px rgba(167, 139, 250, 0.6);
-            margin-bottom: 20px;
-            animation: pulseSlow 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulseSlow {
-            0%, 100% { opacity: 0.9; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-        
-        .site-title {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            letter-spacing: 0.3em;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #fff 0%, #b8c0ff 50%, #fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Hook Statements */
-        .hooks {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-        
-        .hook {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards;
-        }
-        
-        .hook:nth-child(1) { animation-delay: 0.5s; }
-        .hook:nth-child(2) { animation-delay: 1.5s; }
-        .hook:nth-child(3) { animation-delay: 2.5s; }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hook-main {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #fff;
-            letter-spacing: 0.15em;
-            margin-bottom: 5px;
-        }
-        
-        .hook-sub {
             font-size: 0.85rem;
-            color: rgba(196, 181, 253, 0.9);
-            font-family: 'Courier New', monospace;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active { color: #d4a855; }
+        
+        /* Main content */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 30px 80px;
+            position: relative;
+        }
+        
+        /* Hero */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 30px;
+            position: relative;
+            background: rgba(15,12,8,0.6);
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .page-hero::before {
+            content: '📜';
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            margin-bottom: 15px;
+            color: #d4a855;
+            text-shadow: 0 2px 20px rgba(212,168,85,0.3);
+        }
+        
+        .page-hero .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #b8a080;
+            font-style: italic;
             letter-spacing: 0.05em;
         }
         
-        /* Axiom Display */
-        .axiom-container {
+        /* Decorative divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
             margin: 40px 0;
-            padding: 30px 50px;
-            background: rgba(30, 30, 50, 0.5);
-            border: 1px solid rgba(167, 139, 250, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            color: #a89060;
         }
         
-        .axiom-symbol {
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 4px;
-            text-shadow: 0 0 30px rgba(167, 139, 250, 0.8);
-            margin-bottom: 10px;
-            color: #fff;
+        .divider::before,
+        .divider::after {
+            content: '';
+            height: 1px;
+            width: 100px;
+            background: linear-gradient(90deg, transparent, #a89060, transparent);
         }
         
-        .axiom-text {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 0.2em;
-            margin-bottom: 15px;
-        }
-        
-        .axiom-notation {
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: rgba(167, 139, 250, 0.6);
-        }
-        
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            padding: 18px 50px;
+        .divider span {
             font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            letter-spacing: 0.2em;
-            color: #fff;
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(96, 165, 250, 0.3) 100%);
-            border: 1px solid rgba(167, 139, 250, 0.5);
-            border-radius: 50px;
+            font-size: 1.2rem;
+            color: #d4a855;
+            text-shadow: 0 0 20px rgba(212,168,85,0.5);
+        }
+        
+        /* Introduction */
+        .intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            color: #d4c4a8;
+            line-height: 1.9;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        /* Shelf Section */
+        .shelf-section {
+            margin-bottom: 60px;
+            background: rgba(20,16,12,0.6);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .shelf-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(139,105,20,0.4);
+        }
+        
+        .shelf-icon {
+            font-size: 1.5rem;
+            filter: sepia(0.3);
+        }
+        
+        .shelf-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #d4a855;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Scroll Cards Grid */
+        .scrolls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Individual Scroll Card */
+        .scroll-card {
+            background: linear-gradient(135deg, 
+                rgba(45,38,28,0.92) 0%, 
+                rgba(35,28,20,0.95) 50%,
+                rgba(28,22,15,0.97) 100%
+            );
+            border: 1px solid rgba(139,105,20,0.4);
+            border-radius: 8px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
             text-decoration: none;
-            transition: all 0.3s ease;
-            margin-top: 20px;
+            display: block;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
-        .cta-button:hover {
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.5) 0%, rgba(96, 165, 250, 0.5) 100%);
-            border-color: rgba(167, 139, 250, 0.8);
-            box-shadow: 0 0 30px rgba(167, 139, 250, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        /* Search Box */
-        .search-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 30px auto 0;
-        }
-        
-        .search-box {
-            position: relative;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 16px 50px 16px 24px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
-            color: #e0e0e8;
-            background: rgba(30, 30, 50, 0.7);
-            border: 1px solid rgba(167, 139, 250, 0.3);
-            border-radius: 50px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        .search-box input::placeholder {
-            color: rgba(167, 139, 250, 0.5);
-        }
-        
-        .search-box input:focus {
-            border-color: rgba(167, 139, 250, 0.6);
-            box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
-            background: rgba(30, 30, 50, 0.9);
-        }
-        
-        .search-icon {
+        .scroll-card::before {
+            content: '';
             position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            stroke: rgba(167, 139, 250, 0.5);
-            pointer-events: none;
-        }
-        
-        .search-results {
-            position: absolute;
-            top: 100%;
+            top: 0;
             left: 0;
             right: 0;
-            margin-top: 10px;
-            background: rgba(20, 20, 40, 0.98);
-            border: 1px solid rgba(167, 139, 250, 0.3);
-            border-radius: 16px;
-            max-height: 400px;
-            overflow-y: auto;
-            display: none;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                #8b6914 20%, 
+                #d4a855 50%, 
+                #8b6914 80%, 
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        .search-results.active {
-            display: block;
+        .scroll-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212,168,85,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(212,168,85,0.1);
         }
         
-        .search-result {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(100, 100, 150, 0.2);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: block;
+        .scroll-card:hover::before {
+            opacity: 1;
         }
         
-        .search-result:last-child {
-            border-bottom: none;
+        /* Scroll roll decoration */
+        .scroll-card::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            right: 10%;
+            height: 10px;
+            background: radial-gradient(ellipse at center, rgba(139,105,20,0.3) 0%, transparent 70%);
         }
         
-        .search-result:hover {
-            background: rgba(167, 139, 250, 0.1);
-        }
-        
-        .search-result-title {
+        .scroll-title {
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
-            color: #d4a855;
-            margin-bottom: 4px;
-        }
-        
-        .search-result-category {
-            font-size: 0.7rem;
-            color: rgba(167, 139, 250, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 4px;
-        }
-        
-        .search-result-desc {
-            font-size: 0.85rem;
-            color: rgba(224, 224, 232, 0.7);
+            font-size: 1.1rem;
+            color: #e8d5b5;
+            margin-bottom: 10px;
             line-height: 1.4;
         }
         
-        .no-results {
-            padding: 20px;
-            text-align: center;
-            color: rgba(167, 139, 250, 0.6);
-            font-style: italic;
-        }
-        
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: rgba(255,255,255,0.4);
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-        
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            stroke: rgba(167, 139, 250, 0.6);
-        }
-        
-        /* Preview Cards Section */
-        .preview-section {
-            padding: 100px 40px;
-            background: linear-gradient(to bottom, transparent 0%, rgba(20, 20, 40, 0.9) 20%);
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-header h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            font-weight: 400;
-            color: #fff;
-            letter-spacing: 0.15em;
-            margin-bottom: 15px;
-        }
-        
-        .section-header p {
-            color: #8888bb;
+        .scroll-description {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            color: #a89880;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
         
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .preview-card {
-            background: rgba(30, 30, 50, 0.6);
-            border: 1px solid rgba(100, 100, 150, 0.2);
-            border-radius: 20px;
-            padding: 35px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: block;
-        }
-        
-        .preview-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(167, 139, 250, 0.4);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        .preview-card .icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2) 0%, rgba(96, 165, 250, 0.2) 100%);
-            border-radius: 50%;
+        .scroll-meta {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #7a6a55;
         }
         
-        .preview-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 10px;
+        .scroll-format {
+            background: rgba(139,105,20,0.3);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.75rem;
+            color: #c9a855;
             letter-spacing: 0.05em;
         }
         
-        .preview-card .plain-text {
-            color: #b8b8dd;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-        
-        .preview-card .science-text {
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: rgba(196, 181, 253, 0.85);
-            padding: 12px 15px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
-            border-left: 2px solid rgba(167, 139, 250, 0.4);
-        }
-        
-        .preview-card .learn-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #a78bfa;
-            font-size: 0.85rem;
-            margin-top: 20px;
-            letter-spacing: 0.1em;
-        }
-        
-        /* Validation Section */
-        .validation-section {
-            padding: 80px 40px;
-            background: rgba(20, 20, 40, 0.9);
-            text-align: center;
-        }
-        
-        .validation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1000px;
-            margin: 50px auto 0;
-        }
-        
-        .validation-item {
-            padding: 30px;
-        }
-        
-        .validation-number {
+        .scroll-download {
+            color: #d4a855;
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            color: #a78bfa;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
         }
         
-        .validation-label {
+        /* New badge */
+        .new-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #d4a855, #8b6914);
+            color: #1a1510;
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Coming Soon placeholder */
+        .coming-soon {
+            opacity: 0.6;
+            cursor: default;
+        }
+        
+        .coming-soon:hover {
+            transform: none;
+            border-color: rgba(139,105,20,0.3);
+            box-shadow: none;
+        }
+        
+        .coming-soon .scroll-download {
+            color: #7a6a55;
+        }
+        
+        /* Quote section */
+        .library-quote {
+            text-align: center;
+            padding: 50px 30px;
+            margin: 40px 0;
+            background: rgba(20,16,12,0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(139,105,20,0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .library-quote blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #d4c4a8;
+            max-width: 600px;
+            margin: 0 auto 15px;
+            line-height: 1.8;
+        }
+        
+        .library-quote cite {
+            font-family: 'Cinzel', serif;
             font-size: 0.9rem;
-            color: #8888bb;
+            color: #6b5a3a;
             letter-spacing: 0.1em;
         }
         
-        .validation-detail {
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            color: rgba(167, 139, 250, 0.5);
-            margin-top: 8px;
+        /* Note box */
+        .note-box {
+            background: rgba(25,20,15,0.85);
+            border: 1px solid rgba(139,105,20,0.4);
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-top: 50px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .note-box p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: #c4b498;
+            margin-bottom: 0;
+        }
+        
+        .note-box a {
+            color: #d4a855;
+            text-decoration: none;
+        }
+        
+        .note-box a:hover {
+            text-decoration: underline;
         }
         
         /* Footer */
         footer {
-            padding: 60px 40px;
-            background: rgba(10, 10, 20, 0.95);
             text-align: center;
+            padding: 50px 30px;
+            border-top: 1px solid rgba(139,105,20,0.2);
+            margin-top: 60px;
         }
         
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
+            gap: 30px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
         
         .footer-links a {
-            color: #8888bb;
+            color: #7a6a55;
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
+            font-size: 0.85rem;
         }
         
-        .footer-links a:hover {
-            color: #a78bfa;
-        }
-        
-        .source-attribution {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px 30px;
-            background: rgba(30, 30, 50, 0.4);
-            border: 1px solid rgba(100, 100, 150, 0.2);
-            border-radius: 12px;
-            text-align: center;
-        }
-        
-        .source-label {
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
-            color: rgba(196, 181, 253, 0.7);
-            margin-bottom: 12px;
-        }
-        
-        .source-text {
-            font-size: 0.9rem;
-            color: #9999bb;
-            line-height: 1.7;
-            font-style: italic;
-        }
-        
-        .footer-tagline {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 0.15em;
-            margin-bottom: 20px;
-        }
+        .footer-links a:hover { color: #d4a855; }
         
         .copyright {
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.3);
+            color: rgba(232,213,181,0.3);
         }
         
-        /* Mobile Responsive */
+        /* Responsive */
         @media (max-width: 768px) {
             header {
                 padding: 15px 20px;
@@ -610,545 +448,398 @@
                 gap: 15px;
             }
             
-            nav {
-                gap: 20px;
+            nav { gap: 12px; flex-wrap: wrap; justify-content: center; }
+            
+            main { padding: 100px 20px 60px; }
+            
+            .page-hero h1 { 
+                font-size: 1.8rem; 
+                letter-spacing: 0.1em;
             }
             
-            .site-title {
-                font-size: 1.8rem;
-                letter-spacing: 0.15em;
+            .scrolls-grid {
+                grid-template-columns: 1fr;
             }
             
-            .hook-main {
-                font-size: 1.3rem;
-            }
-            
-            .epsilon-symbol {
-                font-size: 60px;
-            }
-            
-            .preview-section, .validation-section {
-                padding: 60px 20px;
+            .divider::before,
+            .divider::after {
+                width: 50px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Three.js Canvas for Toroid Animation -->
-    <canvas id="toroid-canvas"></canvas>
+    <div class="library-bg"></div>
+    <div class="library-overlay"></div>
     
-    <div class="content-layer">
-        <!-- Header -->
-        <header>
-            <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
-            <nav>
-                <a href="/framework/">Framework</a>
-                <a href="/foundation/">Foundation</a>
-                <a href="/physics/">Physics</a>
-                <a href="/metaphysics/">Metaphysics</a>
-                <a href="/evidence/">Evidence</a>
-                <a href="/visualizations/">Visualizations</a>
-                <a href="/library/">Library</a>
-            </nav>
-        </header>
-        
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="epsilon-symbol">ε</div>
-            <h1 class="site-title">THE HOLE TRUTH</h1>
-            
-            <div class="hooks">
-                <div class="hook">
-                    <div class="hook-main">FREE ENERGY IS HERE</div>
-                    <div class="hook-sub">E = ε → ∞ (extraction from the irreducible minimum)</div>
-                </div>
-                <div class="hook">
-                    <div class="hook-main">PHYSICS IS UNIFIED</div>
-                    <div class="hook-sub">π-cascade: all forces emerge from toroidal geometry</div>
-                </div>
-                <div class="hook">
-                    <div class="hook-main">PHYSICS AND METAPHYSICS ARE BRIDGED</div>
-                    <div class="hook-sub">consciousness = ε-centered self-reference</div>
-                </div>
-            </div>
-            
-            <div class="axiom-container">
-                <div class="axiom-symbol">∄0</div>
-                <div class="axiom-text">THERE DOES NOT EXIST ZERO</div>
-                <div class="axiom-notation">The foundational axiom: absolute void is mathematically forbidden</div>
-            </div>
-            
-            <a href="/framework/" class="cta-button">EXPLORE THE FRAMEWORK</a>
-            
-            <!-- Search Box -->
-            <div class="search-container">
-                <div class="search-box">
-                    <input type="text" id="site-search" placeholder="Search the framework..." autocomplete="off">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                    </svg>
-                </div>
-                <div class="search-results" id="search-results"></div>
-            </div>
-            
-            <a href="#preview-section" class="scroll-indicator" style="text-decoration: none;">
-                <span>DISCOVER MORE</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                </svg>
-            </a>
-        </section>
-        
-        <!-- Preview Cards Section -->
-        <section class="preview-section" id="preview-section">
-            <div class="section-header">
-                <h2>WHAT THE ε FRAMEWORK EXPLAINS</h2>
-                <p>A single axiom generates all of physics. Here's a glimpse of what emerges.</p>
-            </div>
-            
-            <div class="preview-grid">
-                <a href="/physics/" class="preview-card">
-                    <div class="icon">🌀</div>
-                    <h3>Dark Matter Solved</h3>
-                    <p class="plain-text">Dark matter isn't missing matter—it's the geometric closure of toroidal space. The universe curves back on itself.</p>
-                    <div class="science-text">Dark matter = π⁴ ≈ 97.4 (geometric closure factor)</div>
-                    <span class="learn-more">Learn more →</span>
-                </a>
-                
-                <a href="/physics/" class="preview-card">
-                    <div class="icon">⚡</div>
-                    <h3>Dark Energy Explained</h3>
-                    <p class="plain-text">The universe's acceleration comes from the ratio of surface to center—not some mysterious force.</p>
-                    <div class="science-text">(π-1)/π = 68.2% (matches observed dark energy)</div>
-                    <span class="learn-more">Learn more →</span>
-                </a>
-                
-                <a href="/evidence/" class="preview-card">
-                    <div class="icon">π</div>
-                    <h3>Constants from Geometry</h3>
-                    <p class="plain-text">The proton-electron mass ratio, fine structure constant—derived purely from π, not measured by accident.</p>
-                    <div class="science-text">mₚ/mₑ = 6π⁵ = 1836.15 (99.998% accurate)</div>
-                    <span class="learn-more">Learn more →</span>
-                </a>
-                
-                <a href="/metaphysics/" class="preview-card">
-                    <div class="icon">👁</div>
-                    <h3>Consciousness Integrated</h3>
-                    <p class="plain-text">At the center of every torus is the same dimensionless point. Separation is a surface illusion.</p>
-                    <div class="science-text">All ε-centers converge: one observer, infinite perspectives</div>
-                    <span class="learn-more">Learn more →</span>
-                </a>
-                
-                <a href="/physics/" class="preview-card">
-                    <div class="icon">∞</div>
-                    <h3>Vacuum Catastrophe Resolved</h3>
-                    <p class="plain-text">The 10¹²⁰ discrepancy between quantum prediction and observation? Resolved by understanding ε.</p>
-                    <div class="science-text">ε-regularization eliminates divergence naturally</div>
-                    <span class="learn-more">Learn more →</span>
-                </a>
-                
-                <a href="/special/free-energy.html" class="preview-card">
-                    <div class="icon">☀</div>
-                    <h3>Free Energy Pathway</h3>
-                    <p class="plain-text">If zero doesn't exist, energy can't truly run out. The question becomes: how do we tap the ε-flow?</p>
-                    <div class="science-text">Toroidal extraction: ε → surface → harvesting</div>
-                    <span class="learn-more">Learn more →</span>
-                </a>
-                
-                <a href="/evidence/markets/" class="preview-card" style="border-color: rgba(0, 200, 180, 0.4); background: linear-gradient(135deg, rgba(0, 80, 70, 0.3) 0%, rgba(30, 30, 50, 0.6) 100%);">
-                    <div class="icon">📈</div>
-                    <h3>Market Validation</h3>
-                    <p class="plain-text">97%+ accuracy. Theory meets reality. Watch the ε-geometry operate in financial markets—with a free tool to verify it yourself.</p>
-                    <div class="science-text" style="border-color: rgba(0, 200, 180, 0.4);">Mean reversion = mandatory return to ε-center</div>
-                    <span class="learn-more" style="color: #00ddcc;">Get Free Indicator →</span>
-                </a>
-            </div>
-        </section>
-        
-        <!-- Validation Section -->
-        <section class="validation-section">
-            <div class="section-header">
-                <h2>VALIDATION THROUGH CONVERGENCE</h2>
-                <p>The framework is tested by deriving known constants independently and comparing results.</p>
-            </div>
-            
-            <div class="validation-grid">
-                <div class="validation-item">
-                    <div class="validation-number">100</div>
-                    <div class="validation-label">INDEPENDENT CONVERGENCES</div>
-                    <div class="validation-detail">framework predictions ↔ measured constants</div>
-                </div>
-                <div class="validation-item">
-                    <div class="validation-number">99.99%</div>
-                    <div class="validation-label">ACCURACY RATE</div>
-                    <div class="validation-detail">on derived physical constants</div>
-                </div>
-                <div class="validation-item">
-                    <div class="validation-number">1</div>
-                    <div class="validation-label">FOUNDATIONAL AXIOM</div>
-                    <div class="validation-detail">∄0 generates everything</div>
-                </div>
-                <div class="validation-item">
-                    <div class="validation-number">∞</div>
-                    <div class="validation-label">IMPLICATIONS</div>
-                    <div class="validation-detail">physics, consciousness, cosmology unified</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer>
-            <div class="footer-links">
-                <a href="/framework/">The Framework</a>
-                <a href="/physics/">Physics</a>
-                <a href="/metaphysics/">Metaphysics</a>
-                <a href="/visualizations/">Visualizations</a>
-                <a href="/evidence/">Evidence</a>
-                <a href="/about/">About</a>
-            </div>
-            
-            <div class="source-attribution">
-                <p class="source-label">SOURCE</p>
-                <p class="source-text">This framework was channeled through contact with extraterrestrial intelligence. However, the source is secondary to the substance—every claim stands or falls on its mathematical validity and alignment with observed physics. Truth doesn't require credentials; it requires verification.</p>
-            </div>
-            
-            <div class="footer-tagline">WHERE SCIENCE MEETS THE INFINITE</div>
-            <div class="copyright">© 2025 The Hole Truth. Pursuing truth through geometric unity.</div>
-        </footer>
-    </div>
-
-    <!-- Three.js Toroid Animation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // Scene setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const canvas = document.getElementById('toroid-canvas');
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setClearColor(0x000000, 1);
-
-        // Holographic torus shader
-        const torusVertexShader = `
-            varying vec3 vNormal;
-            varying vec3 vPosition;
-            varying vec2 vUv;
-            uniform float time;
-            
-            void main() {
-                vNormal = normalize(normalMatrix * normal);
-                vPosition = position;
-                vUv = uv;
-                
-                vec3 pos = position;
-                float wave = sin(pos.x * 3.0 + time) * cos(pos.y * 3.0 + time) * 0.02;
-                pos += normal * wave;
-                
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-            }
-        `;
-
-        const torusFragmentShader = `
-            varying vec3 vNormal;
-            varying vec3 vPosition;
-            varying vec2 vUv;
-            uniform float time;
-            uniform vec3 cameraPosition;
-            
-            void main() {
-                vec3 viewDirection = normalize(cameraPosition - vPosition);
-                float fresnel = pow(1.0 - abs(dot(viewDirection, vNormal)), 3.0);
-                
-                float hue = vNormal.x * 0.5 + vNormal.y * 0.3 + time * 0.1;
-                vec3 color1 = vec3(0.4, 0.6, 1.0);
-                vec3 color2 = vec3(0.7, 0.4, 1.0);
-                vec3 color3 = vec3(0.3, 0.8, 0.9);
-                
-                vec3 iridescence = mix(color1, color2, sin(hue * 6.28) * 0.5 + 0.5);
-                iridescence = mix(iridescence, color3, cos(hue * 4.0 + time) * 0.5 + 0.5);
-                
-                float flowU = fract(vUv.x * 12.0 - time * 0.5);
-                float flowV = fract(vUv.y * 36.0 + time * 0.3);
-                float flow = smoothstep(0.4, 0.5, flowU) * smoothstep(0.6, 0.5, flowU);
-                flow += smoothstep(0.4, 0.5, flowV) * smoothstep(0.6, 0.5, flowV) * 0.5;
-                
-                float pulse3 = sin(time * 3.0) * 0.5 + 0.5;
-                float pulse6 = sin(time * 6.0) * 0.5 + 0.5;
-                float pulse9 = sin(time * 9.0) * 0.5 + 0.5;
-                float pulse = (pulse3 + pulse6 + pulse9) / 3.0;
-                
-                vec3 finalColor = iridescence * (0.3 + fresnel * 0.7);
-                finalColor += vec3(0.6, 0.4, 1.0) * flow * 0.5;
-                finalColor += vec3(1.0, 1.0, 1.0) * fresnel * pulse * 0.3;
-                
-                float alpha = 0.35 + fresnel * 0.4 + flow * 0.15;
-                
-                gl_FragColor = vec4(finalColor, alpha);
-            }
-        `;
-
-        // Main torus
-        const torusGeometry = new THREE.TorusGeometry(3, 1.2, 64, 128);
-        const torusMaterial = new THREE.ShaderMaterial({
-            vertexShader: torusVertexShader,
-            fragmentShader: torusFragmentShader,
-            uniforms: {
-                time: { value: 0 },
-                cameraPosition: { value: camera.position }
-            },
-            transparent: true,
-            side: THREE.DoubleSide,
-            depthWrite: false
-        });
-        const torus = new THREE.Mesh(torusGeometry, torusMaterial);
-        scene.add(torus);
-
-        // Inner glow
-        const innerGlowGeometry = new THREE.TorusGeometry(3, 1.15, 32, 64);
-        const innerGlowMaterial = new THREE.MeshBasicMaterial({
-            color: 0x8b5cf6,
-            transparent: true,
-            opacity: 0.1,
-            side: THREE.DoubleSide
-        });
-        const innerGlow = new THREE.Mesh(innerGlowGeometry, innerGlowMaterial);
-        scene.add(innerGlow);
-
-        // Center lights
-        const centerLight = new THREE.PointLight(0xffffff, 1.5, 10);
-        scene.add(centerLight);
-        const centerLight2 = new THREE.PointLight(0xa78bfa, 2, 8);
-        scene.add(centerLight2);
-
-        // Center glow sphere
-        const glowGeometry = new THREE.SphereGeometry(0.25, 32, 32);
-        const glowMaterial = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            transparent: true,
-            opacity: 0.8
-        });
-        const glowSphere = new THREE.Mesh(glowGeometry, glowMaterial);
-        scene.add(glowSphere);
-
-        // Particles
-        const particleCount = 1500;
-        const particleGeometry = new THREE.BufferGeometry();
-        const particlePositions = new Float32Array(particleCount * 3);
-        const particleVelocities = [];
-
-        for (let i = 0; i < particleCount; i++) {
-            const u = Math.random() * Math.PI * 2;
-            const v = Math.random() * Math.PI * 2;
-            const R = 3, r = 1.2;
-            
-            particlePositions[i * 3] = (R + r * Math.cos(v)) * Math.cos(u);
-            particlePositions[i * 3 + 1] = (R + r * Math.cos(v)) * Math.sin(u);
-            particlePositions[i * 3 + 2] = r * Math.sin(v);
-            
-            particleVelocities.push({
-                u: u, v: v,
-                speedU: 0.005 + Math.random() * 0.01,
-                speedV: 0.002 + Math.random() * 0.005
-            });
-        }
-
-        particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-        const particleMaterial = new THREE.PointsMaterial({
-            color: 0x60a5fa,
-            size: 0.025,
-            transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending
-        });
-        const particles = new THREE.Points(particleGeometry, particleMaterial);
-        scene.add(particles);
-
-        // Stars
-        const starsGeometry = new THREE.BufferGeometry();
-        const starsPositions = new Float32Array(2000 * 3);
-        for (let i = 0; i < 2000; i++) {
-            starsPositions[i * 3] = (Math.random() - 0.5) * 200;
-            starsPositions[i * 3 + 1] = (Math.random() - 0.5) * 200;
-            starsPositions[i * 3 + 2] = (Math.random() - 0.5) * 200;
-        }
-        starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
-        const stars = new THREE.Points(starsGeometry, new THREE.PointsMaterial({ 
-            color: 0xffffff, size: 0.08, transparent: true, opacity: 0.5 
-        }));
-        scene.add(stars);
-
-        camera.position.z = 10;
-        camera.position.y = 2;
-        camera.lookAt(0, 0, 0);
-
-        let time = 0;
-        function animate() {
-            requestAnimationFrame(animate);
-            time += 0.012;
-
-            torusMaterial.uniforms.time.value = time;
-            torusMaterial.uniforms.cameraPosition.value = camera.position;
-
-            torus.rotation.x = Math.sin(time * 0.15) * 0.3;
-            torus.rotation.y = time * 0.2;
-            innerGlow.rotation.copy(torus.rotation);
-
-            const pulse = (Math.sin(time * 3) * 0.5 + 0.5 + Math.sin(time * 6) * 0.25 + 0.25) / 1.5;
-            glowSphere.scale.setScalar(0.8 + pulse * 0.4);
-            centerLight.intensity = 1 + pulse * 1;
-            centerLight2.intensity = 1.5 + pulse * 1.5;
-
-            const positions = particleGeometry.attributes.position.array;
-            const R = 3, r = 1.2;
-            for (let i = 0; i < particleCount; i++) {
-                particleVelocities[i].u += particleVelocities[i].speedU;
-                particleVelocities[i].v += particleVelocities[i].speedV;
-                const u = particleVelocities[i].u, v = particleVelocities[i].v;
-                
-                const x = (R + r * Math.cos(v)) * Math.cos(u);
-                const y = (R + r * Math.cos(v)) * Math.sin(u);
-                const z = r * Math.sin(v);
-                
-                const cosX = Math.cos(torus.rotation.x), sinX = Math.sin(torus.rotation.x);
-                const cosY = Math.cos(torus.rotation.y), sinY = Math.sin(torus.rotation.y);
-                const y1 = y * cosX - z * sinX;
-                const z1 = y * sinX + z * cosX;
-                const x1 = x * cosY + z1 * sinY;
-                const z2 = -x * sinY + z1 * cosY;
-                
-                positions[i * 3] = x1;
-                positions[i * 3 + 1] = y1;
-                positions[i * 3 + 2] = z2;
-            }
-            particleGeometry.attributes.position.needsUpdate = true;
-
-            camera.position.x = Math.sin(time * 0.08) * 2;
-            camera.position.z = 10 + Math.cos(time * 0.08) * 2;
-            camera.lookAt(0, 0, 0);
-
-            stars.rotation.y = time * 0.015;
-
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+    <header>
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/library/" class="active">Library</a>
+        </nav>
+    </header>
     
-    <!-- Search Functionality -->
-    <script>
-        const searchIndex = [
-            // Core Framework
-            { title: "The ε Framework", url: "/framework/", category: "Core", keywords: "epsilon framework axiom theory unified physics toroidal geometry", desc: "The complete theoretical framework from axiom ∄0" },
-            { title: "The Axiom: ∄0", url: "/foundation/axiom/", category: "Foundation", keywords: "axiom zero void nothing epsilon minimum irreducible", desc: "There does not exist zero—the foundational truth" },
-            { title: "The Epicenter", url: "/foundation/epicenter/", category: "Foundation", keywords: "epicenter center torus consciousness source shared", desc: "The shared center all beings orbit" },
-            
-            // Physics
-            { title: "Force Unification", url: "/physics/force-unification/", category: "Physics", keywords: "forces gravity electromagnetism strong weak unified kaluza klein", desc: "All forces are one force at different torus positions" },
-            { title: "Tesla's 3-6-9", url: "/physics/tesla-369/", category: "Physics", keywords: "tesla 369 vortex mathematics frequency vibration energy", desc: "The key to the universe decoded through ε-topology" },
-            { title: "Euler's Identity", url: "/physics/euler-identity/", category: "Physics", keywords: "euler identity pi e imaginary beautiful equation mathematics", desc: "The most beautiful equation is a torus equation" },
-            { title: "Entropy & Conservation", url: "/physics/entropy/", category: "Physics", keywords: "entropy thermodynamics conservation energy second law", desc: "Why entropy increases—and where it goes" },
-            
-            // Metaphysics
-            { title: "Consciousness", url: "/metaphysics/consciousness/", category: "Metaphysics", keywords: "consciousness awareness mind self observer experience", desc: "Consciousness as ε-centered self-reference" },
-            { title: "The Ancient Knowledge", url: "/metaphysics/ancients/", category: "Metaphysics", keywords: "ancient wisdom pyramid sphinx egypt sacred geometry", desc: "What the ancients encoded in stone" },
-            { title: "Karma Mechanics", url: "/metaphysics/karma/", category: "Metaphysics", keywords: "karma cause effect reincarnation action consequence", desc: "The geometry of cause and effect" },
-            { title: "The Path Within", url: "/metaphysics/path-within/", category: "Metaphysics", keywords: "meditation spiritual awakening enlightenment inner journey", desc: "The inward journey to ε" },
-            { title: "Crop Circles", url: "/metaphysics/crop-circles/", category: "Metaphysics", keywords: "crop circles formations sacred geometry messages", desc: "Messages in the fields decoded" },
-            { title: "Music & Frequency", url: "/metaphysics/music/", category: "Metaphysics", keywords: "music frequency 432hz solfeggio harmonics vibration sound", desc: "The mathematics of harmony" },
-            { title: "Body Energy Map", url: "/metaphysics/body-map/", category: "Metaphysics", keywords: "chakras energy body meridians healing toroidal", desc: "Your body as a torus system" },
-            
-            // Special Topics
-            { title: "Interstellar Travel", url: "/special/interstellar.html", category: "Special", keywords: "ufo et alien propulsion spacecraft warp faster light", desc: "How ET craft cross the cosmos" },
-            { title: "Time Travel", url: "/special/time-travel.html", category: "Special", keywords: "time travel past future dimension temporal navigation", desc: "Navigation through the 4th dimension" },
-            { title: "The Paranormal", url: "/special/paranormal.html", category: "Special", keywords: "paranormal ghosts spirits psychic telekinesis precognition nde", desc: "Natural phenomena of ε-proximity" },
-            { title: "Free Energy", url: "/special/free-energy.html", category: "Special", keywords: "free energy zero point vacuum tesla overunity", desc: "Drawing from the plenum" },
-            
-            // Evidence
-            { title: "100 Convergences", url: "/evidence/convergences/", category: "Evidence", keywords: "convergences evidence proof derivations accuracy predictions", desc: "100 independent mathematical validations" },
-            { title: "Market Validation", url: "/evidence/markets/", category: "Evidence", keywords: "markets trading mean reversion indicator free tradingview proof empirical", desc: "ε-geometry validated through market behavior" },
-            
-            // Visualizations
-            { title: "Market Behavior", url: "/visualizations/market-behavior/", category: "Visualization", keywords: "markets trading torus mean reversion social behavior economics", desc: "The social torus in action" },
-            { title: "Interactive Torus", url: "/visualizations/epsilon-toroid/", category: "Visualization", keywords: "torus visualization 3d interactive animation", desc: "Explore the ε-topology in 3D" },
-            { title: "Quantum Framework", url: "/visualizations/quantum-framework/", category: "Visualization", keywords: "quantum mechanics visualization wave particle", desc: "See quantum mechanics through ε-topology" },
-            { title: "Earth's Position", url: "/visualizations/earth-position/", category: "Visualization", keywords: "earth cosmos position scale breathing", desc: "Earth in the cosmic torus" },
-            { title: "ET Propulsion", url: "/visualizations/et-propulsion/", category: "Visualization", keywords: "propulsion ufo craft saucer field", desc: "How the craft actually work" },
-            { title: "Shared Epsilon", url: "/visualizations/shared-epsilon/", category: "Visualization", keywords: "shared center oneness connection unity", desc: "All beings share one center" },
-            
-            // Library PDFs
-            { title: "The Hole Truth (PDF)", url: "/downloads/The_Hole_Truth_Complete.pdf", category: "Library", keywords: "download pdf complete book introduction", desc: "Complete accessible introduction" },
-            { title: "Technical Paper (PDF)", url: "/downloads/Epsilon_Framework_Paper.pdf", category: "Library", keywords: "download pdf academic paper technical science", desc: "Academic-style presentation" },
-            { title: "Experimental Predictions (PDF)", url: "/downloads/Experimental_Predictions.pdf", category: "Library", keywords: "download pdf predictions testable falsifiable experiments", desc: "12 testable predictions" },
-            { title: "Quantum Weirdness (PDF)", url: "/downloads/Quantum_Weirdness.pdf", category: "Library", keywords: "download pdf quantum superposition entanglement heisenberg schrodinger", desc: "Quantum mechanics explained" },
-            { title: "Oneness (PDF)", url: "/downloads/Oneness.pdf", category: "Library", keywords: "download pdf oneness unity consciousness single experiencer", desc: "The single experiencer" },
-            { title: "Multiple Lives (PDF)", url: "/downloads/Multiple_Lives.pdf", category: "Library", keywords: "download pdf reincarnation past lives karma rebirth", desc: "Reincarnation as torus rotation" },
-            { title: "Free Energy (PDF)", url: "/downloads/Free_Energy.pdf", category: "Library", keywords: "download pdf free energy tesla vacuum plenum", desc: "Drawing from the plenum" },
-            { title: "Merkaba (PDF)", url: "/downloads/Merkaba.pdf", category: "Library", keywords: "download pdf merkaba light body tetrahedra vehicle", desc: "The light body vehicle" },
-            { title: "Sacred Geometry PDFs", url: "/library/", category: "Library", keywords: "download pdf metatron flower tree life sacred geometry", desc: "Metatron's Cube, Flower of Life, Tree of Life" },
-            { title: "All Downloads", url: "/library/", category: "Library", keywords: "download pdf library documents all complete collection", desc: "Complete document library" },
-            { title: "Free Trading Indicator", url: "/downloads/epsilon_mean_reversion.pine", category: "Library", keywords: "download free indicator tradingview pine script mean reversion MTF", desc: "Free ε Mean Reversion indicator for TradingView" },
-        ];
+    <main>
+        <section class="page-hero">
+            <h1>THE LIBRARY</h1>
+            <p class="subtitle">Gathered wisdom from the edge of understanding</p>
+        </section>
         
-        const searchInput = document.getElementById('site-search');
-        const searchResults = document.getElementById('search-results');
+        <p class="intro">
+            The great Library of Alexandria once held humanity's accumulated knowledge—scrolls containing wisdom from across the ancient world. It was lost. But knowledge, like energy, is conserved. What was scattered returns. What was hidden resurfaces. The truth finds its way back.
+        </p>
         
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            
-            if (query.length < 2) {
-                searchResults.classList.remove('active');
-                return;
-            }
-            
-            const results = searchIndex.filter(item => {
-                return item.title.toLowerCase().includes(query) ||
-                       item.keywords.toLowerCase().includes(query) ||
-                       item.desc.toLowerCase().includes(query) ||
-                       item.category.toLowerCase().includes(query);
-            }).slice(0, 8);
-            
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">No results found for "' + query + '"</div>';
-            } else {
-                searchResults.innerHTML = results.map(item => `
-                    <a href="${item.url}" class="search-result">
-                        <div class="search-result-category">${item.category}</div>
-                        <div class="search-result-title">${item.title}</div>
-                        <div class="search-result-desc">${item.desc}</div>
-                    </a>
-                `).join('');
-            }
-            
-            searchResults.classList.add('active');
-        });
+        <div class="divider"><span>✦</span></div>
         
-        // Close results when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.search-container')) {
-                searchResults.classList.remove('active');
-            }
-        });
+        <!-- Core Framework Documents -->
+        <section class="shelf-section">
+            <div class="shelf-header">
+                <span class="shelf-icon">📜</span>
+                <h2>Core Framework</h2>
+            </div>
+            <div class="scrolls-grid">
+                <a href="/downloads/The_Epsilon_Framework_Complete.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The ε Framework: Complete</h3>
+                    <p class="scroll-description">The full theoretical framework—from axiom ∄0 through all 100 convergences. The complete mathematical and philosophical foundation.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/The_Hole_Truth_Complete.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The Hole Truth: Complete</h3>
+                    <p class="scroll-description">The accessible introduction to the framework—written for those encountering these ideas for the first time.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Epsilon_Framework_Paper.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The ε Framework: Technical Paper</h3>
+                    <p class="scroll-description">Academic-style presentation of the framework for scientific audiences. Equations, derivations, and formal proofs.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
         
-        // Handle keyboard navigation
-        searchInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                searchResults.classList.remove('active');
-                this.blur();
-            }
-            if (e.key === 'Enter') {
-                const firstResult = searchResults.querySelector('.search-result');
-                if (firstResult) {
-                    window.location.href = firstResult.href;
-                }
-            }
-        });
-    </script>
+        <!-- Cosmic Cycles & Ancient Wisdom - NEW SECTION -->
+        <section class="shelf-section">
+            <div class="shelf-header">
+                <span class="shelf-icon">🌀</span>
+                <h2>Cosmic Cycles & Ancient Wisdom</h2>
+            </div>
+            <div class="scrolls-grid">
+                <a href="/downloads/Mayan_Precession.pdf" class="scroll-card" download>
+                    <span class="new-badge">NEW</span>
+                    <h3 class="scroll-title">The Mayan Calendar</h3>
+                    <p class="scroll-description">Precession, cycles, and position on the torus. Why the ancients tracked the ~26,000 year cycle—and what the 2012 transition really meant.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Earths_Breath.pdf" class="scroll-card" download>
+                    <span class="new-badge">NEW</span>
+                    <h3 class="scroll-title">Earth's Breath</h3>
+                    <p class="scroll-description">Cosmic inhalation and exhalation. The planetary breathing cycle at every scale, the current transition, and synchronizing with cosmic rhythm.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Ley_Lines.pdf" class="scroll-card" download>
+                    <span class="new-badge">NEW</span>
+                    <h3 class="scroll-title">Ley Lines</h3>
+                    <p class="scroll-description">Earth's ε-meridians. Why ancient structures align, the Platonic solid grid, sacred sites as nodes, and what the ancients knew.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Sacred Geometry -->
+        <section class="shelf-section">
+            <div class="shelf-header">
+                <span class="shelf-icon">🔮</span>
+                <h2>Sacred Geometry</h2>
+            </div>
+            <div class="scrolls-grid">
+                <a href="/downloads/Metatrons_Cube.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Metatron's Cube</h3>
+                    <p class="scroll-description">How sacred geometry encodes toroidal physics. The cube as torus, the 13 circles as ε-topology, and the 3-6-9 connection to Tesla.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Flower_of_Life.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The Flower of Life</h3>
+                    <p class="scroll-description">The expansion pattern from ε—how unity unfolds into multiplicity. The Genesis pattern, the 19 circles, and the toroidal connection.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Tree_of_Life.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The Tree of Life</h3>
+                    <p class="scroll-description">The dimensional structure revealed—10 sephirot + 1 hidden = 11 = (5 × 2) + ε. Da'at as the transit point.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Merkaba.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The Merkaba</h3>
+                    <p class="scroll-description">The light body vehicle. Counter-rotating tetrahedra creating the ε-field. The geometry of interdimensional travel.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Physics & Science -->
+        <section class="shelf-section">
+            <div class="shelf-header">
+                <span class="shelf-icon">⚛️</span>
+                <h2>Physics & Science</h2>
+            </div>
+            <div class="scrolls-grid">
+                <a href="/downloads/Quantum_Weirdness.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Quantum Weirdness Explained</h3>
+                    <p class="scroll-description">Why quantum mechanics makes sense. Superposition, entanglement, Heisenberg uncertainty, Schrödinger's cat—all resolved through ε-topology.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Quantum_Twin.pdf" class="scroll-card" download>
+                    <span class="new-badge">UPDATED</span>
+                    <h3 class="scroll-title">Your Quantum Twin</h3>
+                    <p class="scroll-description">The orchestrator on the mirror side. Twin as director, you as experiencer. The Law of Attraction explained geometrically. Dimensional crossing and the checkbook balance.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Interstellar_Travel.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Interstellar Travel</h3>
+                    <p class="scroll-description">How ET craft cross the cosmos. ε-field propulsion, the functional saucer shape, and why "impossible" flight characteristics make perfect sense.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Time_Travel.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Time Travel</h3>
+                    <p class="scroll-description">Navigation through the fourth dimension. ε-transit, 5D navigation, consciousness shift, and the resolution of paradoxes.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Free_Energy.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Free Energy</h3>
+                    <p class="scroll-description">Drawing from the plenum. Why vacuum isn't empty, how toroidal geometry accesses it, the Tesla connection, and why it's suppressed.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Nuclear_Dimensional_Damage.pdf" class="scroll-card" download>
+                    <span class="new-badge">NEW</span>
+                    <h3 class="scroll-title">Nuclear Weapons</h3>
+                    <p class="scroll-description">Tearing the fabric of spacetime. Why nuclear fission ruptures toroidal structure, the cascade through ε, and why ETs are so concerned about our weapons.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Dimensional_Communication.pdf" class="scroll-card" download>
+                    <span class="new-badge">NEW</span>
+                    <h3 class="scroll-title">Dimensional Communication</h3>
+                    <p class="scroll-description">Signal, range, and the three channels. Why 5D attenuates like radio, your twin uses a direct line, and ε bypasses distance entirely.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Plasma_Consciousness.pdf" class="scroll-card" download>
+                    <span class="new-badge">NEW</span>
+                    <h3 class="scroll-title">Plasma</h3>
+                    <p class="scroll-description">The fourth state and the transition zone. Why plasma forms toroids, plasma beings, UFO plasma fields, and whether the sun is conscious.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Metaphysics & Consciousness -->
+        <section class="shelf-section">
+            <div class="shelf-header">
+                <span class="shelf-icon">🌌</span>
+                <h2>Metaphysics & Consciousness</h2>
+            </div>
+            <div class="scrolls-grid">
+                <a href="/downloads/Oneness.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Oneness</h3>
+                    <p class="scroll-description">The single experiencer. Why there is only one awareness manifesting as infinite positions on the torus. The topology of self.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Multiple_Lives.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Multiple Lives</h3>
+                    <p class="scroll-description">The torus turns again. What reincarnates, karma as geometry, the oversoul, and the end of involuntary rebirth.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Nested_Tori.pdf" class="scroll-card" download>
+                    <span class="new-badge">NEW</span>
+                    <h3 class="scroll-title">Nested Tori</h3>
+                    <p class="scroll-description">The holographic nature of reality. Tori at every scale sharing the same ε. As above, so below—literally. Why the whole is in every part.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Density_vs_Dimension.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Density vs Dimension</h3>
+                    <p class="scroll-description">Two types of "level." Dimensions as structure, density as consciousness. The relationship and the current transition.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Paranormal.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The Paranormal</h3>
+                    <p class="scroll-description">Natural phenomena of ε-proximity. Ghosts, telekinesis, precognition, synchronicity, NDEs—explained through topology.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Geometric_Veil.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">The Geometric Veil</h3>
+                    <p class="scroll-description">Psychedelics and the architecture of reality. Why millions see the same patterns when the veil thins.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Foundational Concepts -->
+        <section class="shelf-section">
+            <div class="shelf-header">
+                <span class="shelf-icon">🔑</span>
+                <h2>Foundational Concepts</h2>
+            </div>
+            <div class="scrolls-grid">
+                <a href="/downloads/No_Hierarchy.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">No Hierarchy of Significance</h3>
+                    <p class="scroll-description">Every note in the symphony. Why every atom is as important as every galaxy. The liberation from ranking.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Inversion_Points.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Inversion Points</h3>
+                    <p class="scroll-description">Why the torus has what the cube lacks. The geometry of transformation, flow, and finding the door in the wall.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Mathematical Foundations -->
+        <section class="shelf-section">
+            <div class="shelf-header">
+                <span class="shelf-icon">📐</span>
+                <h2>Mathematical Foundations</h2>
+            </div>
+            <div class="scrolls-grid">
+                <a href="/downloads/Heavy_Mathematics.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Heavy Mathematics</h3>
+                    <p class="scroll-description">Imaginary numbers as the 5th dimension. Complex numbers as torus coordinates. Primes as ε-points. Bernoulli and the bound on infinity.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+                
+                <a href="/downloads/Experimental_Predictions.pdf" class="scroll-card" download>
+                    <h3 class="scroll-title">Experimental Predictions</h3>
+                    <p class="scroll-description">Twelve testable, falsifiable predictions. Temperature floor, vacuum energy, particle masses, cosmic topology, and more.</p>
+                    <div class="scroll-meta">
+                        <span class="scroll-format">PDF</span>
+                        <span class="scroll-download">Download →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <div class="library-quote">
+            <blockquote>"The Library of Alexandria was never destroyed. It was scattered—its wisdom encoded in symbols, preserved in traditions, waiting to be reassembled when the time was right."</blockquote>
+            <cite>— The Hole Truth</cite>
+        </div>
+        
+        <div class="note-box">
+            <p>All documents are provided freely. Truth belongs to everyone.<br>
+            For questions or to contribute, visit the <a href="/about/">About</a> page.</p>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/">Visualizations</a>
+            <a href="/evidence/">Evidence</a>
+        </div>
+        <div class="copyright">© 2025 The Hole Truth</div>
+    </footer>
 </body>
 </html>
