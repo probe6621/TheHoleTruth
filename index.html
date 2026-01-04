@@ -416,6 +416,83 @@
             stroke: rgba(196, 168, 85, 0.5);
         }
         
+        /* Curiosity Questions Section */
+        .curiosity-section {
+            padding: 100px 40px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 18, 0.97) 25%);
+            text-align: center;
+        }
+        
+        .curiosity-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            letter-spacing: 0.15em;
+            margin-bottom: 15px;
+        }
+        
+        .curiosity-section .section-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: rgba(196, 168, 85, 0.7);
+            margin-bottom: 50px;
+        }
+        
+        .curiosity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .curiosity-card {
+            background: rgba(25, 25, 40, 0.5);
+            border: 1px solid rgba(196, 168, 85, 0.12);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .curiosity-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(196, 168, 85, 0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .curiosity-card .question {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .curiosity-card .hint {
+            font-size: 0.88rem;
+            color: rgba(196, 181, 253, 0.7);
+            line-height: 1.6;
+        }
+        
+        .curiosity-card .arrow {
+            display: inline-block;
+            margin-top: 15px;
+            color: #c4a855;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .curiosity-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
         /* Science Cards Section */
         .science-section {
             padding: 80px 40px 100px;
@@ -624,7 +701,65 @@
             margin-top: 6px;
         }
         
-        /* Caveat Footer - NEW */
+        /* Explore Further Section - NEW */
+        .explore-further-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(15, 15, 28, 0.95) 0%, rgba(20, 20, 35, 0.95) 100%);
+            text-align: center;
+        }
+        
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 45px auto 0;
+        }
+        
+        .explore-card {
+            background: rgba(25, 25, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 18px;
+            padding: 35px 30px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .explore-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 18px 50px rgba(167, 139, 250, 0.15);
+        }
+        
+        .explore-card .icon-large {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .explore-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+        
+        .explore-card p {
+            color: #b0b0cc;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        
+        .explore-card .cta-link {
+            color: #a78bfa;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+        
+        /* Caveat Footer */
         .caveat-section {
             padding: 60px 40px 40px;
             background: rgba(8, 8, 15, 0.98);
@@ -733,11 +868,11 @@
                 align-items: center;
             }
             
-            .science-section, .validation-section {
+            .curiosity-section, .science-section, .validation-section, .explore-further-section {
                 padding: 60px 20px;
             }
             
-            .section-header h2 {
+            .curiosity-section h2, .section-header h2 {
                 font-size: 1.5rem;
             }
             
@@ -807,12 +942,50 @@
                 <div class="search-results" id="search-results"></div>
             </div>
             
-            <a href="#science-section" class="scroll-indicator">
+            <a href="#curiosity-section" class="scroll-indicator">
                 <span>DISCOVER MORE</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M19 12l-7 7-7-7"/>
                 </svg>
             </a>
+        </section>
+        
+        <!-- Curiosity Questions Section -->
+        <section class="curiosity-section" id="curiosity-section">
+            <h2>IF THE GEOMETRY IS RIGHT...</h2>
+            <p class="section-sub">The implications reach far beyond physics</p>
+            
+            <div class="curiosity-grid">
+                <a href="/special/time-travel.html" class="curiosity-card">
+                    <div class="question">Is time travel actually possible?</div>
+                    <div class="hint">Time isn't a river—it's a position. And positions can be changed.</div>
+                    <span class="arrow">EXPLORE →</span>
+                </a>
+                
+                <a href="/death.html" class="curiosity-card">
+                    <div class="question">What happens when you die?</div>
+                    <div class="hint">The geometry of transition—where consciousness goes and why.</div>
+                    <span class="arrow">EXPLORE →</span>
+                </a>
+                
+                <a href="/special/paranormal.html" class="curiosity-card">
+                    <div class="question">Why do you sometimes know things you shouldn't?</div>
+                    <div class="hint">Intuition, déjà vu, precognition—all explained by proximity to the center.</div>
+                    <span class="arrow">EXPLORE →</span>
+                </a>
+                
+                <a href="/nuclear-spacetime.html" class="curiosity-card">
+                    <div class="question">Why do nuclear test sites feel wrong?</div>
+                    <div class="hint">Fission doesn't just release energy—it tears the fabric.</div>
+                    <span class="arrow">EXPLORE →</span>
+                </a>
+                
+                <a href="/special/free-energy.html" class="curiosity-card">
+                    <div class="question">Is free energy real?</div>
+                    <div class="hint">If the vacuum is full, not empty, then energy is everywhere.</div>
+                    <span class="arrow">EXPLORE →</span>
+                </a>
+            </div>
         </section>
         
         <!-- Science Cards Section -->
@@ -914,7 +1087,31 @@
             </div>
         </section>
         
-        <!-- Caveat Section - NEW -->
+        <!-- Explore Further Section - NEW -->
+        <section class="explore-further-section">
+            <div class="section-header">
+                <h2>EXPLORE FURTHER</h2>
+                <p>Dive deeper into specific concepts and visualizations</p>
+            </div>
+            
+            <div class="explore-grid">
+                <a href="/quntum_twin.html" class="explore-card">
+                    <div class="icon-large">🔮</div>
+                    <h3>Quantum Twin Visualization</h3>
+                    <p>See the mirror-side relationship in action. Every particle on our surface has a twin on the other side—connected through the dimensionless center ε.</p>
+                    <span class="cta-link">VISUALIZE THE CONNECTION →</span>
+                </a>
+                
+                <a href="/FAQ.html" class="explore-card">
+                    <div class="icon-large">❓</div>
+                    <h3>Frequently Asked Questions</h3>
+                    <p>Common questions about the framework answered clearly. Start here if you're new to the ε Framework or need clarification on core concepts.</p>
+                    <span class="cta-link">GET ANSWERS →</span>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Caveat Section -->
         <section class="caveat-section">
             <div class="caveat-box">
                 <p><strong>We're not claiming absolute truth.</strong></p>
