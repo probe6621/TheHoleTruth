@@ -488,6 +488,14 @@
                                 <feMergeNode in="SourceGraphic"/>
                             </feMerge>
                         </filter>
+                        
+                        <!-- Arrow markers for flow -->
+                        <marker id="arrowToEpsilon" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <path d="M0,0 L0,8 L8,4 z" fill="#4ecdc4"/>
+                        </marker>
+                        <marker id="arrowFromEpsilon" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <path d="M0,0 L0,8 L8,4 z" fill="#c44569"/>
+                        </marker>
                     </defs>
                     
                     <!-- Background subtle grid -->
@@ -499,13 +507,21 @@
                         <circle cx="450" cy="300" r="280" fill="none" stroke="#6666aa" stroke-width="0.5"/>
                     </g>
                     
-                    <!-- Connection lines from each inversion zone to universal ε -->
+                    <!-- Connection lines - BIDIRECTIONAL FLOW -->
                     <g class="connection-lines">
-                        <path d="M180,150 Q300,220 440,295" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line"/>
-                        <path d="M720,150 Q600,220 460,295" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 0.4s"/>
-                        <path d="M120,400 Q280,350 440,305" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 0.8s"/>
-                        <path d="M780,400 Q620,350 460,305" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 1.2s"/>
-                        <path d="M450,520 Q450,420 450,310" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 1.6s"/>
+                        <!-- TO universal ε (entropy/observation) - solid lines -->
+                        <path d="M180,150 Q300,220 440,295" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M720,150 Q600,220 460,295" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 0.4s" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M120,400 Q280,350 440,305" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 0.8s" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M780,400 Q620,350 460,305" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 1.2s" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M450,520 Q450,420 450,310" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 1.6s" marker-end="url(#arrowToEpsilon)"/>
+                        
+                        <!-- FROM universal ε (guidance/intuition) - dashed lines -->
+                        <path d="M460,295 Q300,220 180,150" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 0.2s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M440,295 Q600,220 720,150" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 0.6s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M460,305 Q280,350 120,400" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 1.0s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M440,305 Q620,350 780,400" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 1.4s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M450,310 Q450,420 450,520" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 1.8s" marker-end="url(#arrowFromEpsilon)"/>
                     </g>
                     
                     <!-- THE UNIVERSAL EPSILON - SINGULAR, cosmic center -->
@@ -575,9 +591,20 @@
                     <text x="50" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(-90, 50, 300)">GEOMETRIC FRAMEWORKS</text>
                     <text x="850" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(90, 850, 300)">NESTED STRUCTURES</text>
                     
-                    <!-- Flow annotations -->
-                    <text x="260" y="220" fill="#c44569" font-size="10" font-style="italic" opacity="0.7">all zones →</text>
-                    <text x="540" y="380" fill="#c44569" font-size="10" font-style="italic" opacity="0.7">→ flow to ε</text>
+                    <!-- Flow annotations with legend -->
+                    <g transform="translate(150, 50)">
+                        <text x="0" y="0" fill="#4ecdc4" font-size="11" font-weight="bold">Entropy → ε</text>
+                        <line x1="0" y1="5" x2="80" y2="5" stroke="#4ecdc4" stroke-width="2" marker-end="url(#arrowToEpsilon)"/>
+                        <text x="0" y="25" fill="rgba(78,205,196,0.7)" font-size="9">(observation, measurement)</text>
+                    </g>
+                    
+                    <g transform="translate(600, 50)">
+                        <text x="0" y="0" fill="#c44569" font-size="11" font-weight="bold">ε → Guidance</text>
+                        <line x1="0" y1="5" x2="80" y2="5" stroke="#c44569" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowFromEpsilon)"/>
+                        <text x="0" y="25" fill="rgba(196,69,105,0.7)" font-size="9">(intuition, dreams, synchronicity)</text>
+                    </g>
+                    
+                    <text x="450" y="575" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10" font-style="italic">Bidirectional flow: We send entropy; ε returns guidance</text>
                 </svg>
             </div>
         </div>
@@ -601,18 +628,18 @@
             
             <div class="insight-card">
                 <h3>
-                    <span class="icon-circle" style="background: rgba(139,92,246,0.3); color: #a78bfa;">👥</span>
-                    ONE Quantum Twin
+                    <span class="icon-circle" style="background: rgba(78,205,196,0.3); color: #4ecdc4;">⇄</span>
+                    TWO-Way Flow
                 </h3>
-                <p>Only <strong>ONE</strong> copy of you exists on the universal cosmic torus. Your quantum twin is on the mirror side of that same structure—not in a separate torus. These smaller geometric frameworks are organizational patterns, not separate universes.</p>
+                <p><strong>TO universal ε:</strong> Entropy, observation, measurement—the "cost" of consciousness experiencing reality. <strong>FROM universal ε:</strong> Guidance, intuition, dreams, synchronicities—the orchestration that powers existence. The flow is bidirectional; we need both directions.</p>
             </div>
         </div>
         
         <div class="analogy-section">
             <div class="analogy-item">
                 <div class="icon">🌊</div>
-                <h4>The Drainage System</h4>
-                <p>A million bathtub drains (inversion zones) in a city. Different locations, but all pipes flow to the same ocean (universal ε).</p>
+                <h4>The Ocean Circuit</h4>
+                <p>Many drains (inversion zones) throughout the city. Water flows TO the ocean (entropy). Ocean currents flow BACK through water supply (guidance). Bidirectional system.</p>
             </div>
             <div class="analogy-item">
                 <div class="icon">🌳</div>
@@ -625,9 +652,9 @@
                 <p>City map, state map, world map—different frames of reference, different centers. But only ONE Earth they're all describing.</p>
             </div>
             <div class="analogy-item">
-                <div class="icon">💡</div>
-                <h4>Light Bulbs</h4>
-                <p>Many bulbs (local inversion zones) throughout a building, but only ONE power plant (universal ε) generating the electricity.</p>
+                <div class="icon">⚡</div>
+                <h4>Power Grid</h4>
+                <p>Many light bulbs (local zones) throughout a building. Power flows FROM the plant (ε gives guidance). Usage data flows TO the plant (entropy/observation). Two-way system.</p>
             </div>
         </div>
         
