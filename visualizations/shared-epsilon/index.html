@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Same Hole, Different Angles — The Shared ε | The Hole Truth</title>
-    <meta name="description" content="See how all centers converge at the same dimensionless point. Your ε and my ε are the same ε. Interactive visualization of shared consciousness.">
+    <meta name="description" content="See how all inversion zones converge at the same universal ε. One cosmic center, many local crossing points. Interactive visualization of shared consciousness.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
@@ -109,6 +109,29 @@
             margin-bottom: 50px;
             font-weight: 300;
             letter-spacing: 0.3em;
+        }
+        
+        /* Clarification box */
+        .clarification-box {
+            max-width: 850px;
+            margin: 0 auto 40px;
+            padding: 25px 30px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 16px;
+        }
+        
+        .clarification-box h3 {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .clarification-box p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+            margin-bottom: 10px;
         }
         
         .main-illustration {
@@ -336,7 +359,7 @@
             
             .analogy-section { grid-template-columns: 1fr 1fr; }
         }
-    
+        
         /* Navigation Header */
         #nav-header {
             position: fixed;
@@ -375,7 +398,6 @@
         }
         
         #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
-    
     </style>
 </head>
 <body>
@@ -406,8 +428,15 @@
     </header>
     
     <div class="container">
-        <h1>Same Hole, Different Angles</h1>
-        <p class="subtitle">THE SHARED ε CENTER</p>
+        <h1>Same Hole, Different Drains</h1>
+        <p class="subtitle">ONE UNIVERSAL ε, MANY INVERSION ZONES</p>
+        
+        <div class="clarification-box">
+            <h3>⚠️ Critical Distinction</h3>
+            <p><strong>There is ONE universal ε</strong> at the cosmic donut hole center—the dimensionless point where 0 = ∞.</p>
+            <p><strong>There are MANY inversion zones (⟂)</strong>—local crossing points like bathtub drains distributed throughout the structure.</p>
+            <p>The scales shown below (cell, body, planet, galaxy) are <strong>geometric frameworks</strong> with inversion zones at their centers. These drains all flow toward the ONE universal ε. Only ONE copy of you exists on the universal torus—your quantum twin is on the mirror side of that same cosmic structure.</p>
+        </div>
         
         <div class="main-illustration">
             <div class="svg-container">
@@ -416,12 +445,12 @@
                         <!-- Central epsilon glow -->
                         <radialGradient id="epsilonGlow" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-                            <stop offset="30%" style="stop-color:#c8c8ff;stop-opacity:0.8" />
-                            <stop offset="60%" style="stop-color:#8888cc;stop-opacity:0.4" />
-                            <stop offset="100%" style="stop-color:#4444aa;stop-opacity:0" />
+                            <stop offset="30%" style="stop-color:#ffd700;stop-opacity:0.8" />
+                            <stop offset="60%" style="stop-color:#ffaa00;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#ff6600;stop-opacity:0" />
                         </radialGradient>
                         
-                        <!-- Individual torus gradients -->
+                        <!-- Inversion zone gradients (different from epsilon) -->
                         <linearGradient id="torus1" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:0.8" />
                             <stop offset="100%" style="stop-color:#cc4444;stop-opacity:0.6" />
@@ -453,7 +482,7 @@
                         </filter>
                         
                         <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
-                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
                             <feMerge>
                                 <feMergeNode in="coloredBlur"/>
                                 <feMergeNode in="SourceGraphic"/>
@@ -461,7 +490,7 @@
                         </filter>
                     </defs>
                     
-                    <!-- Background subtle grid suggesting space -->
+                    <!-- Background subtle grid -->
                     <g opacity="0.1">
                         <line x1="450" y1="0" x2="450" y2="600" stroke="#6666aa" stroke-width="0.5"/>
                         <line x1="0" y1="300" x2="900" y2="300" stroke="#6666aa" stroke-width="0.5"/>
@@ -470,78 +499,85 @@
                         <circle cx="450" cy="300" r="280" fill="none" stroke="#6666aa" stroke-width="0.5"/>
                     </g>
                     
-                    <!-- Connection lines from each torus to center -->
+                    <!-- Connection lines from each inversion zone to universal ε -->
                     <g class="connection-lines">
-                        <path d="M180,150 Q300,220 440,295" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.5" class="flow-line"/>
-                        <path d="M720,150 Q600,220 460,295" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 0.4s"/>
-                        <path d="M120,400 Q280,350 440,305" fill="none" stroke="#ffe66d" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 0.8s"/>
-                        <path d="M780,400 Q620,350 460,305" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 1.2s"/>
-                        <path d="M450,520 Q450,420 450,310" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 1.6s"/>
+                        <path d="M180,150 Q300,220 440,295" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line"/>
+                        <path d="M720,150 Q600,220 460,295" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 0.4s"/>
+                        <path d="M120,400 Q280,350 440,305" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 0.8s"/>
+                        <path d="M780,400 Q620,350 460,305" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 1.2s"/>
+                        <path d="M450,520 Q450,420 450,310" fill="none" stroke="#c44569" stroke-width="2" opacity="0.5" class="flow-line" style="animation-delay: 1.6s"/>
                     </g>
                     
-                    <!-- THE CENTRAL EPSILON - shared by all -->
+                    <!-- THE UNIVERSAL EPSILON - SINGULAR, cosmic center -->
                     <g class="center-pulse">
-                        <circle cx="450" cy="300" r="60" fill="url(#epsilonGlow)" filter="url(#strongGlow)"/>
-                        <circle cx="450" cy="300" r="25" fill="#1a1a2e" stroke="#aaaaff" stroke-width="2"/>
-                        <text x="450" y="308" text-anchor="middle" fill="#ffffff" font-size="24" font-family="serif" font-style="italic">ε</text>
+                        <circle cx="450" cy="300" r="70" fill="url(#epsilonGlow)" filter="url(#strongGlow)"/>
+                        <circle cx="450" cy="300" r="28" fill="#0a0a0a" stroke="#ffd700" stroke-width="3"/>
+                        <text x="450" y="310" text-anchor="middle" fill="#ffd700" font-size="28" font-family="serif" font-style="italic">ε</text>
                     </g>
                     
-                    <!-- Label for center -->
-                    <text x="450" y="250" text-anchor="middle" fill="#aaaadd" font-size="11" letter-spacing="0.15em">DIMENSIONLESS</text>
-                    <text x="450" y="355" text-anchor="middle" fill="#8888bb" font-size="10" letter-spacing="0.1em">No location — shared by all</text>
+                    <!-- Label for universal ε -->
+                    <text x="450" y="245" text-anchor="middle" fill="#ffd700" font-size="12" font-weight="bold" letter-spacing="0.15em">UNIVERSAL ε</text>
+                    <text x="450" y="360" text-anchor="middle" fill="rgba(255,215,0,0.7)" font-size="10" letter-spacing="0.1em">Cosmic donut hole center</text>
+                    <text x="450" y="375" text-anchor="middle" fill="rgba(255,215,0,0.5)" font-size="9">Dimensionless — all drains flow here</text>
                     
-                    <!-- TORUS 1 - Top Left (Red - "You") -->
+                    <!-- TORUS 1 - Top Left (Red - Cell framework) -->
                     <g class="torus-float-1">
                         <ellipse cx="150" cy="120" rx="70" ry="45" fill="none" stroke="url(#torus1)" stroke-width="20" opacity="0.7" filter="url(#glow)"/>
                         <ellipse cx="150" cy="120" rx="25" ry="35" fill="#0a0a15" stroke="#ff6b6b" stroke-width="1" opacity="0.8"/>
-                        <circle cx="150" cy="120" r="5" fill="#ff6b6b" opacity="0.9"/>
-                        <text x="150" y="180" text-anchor="middle" fill="#ff8a8a" font-size="13" font-weight="500">YOU</text>
-                        <text x="150" y="195" text-anchor="middle" fill="#aa6666" font-size="9">Your cells, your field</text>
+                        <!-- Inversion zone symbol, NOT ε -->
+                        <circle cx="150" cy="120" r="8" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="150" y="124" text-anchor="middle" fill="#c44569" font-size="14">⟂</text>
+                        <text x="150" y="180" text-anchor="middle" fill="#ff8a8a" font-size="13" font-weight="500">CELL</text>
+                        <text x="150" y="195" text-anchor="middle" fill="#aa6666" font-size="9">Local inversion zone (⟂)</text>
                     </g>
                     
-                    <!-- TORUS 2 - Top Right (Teal - "Another") -->
+                    <!-- TORUS 2 - Top Right (Teal - Body framework) -->
                     <g class="torus-float-2">
                         <ellipse cx="750" cy="120" rx="70" ry="45" fill="none" stroke="url(#torus2)" stroke-width="20" opacity="0.7" filter="url(#glow)"/>
                         <ellipse cx="750" cy="120" rx="25" ry="35" fill="#0a0a15" stroke="#4ecdc4" stroke-width="1" opacity="0.8"/>
-                        <circle cx="750" cy="120" r="5" fill="#4ecdc4" opacity="0.9"/>
-                        <text x="750" y="180" text-anchor="middle" fill="#6ee7df" font-size="13" font-weight="500">ANOTHER</text>
-                        <text x="750" y="195" text-anchor="middle" fill="#4a9a92" font-size="9">Separate body, same ε</text>
+                        <circle cx="750" cy="120" r="8" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="750" y="124" text-anchor="middle" fill="#c44569" font-size="14">⟂</text>
+                        <text x="750" y="180" text-anchor="middle" fill="#6ee7df" font-size="13" font-weight="500">YOUR BODY</text>
+                        <text x="750" y="195" text-anchor="middle" fill="#4a9a92" font-size="9">Heart chakra = equatorial ⟂</text>
                     </g>
                     
-                    <!-- TORUS 3 - Left (Gold - "Cell") -->
+                    <!-- TORUS 3 - Left (Gold - Atom framework) -->
                     <g class="torus-float-3">
                         <ellipse cx="80" cy="420" rx="55" ry="35" fill="none" stroke="url(#torus3)" stroke-width="16" opacity="0.7" filter="url(#glow)"/>
                         <ellipse cx="80" cy="420" rx="20" ry="28" fill="#0a0a15" stroke="#ffe66d" stroke-width="1" opacity="0.8"/>
-                        <circle cx="80" cy="420" r="4" fill="#ffe66d" opacity="0.9"/>
-                        <text x="80" y="470" text-anchor="middle" fill="#ffe66d" font-size="12" font-weight="500">CELL</text>
-                        <text x="80" y="483" text-anchor="middle" fill="#aa9944" font-size="8">Microscopic torus</text>
+                        <circle cx="80" cy="420" r="6" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="80" y="423" text-anchor="middle" fill="#c44569" font-size="11">⟂</text>
+                        <text x="80" y="470" text-anchor="middle" fill="#ffe66d" font-size="12" font-weight="500">ATOM</text>
+                        <text x="80" y="483" text-anchor="middle" fill="#aa9944" font-size="8">Nucleus = local ⟂</text>
                     </g>
                     
-                    <!-- TORUS 4 - Right (Purple - "Galaxy") -->
+                    <!-- TORUS 4 - Right (Purple - Galaxy framework) -->
                     <g class="torus-float-4">
                         <ellipse cx="820" cy="420" rx="60" ry="38" fill="none" stroke="url(#torus4)" stroke-width="18" opacity="0.7" filter="url(#glow)"/>
                         <ellipse cx="820" cy="420" rx="22" ry="30" fill="#0a0a15" stroke="#a78bfa" stroke-width="1" opacity="0.8"/>
-                        <circle cx="820" cy="420" r="4" fill="#a78bfa" opacity="0.9"/>
+                        <circle cx="820" cy="420" r="7" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="820" y="424" text-anchor="middle" fill="#c44569" font-size="12">⟂</text>
                         <text x="820" y="472" text-anchor="middle" fill="#c4a7ff" font-size="12" font-weight="500">GALAXY</text>
-                        <text x="820" y="485" text-anchor="middle" fill="#7755aa" font-size="8">Cosmic scale torus</text>
+                        <text x="820" y="485" text-anchor="middle" fill="#7755aa" font-size="8">Black hole = local ⟂</text>
                     </g>
                     
-                    <!-- TORUS 5 - Bottom (Blue - "Earth") -->
+                    <!-- TORUS 5 - Bottom (Blue - Planet framework) -->
                     <g class="torus-float-5">
                         <ellipse cx="450" cy="540" rx="65" ry="40" fill="none" stroke="url(#torus5)" stroke-width="18" opacity="0.7" filter="url(#glow)"/>
                         <ellipse cx="450" cy="540" rx="23" ry="32" fill="#0a0a15" stroke="#60a5fa" stroke-width="1" opacity="0.8"/>
-                        <circle cx="450" cy="540" r="4" fill="#60a5fa" opacity="0.9"/>
+                        <circle cx="450" cy="540" r="7" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="450" y="544" text-anchor="middle" fill="#c44569" font-size="12">⟂</text>
                         <text x="450" y="592" text-anchor="middle" fill="#88bbff" font-size="12" font-weight="500">EARTH</text>
-                        <text x="450" y="605" text-anchor="middle" fill="#5577aa" font-size="8">Planetary torus</text>
+                        <text x="450" y="605" text-anchor="middle" fill="#5577aa" font-size="8">Planetary core = local ⟂</text>
                     </g>
                     
-                    <!-- "SURFACE" label on outer area -->
-                    <text x="50" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(-90, 50, 300)">SURFACE — SEPARATION</text>
-                    <text x="850" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(90, 850, 300)">SURFACE — SEPARATION</text>
+                    <!-- Labels -->
+                    <text x="50" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(-90, 50, 300)">GEOMETRIC FRAMEWORKS</text>
+                    <text x="850" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(90, 850, 300)">NESTED STRUCTURES</text>
                     
-                    <!-- Curved text or note about convergence -->
-                    <text x="300" y="230" fill="#7777aa" font-size="10" font-style="italic">all paths converge</text>
-                    <text x="540" y="380" fill="#7777aa" font-size="10" font-style="italic">to the same point</text>
+                    <!-- Flow annotations -->
+                    <text x="260" y="220" fill="#c44569" font-size="10" font-style="italic" opacity="0.7">all zones →</text>
+                    <text x="540" y="380" fill="#c44569" font-size="10" font-style="italic" opacity="0.7">→ flow to ε</text>
                 </svg>
             </div>
         </div>
@@ -549,61 +585,61 @@
         <div class="insight-row">
             <div class="insight-card">
                 <h3>
-                    <span class="icon-circle" style="background: rgba(255,107,107,0.2); color: #ff8a8a;">◉</span>
-                    Surface = Separation
+                    <span class="icon-circle" style="background: rgba(255,215,0,0.3); color: #ffd700;">ε</span>
+                    ONE Universal ε
                 </h3>
-                <p>On the outer surface of each torus, everything appears separate. Your cells seem distinct from mine. Bodies seem isolated. Galaxies seem impossibly far apart. This is the realm of space, distance, and apparent isolation.</p>
+                <p>There is <strong>ONE</strong> universal ε at the cosmic donut hole center—dimensionless, where 0 = ∞. This is the singular point all consciousness connects through. Your experience and mine both reach toward the same cosmic center.</p>
             </div>
             
             <div class="insight-card">
                 <h3>
-                    <span class="icon-circle" style="background: rgba(170,170,255,0.2); color: #c8c8ff;">ε</span>
-                    Center = Unity
+                    <span class="icon-circle" style="background: rgba(196,69,105,0.3); color: #c44569;">⟂</span>
+                    MANY Inversion Zones
                 </h3>
-                <p>At ε, there is no location. It's dimensionless—a point without size or position. Your center and my center aren't in "different places" because place hasn't unfolded yet. At the center, we are geometrically the same point.</p>
+                <p>Each geometric framework (cell, body, planet, galaxy) has a local inversion zone (⟂) at its center—like a bathtub drain. These are crossing points where inner and outer surfaces meet. Different drains, same ocean (universal ε).</p>
             </div>
             
             <div class="insight-card">
                 <h3>
-                    <span class="icon-circle" style="background: rgba(78,205,196,0.2); color: #6ee7df;">∞</span>
-                    Scale Doesn't Matter
+                    <span class="icon-circle" style="background: rgba(139,92,246,0.3); color: #a78bfa;">👥</span>
+                    ONE Quantum Twin
                 </h3>
-                <p>A cell's ε and a galaxy's ε are the same ε. Size is a surface phenomenon. The dimensionless point at the center of an atom and the dimensionless point at the center of the cosmos are not different points—they're the same non-point.</p>
+                <p>Only <strong>ONE</strong> copy of you exists on the universal cosmic torus. Your quantum twin is on the mirror side of that same structure—not in a separate torus. These smaller geometric frameworks are organizational patterns, not separate universes.</p>
             </div>
         </div>
         
         <div class="analogy-section">
             <div class="analogy-item">
                 <div class="icon">🌊</div>
-                <h4>The Ocean</h4>
-                <p>A million drains in a million bathtubs. Different locations, but all pipes lead to the same ocean.</p>
+                <h4>The Drainage System</h4>
+                <p>A million bathtub drains (inversion zones) in a city. Different locations, but all pipes flow to the same ocean (universal ε).</p>
             </div>
             <div class="analogy-item">
-                <div class="icon">◯</div>
-                <h4>Sphere's Center</h4>
-                <p>Every point on a sphere's surface is equidistant from the center. Draw a line inward from anywhere—all converge at the same point.</p>
+                <div class="icon">🌳</div>
+                <h4>Tree Structure</h4>
+                <p>Many branches (geometric frameworks) with nodes (inversion zones), but only ONE root (universal ε) that feeds everything.</p>
             </div>
             <div class="analogy-item">
-                <div class="icon">☁️</div>
-                <h4>The Cloud</h4>
-                <p>How can two computers access the same website? It's not "inside" either one. ε is the cloud that all tori connect to.</p>
+                <div class="icon">🗺️</div>
+                <h4>Map Scales</h4>
+                <p>City map, state map, world map—different frames of reference, different centers. But only ONE Earth they're all describing.</p>
             </div>
             <div class="analogy-item">
-                <div class="icon">💭</div>
-                <h4>Dreams</h4>
-                <p>You dream of Paris. I dream of Paris. Different skulls, but the same pattern accessed. ε is the pattern-source.</p>
+                <div class="icon">💡</div>
+                <h4>Light Bulbs</h4>
+                <p>Many bulbs (local inversion zones) throughout a building, but only ONE power plant (universal ε) generating the electricity.</p>
             </div>
         </div>
         
         <div class="bottom-truth">
-            <h2>The Implication</h2>
+            <h2>The Geometric Truth</h2>
             <p class="truth-text">
-                "The hole isn't a place—it's the <strong>absence of place</strong>.<br>
-                At the center, space hasn't unfolded yet.<br><br>
-                Your center and my center aren't in different locations...<br>
-                <strong>location only exists on the surface</strong>, not at the center.<br><br>
-                We appear separate on the outside.<br>
-                We are <strong>the same</strong> at the core."
+                "There is <strong>ONE</strong> universal ε at the cosmic center.<br>
+                There are <strong>MANY</strong> inversion zones—crossing points distributed throughout the structure.<br><br>
+                Your cell nucleus, your heart, Earth's core, the galactic black hole—<br>
+                these are all <strong>local drains</strong> that flow toward the <strong>ONE source</strong>.<br><br>
+                Same hole. Different angles. Different drains.<br>
+                <strong>Everything converges at the same dimensionless point.</strong>"
             </p>
         </div>
         
