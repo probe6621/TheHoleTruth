@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Epsilon Toroid Animation | Interactive 3D Visualization – The Hole Truth</title>
-    <meta name="description" content="Experience the foundational epsilon toroid visualization with interactive controls, 3-6-9 harmonics, and real-time physics data.">
-    <meta name="keywords" content="toroid animation, epsilon visualization, 3D physics, toroidal energy flow, sacred geometry, 369, Tesla">
+    <title>Epsilon Toroid Animation | Interactive 5D Visualization – The Hole Truth</title>
+    <meta name="description" content="Experience the foundational epsilon toroid visualization with interactive controls, 3-6-9 harmonics, and real-time physics data. See why this isn't a standard n-torus.">
+    <meta name="keywords" content="5D toroid animation, epsilon visualization, 3D physics, toroidal energy flow, sacred geometry, 369, Tesla">
     <meta name="author" content="The Hole Truth">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://theholetruth.space/visualizations/epsilon-toroid/">
-    <meta property="og:title" content="Epsilon Toroid Animation | Interactive 3D Visualization">
-    <meta property="og:description" content="The foundational visualization of the ε Framework. See toroidal geometry in action.">
+    <meta property="og:title" content="Epsilon Toroid Animation | Interactive 5D Visualization">
+    <meta property="og:description" content="The foundational visualization of the ε Framework. See how 5D toroidal geometry differs from standard n-torus mathematics.">
     <meta property="og:image" content="https://theholetruth.space/images/og-toroid.jpg">
     
     <!-- Canonical URL -->
@@ -90,6 +90,8 @@
             right: 30px;
             top: 100px;
             width: 320px;
+            max-height: 70vh;
+            overflow-y: auto;
             background: rgba(20, 20, 40, 0.85);
             border: 1px solid rgba(100, 100, 150, 0.3);
             border-radius: 16px;
@@ -113,6 +115,16 @@
             letter-spacing: 0.1em;
         }
         
+        .info-panel h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #c4b5fd;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(196, 181, 253, 0.2);
+        }
+        
         .info-panel p {
             font-size: 0.9rem;
             color: #b8b8dd;
@@ -129,6 +141,30 @@
             border-left: 2px solid rgba(167, 139, 250, 0.5);
             border-radius: 0 8px 8px 0;
             margin-bottom: 15px;
+        }
+        
+        .distinction-box {
+            background: rgba(255, 102, 204, 0.1);
+            border: 1px solid rgba(255, 102, 204, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            font-size: 0.8rem;
+            margin: 10px 0;
+        }
+        
+        .comparison-table td {
+            padding: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table td:first-child {
+            color: #ffaa88;
+            font-weight: bold;
         }
         
         /* Control Panel */
@@ -304,32 +340,6 @@
             display: block;
         }
         
-        /* Original overlay styles */
-        #overlay {
-            position: absolute;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: white;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        #axiom {
-            font-size: 36px;
-            font-weight: bold;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(167, 139, 250, 0.8);
-            margin-bottom: 10px;
-        }
-        
-        #subtitle {
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 2px;
-        }
-        
         #center-label {
             position: absolute;
             top: 50%;
@@ -364,6 +374,13 @@
             text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
         }
         
+        #title .subtitle {
+            margin-top: 10px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 3px;
+        }
+        
         /* Mobile */
         @media (max-width: 768px) {
             .info-panel, .control-panel {
@@ -380,7 +397,7 @@
         /* Sound Control */
         .sound-control {
             position: fixed;
-            bottom: 40px;
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 100;
@@ -403,6 +420,21 @@
         
         .sound-btn.playing {
             background: rgba(167, 139, 250, 0.6);
+        }
+        
+        /* Custom scrollbar for info panel */
+        .info-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .info-panel::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+            border-radius: 3px;
+        }
+        
+        .info-panel::-webkit-scrollbar-thumb {
+            background: rgba(167, 139, 250, 0.5);
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -429,7 +461,8 @@
     <!-- Info Panel -->
     <div class="info-panel hidden" id="infoPanel">
         <h3>THE EPSILON TOROID</h3>
-        <p>You're seeing the foundational shape of reality: a torus with epsilon (ε) at its center. Energy flows continuously from center to surface and back—never stopping, never truly starting.</p>
+        <p>You're seeing the foundational shape of reality: a torus with epsilon (ε) at its center. Energy flows continuously from center to surface and back.</p>
+        
         <div class="science-note">
             Geometry: R = 3 (major), r = 1.2 (minor)<br>
             Pulse frequency: 3-6-9 Hz harmonics<br>
@@ -437,13 +470,62 @@
             Volume: 2π²Rr² = 70.88 units³<br>
             Surface Area: 4π²Rr = 142.48 units²
         </div>
-        <p>Notice the 3-6-9 pulse at the center. Tesla said "If you knew the magnificence of 3, 6, and 9, you would have a key to the universe." This visualization shows why.</p>
+        
+        <h4>THE 5D DISTINCTION</h4>
+        <div class="distinction-box">
+            <p><strong>This is NOT a standard n-torus!</strong></p>
+            
+            <table class="comparison-table">
+                <tr>
+                    <td>Standard n-Torus</td>
+                    <td>ε-Torus (Our Framework)</td>
+                </tr>
+                <tr>
+                    <td>T^n = S¹×S¹×...</td>
+                    <td>11 = (5×2) + ε</td>
+                </tr>
+                <tr>
+                    <td>Product of circles</td>
+                    <td>5D with two surfaces + center</td>
+                </tr>
+                <tr>
+                    <td>Hole is incidental</td>
+                    <td>Hole (ε) is essential</td>
+                </tr>
+                <tr>
+                    <td>No organizing center</td>
+                    <td>ε organizes everything</td>
+                </tr>
+                <tr>
+                    <td>Periodic boundaries</td>
+                    <td>Inversion through center</td>
+                </tr>
+            </table>
+            
+            <p style="margin-top: 10px; font-size: 0.85em; color: #ffccdd;">
+                <strong>The critical difference:</strong> In standard topology, the hole is just empty space—an artifact of the embedding. In the ε Framework, the hole IS the organizing principle. It's not absence; it's the presence of the inversion point that makes everything else possible.
+            </p>
+        </div>
+        
+        <h4>WHY 5 DIMENSIONS?</h4>
+        <p>The torus naturally emerges from 5-dimensional geometry:</p>
+        <ul style="font-size: 0.85em; color: #b8b8dd; margin-left: 20px;">
+            <li>3 spatial dimensions we experience</li>
+            <li>1 temporal dimension (time)</li>
+            <li>1 dimension that curves through ε</li>
+            <li>× 2 surfaces (inner/outer, matter/mirror)</li>
+            <li>+ ε (the dimensionless center)</li>
+        </ul>
+        <p style="margin-top: 10px;">This gives us: <strong style="color: #88ff88;">11 = (5×2) + 1</strong></p>
+        <p style="font-size: 0.85em; color: #aaa;">Exactly M-theory's 11 dimensions!</p>
+        
+        <h4>THE 3-6-9 PULSE</h4>
+        <p>Tesla said "If you knew the magnificence of 3, 6, and 9, you would have a key to the universe." This visualization shows why:</p>
         <div class="science-note">
-            3 Hz = Primary rotation (major)<br>
-            6 Hz = Secondary rotation (minor)<br>
+            3 Hz = Primary rotation (major circle)<br>
+            6 Hz = Secondary rotation (minor circle)<br>
             9 Hz = Unity frequency (3+6)<br>
-            Particle paths = geodesics on torus<br>
-            Flow pattern = Villarceau circles
+            ε = Where all three converge
         </div>
     </div>
     
@@ -513,25 +595,23 @@
     <div class="annotation" id="ann1" style="top: 45%; left: 70%;">Major Radius (R=3)</div>
     <div class="annotation" id="ann2" style="top: 30%; left: 50%;">Minor Radius (r=1.2)</div>
     <div class="annotation" id="ann3" style="top: 50%; left: 50%;">ε - Inversion Point</div>
-    <div class="annotation" id="ann4" style="top: 65%; left: 30%;">Toroidal Flow Path</div>
+    <div class="annotation" id="ann4" style="top: 65%; left: 30%;">5D Toroidal Flow</div>
     
     <!-- Sound Control -->
     <div class="sound-control">
         <button class="sound-btn" onclick="toggleSound()">🔊 ACTIVATE 3-6-9 HARMONICS</button>
     </div>
     
-    <!-- Original visualization elements -->
+    <!-- Title and center label -->
     <div id="title">
         <h1>THE EPSILON TOROID</h1>
+        <div class="subtitle">5-DIMENSIONAL TOPOLOGY WITH ORGANIZING CENTER</div>
     </div>
     <div id="center-label">ε</div>
-    <div id="overlay">
-        <div id="axiom">∄0</div>
-        <div id="subtitle">THERE DOES NOT EXIST ZERO</div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // [Keep all the existing JavaScript code exactly the same, just removed the overlay section with ∄0]
         // Control variables
         let controls = {
             rotationSpeed: 0.3,
@@ -647,7 +727,6 @@
         document.getElementById('particleCount').addEventListener('input', (e) => {
             controls.particleCount = parseInt(e.target.value);
             document.getElementById('particleCountValue').textContent = e.target.value;
-            // Recreate particles with new count
             recreateParticles();
         });
         
