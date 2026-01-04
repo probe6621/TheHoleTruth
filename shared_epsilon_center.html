@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Same Hole, Different Angles — The Shared ε | The Hole Truth</title>
+    <meta name="description" content="See how all inversion zones converge at the same universal ε. One cosmic center, many local crossing points. Interactive visualization of shared consciousness.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            background: #000;
+            font-family: 'Nunito', sans-serif;
+            color: #e0e0e8;
+            overflow-x: hidden;
+        }
+        
+        .cosmos-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(60, 40, 100, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(40, 60, 100, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(20, 20, 40, 1) 0%, #000 100%);
+            z-index: -1;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 70%, transparent 100%);
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .logo span { color: #c4b5fd; }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active { color: #c4b5fd; }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff 0%, #b8c0ff 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.15em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #8888bb;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+        }
+        
+        /* Clarification box */
+        .clarification-box {
+            max-width: 850px;
+            margin: 0 auto 40px;
+            padding: 25px 30px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 16px;
+        }
+        
+        .clarification-box h3 {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .clarification-box p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        
+        .main-illustration {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        
+        .svg-container {
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .main-svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 60px rgba(100, 100, 200, 0.15));
+        }
+        
+        .insight-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .insight-card {
+            background: rgba(30, 30, 50, 0.5);
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(150, 150, 200, 0.4);
+        }
+        
+        .insight-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #c8c8ff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .insight-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #9999bb;
+        }
+        
+        .icon-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .bottom-truth {
+            background: linear-gradient(135deg, rgba(80, 60, 120, 0.3) 0%, rgba(40, 60, 100, 0.3) 100%);
+            border: 1px solid rgba(150, 130, 200, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .bottom-truth h2 {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: #d8d8ff;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+        
+        .truth-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #b8b8dd;
+            font-style: italic;
+        }
+        
+        .truth-text strong {
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        /* Animations */
+        @keyframes pulseCenter {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% { 
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes floatTorus {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        @keyframes flowToCenter {
+            0% { 
+                stroke-dashoffset: 50;
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% { 
+                stroke-dashoffset: 0;
+                opacity: 0.3;
+            }
+        }
+        
+        .center-pulse {
+            animation: pulseCenter 3s ease-in-out infinite;
+            transform-origin: center;
+        }
+        
+        .torus-float-1 { animation: floatTorus 4s ease-in-out infinite; }
+        .torus-float-2 { animation: floatTorus 4s ease-in-out infinite 0.5s; }
+        .torus-float-3 { animation: floatTorus 4s ease-in-out infinite 1s; }
+        .torus-float-4 { animation: floatTorus 4s ease-in-out infinite 1.5s; }
+        .torus-float-5 { animation: floatTorus 4s ease-in-out infinite 2s; }
+        
+        .flow-line {
+            stroke-dasharray: 10, 5;
+            animation: flowToCenter 2s linear infinite;
+        }
+        
+        .analogy-section {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .analogy-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(40, 40, 60, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(80, 80, 120, 0.2);
+        }
+        
+        .analogy-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .analogy-item h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: #aaaacc;
+            margin-bottom: 8px;
+        }
+        
+        .analogy-item p {
+            font-size: 0.85rem;
+            color: #7777aa;
+            line-height: 1.5;
+        }
+        
+        /* Back Link */
+        .back-link {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .back-link a {
+            color: #c4b5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link a:hover { color: #fff; }
+        
+        /* Footer */
+        footer {
+            padding: 40px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(100, 100, 150, 0.15);
+            margin-top: 60px;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            
+            .container { padding: 100px 15px 30px; }
+            
+            h1 { font-size: 1.8rem; }
+            
+            .analogy-section { grid-template-columns: 1fr 1fr; }
+        }
+        
+        /* Navigation Header */
+        #nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,18,0.95) 0%, rgba(10,10,18,0.7) 70%, transparent 100%);
+        }
+        
+        #nav-header .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        #nav-header .logo span { color: #c4b5fd; }
+        
+        #nav-header nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #nav-header nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <div id="nav-header">
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </div>
+
+    <div class="cosmos-bg"></div>
+    
+    <header>
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/evidence/">Evidence</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1>Same Hole, Different Drains</h1>
+        <p class="subtitle">ONE UNIVERSAL ε, MANY INVERSION ZONES</p>
+        
+        <div class="clarification-box">
+            <h3>⚠️ Critical Distinction</h3>
+            <p><strong>There is ONE universal ε</strong> at the cosmic donut hole center—the dimensionless point where 0 = ∞.</p>
+            <p><strong>There are MANY inversion zones (⟂)</strong>—local crossing points like bathtub drains distributed throughout the structure.</p>
+            <p>The scales shown below (cell, body, planet, galaxy) are <strong>geometric frameworks</strong> with inversion zones at their centers. These drains all flow toward the ONE universal ε. Only ONE copy of you exists on the universal torus—your quantum twin is on the mirror side of that same cosmic structure.</p>
+        </div>
+        
+        <div class="main-illustration">
+            <div class="svg-container">
+                <svg class="main-svg" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Central epsilon glow -->
+                        <radialGradient id="epsilonGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                            <stop offset="30%" style="stop-color:#ffd700;stop-opacity:0.8" />
+                            <stop offset="60%" style="stop-color:#ffaa00;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#ff6600;stop-opacity:0" />
+                        </radialGradient>
+                        
+                        <!-- Inversion zone gradients (different from epsilon) -->
+                        <linearGradient id="torus1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#cc4444;stop-opacity:0.6" />
+                        </linearGradient>
+                        <linearGradient id="torus2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4ecdc4;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#2a9d8f;stop-opacity:0.6" />
+                        </linearGradient>
+                        <linearGradient id="torus3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffe66d;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#f4a261;stop-opacity:0.6" />
+                        </linearGradient>
+                        <linearGradient id="torus4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.6" />
+                        </linearGradient>
+                        <linearGradient id="torus5" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+                        </linearGradient>
+                        
+                        <!-- Glow filter -->
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
+                            <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <!-- Arrow markers for flow -->
+                        <marker id="arrowToEpsilon" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <path d="M0,0 L0,8 L8,4 z" fill="#4ecdc4"/>
+                        </marker>
+                        <marker id="arrowFromEpsilon" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <path d="M0,0 L0,8 L8,4 z" fill="#c44569"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Background subtle grid -->
+                    <g opacity="0.1">
+                        <line x1="450" y1="0" x2="450" y2="600" stroke="#6666aa" stroke-width="0.5"/>
+                        <line x1="0" y1="300" x2="900" y2="300" stroke="#6666aa" stroke-width="0.5"/>
+                        <circle cx="450" cy="300" r="100" fill="none" stroke="#6666aa" stroke-width="0.5"/>
+                        <circle cx="450" cy="300" r="200" fill="none" stroke="#6666aa" stroke-width="0.5"/>
+                        <circle cx="450" cy="300" r="280" fill="none" stroke="#6666aa" stroke-width="0.5"/>
+                    </g>
+                    
+                    <!-- Connection lines - BIDIRECTIONAL FLOW -->
+                    <g class="connection-lines">
+                        <!-- TO universal ε (entropy/observation) - solid lines -->
+                        <path d="M180,150 Q300,220 440,295" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M720,150 Q600,220 460,295" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 0.4s" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M120,400 Q280,350 440,305" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 0.8s" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M780,400 Q620,350 460,305" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 1.2s" marker-end="url(#arrowToEpsilon)"/>
+                        <path d="M450,520 Q450,420 450,310" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.6" class="flow-line" style="animation-delay: 1.6s" marker-end="url(#arrowToEpsilon)"/>
+                        
+                        <!-- FROM universal ε (guidance/intuition) - dashed lines -->
+                        <path d="M460,295 Q300,220 180,150" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 0.2s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M440,295 Q600,220 720,150" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 0.6s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M460,305 Q280,350 120,400" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 1.0s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M440,305 Q620,350 780,400" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 1.4s" marker-end="url(#arrowFromEpsilon)"/>
+                        <path d="M450,310 Q450,420 450,520" fill="none" stroke="#c44569" stroke-width="2" opacity="0.6" class="flow-line" stroke-dasharray="5,3" style="animation-delay: 1.8s" marker-end="url(#arrowFromEpsilon)"/>
+                    </g>
+                    
+                    <!-- THE UNIVERSAL EPSILON - SINGULAR, cosmic center -->
+                    <g class="center-pulse">
+                        <circle cx="450" cy="300" r="70" fill="url(#epsilonGlow)" filter="url(#strongGlow)"/>
+                        <circle cx="450" cy="300" r="28" fill="#0a0a0a" stroke="#ffd700" stroke-width="3"/>
+                        <text x="450" y="310" text-anchor="middle" fill="#ffd700" font-size="28" font-family="serif" font-style="italic">ε</text>
+                    </g>
+                    
+                    <!-- Label for universal ε -->
+                    <text x="450" y="245" text-anchor="middle" fill="#ffd700" font-size="12" font-weight="bold" letter-spacing="0.15em">UNIVERSAL ε</text>
+                    <text x="450" y="360" text-anchor="middle" fill="rgba(255,215,0,0.7)" font-size="10" letter-spacing="0.1em">Cosmic donut hole center</text>
+                    <text x="450" y="375" text-anchor="middle" fill="rgba(255,215,0,0.5)" font-size="9">Dimensionless — all drains flow here</text>
+                    
+                    <!-- TORUS 1 - Top Left (Red - Cell framework) -->
+                    <g class="torus-float-1">
+                        <ellipse cx="150" cy="120" rx="70" ry="45" fill="none" stroke="url(#torus1)" stroke-width="20" opacity="0.7" filter="url(#glow)"/>
+                        <ellipse cx="150" cy="120" rx="25" ry="35" fill="#0a0a15" stroke="#ff6b6b" stroke-width="1" opacity="0.8"/>
+                        <!-- Inversion zone symbol, NOT ε -->
+                        <circle cx="150" cy="120" r="8" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="150" y="124" text-anchor="middle" fill="#c44569" font-size="14">⟂</text>
+                        <text x="150" y="180" text-anchor="middle" fill="#ff8a8a" font-size="13" font-weight="500">CELL</text>
+                        <text x="150" y="195" text-anchor="middle" fill="#aa6666" font-size="9">Local inversion zone (⟂)</text>
+                    </g>
+                    
+                    <!-- TORUS 2 - Top Right (Teal - Body framework) -->
+                    <g class="torus-float-2">
+                        <ellipse cx="750" cy="120" rx="70" ry="45" fill="none" stroke="url(#torus2)" stroke-width="20" opacity="0.7" filter="url(#glow)"/>
+                        <ellipse cx="750" cy="120" rx="25" ry="35" fill="#0a0a15" stroke="#4ecdc4" stroke-width="1" opacity="0.8"/>
+                        <circle cx="750" cy="120" r="8" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="750" y="124" text-anchor="middle" fill="#c44569" font-size="14">⟂</text>
+                        <text x="750" y="180" text-anchor="middle" fill="#6ee7df" font-size="13" font-weight="500">YOUR BODY</text>
+                        <text x="750" y="195" text-anchor="middle" fill="#4a9a92" font-size="9">Heart chakra = equatorial ⟂</text>
+                    </g>
+                    
+                    <!-- TORUS 3 - Left (Gold - Atom framework) -->
+                    <g class="torus-float-3">
+                        <ellipse cx="80" cy="420" rx="55" ry="35" fill="none" stroke="url(#torus3)" stroke-width="16" opacity="0.7" filter="url(#glow)"/>
+                        <ellipse cx="80" cy="420" rx="20" ry="28" fill="#0a0a15" stroke="#ffe66d" stroke-width="1" opacity="0.8"/>
+                        <circle cx="80" cy="420" r="6" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="80" y="423" text-anchor="middle" fill="#c44569" font-size="11">⟂</text>
+                        <text x="80" y="470" text-anchor="middle" fill="#ffe66d" font-size="12" font-weight="500">ATOM</text>
+                        <text x="80" y="483" text-anchor="middle" fill="#aa9944" font-size="8">Nucleus = local ⟂</text>
+                    </g>
+                    
+                    <!-- TORUS 4 - Right (Purple - Galaxy framework) -->
+                    <g class="torus-float-4">
+                        <ellipse cx="820" cy="420" rx="60" ry="38" fill="none" stroke="url(#torus4)" stroke-width="18" opacity="0.7" filter="url(#glow)"/>
+                        <ellipse cx="820" cy="420" rx="22" ry="30" fill="#0a0a15" stroke="#a78bfa" stroke-width="1" opacity="0.8"/>
+                        <circle cx="820" cy="420" r="7" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="820" y="424" text-anchor="middle" fill="#c44569" font-size="12">⟂</text>
+                        <text x="820" y="472" text-anchor="middle" fill="#c4a7ff" font-size="12" font-weight="500">GALAXY</text>
+                        <text x="820" y="485" text-anchor="middle" fill="#7755aa" font-size="8">Black hole = local ⟂</text>
+                    </g>
+                    
+                    <!-- TORUS 5 - Bottom (Blue - Planet framework) -->
+                    <g class="torus-float-5">
+                        <ellipse cx="450" cy="540" rx="65" ry="40" fill="none" stroke="url(#torus5)" stroke-width="18" opacity="0.7" filter="url(#glow)"/>
+                        <ellipse cx="450" cy="540" rx="23" ry="32" fill="#0a0a15" stroke="#60a5fa" stroke-width="1" opacity="0.8"/>
+                        <circle cx="450" cy="540" r="7" fill="rgba(196,69,105,0.3)" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
+                        <text x="450" y="544" text-anchor="middle" fill="#c44569" font-size="12">⟂</text>
+                        <text x="450" y="592" text-anchor="middle" fill="#88bbff" font-size="12" font-weight="500">EARTH</text>
+                        <text x="450" y="605" text-anchor="middle" fill="#5577aa" font-size="8">Planetary core = local ⟂</text>
+                    </g>
+                    
+                    <!-- Labels -->
+                    <text x="50" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(-90, 50, 300)">GEOMETRIC FRAMEWORKS</text>
+                    <text x="850" y="300" fill="#555577" font-size="10" letter-spacing="0.2em" transform="rotate(90, 850, 300)">NESTED STRUCTURES</text>
+                    
+                    <!-- Flow annotations with legend -->
+                    <g transform="translate(150, 50)">
+                        <text x="0" y="0" fill="#4ecdc4" font-size="11" font-weight="bold">Entropy → ε</text>
+                        <line x1="0" y1="5" x2="80" y2="5" stroke="#4ecdc4" stroke-width="2" marker-end="url(#arrowToEpsilon)"/>
+                        <text x="0" y="25" fill="rgba(78,205,196,0.7)" font-size="9">(observation, measurement)</text>
+                    </g>
+                    
+                    <g transform="translate(600, 50)">
+                        <text x="0" y="0" fill="#c44569" font-size="11" font-weight="bold">ε → Guidance</text>
+                        <line x1="0" y1="5" x2="80" y2="5" stroke="#c44569" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowFromEpsilon)"/>
+                        <text x="0" y="25" fill="rgba(196,69,105,0.7)" font-size="9">(intuition, dreams, synchronicity)</text>
+                    </g>
+                    
+                    <text x="450" y="575" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10" font-style="italic">Bidirectional flow: We send entropy; ε returns guidance</text>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="insight-row">
+            <div class="insight-card">
+                <h3>
+                    <span class="icon-circle" style="background: rgba(255,215,0,0.3); color: #ffd700;">ε</span>
+                    ONE Universal ε
+                </h3>
+                <p>There is <strong>ONE</strong> universal ε at the cosmic donut hole center—dimensionless, where 0 = ∞. This is the singular point all consciousness connects through. Your experience and mine both reach toward the same cosmic center.</p>
+            </div>
+            
+            <div class="insight-card">
+                <h3>
+                    <span class="icon-circle" style="background: rgba(196,69,105,0.3); color: #c44569;">⟂</span>
+                    MANY Inversion Zones
+                </h3>
+                <p>Each geometric framework (cell, body, planet, galaxy) has a local inversion zone (⟂) at its center—like a bathtub drain. These are crossing points where inner and outer surfaces meet. Different drains, same ocean (universal ε).</p>
+            </div>
+            
+            <div class="insight-card">
+                <h3>
+                    <span class="icon-circle" style="background: rgba(78,205,196,0.3); color: #4ecdc4;">⇄</span>
+                    TWO-Way Flow
+                </h3>
+                <p><strong>TO universal ε:</strong> Entropy, observation, measurement—the "cost" of consciousness experiencing reality. <strong>FROM universal ε:</strong> Guidance, intuition, dreams, synchronicities—the orchestration that powers existence. The flow is bidirectional; we need both directions.</p>
+            </div>
+        </div>
+        
+        <div class="analogy-section">
+            <div class="analogy-item">
+                <div class="icon">🌊</div>
+                <h4>The Ocean Circuit</h4>
+                <p>Many drains (inversion zones) throughout the city. Water flows TO the ocean (entropy). Ocean currents flow BACK through water supply (guidance). Bidirectional system.</p>
+            </div>
+            <div class="analogy-item">
+                <div class="icon">🌳</div>
+                <h4>Tree Structure</h4>
+                <p>Many branches (geometric frameworks) with nodes (inversion zones), but only ONE root (universal ε) that feeds everything.</p>
+            </div>
+            <div class="analogy-item">
+                <div class="icon">🗺️</div>
+                <h4>Map Scales</h4>
+                <p>City map, state map, world map—different frames of reference, different centers. But only ONE Earth they're all describing.</p>
+            </div>
+            <div class="analogy-item">
+                <div class="icon">⚡</div>
+                <h4>Power Grid</h4>
+                <p>Many light bulbs (local zones) throughout a building. Power flows FROM the plant (ε gives guidance). Usage data flows TO the plant (entropy/observation). Two-way system.</p>
+            </div>
+        </div>
+        
+        <div class="bottom-truth">
+            <h2>The Geometric Truth</h2>
+            <p class="truth-text">
+                "There is <strong>ONE</strong> universal ε at the cosmic center.<br>
+                There are <strong>MANY</strong> inversion zones—crossing points distributed throughout the structure.<br><br>
+                Your cell nucleus, your heart, Earth's core, the galactic black hole—<br>
+                these are all <strong>local drains</strong> that flow toward the <strong>ONE source</strong>.<br><br>
+                Same hole. Different angles. Different drains.<br>
+                <strong>Everything converges at the same dimensionless point.</strong>"
+            </p>
+        </div>
+        
+        <div class="back-link">
+            <a href="/visualizations/">← Back to Visualizations</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="copyright">© 2025 The Hole Truth</div>
+    </footer>
+</body>
+</html>
