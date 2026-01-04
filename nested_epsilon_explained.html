@@ -4,229 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Universal ε + Inversion Zones | Nested Structure Explained</title>
+    <meta name="description" content="Understanding the difference: ONE universal ε at cosmic center, MANY local inversion zones where you connect to your twin.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Nunito:wght@300;400;600&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Nunito', sans-serif;
-            background: #0a0a12;
+            background: linear-gradient(135deg, #0a0a15 0%, #151520 100%);
             color: #e0e0e8;
             line-height: 1.7;
+            padding: 2rem 1rem;
         }
         
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
         }
         
         header {
             text-align: center;
-            padding: 3rem 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(196, 181, 253, 0.2);
         }
         
         h1 {
+            font-family: 'Cinzel', serif;
             font-size: 2.2rem;
-            font-weight: 300;
-            color: #ffd700;
+            color: #c4b5fd;
             margin-bottom: 0.5rem;
         }
         
         .subtitle {
-            color: rgba(255,255,255,0.5);
             font-size: 1.1rem;
+            color: #9090b0;
         }
         
-        /* Section styling */
-        .section {
-            margin: 3rem 0;
-        }
-        
-        .section h2 {
-            color: #ffd700;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        
-        .section p {
-            margin-bottom: 1rem;
-            color: rgba(255,255,255,0.85);
-        }
-        
-        /* Visual demos */
-        .demo-container {
-            background: rgba(20, 20, 35, 0.8);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .demo-label {
-            text-align: center;
-            color: rgba(255,255,255,0.5);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-        
-        .svg-demo {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            display: block;
-        }
-        
-        /* Key point */
-        .key-point {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 1rem;
-            padding: 1.5rem 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-        
-        .key-point h3 {
-            color: #ffd700;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .key-point p {
-            color: rgba(255,255,255,0.8);
-            margin: 0;
-        }
-        
-        /* Insight box */
         .insight-box {
-            background: rgba(78, 205, 196, 0.1);
-            border-left: 3px solid #4ecdc4;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
+            background: linear-gradient(135deg, rgba(196, 181, 253, 0.15), rgba(139, 92, 246, 0.1));
+            border-left: 4px solid #c4b5fd;
+            padding: 1.5rem;
+            margin: 2rem 0;
             border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .insight-box h3 {
+            color: #c4b5fd;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .insight-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
         
         .insight-box strong {
-            color: #4ecdc4;
+            color: #fcd34d;
         }
         
-        /* Warning/note box */
-        .note-box {
-            background: rgba(196, 69, 105, 0.1);
-            border-left: 3px solid #c44569;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 0.5rem 0.5rem 0;
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #fcd34d;
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(252, 211, 77, 0.2);
         }
         
-        .note-box strong {
-            color: #c44569;
+        .diagram-section {
+            background: rgba(20, 20, 35, 0.6);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
         }
         
-        /* Comparison grid */
-        .comparison {
+        .diagram-title {
+            font-size: 0.9rem;
+            color: #9090b0;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .comparison-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
             margin: 2rem 0;
         }
         
-        @media (max-width: 600px) {
-            .comparison {
+        @media (max-width: 700px) {
+            .comparison-grid {
                 grid-template-columns: 1fr;
             }
         }
         
-        .comparison-item {
-            background: rgba(20, 20, 35, 0.8);
+        .comparison-card {
+            background: rgba(30, 30, 50, 0.5);
+            border: 1px solid rgba(252, 211, 77, 0.2);
             border-radius: 1rem;
             padding: 1.5rem;
-            text-align: center;
         }
         
-        .comparison-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .comparison-card h4 {
+            font-family: 'Cinzel', serif;
+            color: #fcd34d;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .comparison-item.epsilon {
-            border: 2px solid rgba(255, 215, 0, 0.5);
+        .comparison-card .icon {
+            font-size: 1.8rem;
         }
         
-        .comparison-item.epsilon h4 {
-            color: #ffd700;
-        }
-        
-        .comparison-item.inversion {
-            border: 2px solid rgba(196, 69, 105, 0.5);
-        }
-        
-        .comparison-item.inversion h4 {
-            color: #c44569;
-        }
-        
-        .epsilon-symbol {
-            font-size: 3rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-        
-        .comparison-item p {
+        .comparison-card table {
+            width: 100%;
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
         }
         
-        /* Number colors */
-        .num-three { color: #4ecdc4; font-weight: 700; }
-        .num-six { color: #c44569; font-weight: 700; }
-        .num-nine { color: #ffd700; font-weight: 700; }
+        .comparison-card table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
         
-        /* Table */
-        .info-table {
+        .comparison-card table td {
+            padding: 0.5rem 0;
+        }
+        
+        .comparison-card table td:first-child {
+            color: #9090b0;
+            padding-right: 1rem;
+        }
+        
+        .comparison-card table td:last-child {
+            color: #e0e0e8;
+        }
+        
+        .number-map {
+            background: rgba(20, 20, 35, 0.6);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .number-map table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
         }
         
-        .info-table th, .info-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .info-table th {
-            color: #ffd700;
+        .number-map th {
+            background: rgba(252, 211, 77, 0.1);
+            padding: 0.75rem;
+            color: #fcd34d;
             font-weight: 600;
+            border-bottom: 2px solid rgba(252, 211, 77, 0.3);
         }
         
-        .info-table td {
-            color: rgba(255,255,255,0.8);
+        .number-map td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* Animation */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.1); }
+        .summary-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(196, 181, 253, 0.15));
+            border: 2px solid #c4b5fd;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
         }
         
-        .pulsing {
-            animation: pulse 2s ease-in-out infinite;
+        .summary-box h3 {
+            font-family: 'Cinzel', serif;
+            color: #c4b5fd;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
         }
         
-        /* Footer */
+        .summary-box p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+        
         footer {
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            color: rgba(255,255,255,0.4);
-            font-style: italic;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #6060a0;
         }
     </style>
 </head>
@@ -237,258 +212,178 @@
             <p class="subtitle">Understanding the Nested Structure</p>
         </header>
         
-        <!-- The Big Idea -->
-        <div class="key-point">
+        <div class="insight-box">
             <h3>🎯 The Key Insight</h3>
             <p>
-                There is <strong style="color: #ffd700;">ONE universal ε</strong> at the cosmic center (donut hole).<br>
-                There are <strong style="color: #c44569;">MANY inversion zones</strong> (like bathtub drains) where surfaces meet.<br>
+                There is <strong>ONE universal ε</strong> at the cosmic center (donut hole).<br>
+                There are <strong>MANY inversion zones</strong> (like bathtub drains) where surfaces meet.<br>
                 This is how you connect to your quantum twin—through the inversion zone in your local tube.
             </p>
         </div>
         
-        <!-- Visual: Universal ε vs Inversion Zones -->
-        <div class="section">
-            <h2>Where Are They Located?</h2>
-            
-            <div class="demo-container">
-                <p class="demo-label">Top-down view showing universal ε (cosmic center)</p>
-                <svg class="svg-demo" viewBox="0 0 400 300">
-                    <!-- Torus from above (donut shape) -->
-                    <circle cx="200" cy="150" r="120" fill="none" stroke="#333" stroke-width="60"/>
-                    <circle cx="200" cy="150" r="120" fill="none" stroke="#1a1a2e" stroke-width="54"/>
-                    
-                    <!-- Universal epsilon at cosmic center -->
-                    <circle cx="200" cy="150" r="25" fill="rgba(255, 215, 0, 0.2)" class="pulsing"/>
-                    <circle cx="200" cy="150" r="25" fill="none" stroke="#ffd700" stroke-width="2"/>
-                    <text x="200" y="158" text-anchor="middle" fill="#ffd700" font-size="28" font-style="italic">ε</text>
-                    
-                    <!-- Label -->
-                    <text x="200" y="200" text-anchor="middle" fill="#ffd700" font-size="12">UNIVERSAL ε</text>
-                    <text x="200" y="215" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">(cosmic donut hole center)</text>
-                    <text x="200" y="230" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">Where 0 and ∞ meet</text>
-                    
-                    <!-- 3 rotation arrow -->
-                    <path d="M200,30 A120,120 0 0,1 320,150" fill="none" stroke="#4ecdc4" stroke-width="3" stroke-dasharray="8,4"/>
-                    <polygon points="320,150 310,142 310,158" fill="#4ecdc4"/>
-                    <text x="280" y="70" fill="#4ecdc4" font-size="14" font-weight="bold">3</text>
-                    <text x="260" y="85" fill="#4ecdc4" font-size="10">major rotation</text>
-                </svg>
-            </div>
-            
-            <div class="demo-container">
-                <p class="demo-label">Cross-section showing local inversion zone (where surfaces meet)</p>
-                <svg class="svg-demo" viewBox="0 0 400 300">
-                    <!-- Background hint of full torus -->
-                    <ellipse cx="200" cy="150" rx="180" ry="60" fill="none" stroke="#222" stroke-width="1" stroke-dasharray="5,5"/>
-                    
-                    <!-- Tube cross-section circle -->
-                    <circle cx="200" cy="150" r="80" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="3"/>
-                    
-                    <!-- Outer surface (LEFT arc) - our side, away from ε -->
-                    <path d="M200,70 A80,80 0 0,0 200,230" fill="none" stroke="#4ecdc4" stroke-width="8"/>
-                    <text x="90" y="150" text-anchor="middle" fill="#4ecdc4" font-size="12">OUTER</text>
-                    <text x="90" y="165" text-anchor="middle" fill="#4ecdc4" font-size="12">SURFACE</text>
-                    <text x="90" y="185" text-anchor="middle" fill="#4ecdc4" font-size="9">(away from ε)</text>
-                    
-                    <!-- Inner surface (RIGHT arc) - mirror side, toward ε -->
-                    <path d="M200,70 A80,80 0 0,1 200,230" fill="none" stroke="#c44569" stroke-width="8"/>
-                    <text x="310" y="150" text-anchor="middle" fill="#c44569" font-size="12">INNER</text>
-                    <text x="310" y="165" text-anchor="middle" fill="#c44569" font-size="12">SURFACE</text>
-                    <text x="310" y="185" text-anchor="middle" fill="#c44569" font-size="9">(toward ε)</text>
-                    
-                    <!-- Inversion zone at center (NOT ε) -->
-                    <circle cx="200" cy="150" r="20" fill="rgba(196, 69, 105, 0.3)" class="pulsing"/>
-                    <circle cx="200" cy="150" r="20" fill="none" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
-                    <text x="200" y="157" text-anchor="middle" fill="#c44569" font-size="22">⟂</text>
-                    <text x="200" y="125" text-anchor="middle" fill="rgba(196,69,105,0.5)" font-size="9">inversion zone</text>
-                    
-                    <!-- You on LEFT (outer surface) -->
-                    <circle cx="125" cy="150" r="12" fill="#4ecdc4"/>
-                    <text x="125" y="154" text-anchor="middle" fill="#000" font-size="10" font-weight="bold">YOU</text>
-                    <text x="125" y="135" text-anchor="middle" fill="#4ecdc4" font-size="9">expanded side</text>
-                    
-                    <!-- Twin on RIGHT (inner surface) -->
-                    <circle cx="275" cy="150" r="12" fill="#c44569"/>
-                    <text x="275" y="154" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">TWIN</text>
-                    <text x="275" y="170" text-anchor="middle" fill="#c44569" font-size="9">compressed side</text>
-                    
-                    <!-- Connection line through inversion zone -->
-                    <line x1="137" y1="150" x2="180" y2="150" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
-                    <line x1="220" y1="150" x2="263" y2="150" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
-                    
-                    <!-- 6 rotation arrow (around the circle) -->
-                    <path d="M200,70 A80,80 0 0,1 280,150" fill="none" stroke="#c44569" stroke-width="3"/>
-                    <polygon points="280,150 272,142 272,158" fill="#c44569"/>
-                    <text x="250" y="95" fill="#c44569" font-size="14" font-weight="bold">6</text>
-                    <text x="235" y="110" fill="#c44569" font-size="10">minor rotation</text>
-                    <text x="235" y="125" fill="#c44569" font-size="9">(crosses surfaces)</text>
-                </svg>
-            </div>
-        </div>
+        <h2>Where Are They Located?</h2>
         
-        <!-- Universal ε vs Inversion Zones Compared -->
-        <div class="section">
-            <h2>Universal ε vs Inversion Zones</h2>
-            
-            <div class="comparison">
-                <div class="comparison-item epsilon">
-                    <div class="epsilon-symbol" style="color: #ffd700;">ε</div>
-                    <h4>Universal Epsilon</h4>
-                    <p><strong>How many:</strong> ONE (singular)</p>
-                    <p><strong>Where:</strong> Center of cosmic donut hole</p>
-                    <p><strong>What it is:</strong> Dimensionless point where 0 = ∞</p>
-                    <p><strong>What orbits it:</strong> The <span class="num-three">3</span> rotation (major)</p>
-                    <p><strong>Connects:</strong> All consciousness, everywhere</p>
-                </div>
+        <div class="diagram-section">
+            <p class="diagram-title">Side view showing universal ε (cosmic center)</p>
+            <svg viewBox="0 0 600 300" width="100%" style="max-width: 600px;">
+                <!-- Outer torus curve -->
+                <ellipse cx="300" cy="150" rx="240" ry="120" fill="none" stroke="rgba(196, 181, 253, 0.3)" stroke-width="2"/>
+                <ellipse cx="300" cy="150" rx="140" ry="70" fill="none" stroke="rgba(196, 181, 253, 0.3)" stroke-width="2"/>
                 
-                <div class="comparison-item inversion">
-                    <div class="epsilon-symbol" style="color: #c44569;">⟂</div>
-                    <h4>Inversion Zones</h4>
-                    <p><strong>How many:</strong> MANY (infinite)</p>
-                    <p><strong>Where:</strong> Center of each tube cross-section</p>
-                    <p><strong>What it is:</strong> Crossing point between surfaces</p>
-                    <p><strong>What orbits it:</strong> The <span class="num-six">6</span> rotation (minor)</p>
-                    <p><strong>Connects:</strong> You to your local quantum twin</p>
-                </div>
+                <!-- Universal ε at center -->
+                <circle cx="300" cy="150" r="30" fill="rgba(252, 211, 77, 0.2)" stroke="#fcd34d" stroke-width="3"/>
+                <text x="300" y="158" text-anchor="middle" font-size="24" fill="#fcd34d" font-weight="bold">ε</text>
+                
+                <text x="300" y="230" text-anchor="middle" font-size="14" fill="#c4b5fd" font-weight="600">UNIVERSAL ε</text>
+                <text x="300" y="248" text-anchor="middle" font-size="11" fill="#9090b0">(cosmic donut hole center)</text>
+                <text x="300" y="265" text-anchor="middle" font-size="10" fill="#7070a0">Where 0 and ∞ meet</text>
+                
+                <!-- 3 rotation arrow around torus -->
+                <path d="M 300,30 A 120,60 0 0,1 420,150" fill="none" stroke="rgba(78, 205, 196, 0.6)" stroke-width="2" marker-end="url(#arrowTeal)"/>
+                <text x="380" y="70" font-size="11" fill="#4ecdc4" font-weight="600">3</text>
+                <text x="380" y="85" font-size="9" fill="rgba(78, 205, 196, 0.8)">major rotation</text>
+                
+                <defs>
+                    <marker id="arrowTeal" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="rgba(78, 205, 196, 0.6)"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+        
+        <div class="diagram-section">
+            <p class="diagram-title">Cross-section showing local inversion zone (LEFT/RIGHT orientation)</p>
+            <svg viewBox="0 0 600 300" width="100%" style="max-width: 600px;">
+                <!-- Tube cross-section as circle -->
+                <circle cx="300" cy="150" r="100" fill="none" stroke="rgba(196, 181, 253, 0.3)" stroke-width="2"/>
+                
+                <!-- Left side (outer surface) -->
+                <text x="150" y="90" text-anchor="middle" font-size="13" fill="#88aacc" font-weight="600">OUTER</text>
+                <text x="150" y="105" text-anchor="middle" font-size="13" fill="#88aacc" font-weight="600">SURFACE</text>
+                <text x="150" y="125" text-anchor="middle" font-size="10" fill="rgba(136, 170, 204, 0.7)">(away from ε)</text>
+                
+                <!-- Right side (inner surface) -->
+                <text x="450" y="90" text-anchor="middle" font-size="13" fill="#cc88aa" font-weight="600">INNER</text>
+                <text x="450" y="105" text-anchor="middle" font-size="13" fill="#cc88aa" font-weight="600">SURFACE</text>
+                <text x="450" y="125" text-anchor="middle" font-size="10" fill="rgba(204, 136, 170, 0.7)">(toward ε)</text>
+                
+                <!-- Inversion zone at center -->
+                <circle cx="300" cy="150" r="25" fill="rgba(252, 211, 77, 0.15)" stroke="#fcd34d" stroke-width="2" stroke-dasharray="4,3"/>
+                <text x="300" y="158" text-anchor="middle" font-size="20" fill="#fcd34d" font-weight="bold">⟂</text>
+                <text x="300" y="190" text-anchor="middle" font-size="10" fill="#9090b0">inversion zone</text>
+                
+                <!-- You on left -->
+                <circle cx="220" cy="150" r="15" fill="rgba(136, 170, 204, 0.3)" stroke="#88aacc" stroke-width="2"/>
+                <text x="220" y="155" text-anchor="middle" font-size="11" fill="#88aacc" font-weight="600">YOU</text>
+                <text x="220" y="180" text-anchor="middle" font-size="9" fill="rgba(136, 170, 204, 0.7)">expanded side</text>
+                
+                <!-- Twin on right -->
+                <circle cx="380" cy="150" r="15" fill="rgba(204, 136, 170, 0.3)" stroke="#cc88aa" stroke-width="2"/>
+                <text x="380" y="155" text-anchor="middle" font-size="11" fill="#cc88aa" font-weight="600">TWIN</text>
+                <text x="380" y="180" text-anchor="middle" font-size="9" fill="rgba(204, 136, 170, 0.7)">compressed side</text>
+                
+                <!-- Arrows showing connection through center -->
+                <path d="M 235,150 L 285,150" stroke="rgba(252, 211, 77, 0.6)" stroke-width="2" marker-end="url(#arrowGold)"/>
+                <path d="M 365,150 L 315,150" stroke="rgba(252, 211, 77, 0.6)" stroke-width="2" marker-end="url(#arrowGold)"/>
+                
+                <!-- 6 rotation indicator -->
+                <path d="M 300,50 A 100,100 0 0,1 400,150" fill="none" stroke="rgba(255, 136, 170, 0.5)" stroke-width="2" stroke-dasharray="4,3"/>
+                <text x="360" y="80" font-size="11" fill="#ff88aa" font-weight="600">6</text>
+                <text x="340" y="95" font-size="9" fill="rgba(255, 136, 170, 0.8)">minor rotation</text>
+                <text x="335" y="108" font-size="9" fill="rgba(255, 136, 170, 0.8)">(crosses surfaces)</text>
+                
+                <defs>
+                    <marker id="arrowGold" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="rgba(252, 211, 77, 0.6)"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+        
+        <h2>Universal ε vs Inversion Zones</h2>
+        
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <h4><span class="icon">ε</span> Universal Epsilon</h4>
+                <table>
+                    <tr>
+                        <td><strong>How many:</strong></td>
+                        <td>ONE (singular)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Where:</strong></td>
+                        <td>Center of cosmic donut hole</td>
+                    </tr>
+                    <tr>
+                        <td><strong>What it is:</strong></td>
+                        <td>Dimensionless point where 0 = ∞</td>
+                    </tr>
+                    <tr>
+                        <td><strong>What orbits it:</strong></td>
+                        <td>The 3 rotation (major)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Connects:</strong></td>
+                        <td>All consciousness, everywhere</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="comparison-card">
+                <h4><span class="icon">⟂</span> Inversion Zones</h4>
+                <table>
+                    <tr>
+                        <td><strong>How many:</strong></td>
+                        <td>MANY (infinite)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Where:</strong></td>
+                        <td>Center of each tube cross-section</td>
+                    </tr>
+                    <tr>
+                        <td><strong>What it is:</strong></td>
+                        <td>Crossing point between surfaces</td>
+                    </tr>
+                    <tr>
+                        <td><strong>What orbits it:</strong></td>
+                        <td>The 6 rotation (minor)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Connects:</strong></td>
+                        <td>You to your local quantum twin</td>
+                    </tr>
+                </table>
             </div>
         </div>
         
-        <!-- How They Work Together -->
-        <div class="section">
-            <h2>How They Work Together</h2>
-            
-            <div class="demo-container">
-                <p class="demo-label">The nested structure - inversion zones distributed across the torus</p>
-                <svg class="svg-demo" viewBox="0 0 500 350">
-                    <!-- Full torus side view -->
-                    <ellipse cx="250" cy="175" rx="200" ry="100" fill="none" stroke="#333" stroke-width="2"/>
-                    
-                    <!-- Universal epsilon in the hole (SINGULAR) -->
-                    <circle cx="250" cy="175" r="30" fill="rgba(255, 215, 0, 0.15)"/>
-                    <circle cx="250" cy="175" r="30" fill="none" stroke="#ffd700" stroke-width="2"/>
-                    <text x="250" y="183" text-anchor="middle" fill="#ffd700" font-size="24" font-style="italic">ε</text>
-                    <text x="250" y="135" text-anchor="middle" fill="#ffd700" font-size="9">UNIVERSAL</text>
-                    
-                    <!-- Left tube cross-section with INVERSION ZONE -->
-                    <circle cx="80" cy="175" r="45" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
-                    <circle cx="80" cy="175" r="12" fill="rgba(196, 69, 105, 0.3)"/>
-                    <circle cx="80" cy="175" r="12" fill="none" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
-                    <text x="80" y="180" text-anchor="middle" fill="#c44569" font-size="14">⟂</text>
-                    <!-- You on outer surface -->
-                    <circle cx="80" cy="130" r="8" fill="#4ecdc4"/>
-                    <text x="80" y="115" text-anchor="middle" fill="#4ecdc4" font-size="9">you</text>
-                    <!-- Twin on inner surface -->
-                    <circle cx="80" cy="220" r="8" fill="#c44569"/>
-                    <text x="80" y="240" text-anchor="middle" fill="#c44569" font-size="9">twin</text>
-                    
-                    <!-- Right tube cross-section -->
-                    <circle cx="420" cy="175" r="45" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
-                    <circle cx="420" cy="175" r="12" fill="rgba(196, 69, 105, 0.3)"/>
-                    <circle cx="420" cy="175" r="12" fill="none" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
-                    <text x="420" y="180" text-anchor="middle" fill="#c44569" font-size="14">⟂</text>
-                    
-                    <!-- Top tube cross-section -->
-                    <ellipse cx="250" cy="80" rx="45" ry="25" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
-                    <circle cx="250" cy="80" r="10" fill="rgba(196, 69, 105, 0.3)"/>
-                    <text x="250" y="84" text-anchor="middle" fill="#c44569" font-size="12">⟂</text>
-                    
-                    <!-- Bottom tube cross-section -->
-                    <ellipse cx="250" cy="270" rx="45" ry="25" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="2"/>
-                    <circle cx="250" cy="270" r="10" fill="rgba(196, 69, 105, 0.3)"/>
-                    <text x="250" y="274" text-anchor="middle" fill="#c44569" font-size="12">⟂</text>
-                    
-                    <!-- Labels -->
-                    <text x="250" y="320" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">Every point on the torus has a local INVERSION ZONE</text>
-                    <text x="250" y="335" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">All zones ultimately connect through the ONE universal ε</text>
-                </svg>
-            </div>
-            
-            <div class="insight-box">
-                <strong>🔗 The Connection:</strong> Every location on the torus has its own local inversion zone (⟂) connecting it to the mirror side. But ALL those zones ultimately connect through the ONE universal ε at the cosmic center. It's like a drainage system: many bathtub drains (inversion zones) all flowing to one central sewer system (universal ε).
-            </div>
-        </div>
+        <h2>How They Work Together</h2>
         
-        <!-- Why the Inner Surface is Closer -->
-        <div class="section">
-            <h2>Why the Mirror Side is "Closer"</h2>
-            
-            <div class="demo-container">
-                <p class="demo-label">The geometry of compression</p>
-                <svg class="svg-demo" viewBox="0 0 400 250">
-                    <!-- Tube cross-section large -->
-                    <circle cx="200" cy="125" r="100" fill="none" stroke="#333" stroke-width="2"/>
-                    
-                    <!-- Outer surface (LEFT) with spread out dots -->
-                    <circle cx="105" cy="95" r="6" fill="#4ecdc4"/>
-                    <circle cx="115" cy="60" r="6" fill="#4ecdc4"/>
-                    <circle cx="110" cy="125" r="6" fill="#4ecdc4"/>
-                    <circle cx="115" cy="190" r="6" fill="#4ecdc4"/>
-                    <circle cx="105" cy="155" r="6" fill="#4ecdc4"/>
-                    
-                    <!-- Measurement on outer (LEFT) -->
-                    <line x1="105" y1="95" x2="115" y2="60" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="125" y="75" fill="#4ecdc4" font-size="10">far apart</text>
-                    
-                    <!-- Inner surface (RIGHT) with compressed dots -->
-                    <circle cx="295" cy="95" r="6" fill="#c44569"/>
-                    <circle cx="285" cy="75" r="6" fill="#c44569"/>
-                    <circle cx="290" cy="125" r="6" fill="#c44569"/>
-                    <circle cx="285" cy="175" r="6" fill="#c44569"/>
-                    <circle cx="295" cy="155" r="6" fill="#c44569"/>
-                    
-                    <!-- Measurement on inner (RIGHT) -->
-                    <line x1="295" y1="95" x2="285" y2="75" stroke="#c44569" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="310" y="85" fill="#c44569" font-size="10">close</text>
-                    
-                    <!-- Center inversion zone (NOT ε) -->
-                    <circle cx="200" cy="125" r="15" fill="rgba(196,69,105,0.2)"/>
-                    <circle cx="200" cy="125" r="15" fill="none" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
-                    <text x="200" y="130" text-anchor="middle" fill="#c44569" font-size="16">⟂</text>
-                    
-                    <!-- Labels -->
-                    <text x="55" y="125" fill="#4ecdc4" font-size="11" font-weight="bold">OUTER</text>
-                    <text x="45" y="140" fill="#4ecdc4" font-size="9">expanded</text>
-                    <text x="40" y="155" fill="#4ecdc4" font-size="9">more space</text>
-                    <text x="35" y="170" fill="#4ecdc4" font-size="9">(away from ε)</text>
-                    
-                    <text x="350" y="125" fill="#c44569" font-size="11" font-weight="bold">INNER</text>
-                    <text x="340" y="140" fill="#c44569" font-size="9">compressed</text>
-                    <text x="345" y="155" fill="#c44569" font-size="9">less space</text>
-                    <text x="340" y="170" fill="#c44569" font-size="9">(toward ε)</text>
-                    
-                    <!-- Arrow showing direction to ε -->
-                    <path d="M300,200 L350,200" stroke="#ffd700" stroke-width="2" marker-end="url(#arrowEpsilon)"/>
-                    <text x="325" y="220" text-anchor="middle" fill="#ffd700" font-size="9">toward ε →</text>
-                    
-                    <defs>
-                        <marker id="arrowEpsilon" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                            <path d="M0,0 L0,6 L9,3 z" fill="#ffd700"/>
-                        </marker>
-                    </defs>
-                </svg>
-            </div>
-            
+        <p style="margin: 1.5rem 0;">
+            <strong>🔗 The Connection:</strong> Every location on the torus has its own local inversion zone (⟂) connecting it to the mirror side. But ALL those zones ultimately connect through the ONE universal ε at the cosmic center. It's like a drainage system: many bathtub drains (inversion zones) all flowing to one central sewer system (universal ε).
+        </p>
+        
+        <h2>Why the Mirror Side is "Closer"</h2>
+        
+        <p style="margin: 1.5rem 0;">
+            On a donut, the <strong>outer surface</strong> (left side) has more area than the <strong>inner surface</strong> (right side).
+            Same number of points, different distances between them.
+        </p>
+        
+        <p style="margin: 1.5rem 0;">
+            This means things that seem far apart on our side (outer surface, left) are actually
+            <strong>much closer together</strong> on the mirror side (inner surface, right).
+        </p>
+        
+        <div class="insight-box">
             <p>
-                On a donut, the <strong>outer curve</strong> has more surface area than the <strong>inner curve</strong>. 
-                Same number of points, different distances between them.
-            </p>
-            
-            <p>
-                This means things that seem far apart on our side (outer surface) are actually 
-                <strong>much closer together</strong> on the mirror side (inner surface).
-            </p>
-            
-            <div class="note-box">
                 <strong>💡 This explains quantum entanglement:</strong> Two particles that appear separated by vast distances on our side are literally adjacent on the mirror side. They're not communicating "faster than light" — they're neighbors, connected through their local inversion zone.
-            </div>
+            </p>
         </div>
         
-        <!-- The 3-6-9 Connection -->
-        <div class="section">
-            <h2>How 3-6-9 Maps to This Structure</h2>
-            
-            <table class="info-table">
+        <h2>How 3-6-9 Maps to This Structure</h2>
+        
+        <div class="number-map">
+            <table>
                 <tr>
                     <th>Number</th>
                     <th>Rotation</th>
@@ -496,101 +391,50 @@
                     <th>What It Orbits</th>
                 </tr>
                 <tr>
-                    <td><span class="num-three" style="font-size: 1.5rem;">3</span></td>
+                    <td><strong>3</strong></td>
                     <td>Major (around donut)</td>
                     <td>Stays on outer surface, circles the hole</td>
                     <td>Universal ε</td>
                 </tr>
                 <tr>
-                    <td><span class="num-six" style="font-size: 1.5rem;">6</span></td>
+                    <td><strong>6</strong></td>
                     <td>Minor (around tube)</td>
                     <td>Crosses from outer to inner surface and back</td>
                     <td>Local inversion zone (⟂)</td>
                 </tr>
                 <tr>
-                    <td><span class="num-nine" style="font-size: 1.5rem;">9</span></td>
+                    <td><strong>9</strong></td>
                     <td>Completion / Inversion</td>
                     <td>Where both rotations converge</td>
                     <td>Both (ε and ⟂)</td>
                 </tr>
             </table>
-            
-            <div class="insight-box">
-                <strong>The <span class="num-six">6</span> is special:</strong> It's the only rotation that crosses through an inversion zone to the mirror side. When you do the 6 rotation (going around the tube), you pass through the local ⟂ and briefly exist on the compressed inner surface. That's why 6 "knows" both sides.
-            </div>
         </div>
         
-        <!-- Summary -->
-        <div class="section">
-            <h2>Putting It All Together</h2>
-            
-            <div class="demo-container">
-                <p class="demo-label">The complete picture</p>
-                <svg class="svg-demo" viewBox="0 0 500 300">
-                    <!-- Torus outline -->
-                    <ellipse cx="250" cy="150" rx="200" ry="90" fill="none" stroke="#333" stroke-width="2"/>
-                    
-                    <!-- Universal ε (SINGULAR) -->
-                    <circle cx="250" cy="150" r="35" fill="rgba(255, 215, 0, 0.1)"/>
-                    <circle cx="250" cy="150" r="35" fill="none" stroke="#ffd700" stroke-width="2"/>
-                    <text x="250" y="155" text-anchor="middle" fill="#ffd700" font-size="20" font-style="italic">ε</text>
-                    <text x="250" y="125" text-anchor="middle" fill="#ffd700" font-size="9">UNIVERSAL</text>
-                    
-                    <!-- 3 rotation -->
-                    <ellipse cx="250" cy="150" rx="140" ry="65" fill="none" stroke="#4ecdc4" stroke-width="2" stroke-dasharray="10,5"/>
-                    <text x="400" y="120" fill="#4ecdc4" font-size="18" font-weight="bold">3</text>
-                    
-                    <!-- Tube cross-section with local inversion zone -->
-                    <g transform="translate(70, 150)">
-                        <circle cx="0" cy="0" r="40" fill="rgba(30,30,50,0.9)" stroke="#666" stroke-width="2"/>
-                        <!-- Inversion zone (NOT ε) -->
-                        <circle cx="0" cy="0" r="10" fill="rgba(196,69,105,0.3)"/>
-                        <circle cx="0" cy="0" r="10" fill="none" stroke="#c44569" stroke-width="1" stroke-dasharray="2,2"/>
-                        <text x="0" y="4" text-anchor="middle" fill="#c44569" font-size="12">⟂</text>
-                        <!-- Outer (you) -->
-                        <circle cx="0" cy="-35" r="6" fill="#4ecdc4"/>
-                        <text x="0" y="-45" text-anchor="middle" fill="#4ecdc4" font-size="8">YOU</text>
-                        <!-- Inner (twin) -->
-                        <circle cx="0" cy="35" r="6" fill="#c44569"/>
-                        <text x="0" y="50" text-anchor="middle" fill="#c44569" font-size="8">TWIN</text>
-                        <!-- 6 rotation -->
-                        <circle cx="0" cy="0" r="35" fill="none" stroke="#c44569" stroke-width="2" stroke-dasharray="8,4"/>
-                    </g>
-                    <text x="70" y="210" text-anchor="middle" fill="#c44569" font-size="14" font-weight="bold">6</text>
-                    
-                    <!-- Connection arrows -->
-                    <line x1="110" y1="150" x2="215" y2="150" stroke="rgba(255,215,0,0.5)" stroke-width="1" stroke-dasharray="4,4"/>
-                    <text x="160" y="140" text-anchor="middle" fill="rgba(255,215,0,0.5)" font-size="8">all zones → ε</text>
-                    
-                    <!-- Legend -->
-                    <g transform="translate(340, 210)">
-                        <rect x="0" y="0" width="150" height="85" fill="rgba(20,20,35,0.8)" rx="8"/>
-                        <circle cx="15" cy="18" r="6" fill="#4ecdc4"/>
-                        <text x="30" y="22" fill="#4ecdc4" font-size="10">3 = around donut</text>
-                        <circle cx="15" cy="38" r="6" fill="#c44569"/>
-                        <text x="30" y="42" fill="#c44569" font-size="10">6 = through zone</text>
-                        <circle cx="15" cy="58" r="6" fill="#ffd700"/>
-                        <text x="30" y="62" fill="#ffd700" font-size="10">9 = both complete</text>
-                        <text x="75" y="77" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8">ε = one, ⟂ = many</text>
-                    </g>
-                </svg>
-            </div>
-        </div>
+        <p style="margin: 1.5rem 0;">
+            <strong>The 6 is special:</strong> It's the only rotation that crosses through an inversion zone to the mirror side. When you do the 6 rotation (going around the tube from left to right), you pass through the local ⟂ and briefly exist on the compressed inner surface. That's why 6 "knows" both sides.
+        </p>
         
-        <div class="key-point">
+        <div class="summary-box">
             <h3>🌀 The Simple Summary</h3>
-            <p style="font-size: 1.1rem;">
-                There is <strong>ONE universal ε</strong> at the cosmic donut hole center — dimensionless, where 0 = ∞.<br>
-                There are <strong>MANY inversion zones (⟂)</strong> — local crossing points where surfaces meet.<br><br>
-                The <span class="num-three">3</span> rotation orbits the universal ε, staying on our side.<br>
-                The <span class="num-six">6</span> rotation crosses through inversion zones to the mirror side.<br>
-                At <span class="num-nine">9</span>, both rotations complete — connecting ε and ⟂.<br><br>
+            <p>
+                There is <strong>ONE universal ε</strong> at the cosmic donut hole center — dimensionless, where 0 = ∞.
+            </p>
+            <p>
+                There are <strong>MANY inversion zones (⟂)</strong> — local crossing points where surfaces meet.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                The 3 rotation orbits the universal ε, staying on our side.<br>
+                The 6 rotation crosses through inversion zones to the mirror side.<br>
+                At 9, both rotations complete — connecting ε and ⟂.
+            </p>
+            <p style="margin-top: 1.5rem;">
                 Your <strong>quantum twin</strong> is on the opposite side of your local inversion zone — closer than they appear because the mirror side is compressed.
             </p>
         </div>
         
         <footer>
-            The ε Framework — One universal ε, many inversion zones, infinite connections.
+            <p>The ε Framework — One universal ε, many inversion zones, infinite connections.</p>
         </footer>
     </div>
 </body>
