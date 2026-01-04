@@ -58,7 +58,6 @@
             z-index: -1;
         }
         
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -82,10 +81,7 @@
         
         .logo span { color: #c4b5fd; }
         
-        nav {
-            display: flex;
-            gap: 25px;
-        }
+        nav { display: flex; gap: 25px; }
         
         nav a {
             color: rgba(255,255,255,0.7);
@@ -97,14 +93,12 @@
         
         nav a:hover, nav a.active { color: #c4b5fd; }
         
-        /* Main */
         main {
             max-width: 1100px;
             margin: 0 auto;
             padding: 120px 30px 80px;
         }
         
-        /* Hero */
         .page-hero {
             text-align: center;
             margin-bottom: 50px;
@@ -129,10 +123,7 @@
             margin: 0 auto;
         }
         
-        /* Featured Visualization */
-        .featured-section {
-            margin-bottom: 60px;
-        }
+        .featured-section { margin-bottom: 60px; }
         
         .featured-section h2 {
             font-family: 'Cinzel', serif;
@@ -160,10 +151,7 @@
             box-shadow: 0 20px 60px rgba(100, 80, 150, 0.3);
         }
         
-        .featured-viz .icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
+        .featured-viz .icon { font-size: 4rem; margin-bottom: 20px; }
         
         .featured-viz h3 {
             font-family: 'Cinzel', serif;
@@ -191,65 +179,6 @@
             letter-spacing: 0.1em;
         }
         
-        /* Coming Soon Section */
-        .coming-soon-section {
-            margin-top: 60px;
-        }
-        
-        .coming-soon-section h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            color: #8888aa;
-            letter-spacing: 0.2em;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .coming-soon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .coming-soon-card {
-            background: rgba(25, 25, 45, 0.4);
-            border: 1px solid rgba(100, 100, 150, 0.15);
-            border-radius: 14px;
-            padding: 25px;
-            text-align: center;
-            opacity: 0.7;
-        }
-        
-        .coming-soon-card .icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
-            filter: grayscale(50%);
-        }
-        
-        .coming-soon-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            color: #9090b0;
-            margin-bottom: 8px;
-        }
-        
-        .coming-soon-card p {
-            font-size: 0.85rem;
-            color: #707090;
-        }
-        
-        .coming-soon-card .badge {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 4px 12px;
-            background: rgba(100, 100, 150, 0.2);
-            border-radius: 10px;
-            font-size: 0.7rem;
-            color: #8888aa;
-            letter-spacing: 0.1em;
-        }
-        
-        /* Footer */
         footer {
             padding: 50px 30px;
             text-align: center;
@@ -274,35 +203,17 @@
         
         .footer-links a:hover { color: #c4b5fd; }
         
-        .source-note {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
-            font-style: italic;
-            max-width: 500px;
-            margin: 0 auto 20px;
-        }
-        
         .copyright {
             font-size: 0.8rem;
             color: rgba(255,255,255,0.3);
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
             nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
-            
             main { padding: 100px 20px 60px; }
-            
             .page-hero h1 { font-size: 2rem; }
-            
             .featured-viz { padding: 30px 20px; }
-            
             .featured-viz h3 { font-size: 1.4rem; }
         }
     </style>
@@ -343,18 +254,18 @@
             <h2 style="font-family: 'Cinzel', serif; font-size: 1rem; color: #86efac; letter-spacing: 0.2em; margin-bottom: 25px; text-align: center;">ALL VISUALIZATIONS</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                 
-                <!-- START HERE - EXPLAINER -->
+                <!-- START HERE - EXPLAINER (UPDATED: removed peanut reference, changed emoji to lightbulb) -->
                 <a href="/torus_explained_simply.html" style="display: block; background: linear-gradient(135deg, rgba(100, 60, 20, 0.4) 0%, rgba(80, 40, 60, 0.4) 100%); border: 2px solid rgba(255, 180, 100, 0.5); border-radius: 16px; padding: 25px; text-decoration: none; transition: all 0.3s ease;">
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                        <span style="font-size: 2rem;">🥜</span>
+                        <span style="font-size: 2rem;">💡</span>
                         <span style="background: rgba(255, 180, 100, 0.3); color: #ffb464; font-size: 0.7rem; padding: 4px 10px; border-radius: 12px; letter-spacing: 0.1em;">START HERE</span>
                     </div>
                     <h3 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: #ffb464; margin-bottom: 8px;">The Torus Explained Simply</h3>
-                    <p style="font-size: 0.9rem; color: #ccaa88; margin-bottom: 12px;">For peanut brains. What's a torus? What are major/minor rotations? Why can't we see 5D?</p>
+                    <p style="font-size: 0.9rem; color: #ccaa88; margin-bottom: 12px;">The basics made clear. What's a torus? What are major/minor rotations? Why can't we see 5D?</p>
                     <span style="color: #ffb464; font-size: 0.85rem; font-weight: 600;">Read First →</span>
                 </a>
                 
-                <!-- THE TWO EPSILONS - Nested structure -->
+                <!-- THE TWO EPSILONS -->
                 <a href="/nested_epsilon_explained.html" style="display: block; background: linear-gradient(135deg, rgba(100, 60, 20, 0.4) 0%, rgba(80, 40, 60, 0.4) 100%); border: 2px solid rgba(255, 180, 100, 0.5); border-radius: 16px; padding: 25px; text-decoration: none; transition: all 0.3s ease;">
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
                         <span style="font-size: 2rem;">🎯</span>
@@ -420,7 +331,7 @@
                     <span style="color: #4ecdc4; font-size: 0.85rem; font-weight: 600;">Explore Grid →</span>
                 </a>
                 
-                <!-- TREE OF LIFE - NEWLY ADDED -->
+                <!-- TREE OF LIFE -->
                 <a href="/tree_of_life_visualization.html" style="display: block; background: linear-gradient(135deg, rgba(100, 60, 120, 0.4) 0%, rgba(60, 80, 100, 0.4) 100%); border: 2px solid rgba(184, 134, 11, 0.5); border-radius: 16px; padding: 25px; text-decoration: none; transition: all 0.3s ease;">
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
                         <span style="font-size: 2rem;">🌳</span>
