@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Quantum Twin - Torus Cross Section | The Hole Truth</title>
+    <meta name="description" content="Your quantum twin exists on the opposite surface of the torus. Interactive 3D cross-section visualization showing complementary positions.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ε</text></svg>">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMHEMC7S76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMHEMC7S76');
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            overflow: hidden; 
+            background: #000;
+            font-family: 'Nunito', sans-serif;
+        }
+        canvas { display: block; }
+        
+        /* Navigation Header */
+        #nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+        }
+        
+        #nav-header .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        #nav-header .logo span { color: #c4b5fd; }
+        
+        #nav-header nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #nav-header nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+        
+        #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
+        
+        #overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        #axiom {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.8);
+        }
+        #title {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        #title h1 {
+            font-size: 28px;
+            font-weight: normal;
+            letter-spacing: 6px;
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+            margin-bottom: 10px;
+        }
+        #title h2 {
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.7);
+        }
+        #legend {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        .outer-surface { background: linear-gradient(135deg, #60a5fa, #3b82f6); box-shadow: 0 0 10px #60a5fa; }
+        .inner-surface { background: linear-gradient(135deg, #fb923c, #f97316); box-shadow: 0 0 10px #fb923c; }
+        .epsilon-center { background: linear-gradient(135deg, #ffffff, #a78bfa); box-shadow: 0 0 15px #ffffff; }
+        .you-marker { background: linear-gradient(135deg, #4ade80, #22c55e); box-shadow: 0 0 10px #4ade80; }
+        .twin-marker { background: linear-gradient(135deg, #f472b6, #ec4899); box-shadow: 0 0 10px #f472b6; }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <div id="nav-header">
+        <a href="/" class="logo">THE HOLE <span>TRUTH</span></a>
+        <nav>
+            <a href="/framework/">Framework</a>
+            <a href="/foundation/">Foundation</a>
+            <a href="/physics/">Physics</a>
+            <a href="/metaphysics/">Metaphysics</a>
+            <a href="/visualizations/" class="active">Visualizations</a>
+        </nav>
+    </div>
+    
+    <div id="title">
+        <h1>THE QUANTUM TWIN</h1>
+        <h2>TORUS CROSS-SECTION</h2>
+    </div>
+    
+    <div id="legend">
+        <div class="legend-item">
+            <div class="legend-color outer-surface"></div>
+            <span>Outer Surface (Our Side)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color inner-surface"></div>
+            <span>Inner Surface (Mirror Side)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color epsilon-center"></div>
+            <span>ε (The Epicenter)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color you-marker"></div>
+            <span>You</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color twin-marker"></div>
+            <span>Your Quantum Twin</span>
+        </div>
+    </div>
+    
+    <div id="overlay">
+        <div id="axiom">Same ε. Same hole. Same you.</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000511, 1);
+        document.body.appendChild(renderer.domElement);
+
+        // Cross-section parameters
+        const R = 4;  // Major radius (to center of tube)
+        const r = 1.5; // Minor radius (tube radius)
+        
+        // Create the cross-section as two circles (cut through the torus)
+        // When you slice a torus perpendicular to the major axis, you get two circles
+        
+        // Right circle (outer surface facing out)
+        const rightCircleGeometry = new THREE.RingGeometry(r * 0.95, r, 64);
+        const outerMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x3b82f6, 
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.8
+        });
+        const rightCircle = new THREE.Mesh(rightCircleGeometry, outerMaterial);
+        rightCircle.position.x = R;
+        scene.add(rightCircle);
+        
+        // Right circle glow
+        const rightGlowGeometry = new THREE.RingGeometry(r, r * 1.1, 64);
+        const rightGlowMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x60a5fa, 
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.4
+        });
+        const rightGlow = new THREE.Mesh(rightGlowGeometry, rightGlowMaterial);
+        rightGlow.position.x = R;
+        scene.add(rightGlow);
+
+        // Left circle (inner surface - mirror side)
+        const leftCircleGeometry = new THREE.RingGeometry(r * 0.95, r, 64);
+        const innerMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xf97316, 
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.8
+        });
+        const leftCircle = new THREE.Mesh(leftCircleGeometry, innerMaterial);
+        leftCircle.position.x = -R;
+        scene.add(leftCircle);
+        
+        // Left circle glow
+        const leftGlowGeometry = new THREE.RingGeometry(r, r * 1.1, 64);
+        const leftGlowMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xfb923c, 
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.4
+        });
+        const leftGlow = new THREE.Mesh(leftGlowGeometry, leftGlowMaterial);
+        leftGlow.position.x = -R;
+        scene.add(leftGlow);
+
+        // Center epsilon glow
+        const epsilonGeometry = new THREE.CircleGeometry(0.5, 32);
+        const epsilonMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xffffff, 
+            transparent: true,
+            opacity: 0.9
+        });
+        const epsilon = new THREE.Mesh(epsilonGeometry, epsilonMaterial);
+        scene.add(epsilon);
+        
+        // Epsilon outer glow
+        const epsilonGlowGeometry = new THREE.CircleGeometry(0.8, 32);
+        const epsilonGlowMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xa78bfa, 
+            transparent: true,
+            opacity: 0.5
+        });
+        const epsilonGlow = new THREE.Mesh(epsilonGlowGeometry, epsilonGlowMaterial);
+        epsilonGlow.position.z = -0.01;
+        scene.add(epsilonGlow);
+
+        // Connection lines showing the torus surface
+        const curvePoints = [];
+        for (let i = 0; i <= 50; i++) {
+            const t = (i / 50) * Math.PI;
+            const x = R * Math.cos(t);
+            const y = r * Math.sin(t) + r;
+            curvePoints.push(new THREE.Vector3(x, y, 0));
+        }
+        const topCurve = new THREE.BufferGeometry().setFromPoints(curvePoints);
+        const curveMaterial = new THREE.LineBasicMaterial({ color: 0x666666, transparent: true, opacity: 0.5 });
+        const topLine = new THREE.Line(topCurve, curveMaterial);
+        scene.add(topLine);
+        
+        // Bottom curve
+        const bottomCurvePoints = [];
+        for (let i = 0; i <= 50; i++) {
+            const t = (i / 50) * Math.PI;
+            const x = R * Math.cos(t);
+            const y = -r * Math.sin(t) - r;
+            bottomCurvePoints.push(new THREE.Vector3(x, y, 0));
+        }
+        const bottomCurve = new THREE.BufferGeometry().setFromPoints(bottomCurvePoints);
+        const bottomLine = new THREE.Line(bottomCurve, curveMaterial);
+        scene.add(bottomLine);
+
+        // "You" marker on outer surface
+        const youGeometry = new THREE.CircleGeometry(0.25, 32);
+        const youMaterial = new THREE.MeshBasicMaterial({ color: 0x22c55e });
+        const youMarker = new THREE.Mesh(youGeometry, youMaterial);
+        scene.add(youMarker);
+        
+        // You glow
+        const youGlowGeometry = new THREE.CircleGeometry(0.35, 32);
+        const youGlowMaterial = new THREE.MeshBasicMaterial({ color: 0x4ade80, transparent: true, opacity: 0.5 });
+        const youGlow = new THREE.Mesh(youGlowGeometry, youGlowMaterial);
+        scene.add(youGlow);
+
+        // "Twin" marker on inner surface
+        const twinGeometry = new THREE.CircleGeometry(0.25, 32);
+        const twinMaterial = new THREE.MeshBasicMaterial({ color: 0xec4899 });
+        const twinMarker = new THREE.Mesh(twinGeometry, twinMaterial);
+        scene.add(twinMarker);
+        
+        // Twin glow
+        const twinGlowGeometry = new THREE.CircleGeometry(0.35, 32);
+        const twinGlowMaterial = new THREE.MeshBasicMaterial({ color: 0xf472b6, transparent: true, opacity: 0.5 });
+        const twinGlow = new THREE.Mesh(twinGlowGeometry, twinGlowMaterial);
+        scene.add(twinGlow);
+
+        // Connection line through epsilon (showing they share the same center)
+        const connectionMaterial = new THREE.LineDashedMaterial({ 
+            color: 0xffffff, 
+            dashSize: 0.2, 
+            gapSize: 0.1,
+            transparent: true,
+            opacity: 0.6
+        });
+
+        // Labels using sprites
+        function createLabel(text, fontSize = 48) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 256;
+            canvas.height = 128;
+            context.fillStyle = 'white';
+            context.font = `${fontSize}px Georgia`;
+            context.textAlign = 'center';
+            context.fillText(text, 128, 70);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(2, 1, 1);
+            return sprite;
+        }
+
+        const epsilonLabel = createLabel('ε', 72);
+        epsilonLabel.position.set(0, -1.5, 0);
+        scene.add(epsilonLabel);
+
+        const youLabel = createLabel('You', 36);
+        scene.add(youLabel);
+
+        const twinLabel = createLabel('Twin', 36);
+        scene.add(twinLabel);
+
+        // Particles flowing between you and twin through epsilon
+        const particleCount = 100;
+        const particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            const particleGeometry = new THREE.CircleGeometry(0.05, 8);
+            const particleMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0xffffff, 
+                transparent: true, 
+                opacity: 0.8 
+            });
+            const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+            particle.userData = {
+                progress: Math.random(),
+                speed: 0.002 + Math.random() * 0.003,
+                direction: Math.random() > 0.5 ? 1 : -1
+            };
+            particles.push(particle);
+            scene.add(particle);
+        }
+
+        // Background stars
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsPositions = new Float32Array(1000 * 3);
+        for (let i = 0; i < 1000; i++) {
+            starsPositions[i * 3] = (Math.random() - 0.5) * 100;
+            starsPositions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+            starsPositions[i * 3 + 2] = -20 - Math.random() * 30;
+        }
+        starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+        const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.4 });
+        const stars = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(stars);
+
+        camera.position.z = 12;
+
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.016;
+
+            // Animate "You" position on outer circle (right side)
+            const youAngle = time * 0.5;
+            const youX = R + r * Math.cos(youAngle);
+            const youY = r * Math.sin(youAngle);
+            youMarker.position.set(youX, youY, 0.1);
+            youGlow.position.set(youX, youY, 0.05);
+            youLabel.position.set(youX + 0.8, youY + 0.5, 0);
+
+            // Twin mirrors on inner circle (left side) - opposite position
+            const twinX = -R - r * Math.cos(youAngle);
+            const twinY = r * Math.sin(youAngle);
+            twinMarker.position.set(twinX, twinY, 0.1);
+            twinGlow.position.set(twinX, twinY, 0.05);
+            twinLabel.position.set(twinX - 0.8, twinY + 0.5, 0);
+
+            // Update connection line
+            scene.children = scene.children.filter(child => child.type !== 'Line' || child === topLine || child === bottomLine);
+            
+            const connectionPoints = [];
+            // Bezier curve through epsilon
+            for (let i = 0; i <= 20; i++) {
+                const t = i / 20;
+                // Quadratic bezier: P = (1-t)²P0 + 2(1-t)tP1 + t²P2
+                const x = (1-t)*(1-t)*youX + 2*(1-t)*t*0 + t*t*twinX;
+                const y = (1-t)*(1-t)*youY + 2*(1-t)*t*0 + t*t*twinY;
+                connectionPoints.push(new THREE.Vector3(x, y, 0));
+            }
+            const connectionGeometry = new THREE.BufferGeometry().setFromPoints(connectionPoints);
+            const connectionLine = new THREE.Line(connectionGeometry, connectionMaterial);
+            connectionLine.computeLineDistances();
+            scene.add(connectionLine);
+
+            // Animate particles along the connection path
+            particles.forEach(particle => {
+                particle.userData.progress += particle.userData.speed * particle.userData.direction;
+                if (particle.userData.progress > 1) particle.userData.progress = 0;
+                if (particle.userData.progress < 0) particle.userData.progress = 1;
+                
+                const t = particle.userData.progress;
+                const px = (1-t)*(1-t)*youX + 2*(1-t)*t*0 + t*t*twinX;
+                const py = (1-t)*(1-t)*youY + 2*(1-t)*t*0 + t*t*twinY;
+                particle.position.set(px, py, 0.2);
+                
+                // Fade near endpoints
+                const distFromCenter = Math.abs(t - 0.5) * 2;
+                particle.material.opacity = 0.8 * (1 - distFromCenter * 0.5);
+            });
+
+            // Pulse epsilon
+            const pulse = Math.sin(time * 3) * 0.5 + 0.5;
+            epsilon.scale.setScalar(1 + pulse * 0.2);
+            epsilonGlow.scale.setScalar(1 + pulse * 0.3);
+            epsilonMaterial.opacity = 0.7 + pulse * 0.3;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
