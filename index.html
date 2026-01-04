@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>The Hole Truth | Stability Through Geometry</title>
+    <title>The Hole Truth | What if the universe has stable geometry?</title>
     <meta name="description" content="A unified framework explaining consciousness, time, dark matter, and the fundamental nature of reality through one geometric principle. 100+ independent convergences with established physics.">
     <meta name="keywords" content="unified physics, epsilon framework, consciousness, toroidal geometry, dark matter explained, metaphysics science, quantum physics, sacred geometry">
     <meta name="author" content="The Hole Truth">
@@ -14,13 +14,13 @@
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://theholetruth.space/">
-    <meta property="og:title" content="The Hole Truth | Stability Through Geometry">
+    <meta property="og:title" content="The Hole Truth | What if the universe has stable geometry?">
     <meta property="og:description" content="One geometric principle. Everything explained. 100+ convergences with established physics.">
     <meta property="og:image" content="https://theholetruth.space/images/og-image.jpg">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Hole Truth | Stability Through Geometry">
+    <meta name="twitter:title" content="The Hole Truth | What if the universe has stable geometry?">
     <meta name="twitter:description" content="One geometric principle. Everything explained.">
     
     <!-- Canonical URL -->
@@ -126,7 +126,7 @@
             color: #c4a855;
         }
         
-        /* Hero Section - Redesigned */
+        /* Hero Section - Redesigned with Questions */
         .hero {
             flex: 1;
             display: flex;
@@ -153,46 +153,23 @@
             50% { opacity: 1; transform: scale(1.05); }
         }
         
-        .site-title {
-            font-family: 'Cinzel', serif;
-            font-size: 3.2rem;
-            font-weight: 400;
-            letter-spacing: 0.25em;
-            margin-bottom: 12px;
-        }
-        
-        .site-title .gold { color: #c4a855; }
-        .site-title .white { color: #fff; }
-        
-        /* New tagline - replaces axiom */
-        .hero-tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-weight: 300;
-            font-size: 1.5rem;
-            color: rgba(196, 168, 85, 0.9);
-            letter-spacing: 0.12em;
-            margin-bottom: 50px;
-        }
-        
-        /* Hook Statements - More accessible */
-        .hooks {
+        /* Opening Questions - NEW */
+        .opening-questions {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            margin-bottom: 45px;
-            max-width: 650px;
+            gap: 30px;
+            margin-bottom: 50px;
+            max-width: 800px;
         }
         
-        .hook {
+        .opening-question {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease forwards;
         }
         
-        .hook:nth-child(1) { animation-delay: 0.3s; }
-        .hook:nth-child(2) { animation-delay: 1.0s; }
-        .hook:nth-child(3) { animation-delay: 1.7s; }
+        .opening-question:nth-child(1) { animation-delay: 0.3s; }
+        .opening-question:nth-child(2) { animation-delay: 1.0s; }
         
         @keyframes fadeInUp {
             to {
@@ -201,19 +178,60 @@
             }
         }
         
-        .hook-main {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #fff;
-            letter-spacing: 0.1em;
+        .opening-question a {
+            display: block;
+            text-decoration: none;
+            padding: 25px 30px;
+            background: rgba(25, 25, 40, 0.4);
+            border: 1px solid rgba(196, 168, 85, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
         
-        .hook-sub {
-            font-size: 0.9rem;
+        .opening-question a:hover {
+            transform: translateY(-4px);
+            border-color: rgba(196, 168, 85, 0.4);
+            box-shadow: 0 15px 40px rgba(196, 168, 85, 0.15);
+        }
+        
+        .question-main {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .question-sub {
+            font-size: 0.95rem;
             color: rgba(196, 181, 253, 0.75);
-            margin-top: 5px;
             font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        .site-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            margin-bottom: 12px;
+            margin-top: 30px;
+        }
+        
+        .site-title .gold { color: #c4a855; }
+        .site-title .white { color: #fff; }
+        
+        /* Tagline */
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: rgba(196, 168, 85, 0.9);
+            letter-spacing: 0.12em;
+            margin-bottom: 50px;
         }
         
         /* CTA Buttons */
@@ -396,83 +414,6 @@
             width: 22px;
             height: 22px;
             stroke: rgba(196, 168, 85, 0.5);
-        }
-        
-        /* Curiosity Questions Section - NEW */
-        .curiosity-section {
-            padding: 100px 40px;
-            background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 18, 0.97) 25%);
-            text-align: center;
-        }
-        
-        .curiosity-section h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: #fff;
-            letter-spacing: 0.15em;
-            margin-bottom: 15px;
-        }
-        
-        .curiosity-section .section-sub {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: rgba(196, 168, 85, 0.7);
-            margin-bottom: 50px;
-        }
-        
-        .curiosity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .curiosity-card {
-            background: rgba(25, 25, 40, 0.5);
-            border: 1px solid rgba(196, 168, 85, 0.12);
-            border-radius: 16px;
-            padding: 30px 25px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-        
-        .curiosity-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(196, 168, 85, 0.3);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-        
-        .curiosity-card .question {
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            color: #fff;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-        
-        .curiosity-card .hint {
-            font-size: 0.88rem;
-            color: rgba(196, 181, 253, 0.7);
-            line-height: 1.6;
-        }
-        
-        .curiosity-card .arrow {
-            display: inline-block;
-            margin-top: 15px;
-            color: #c4a855;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
-        }
-        
-        .curiosity-card:hover .arrow {
-            opacity: 1;
-            transform: translateX(0);
         }
         
         /* Science Cards Section */
@@ -683,6 +624,39 @@
             margin-top: 6px;
         }
         
+        /* Caveat Footer - NEW */
+        .caveat-section {
+            padding: 60px 40px 40px;
+            background: rgba(8, 8, 15, 0.98);
+            border-top: 1px solid rgba(196, 168, 85, 0.15);
+        }
+        
+        .caveat-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 35px;
+            background: rgba(25, 25, 40, 0.4);
+            border: 1px solid rgba(196, 168, 85, 0.25);
+            border-left: 4px solid rgba(196, 168, 85, 0.6);
+            border-radius: 12px;
+        }
+        
+        .caveat-box p {
+            color: rgba(224, 224, 232, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        
+        .caveat-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .caveat-box strong {
+            color: #c4a855;
+            font-weight: 500;
+        }
+        
         /* Footer */
         footer {
             padding: 55px 40px;
@@ -746,8 +720,8 @@
                 font-size: 1.2rem;
             }
             
-            .hook-main {
-                font-size: 1.2rem;
+            .question-main {
+                font-size: 1.3rem;
             }
             
             .epsilon-symbol {
@@ -759,12 +733,16 @@
                 align-items: center;
             }
             
-            .curiosity-section, .science-section, .validation-section {
+            .science-section, .validation-section {
                 padding: 60px 20px;
             }
             
-            .curiosity-section h2, .section-header h2 {
+            .section-header h2 {
                 font-size: 1.5rem;
+            }
+            
+            .caveat-box {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -788,26 +766,29 @@
             </nav>
         </header>
         
-        <!-- Hero Section - Redesigned -->
+        <!-- Hero Section with Opening Questions -->
         <section class="hero">
             <div class="epsilon-symbol">ε</div>
-            <h1 class="site-title"><span class="gold">THE HOLE</span> <span class="white">TRUTH</span></h1>
-            <p class="hero-tagline">Stability through geometry</p>
             
-            <div class="hooks">
-                <div class="hook">
-                    <div class="hook-main">One geometric principle</div>
-                    <div class="hook-sub">explains dark matter, dark energy, consciousness, and time</div>
+            <!-- Opening Questions - NEW -->
+            <div class="opening-questions">
+                <div class="opening-question">
+                    <a href="/visualizations/epsilon-toroid/">
+                        <div class="question-main">What if the universe has a mirror-side 5D torus geometry?</div>
+                        <div class="question-sub">Every position on our surface has a twin on the other side—connected through a dimensionless center where all separation dissolves.</div>
+                    </a>
                 </div>
-                <div class="hook">
-                    <div class="hook-main">100+ independent convergences</div>
-                    <div class="hook-sub">with established physics—derived, not assumed</div>
-                </div>
-                <div class="hook">
-                    <div class="hook-main">And it changes everything</div>
-                    <div class="hook-sub">about how we understand reality</div>
+                
+                <div class="opening-question">
+                    <a href="/electron_entropy.html">
+                        <div class="question-main">What if the electron gets its energy from the mirror side?</div>
+                        <div class="question-sub">Stable particles aren't isolated—they're sustained by continuous flow from dimensions we don't directly observe.</div>
+                    </a>
                 </div>
             </div>
+            
+            <h1 class="site-title"><span class="gold">THE HOLE</span> <span class="white">TRUTH</span></h1>
+            <p class="hero-tagline">Stability through geometry</p>
             
             <div class="cta-buttons">
                 <a href="/framework/" class="cta-button primary">EXPLORE THE FRAMEWORK</a>
@@ -826,50 +807,12 @@
                 <div class="search-results" id="search-results"></div>
             </div>
             
-            <a href="#curiosity-section" class="scroll-indicator">
+            <a href="#science-section" class="scroll-indicator">
                 <span>DISCOVER MORE</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M19 12l-7 7-7-7"/>
                 </svg>
             </a>
-        </section>
-        
-        <!-- Curiosity Questions Section - NEW -->
-        <section class="curiosity-section" id="curiosity-section">
-            <h2>HAVE YOU EVER WONDERED...</h2>
-            <p class="section-sub">These aren't mysteries. They're geometry.</p>
-            
-            <div class="curiosity-grid">
-                <a href="/special/time-travel.html" class="curiosity-card">
-                    <div class="question">Is time travel actually possible?</div>
-                    <div class="hint">Time isn't a river—it's a position. And positions can be changed.</div>
-                    <span class="arrow">EXPLORE →</span>
-                </a>
-                
-                <a href="/death.html" class="curiosity-card">
-                    <div class="question">What happens when you die?</div>
-                    <div class="hint">The geometry of transition—where consciousness goes and why.</div>
-                    <span class="arrow">EXPLORE →</span>
-                </a>
-                
-                <a href="/special/paranormal.html" class="curiosity-card">
-                    <div class="question">Why do you sometimes know things you shouldn't?</div>
-                    <div class="hint">Intuition, déjà vu, precognition—all explained by proximity to the center.</div>
-                    <span class="arrow">EXPLORE →</span>
-                </a>
-                
-                <a href="/nuclear-spacetime.html" class="curiosity-card">
-                    <div class="question">Why do nuclear test sites feel wrong?</div>
-                    <div class="hint">Fission doesn't just release energy—it tears the fabric.</div>
-                    <span class="arrow">EXPLORE →</span>
-                </a>
-                
-                <a href="/special/free-energy.html" class="curiosity-card">
-                    <div class="question">Is free energy real?</div>
-                    <div class="hint">If the vacuum is full, not empty, then energy is everywhere.</div>
-                    <span class="arrow">EXPLORE →</span>
-                </a>
-            </div>
         </section>
         
         <!-- Science Cards Section -->
@@ -971,6 +914,16 @@
             </div>
         </section>
         
+        <!-- Caveat Section - NEW -->
+        <section class="caveat-section">
+            <div class="caveat-box">
+                <p><strong>We're not claiming absolute truth.</strong></p>
+                <p>This framework derives fundamental physics constants to 99%+ accuracy from basic geometric principles. The same simple pattern predicts values across quantum mechanics, particle physics, and cosmology.</p>
+                <p>That level of predictive accuracy from such a simple starting point is rare—and worth investigating.</p>
+                <p>Examine the math. Test the predictions. Decide for yourself.</p>
+            </div>
+        </section>
+        
         <!-- Footer -->
         <footer>
             <div class="footer-links">
@@ -981,6 +934,7 @@
                 <a href="/evidence/">Evidence</a>
                 <a href="/library/">Library</a>
                 <a href="/about/">About</a>
+                <a href="/faq.html">FAQ</a>
             </div>
             
             <div class="footer-tagline">Stability through geometry</div>
@@ -1218,6 +1172,12 @@
             { title: "The ε Framework", url: "/framework/", category: "Core", keywords: "epsilon framework axiom theory unified physics toroidal geometry", desc: "The complete theoretical framework" },
             { title: "The Foundation", url: "/foundation/", category: "Foundation", keywords: "axiom epsilon minimum foundation core", desc: "The geometric foundation of everything" },
             { title: "The Epicenter", url: "/foundation/epicenter/", category: "Foundation", keywords: "epicenter center torus consciousness source shared", desc: "The shared center all beings orbit" },
+            
+            // New Pages - ADDED
+            { title: "Quantum Twin", url: "/quntum_twin.html", category: "Visualization", keywords: "quantum twin mirror side duality entanglement connection", desc: "See the twin relationship through ε" },
+            { title: "Tree of Life", url: "/tree_of_life_visualization.html", category: "Metaphysics", keywords: "tree of life kabbalah sephirot sacred geometry", desc: "Ancient wisdom encoded in geometry" },
+            { title: "Electron Entropy Flow", url: "/electron_entropy.html", category: "Physics", keywords: "electron entropy mirror side energy flow particle stability", desc: "How electrons draw energy from the mirror side" },
+            { title: "FAQ", url: "/FAQ.html", category: "Info", keywords: "frequently asked questions faq help guide introduction", desc: "Common questions about the framework" },
             
             // Physics
             { title: "Force Unification", url: "/physics/force-unification/", category: "Physics", keywords: "forces gravity electromagnetism strong weak unified kaluza klein", desc: "All forces are one force at different torus positions" },
