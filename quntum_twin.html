@@ -170,7 +170,7 @@
     
     <div id="title">
         <h1>THE QUANTUM TWIN</h1>
-        <h2>CONNECTION THROUGH ε</h2>
+        <h2>MIRROR POSITIONS THROUGH INVERSION</h2>
     </div>
     
     <div id="legend">
@@ -184,7 +184,7 @@
         </div>
         <div class="legend-item">
             <div class="legend-color epsilon-center"></div>
-            <span>ε (Universal Center)</span>
+            <span>⟂ (Inversion Zone)</span>
         </div>
         <div class="legend-item">
             <div class="legend-color you-marker"></div>
@@ -197,11 +197,11 @@
     </div>
     
     <div id="overlay">
-        <div id="axiom">Same ε. Same center. Same you.</div>
+        <div id="axiom">Same structure. Opposite surfaces. One you.</div>
     </div>
     
     <div id="geometry-note">
-        <strong>Geometric Note:</strong> This cross-section shows the tube structure of the torus. The ε at center represents the universal dimensionless point at the donut hole—ALL consciousness connects through this same ε. The visualization shows toroidal <em>flow patterns</em> on a compactified geometry (like the Riemann sphere where 0 and ∞ meet), not a standard mathematical n-torus topology.
+        <strong>Geometric Note:</strong> This cross-section shows the tube structure. The center point represents the <strong>inversion zone</strong>—where inner and outer surfaces of the tube meet. This is the crossing point between sides, NOT ε itself. The universal ε exists at the donut hole center (not shown in this 2D slice). ALL consciousness connects through that same cosmic ε. The visualization shows toroidal <em>flow patterns</em> on a compactified geometry (like the Riemann sphere where 0 and ∞ meet), not a standard mathematical n-torus topology.
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -268,7 +268,7 @@
         leftGlow.position.x = -R;
         scene.add(leftGlow);
 
-        // Center epsilon glow - THE UNIVERSAL ε (donut hole center)
+        // Center inversion zone - where surfaces meet in the tube
         const epsilonGeometry = new THREE.CircleGeometry(0.5, 32);
         const epsilonMaterial = new THREE.MeshBasicMaterial({ 
             color: 0xffffff, 
@@ -365,7 +365,7 @@
             return sprite;
         }
 
-        const epsilonLabel = createLabel('ε', 72);
+        const epsilonLabel = createLabel('⟂', 72);
         epsilonLabel.position.set(0, -1.5, 0);
         scene.add(epsilonLabel);
 
@@ -434,7 +434,7 @@
             scene.children = scene.children.filter(child => child.type !== 'Line' || child === topLine || child === bottomLine);
             
             const connectionPoints = [];
-            // Bezier curve through epsilon (UNIVERSAL ε at center of donut hole)
+            // Bezier curve through inversion zone (crossing point in tube)
             for (let i = 0; i <= 20; i++) {
                 const t = i / 20;
                 // Quadratic bezier: P = (1-t)²P0 + 2(1-t)tP1 + t²P2
