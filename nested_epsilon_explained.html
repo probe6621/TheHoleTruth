@@ -282,44 +282,47 @@
                     <!-- Background hint of full torus -->
                     <ellipse cx="200" cy="150" rx="180" ry="60" fill="none" stroke="#222" stroke-width="1" stroke-dasharray="5,5"/>
                     
-                    <!-- Tube cross-section -->
+                    <!-- Tube cross-section circle -->
                     <circle cx="200" cy="150" r="80" fill="rgba(30, 30, 50, 0.8)" stroke="#444" stroke-width="3"/>
                     
-                    <!-- Outer surface (top of tube) - our side -->
-                    <path d="M120,150 A80,80 0 0,1 280,150" fill="none" stroke="#4ecdc4" stroke-width="8"/>
-                    <text x="200" y="60" text-anchor="middle" fill="#4ecdc4" font-size="12">OUTER SURFACE</text>
-                    <text x="200" y="75" text-anchor="middle" fill="#4ecdc4" font-size="10">(our side - expanded)</text>
+                    <!-- Outer surface (LEFT arc) - our side, away from ε -->
+                    <path d="M200,70 A80,80 0 0,0 200,230" fill="none" stroke="#4ecdc4" stroke-width="8"/>
+                    <text x="90" y="150" text-anchor="middle" fill="#4ecdc4" font-size="12">OUTER</text>
+                    <text x="90" y="165" text-anchor="middle" fill="#4ecdc4" font-size="12">SURFACE</text>
+                    <text x="90" y="185" text-anchor="middle" fill="#4ecdc4" font-size="9">(away from ε)</text>
                     
-                    <!-- Inner surface (bottom of tube) - mirror side -->
-                    <path d="M120,150 A80,80 0 0,0 280,150" fill="none" stroke="#c44569" stroke-width="8"/>
-                    <text x="200" y="255" text-anchor="middle" fill="#c44569" font-size="12">INNER SURFACE</text>
-                    <text x="200" y="270" text-anchor="middle" fill="#c44569" font-size="10">(mirror side - compressed)</text>
+                    <!-- Inner surface (RIGHT arc) - mirror side, toward ε -->
+                    <path d="M200,70 A80,80 0 0,1 200,230" fill="none" stroke="#c44569" stroke-width="8"/>
+                    <text x="310" y="150" text-anchor="middle" fill="#c44569" font-size="12">INNER</text>
+                    <text x="310" y="165" text-anchor="middle" fill="#c44569" font-size="12">SURFACE</text>
+                    <text x="310" y="185" text-anchor="middle" fill="#c44569" font-size="9">(toward ε)</text>
                     
                     <!-- Inversion zone at center (NOT ε) -->
                     <circle cx="200" cy="150" r="20" fill="rgba(196, 69, 105, 0.3)" class="pulsing"/>
                     <circle cx="200" cy="150" r="20" fill="none" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
                     <text x="200" y="157" text-anchor="middle" fill="#c44569" font-size="22">⟂</text>
+                    <text x="200" y="125" text-anchor="middle" fill="rgba(196,69,105,0.5)" font-size="9">inversion zone</text>
                     
-                    <!-- Label -->
-                    <text x="320" y="145" fill="#c44569" font-size="11">INVERSION</text>
-                    <text x="330" y="160" fill="#c44569" font-size="11">ZONE</text>
+                    <!-- You on LEFT (outer surface) -->
+                    <circle cx="125" cy="150" r="12" fill="#4ecdc4"/>
+                    <text x="125" y="154" text-anchor="middle" fill="#000" font-size="10" font-weight="bold">YOU</text>
+                    <text x="125" y="135" text-anchor="middle" fill="#4ecdc4" font-size="9">expanded side</text>
                     
-                    <!-- You and quantum twin -->
-                    <circle cx="200" cy="70" r="12" fill="#4ecdc4"/>
-                    <text x="200" y="74" text-anchor="middle" fill="#000" font-size="10" font-weight="bold">YOU</text>
-                    
-                    <circle cx="200" cy="230" r="12" fill="#c44569"/>
-                    <text x="200" y="234" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">TWIN</text>
+                    <!-- Twin on RIGHT (inner surface) -->
+                    <circle cx="275" cy="150" r="12" fill="#c44569"/>
+                    <text x="275" y="154" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">TWIN</text>
+                    <text x="275" y="170" text-anchor="middle" fill="#c44569" font-size="9">compressed side</text>
                     
                     <!-- Connection line through inversion zone -->
-                    <line x1="200" y1="82" x2="200" y2="130" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
-                    <line x1="200" y1="170" x2="200" y2="218" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="137" y1="150" x2="180" y2="150" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="220" y1="150" x2="263" y2="150" stroke="#c44569" stroke-width="2" stroke-dasharray="4,4"/>
                     
-                    <!-- 6 rotation arrow -->
-                    <path d="M285,120 A90,90 0 0,1 285,180" fill="none" stroke="#c44569" stroke-width="3"/>
-                    <polygon points="285,180 277,172 293,172" fill="#c44569"/>
-                    <text x="310" y="130" fill="#c44569" font-size="14" font-weight="bold">6</text>
-                    <text x="305" y="145" fill="#c44569" font-size="10">minor rotation</text>
+                    <!-- 6 rotation arrow (around the circle) -->
+                    <path d="M200,70 A80,80 0 0,1 280,150" fill="none" stroke="#c44569" stroke-width="3"/>
+                    <polygon points="280,150 272,142 272,158" fill="#c44569"/>
+                    <text x="250" y="95" fill="#c44569" font-size="14" font-weight="bold">6</text>
+                    <text x="235" y="110" fill="#c44569" font-size="10">minor rotation</text>
+                    <text x="235" y="125" fill="#c44569" font-size="9">(crosses surfaces)</text>
                 </svg>
             </div>
         </div>
@@ -416,27 +419,27 @@
                     <!-- Tube cross-section large -->
                     <circle cx="200" cy="125" r="100" fill="none" stroke="#333" stroke-width="2"/>
                     
-                    <!-- Outer surface with spread out dots -->
-                    <circle cx="200" cy="25" r="6" fill="#4ecdc4"/>
-                    <circle cx="270" cy="55" r="6" fill="#4ecdc4"/>
-                    <circle cx="295" cy="100" r="6" fill="#4ecdc4"/>
-                    <circle cx="295" cy="150" r="6" fill="#4ecdc4"/>
-                    <circle cx="270" cy="195" r="6" fill="#4ecdc4"/>
+                    <!-- Outer surface (LEFT) with spread out dots -->
+                    <circle cx="105" cy="95" r="6" fill="#4ecdc4"/>
+                    <circle cx="115" cy="60" r="6" fill="#4ecdc4"/>
+                    <circle cx="110" cy="125" r="6" fill="#4ecdc4"/>
+                    <circle cx="115" cy="190" r="6" fill="#4ecdc4"/>
+                    <circle cx="105" cy="155" r="6" fill="#4ecdc4"/>
                     
-                    <!-- Measurement on outer -->
-                    <line x1="200" y1="25" x2="270" y2="55" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="250" y="30" fill="#4ecdc4" font-size="10">far apart</text>
+                    <!-- Measurement on outer (LEFT) -->
+                    <line x1="105" y1="95" x2="115" y2="60" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="125" y="75" fill="#4ecdc4" font-size="10">far apart</text>
                     
-                    <!-- Inner surface with compressed dots -->
-                    <circle cx="200" cy="225" r="6" fill="#c44569"/>
-                    <circle cx="160" cy="210" r="6" fill="#c44569"/>
-                    <circle cx="130" cy="175" r="6" fill="#c44569"/>
-                    <circle cx="130" cy="125" r="6" fill="#c44569"/>
-                    <circle cx="130" cy="75" r="6" fill="#c44569"/>
+                    <!-- Inner surface (RIGHT) with compressed dots -->
+                    <circle cx="295" cy="95" r="6" fill="#c44569"/>
+                    <circle cx="285" cy="75" r="6" fill="#c44569"/>
+                    <circle cx="290" cy="125" r="6" fill="#c44569"/>
+                    <circle cx="285" cy="175" r="6" fill="#c44569"/>
+                    <circle cx="295" cy="155" r="6" fill="#c44569"/>
                     
-                    <!-- Measurement on inner -->
-                    <line x1="160" y1="210" x2="130" y2="175" stroke="#c44569" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="100" y="200" fill="#c44569" font-size="10">close</text>
+                    <!-- Measurement on inner (RIGHT) -->
+                    <line x1="295" y1="95" x2="285" y2="75" stroke="#c44569" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="310" y="85" fill="#c44569" font-size="10">close</text>
                     
                     <!-- Center inversion zone (NOT ε) -->
                     <circle cx="200" cy="125" r="15" fill="rgba(196,69,105,0.2)"/>
@@ -444,13 +447,25 @@
                     <text x="200" y="130" text-anchor="middle" fill="#c44569" font-size="16">⟂</text>
                     
                     <!-- Labels -->
-                    <text x="330" y="50" fill="#4ecdc4" font-size="11">OUTER</text>
-                    <text x="330" y="65" fill="#4ecdc4" font-size="9">expanded</text>
-                    <text x="330" y="80" fill="#4ecdc4" font-size="9">more space</text>
+                    <text x="55" y="125" fill="#4ecdc4" font-size="11" font-weight="bold">OUTER</text>
+                    <text x="45" y="140" fill="#4ecdc4" font-size="9">expanded</text>
+                    <text x="40" y="155" fill="#4ecdc4" font-size="9">more space</text>
+                    <text x="35" y="170" fill="#4ecdc4" font-size="9">(away from ε)</text>
                     
-                    <text x="50" y="130" fill="#c44569" font-size="11">INNER</text>
-                    <text x="40" y="145" fill="#c44569" font-size="9">compressed</text>
-                    <text x="45" y="160" fill="#c44569" font-size="9">less space</text>
+                    <text x="350" y="125" fill="#c44569" font-size="11" font-weight="bold">INNER</text>
+                    <text x="340" y="140" fill="#c44569" font-size="9">compressed</text>
+                    <text x="345" y="155" fill="#c44569" font-size="9">less space</text>
+                    <text x="340" y="170" fill="#c44569" font-size="9">(toward ε)</text>
+                    
+                    <!-- Arrow showing direction to ε -->
+                    <path d="M300,200 L350,200" stroke="#ffd700" stroke-width="2" marker-end="url(#arrowEpsilon)"/>
+                    <text x="325" y="220" text-anchor="middle" fill="#ffd700" font-size="9">toward ε →</text>
+                    
+                    <defs>
+                        <marker id="arrowEpsilon" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#ffd700"/>
+                        </marker>
+                    </defs>
                 </svg>
             </div>
             
