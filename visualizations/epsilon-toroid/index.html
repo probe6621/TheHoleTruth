@@ -6,8 +6,8 @@
     
     <!-- SEO Meta Tags -->
     <title>Epsilon Toroid Animation | Interactive 3D Visualization – The Hole Truth</title>
-    <meta name="description" content="Experience the foundational epsilon toroid visualization. Watch energy flow through toroidal geometry with the epsilon (ε) center pulsing at 3-6-9 harmonics.">
-    <meta name="keywords" content="toroid animation, epsilon visualization, 3D physics, toroidal energy flow, sacred geometry, 369">
+    <meta name="description" content="Experience the foundational epsilon toroid visualization with interactive controls, 3-6-9 harmonics, and real-time physics data.">
+    <meta name="keywords" content="toroid animation, epsilon visualization, 3D physics, toroidal energy flow, sacred geometry, 369, Tesla">
     <meta name="author" content="The Hole Truth">
     <meta name="robots" content="index, follow">
     
@@ -42,190 +42,9 @@
             background: #000;
             font-family: 'Nunito', sans-serif;
         }
-        canvas { display: block; }
+        canvas { display: block; cursor: grab; }
+        canvas:active { cursor: grabbing; }
         
-        /* Navigation Bar */
-        .nav-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 200;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
-        }
-        
-        .nav-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-        }
-        
-        .nav-logo span { color: #a78bfa; }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .nav-links a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover { color: #a78bfa; }
-        
-        /* Info Panel */
-        .info-panel {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 320px;
-            background: rgba(20, 20, 40, 0.85);
-            border: 1px solid rgba(100, 100, 150, 0.3);
-            border-radius: 16px;
-            padding: 25px;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        
-        .info-panel.hidden {
-            opacity: 0;
-            transform: translateY(-50%) translateX(20px);
-            pointer-events: none;
-        }
-        
-        .info-panel h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 15px;
-            letter-spacing: 0.1em;
-        }
-        
-        .info-panel p {
-            font-size: 0.9rem;
-            color: #b8b8dd;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .info-panel .science-note {
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            color: rgba(167, 139, 250, 0.8);
-            padding: 12px;
-            background: rgba(0,0,0,0.4);
-            border-left: 2px solid rgba(167, 139, 250, 0.5);
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 15px;
-        }
-        
-        .toggle-info {
-            position: fixed;
-            right: 30px;
-            top: 80px;
-            z-index: 150;
-            background: rgba(167, 139, 250, 0.2);
-            border: 1px solid rgba(167, 139, 250, 0.4);
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .toggle-info:hover {
-            background: rgba(167, 139, 250, 0.4);
-        }
-        
-        /* Original overlay styles */
-        #overlay {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: white;
-            pointer-events: none;
-            z-index: 100;
-        }
-        #axiom {
-            font-size: 36px;
-            font-weight: bold;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(167, 139, 250, 0.8);
-            margin-bottom: 10px;
-        }
-        #subtitle {
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 2px;
-        }
-        #center-label {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 48px;
-            font-weight: bold;
-            font-family: 'Georgia', serif;
-            text-shadow: 0 0 30px rgba(255,255,255,0.9), 0 0 60px rgba(167, 139, 250, 0.6);
-            pointer-events: none;
-            z-index: 100;
-            opacity: 0.9;
-        }
-        #title {
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: white;
-            pointer-events: none;
-            z-index: 100;
-        }
-        #title h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: 8px;
-            text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            .info-panel {
-                right: 15px;
-                left: 15px;
-                width: auto;
-                top: auto;
-                bottom: 100px;
-                transform: none;
-            }
-            
-            .info-panel.hidden {
-                transform: translateY(20px);
-            }
-            
-            .toggle-info {
-                right: 15px;
-            }
-        }
-    
         /* Navigation Header */
         #nav-header {
             position: fixed;
@@ -264,7 +83,327 @@
         }
         
         #nav-header nav a:hover, #nav-header nav a.active { color: #c4b5fd; }
-    
+        
+        /* Info Panel */
+        .info-panel {
+            position: fixed;
+            right: 30px;
+            top: 100px;
+            width: 320px;
+            background: rgba(20, 20, 40, 0.85);
+            border: 1px solid rgba(100, 100, 150, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .info-panel.hidden {
+            opacity: 0;
+            transform: translateX(350px);
+            pointer-events: none;
+        }
+        
+        .info-panel h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+        
+        .info-panel p {
+            font-size: 0.9rem;
+            color: #b8b8dd;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .science-note {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: rgba(167, 139, 250, 0.8);
+            padding: 12px;
+            background: rgba(0,0,0,0.4);
+            border-left: 2px solid rgba(167, 139, 250, 0.5);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+        
+        /* Control Panel */
+        .control-panel {
+            position: fixed;
+            left: 30px;
+            top: 100px;
+            width: 280px;
+            background: rgba(20, 20, 40, 0.85);
+            border: 1px solid rgba(100, 100, 150, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .control-panel.hidden {
+            opacity: 0;
+            transform: translateX(-310px);
+            pointer-events: none;
+        }
+        
+        .control-panel h4 {
+            color: #c4b5fd;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+        
+        .control-panel label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #b8b8dd;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+        
+        .control-panel input[type="range"] {
+            width: 120px;
+            height: 4px;
+            background: rgba(167, 139, 250, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .control-panel input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #c4b5fd;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .control-panel input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .control-value {
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            min-width: 35px;
+            text-align: right;
+        }
+        
+        /* Data Panel */
+        .data-panel {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            background: rgba(20, 20, 40, 0.85);
+            border: 1px solid rgba(100, 100, 150, 0.3);
+            border-radius: 12px;
+            padding: 15px 20px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            display: flex;
+            gap: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+        }
+        
+        .data-panel div {
+            color: #b8b8dd;
+        }
+        
+        .data-panel span {
+            color: #c4b5fd;
+            font-weight: bold;
+        }
+        
+        /* Visualization Selector */
+        .viz-selector {
+            position: fixed;
+            left: 30px;
+            bottom: 40px;
+            background: rgba(20, 20, 40, 0.85);
+            border: 1px solid rgba(100, 100, 150, 0.3);
+            border-radius: 12px;
+            padding: 15px 20px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .viz-selector h4 {
+            color: #c4b5fd;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.1em;
+        }
+        
+        .viz-selector a {
+            display: inline-block;
+            margin-right: 15px;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
+        }
+        
+        .viz-selector a:hover { color: #c4b5fd; }
+        
+        /* Toggle Buttons */
+        .toggle-buttons {
+            position: fixed;
+            right: 30px;
+            top: 70px;
+            z-index: 150;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .toggle-btn {
+            background: rgba(167, 139, 250, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.4);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: rgba(167, 139, 250, 0.4);
+        }
+        
+        .toggle-btn.active {
+            background: rgba(167, 139, 250, 0.6);
+        }
+        
+        /* Annotations */
+        .annotation {
+            position: absolute;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 5px;
+            pointer-events: none;
+            z-index: 50;
+            display: none;
+        }
+        
+        .annotation.visible {
+            display: block;
+        }
+        
+        /* Original overlay styles */
+        #overlay {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        #axiom {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.8);
+            margin-bottom: 10px;
+        }
+        
+        #subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+        }
+        
+        #center-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+            text-shadow: 0 0 30px rgba(255,255,255,0.9), 0 0 60px rgba(167, 139, 250, 0.6);
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.9;
+        }
+        
+        #title {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        #title h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 8px;
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .info-panel, .control-panel {
+                width: calc(100% - 30px);
+                left: 15px;
+                right: 15px;
+            }
+            
+            .data-panel, .viz-selector {
+                display: none;
+            }
+        }
+        
+        /* Sound Control */
+        .sound-control {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        
+        .sound-btn {
+            background: rgba(167, 139, 250, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.4);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .sound-btn:hover {
+            background: rgba(167, 139, 250, 0.4);
+        }
+        
+        .sound-btn.playing {
+            background: rgba(167, 139, 250, 0.6);
+        }
     </style>
 </head>
 <body>
@@ -279,34 +418,106 @@
             <a href="/visualizations/" class="active">Visualizations</a>
         </nav>
     </div>
-
-    <!-- Navigation -->
-    <nav class="nav-bar">
-        <a href="/" class="nav-logo">THE HOLE <span>TRUTH</span></a>
-        <div class="nav-links">
-            <a href="/visualizations/">← All Visualizations</a>
-            <a href="/framework/">Framework</a>
-        </div>
-    </nav>
     
-    <!-- Toggle Button -->
-    <button class="toggle-info" onclick="toggleInfo()">INFO</button>
+    <!-- Toggle Buttons -->
+    <div class="toggle-buttons">
+        <button class="toggle-btn" onclick="togglePanel('info')">INFO</button>
+        <button class="toggle-btn" onclick="togglePanel('controls')">CONTROLS</button>
+        <button class="toggle-btn" onclick="toggleAnnotations()">LABELS</button>
+    </div>
     
     <!-- Info Panel -->
-    <div class="info-panel" id="infoPanel">
+    <div class="info-panel hidden" id="infoPanel">
         <h3>THE EPSILON TOROID</h3>
         <p>You're seeing the foundational shape of reality: a torus with epsilon (ε) at its center. Energy flows continuously from center to surface and back—never stopping, never truly starting.</p>
         <div class="science-note">
             Geometry: R = 3 (major), r = 1.2 (minor)<br>
             Pulse frequency: 3-6-9 Hz harmonics<br>
-            ε center: dimensionless singularity
+            ε center: dimensionless singularity<br>
+            Volume: 2π²Rr² = 70.88 units³<br>
+            Surface Area: 4π²Rr = 142.48 units²
         </div>
         <p>Notice the 3-6-9 pulse at the center. Tesla said "If you knew the magnificence of 3, 6, and 9, you would have a key to the universe." This visualization shows why.</p>
         <div class="science-note">
-            3-6-9 pulse = fundamental harmonic<br>
-            Toroidal flow = energy conservation<br>
-            Particle paths = geodesics on torus
+            3 Hz = Primary rotation (major)<br>
+            6 Hz = Secondary rotation (minor)<br>
+            9 Hz = Unity frequency (3+6)<br>
+            Particle paths = geodesics on torus<br>
+            Flow pattern = Villarceau circles
         </div>
+    </div>
+    
+    <!-- Control Panel -->
+    <div class="control-panel hidden" id="controlPanel">
+        <h4>INTERACTIVE CONTROLS</h4>
+        <label>
+            Rotation Speed
+            <span>
+                <input type="range" min="0" max="1" step="0.1" value="0.3" id="rotSpeed">
+                <span class="control-value" id="rotSpeedValue">0.3</span>
+            </span>
+        </label>
+        <label>
+            Pulse Intensity
+            <span>
+                <input type="range" min="0" max="2" step="0.1" value="1" id="pulseInt">
+                <span class="control-value" id="pulseIntValue">1.0</span>
+            </span>
+        </label>
+        <label>
+            Particle Speed
+            <span>
+                <input type="range" min="0" max="2" step="0.1" value="1" id="particleSpeed">
+                <span class="control-value" id="particleSpeedValue">1.0</span>
+            </span>
+        </label>
+        <label>
+            Particle Count
+            <span>
+                <input type="range" min="500" max="5000" step="500" value="2000" id="particleCount">
+                <span class="control-value" id="particleCountValue">2000</span>
+            </span>
+        </label>
+        <label>
+            Show Particles
+            <input type="checkbox" checked id="showParticles">
+        </label>
+        <label>
+            Show Wireframe
+            <input type="checkbox" id="showWireframe">
+        </label>
+        <label>
+            Auto Rotate
+            <input type="checkbox" checked id="autoRotate">
+        </label>
+    </div>
+    
+    <!-- Data Panel -->
+    <div class="data-panel" id="dataPanel">
+        <div>Frequency: <span id="freq">3.00</span> Hz</div>
+        <div>Phase: <span id="phase">0.00</span> rad</div>
+        <div>Entropy Flow: <span id="entropy">1.00</span> ε/s</div>
+        <div>Frame: <span id="frame">0</span></div>
+    </div>
+    
+    <!-- Visualization Selector -->
+    <div class="viz-selector">
+        <h4>Related Visualizations:</h4>
+        <a href="/quantum-twin-crosssection.html">Quantum Twin</a>
+        <a href="/dimensional-unfolding.html">Dimensional Unfolding</a>
+        <a href="/nested-hierarchy.html">Nested Hierarchy</a>
+        <a href="/cosmic-entropy-engine.html">Entropy Engine</a>
+    </div>
+    
+    <!-- Annotations -->
+    <div class="annotation" id="ann1" style="top: 45%; left: 70%;">Major Radius (R=3)</div>
+    <div class="annotation" id="ann2" style="top: 30%; left: 50%;">Minor Radius (r=1.2)</div>
+    <div class="annotation" id="ann3" style="top: 50%; left: 50%;">ε - Inversion Point</div>
+    <div class="annotation" id="ann4" style="top: 65%; left: 30%;">Toroidal Flow Path</div>
+    
+    <!-- Sound Control -->
+    <div class="sound-control">
+        <button class="sound-btn" onclick="toggleSound()">🔊 ACTIVATE 3-6-9 HARMONICS</button>
     </div>
     
     <!-- Original visualization elements -->
@@ -321,13 +532,140 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Toggle info panel
-        function toggleInfo() {
-            const panel = document.getElementById('infoPanel');
-            panel.classList.toggle('hidden');
+        // Control variables
+        let controls = {
+            rotationSpeed: 0.3,
+            pulseIntensity: 1.0,
+            particleSpeed: 1.0,
+            particleCount: 2000,
+            showParticles: true,
+            showWireframe: false,
+            autoRotate: true,
+            showAnnotations: false
+        };
+        
+        // Audio context for 3-6-9 harmonics
+        let audioContext = null;
+        let oscillators = [];
+        let isPlaying = false;
+        
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Create oscillators for 3, 6, and 9 Hz binaural beats
+            const frequencies = [
+                { left: 200, right: 203 },  // 3 Hz beat
+                { left: 200, right: 206 },  // 6 Hz beat
+                { left: 200, right: 209 }   // 9 Hz beat
+            ];
+            
+            frequencies.forEach(freq => {
+                const oscillatorLeft = audioContext.createOscillator();
+                const oscillatorRight = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                const pannerLeft = audioContext.createStereoPanner();
+                const pannerRight = audioContext.createStereoPanner();
+                
+                oscillatorLeft.frequency.value = freq.left;
+                oscillatorRight.frequency.value = freq.right;
+                gainNode.gain.value = 0.1;
+                pannerLeft.pan.value = -1;
+                pannerRight.pan.value = 1;
+                
+                oscillatorLeft.connect(pannerLeft);
+                oscillatorRight.connect(pannerRight);
+                pannerLeft.connect(gainNode);
+                pannerRight.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillatorLeft.start();
+                oscillatorRight.start();
+                
+                oscillators.push({ left: oscillatorLeft, right: oscillatorRight, gain: gainNode });
+            });
         }
         
-        // Scene setup
+        function toggleSound() {
+            const btn = document.querySelector('.sound-btn');
+            if (!audioContext) {
+                initAudio();
+                isPlaying = true;
+                btn.classList.add('playing');
+                btn.textContent = '🔇 MUTE 3-6-9 HARMONICS';
+            } else {
+                if (isPlaying) {
+                    oscillators.forEach(osc => osc.gain.gain.value = 0);
+                    btn.classList.remove('playing');
+                    btn.textContent = '🔊 ACTIVATE 3-6-9 HARMONICS';
+                } else {
+                    oscillators.forEach(osc => osc.gain.gain.value = 0.1);
+                    btn.classList.add('playing');
+                    btn.textContent = '🔇 MUTE 3-6-9 HARMONICS';
+                }
+                isPlaying = !isPlaying;
+            }
+        }
+        
+        // Toggle functions
+        function togglePanel(panel) {
+            const infoPanel = document.getElementById('infoPanel');
+            const controlPanel = document.getElementById('controlPanel');
+            
+            if (panel === 'info') {
+                infoPanel.classList.toggle('hidden');
+                controlPanel.classList.add('hidden');
+            } else if (panel === 'controls') {
+                controlPanel.classList.toggle('hidden');
+                infoPanel.classList.add('hidden');
+            }
+        }
+        
+        function toggleAnnotations() {
+            controls.showAnnotations = !controls.showAnnotations;
+            const annotations = document.querySelectorAll('.annotation');
+            annotations.forEach(ann => {
+                ann.classList.toggle('visible', controls.showAnnotations);
+            });
+        }
+        
+        // Setup control event listeners
+        document.getElementById('rotSpeed').addEventListener('input', (e) => {
+            controls.rotationSpeed = parseFloat(e.target.value);
+            document.getElementById('rotSpeedValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('pulseInt').addEventListener('input', (e) => {
+            controls.pulseIntensity = parseFloat(e.target.value);
+            document.getElementById('pulseIntValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('particleSpeed').addEventListener('input', (e) => {
+            controls.particleSpeed = parseFloat(e.target.value);
+            document.getElementById('particleSpeedValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('particleCount').addEventListener('input', (e) => {
+            controls.particleCount = parseInt(e.target.value);
+            document.getElementById('particleCountValue').textContent = e.target.value;
+            // Recreate particles with new count
+            recreateParticles();
+        });
+        
+        document.getElementById('showParticles').addEventListener('change', (e) => {
+            controls.showParticles = e.target.checked;
+            particles.visible = controls.showParticles;
+        });
+        
+        document.getElementById('showWireframe').addEventListener('change', (e) => {
+            controls.showWireframe = e.target.checked;
+            torusMaterial.wireframe = controls.showWireframe;
+        });
+        
+        document.getElementById('autoRotate').addEventListener('change', (e) => {
+            controls.autoRotate = e.target.checked;
+        });
+        
+        // Three.js Scene setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -362,6 +700,7 @@
             varying vec2 vUv;
             uniform float time;
             uniform vec3 cameraPosition;
+            uniform float pulseIntensity;
             
             void main() {
                 vec3 viewDirection = normalize(cameraPosition - vPosition);
@@ -383,7 +722,7 @@
                 float pulse3 = sin(time * 3.0) * 0.5 + 0.5;
                 float pulse6 = sin(time * 6.0) * 0.5 + 0.5;
                 float pulse9 = sin(time * 9.0) * 0.5 + 0.5;
-                float pulse = (pulse3 + pulse6 + pulse9) / 3.0;
+                float pulse = (pulse3 + pulse6 + pulse9) / 3.0 * pulseIntensity;
                 
                 vec3 finalColor = iridescence * (0.3 + fresnel * 0.7);
                 finalColor += vec3(0.6, 0.4, 1.0) * flow * 0.5;
@@ -402,11 +741,13 @@
             fragmentShader: torusFragmentShader,
             uniforms: {
                 time: { value: 0 },
-                cameraPosition: { value: camera.position }
+                cameraPosition: { value: camera.position },
+                pulseIntensity: { value: 1.0 }
             },
             transparent: true,
             side: THREE.DoubleSide,
-            depthWrite: false
+            depthWrite: false,
+            wireframe: false
         });
         const torus = new THREE.Mesh(torusGeometry, torusMaterial);
         scene.add(torus);
@@ -448,37 +789,49 @@
         scene.add(outerGlowSphere);
 
         // Particles
-        const particleCount = 2000;
-        const particleGeometry = new THREE.BufferGeometry();
-        const particlePositions = new Float32Array(particleCount * 3);
-        const particleVelocities = [];
+        let particles, particleVelocities = [];
+        
+        function recreateParticles() {
+            if (particles) {
+                scene.remove(particles);
+                particles.geometry.dispose();
+                particles.material.dispose();
+            }
+            
+            const particleGeometry = new THREE.BufferGeometry();
+            const particlePositions = new Float32Array(controls.particleCount * 3);
+            particleVelocities = [];
 
-        for (let i = 0; i < particleCount; i++) {
-            const u = Math.random() * Math.PI * 2;
-            const v = Math.random() * Math.PI * 2;
-            const R = 3, r = 1.2;
-            
-            particlePositions[i * 3] = (R + r * Math.cos(v)) * Math.cos(u);
-            particlePositions[i * 3 + 1] = (R + r * Math.cos(v)) * Math.sin(u);
-            particlePositions[i * 3 + 2] = r * Math.sin(v);
-            
-            particleVelocities.push({
-                u: u, v: v,
-                speedU: 0.005 + Math.random() * 0.01,
-                speedV: 0.002 + Math.random() * 0.005
+            for (let i = 0; i < controls.particleCount; i++) {
+                const u = Math.random() * Math.PI * 2;
+                const v = Math.random() * Math.PI * 2;
+                const R = 3, r = 1.2;
+                
+                particlePositions[i * 3] = (R + r * Math.cos(v)) * Math.cos(u);
+                particlePositions[i * 3 + 1] = (R + r * Math.cos(v)) * Math.sin(u);
+                particlePositions[i * 3 + 2] = r * Math.sin(v);
+                
+                particleVelocities.push({
+                    u: u, v: v,
+                    speedU: 0.005 + Math.random() * 0.01,
+                    speedV: 0.002 + Math.random() * 0.005
+                });
+            }
+
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            const particleMaterial = new THREE.PointsMaterial({
+                color: 0x60a5fa,
+                size: 0.03,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
             });
+            particles = new THREE.Points(particleGeometry, particleMaterial);
+            particles.visible = controls.showParticles;
+            scene.add(particles);
         }
-
-        particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-        const particleMaterial = new THREE.PointsMaterial({
-            color: 0x60a5fa,
-            size: 0.03,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
-        });
-        const particles = new THREE.Points(particleGeometry, particleMaterial);
-        scene.add(particles);
+        
+        recreateParticles();
 
         // Ambient light
         scene.add(new THREE.AmbientLight(0x404040, 0.5));
@@ -497,61 +850,124 @@
         }));
         scene.add(stars);
 
+        // Mouse controls
+        let mouseX = 0, mouseY = 0;
+        let isMouseDown = false;
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isMouseDown) {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            }
+        });
+        
+        renderer.domElement.addEventListener('mousedown', () => { isMouseDown = true; });
+        document.addEventListener('mouseup', () => { isMouseDown = false; });
+        
+        // Touch controls for mobile
+        let touchStart = null;
+        renderer.domElement.addEventListener('touchstart', (e) => {
+            touchStart = e.touches[0];
+        });
+        
+        renderer.domElement.addEventListener('touchmove', (e) => {
+            if (!touchStart) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const deltaX = touch.pageX - touchStart.pageX;
+            const deltaY = touch.pageY - touchStart.pageY;
+            
+            mouseX = (deltaX / window.innerWidth) * 2;
+            mouseY = -(deltaY / window.innerHeight) * 2;
+            
+            touchStart = touch;
+        });
+        
+        renderer.domElement.addEventListener('touchend', () => {
+            touchStart = null;
+        });
+
         camera.position.z = 8;
         camera.position.y = 2;
         camera.lookAt(0, 0, 0);
 
         let time = 0;
+        let frameCount = 0;
+        
         function animate() {
             requestAnimationFrame(animate);
             time += 0.016;
+            frameCount++;
 
+            // Update uniforms
             torusMaterial.uniforms.time.value = time;
             torusMaterial.uniforms.cameraPosition.value = camera.position;
+            torusMaterial.uniforms.pulseIntensity.value = controls.pulseIntensity;
 
-            torus.rotation.x = Math.sin(time * 0.2) * 0.3;
-            torus.rotation.y = time * 0.3;
+            // Rotate torus
+            if (controls.autoRotate) {
+                torus.rotation.x = Math.sin(time * 0.2 * controls.rotationSpeed) * 0.3;
+                torus.rotation.y = time * 0.3 * controls.rotationSpeed;
+            }
+            torus.rotation.x += mouseY * 0.02;
+            torus.rotation.y += mouseX * 0.02;
+            
             innerGlow.rotation.copy(torus.rotation);
 
+            // 3-6-9 Pulse
             const pulse3 = Math.sin(time * 3) * 0.5 + 0.5;
             const pulse6 = Math.sin(time * 6) * 0.5 + 0.5;
             const pulse9 = Math.sin(time * 9) * 0.5 + 0.5;
             const combinedPulse = (pulse3 + pulse6 * 0.5 + pulse9 * 0.25) / 1.75;
             
-            glowSphere.scale.setScalar(0.8 + combinedPulse * 0.4);
-            outerGlowSphere.scale.setScalar(1.2 + combinedPulse * 0.6);
-            centerLight.intensity = 1.5 + combinedPulse * 1.5;
-            centerLight2.intensity = 2 + combinedPulse * 2;
+            const scaledPulse = combinedPulse * controls.pulseIntensity;
+            glowSphere.scale.setScalar(0.8 + scaledPulse * 0.4);
+            outerGlowSphere.scale.setScalar(1.2 + scaledPulse * 0.6);
+            centerLight.intensity = 1.5 + scaledPulse * 1.5;
+            centerLight2.intensity = 2 + scaledPulse * 2;
 
-            const positions = particleGeometry.attributes.position.array;
-            const R = 3, r = 1.2;
-            for (let i = 0; i < particleCount; i++) {
-                particleVelocities[i].u += particleVelocities[i].speedU;
-                particleVelocities[i].v += particleVelocities[i].speedV;
-                const u = particleVelocities[i].u, v = particleVelocities[i].v;
-                
-                const x = (R + r * Math.cos(v)) * Math.cos(u);
-                const y = (R + r * Math.cos(v)) * Math.sin(u);
-                const z = r * Math.sin(v);
-                
-                const cosX = Math.cos(torus.rotation.x), sinX = Math.sin(torus.rotation.x);
-                const cosY = Math.cos(torus.rotation.y), sinY = Math.sin(torus.rotation.y);
-                const y1 = y * cosX - z * sinX;
-                const z1 = y * sinX + z * cosX;
-                const x1 = x * cosY + z1 * sinY;
-                const z2 = -x * sinY + z1 * cosY;
-                
-                positions[i * 3] = x1;
-                positions[i * 3 + 1] = y1;
-                positions[i * 3 + 2] = z2;
+            // Update particles
+            if (particles) {
+                const positions = particles.geometry.attributes.position.array;
+                const R = 3, r = 1.2;
+                for (let i = 0; i < particleVelocities.length; i++) {
+                    particleVelocities[i].u += particleVelocities[i].speedU * controls.particleSpeed;
+                    particleVelocities[i].v += particleVelocities[i].speedV * controls.particleSpeed;
+                    const u = particleVelocities[i].u, v = particleVelocities[i].v;
+                    
+                    const x = (R + r * Math.cos(v)) * Math.cos(u);
+                    const y = (R + r * Math.cos(v)) * Math.sin(u);
+                    const z = r * Math.sin(v);
+                    
+                    const cosX = Math.cos(torus.rotation.x), sinX = Math.sin(torus.rotation.x);
+                    const cosY = Math.cos(torus.rotation.y), sinY = Math.sin(torus.rotation.y);
+                    const y1 = y * cosX - z * sinX;
+                    const z1 = y * sinX + z * cosX;
+                    const x1 = x * cosY + z1 * sinY;
+                    const z2 = -x * sinY + z1 * cosY;
+                    
+                    positions[i * 3] = x1;
+                    positions[i * 3 + 1] = y1;
+                    positions[i * 3 + 2] = z2;
+                }
+                particles.geometry.attributes.position.needsUpdate = true;
             }
-            particleGeometry.attributes.position.needsUpdate = true;
 
-            camera.position.x = Math.sin(time * 0.1) * 2;
-            camera.position.z = 8 + Math.cos(time * 0.1) * 2;
+            // Camera movement
+            if (controls.autoRotate) {
+                camera.position.x = Math.sin(time * 0.1) * 2;
+                camera.position.z = 8 + Math.cos(time * 0.1) * 2;
+            }
             camera.lookAt(0, 0, 0);
 
+            // Stars rotation
             stars.rotation.y = time * 0.02;
+
+            // Update data panel
+            document.getElementById('freq').textContent = (3 + pulse6 * 3 + pulse9 * 3).toFixed(2);
+            document.getElementById('phase').textContent = (time % (Math.PI * 2)).toFixed(2);
+            document.getElementById('entropy').textContent = (1 + combinedPulse).toFixed(2);
+            document.getElementById('frame').textContent = frameCount;
 
             renderer.render(scene, camera);
         }
